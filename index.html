@@ -11,6 +11,18 @@
             padding: 0;
             font-family: Arial, sans-serif;
             background-color: #f0f0f0; /* Fond du corps */
+            font-size: 16px; /* Taille de police par défaut */
+            text-align: justify; /* Justification du texte */
+        }
+
+        /* Styles pour les liens */
+        a {
+            color: blue;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline; /* Soulignement au survol */
         }
 
         .container {
@@ -23,45 +35,286 @@
         /* Styles du tableau utilisant CSS Grid */
         .grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* Deux colonnes égales */
+            grid-template-columns: 150px 1fr;
             width: 100%; /* Prendre toute la largeur */
-            border-collapse: collapse; /* Éliminer les espaces entre les cellules */
         }
 
         .cell {
             padding: 12px;
             border: 1px solid #000; /* Bordures noires */
             text-align: left;
-            background: #fff; /* Fond blanc pour chaque cellule */
+        }
+        .cell img {
+            max-width: 100%; /* Make image responsive */
+            max-height: 100%; /* Limit height to avoid overflow */
+            object-fit: contain; /* Preserve aspect ratio */
+            
         }
 
         /* Styles pour la deuxième ligne */
         .row-2 {
             grid-column: span 2; /* Occupe les deux colonnes */
+            border: 1px solid #000; /* Bordure noire pour la cellule unique */
+            overflow: hidden; /* Hide overflow if the image is too large */
+        
+        }
+
+        /* Styles pour les lignes suivantes */
+        .grid-50 {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Deux colonnes égales */
+            width: 100%; /* Prendre toute la largeur */
+        }
+
+        /* Couleurs de fond alternées pour les cellules */
+        .white {
+            background-color: #fff; /* Blanc */
+        }
+
+        .gray {
+            background-color: #f9f9f9; /* Gris clair */
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="grid">
-            <div class="cell">Ligne 1, Cellule 1</div>
-            <div class="cell">Ligne 1, Cellule 2</div>
-            <div class="cell row-2">Ligne 2, Cellule unique</div> <!-- Ligne avec 1 cellule -->
-            <div class="cell">Ligne 3, Cellule 1</div>
-            <div class="cell">Ligne 3, Cellule 2</div>
-            <div class="cell">Ligne 4, Cellule 1</div>
-            <div class="cell">Ligne 4, Cellule 2</div>
-            <div class="cell">Ligne 5, Cellule 1</div>
-            <div class="cell">Ligne 5, Cellule 2</div>
-            <div class="cell">Ligne 6, Cellule 1</div>
-            <div class="cell">Ligne 6, Cellule 2</div>
-            <div class="cell">Ligne 7, Cellule 1</div>
-            <div class="cell">Ligne 7, Cellule 2</div>
-            <div class="cell">Ligne 8, Cellule 1</div>
-            <div class="cell">Ligne 8, Cellule 2</div>
-            <div class="cell">Ligne 9, Cellule 1</div>
-            <div class="cell">Ligne 9, Cellule 2</div>
+            <div class="cell" style="text-align: center;">
+                <img width=120 height=110
+                src="./img/ArchiMateCGWorksheet/image001.jpg"><p>Let's prototype and assess value of Semantic Cartography</p>
+                <p><a href="ArchiMate Compound Graph Viewer and Analyzer.html">Online ArchiMateCG</a></p>
+            </div>
+            <div class="cell white">
+                <p class="MsoNormal"><b>ArchiMateCG</b> is a solution aiming at assessing the value of using ArchiMate Interactive Compound Graphs for the various stakeholders involved in 
+                    architecting the enterprise for its digitalisation and who adopted the 
+                    <a href="https://pubs.opengroup.org/architecture/archimate3-doc/">ArchiMate® 3.2</a> language as the standardized architecture description language.
+                </p>
+                <p class="MsoNormal">ArchiMateCG aims at serving actors dealing with End to End Digital Processes, Model Based System Engineering, Product Lifecycle Management industrial approach (as defined by 
+                    <a href="https://www.cimdata.com/en/resources/about-plm">CIMDATA</a>) and Interoperability of Enterprise Application.
+                </p>
+                <p class="MsoNormal">For this, ArchiMateCG supports creation of advanced interactive compound graphs visualization and algorithms in order to analyze architecture descriptions and blueprints produced using the ArchiMate language.</p>
+                <p class="MsoNormal">ArchiMateCG is not intended to replace legacy ArchiMate modeling platforms and enterprise repositories, but to complement and extend them with previously described features.</p>
+                <p class="MsoNormal">Consequently, ArchiMateCG comes with various import and export 
+                    functionalities, and complementary sets of scripts for <a href="https://www.archimatetool.com/">Archi</a> and
+                    <a href="https://sparxsystems.com/enterprise_architect_user_guide/15.2/model_domains/archimate.html"> Enterprise Architect.</a>
+                </p>
+                <p class="MsoNormal">ArchiMateCG is realized by combined usage of standardized Web technologies such as HTML, SVG, and JavaScript, in order to run on and require only a Web Navigator.</p>
+                <p class="MsoNormal">Finally, ArchiMateCG is a research incubator, aiming at demonstrating and assessing research results on Continuous Operational Interoperability for digital collaboration within and between enterprises applying Model Based approaches. 
+                    It will in particular address the combined usage of 
+                    <a href="https://www.w3.org/wiki/LinkedData">Linked Data</a>, 
+                    <a href="https://www.w3.org/standards/semanticweb/">Semantic Web</a>, 
+                    <a href="https://en.wikipedia.org/wiki/ISO_10303">Standardized Application Protocols</a> and
+                    <a href="https://www.linkedin.com/pulse/emerging-landscape-distributed-knowledge-ontology-semantic-figay/">Graph based technologies.</a>
+                </p>
+            </div>
         </div>
+        <div class="cell row-2" style="display: flex;justify-content: center; align-items: center; "><img src="./img/ArchiMateCGWorksheet/image002.jpg">
+        </div>
+        
+        <div class="grid-50">
+            <div class="cell white"><p style="text-align: center;"><b>Import models from Archi and other ArchiMate
+                models repositories in order to take advantage of the
+                functionalities provided by ArchiMateCG</b></p>
+                This can be made relying on:<ul>
+                <li>specific JSON data models</li>
+                <li>the XML Open Exchange Format defined by the Open Group</li>
+                <li>and in the future many other syntaxes</li>
+            </ul></div>
+            <div class="cell gray">Ligne 3, Cellule 2</div>
+        </div>
+        <div class="grid-50">
+            <div class="cell gray">Ligne 4, Cellule 1</div>
+            <div class="cell white"><p style="text-align: center;"><b>Collapse or Extend the graph nodes taking advantage of
+                automated layouts adapted to compound graphs.</b></p>
+                This can be done on:<ul>
+                <li>the whole graph</li>
+                <li>a given compound element</li>
+                <li>a selection of elements</li>
+                </ul></div>
+        </div>
+        <div class="grid-50">
+            <div class="cell white"><p style="text-align: center;"><b>Collapse or Extend the Graph Edges taking
+                advantage of automated layouts adapted to
+                compound graphs.</b></p>
+                This can be done on:<ul>
+                <li>the whole graph</li>
+               <li>a given selection of edges</li>
+               <li>the edges existing between a selections of nodes</li>
+               <li>grouping per types of edges</li>
+            </ul></div>
+            <div class="cell gray" style="display: flex;justify-content: center; align-items: center; ">  <img 
+                src="./img/ArchiMateCGWorksheet/image003.jpg"></div>
+        </div>
+        <div class="grid-50">
+            <div class="cell gray">Ligne 6, Cellule 1</div>
+            <div class="cell white"><p style="text-align: center;"><b>Let's change the presentation of a composite model.</b></p>
+                This can be done by:<ul>
+                <li>Transforming a graph of model elements with
+                composition relationships on compound nodes</li>
+                <li>Transforming compound nodes reflecting a composition
+                in a graph</li></ul>
+
+                <p>The composition relationships are preserved, even in not
+                displayed on the graph.</p>
+            <p>You can also shows graph content as dynamic interactive
+                matrixes, displaying various graph characteristics or
+                calculate weights.</p></div>
+        </div>
+        <div class="grid-50">
+            <div class="cell white"><p style="text-align: center;"><b>Let's manipulate the graphs in order to show what
+                you expect</b></p>
+                This can be done by:<ul>
+                <li>Hiding a selection of nodes</li>
+                <li>Removing a selection of nodes</li>
+                <li>Preventing the users or the software to move a
+                selection of nodes</li></ul>
+                <p>The reverse operations can be made.</p>
+                <p>Selections can be made manually, through a filter
+                expression on data (properties of nodes and edges) based
+                on shortest path or neighborhood.</p></div>
+            <div class="cell gray">Ligne 7, Cellule 2</div>
+        </div>
+        <div class="grid-50">
+            <div class="cell gray"></div>
+            <div class="cell white">
+                <p style="text-align: center;"><b>Let's Create complementary models elements, as nodes,
+                    compound nodes and edges</b></p>
+                    This can be done by relying on :<ul>
+                    <li>an enrichment of the ArchiMate language suited for
+                    Architects' needs</li>
+                    <li>specializations of ArchiMate</li>
+                    <li>ergonomic combined usage of a palette and of action
+                    buttons</li></ul>
+                    <p>The goal is to reach the same level of ergonomy than
+                        mindmap solutions.</p>
+                </div>
+        </div>
+        <div class="grid-50">
+            <div class="cell white"><p style="text-align: center;"><b>Let's visualize, modify and create properties of the
+                model elements and relationships</b></p>
+                This can be done with :<ul>
+                <li>the property pane displaying what concerns double
+                clicked graph elements/li>
+                <li>the node creation menu</li></ul>
+                <p>The goal is to access both data model and visual
+                properties of the nodes, in order to control both the
+                content and how it is rendered.</p></div>
+            <div class="cell gray">Ligne 9, Cellule 2</div>
+        </div>
+    
+    <div class="grid-50">
+        <div class="cell gray">Ligne 9, Cellule 1</div>
+        <div class="cell white"><p style="text-align: center;"><b>Let's color the graph elements according two their
+            values for a given property</b></p>
+            This can be done by :<ul>
+            <li>selecting the property</li>
+            <li>automatically generating the colors legend and
+            coloring the graph</li></ul>
+            <p>The goal is to perform some visual mining in order to
+            support the analysis of an architecture.</p></div>
+    </div>
+    <div class="grid-50">
+        <div class="cell white"><p style="text-align: center;"><b>Let's export as CSV/OWL files the model contained
+            in a selected part of the graph</b></p>
+            CSV export provides :<ul>
+            <li>a list of model elements (nodes.csv)</li>
+            <li>a list of relationships (edges.csv)</li>
+            <li>a list of properties (properties.csv)</li></ul>
+            <p>The goal is to be able to complete an architecture analysis
+            relying on worksheets.</p>
+            <p>OWL export produces a JSON LD file which can be
+            imported on Protégé or various graph/knowledge data
+            base, such as RDFox, Stardog, OpenLink Virtuoso, etc.</p></div>
+        <div class="cell gray">Ligne 9, Cellule 2</div>
+    </div>
+    <div class="grid-50">
+        <div class="cell gray">Ligne 9, Cellule 1</div>
+        <div class="cell white"><p style="text-align: center;"><b>Let's visualize the graph as matrixes</b></p>
+            With complex graph with many relations, you have to face
+            the "hairball" effect. Adjacency matrixes provides
+            alternative way for visualizing a graph. But many other
+            kinds of matrixes can be derived for analysing an
+            architecture:<ul>
+            <li>matrixes of distance between nodes</li>
+            <li>matrixes with relations between nodes</li>
+            <li>Matrixes with shortest paths between nodes …</li></ul>
+            <p>Proposing only a simple adjacency matrix with the current
+            version, it is intended to extend the proposed interactive
+            matrixes with those bringing value for the architecture
+            analysis in future versions, including matrixes suited for
+            compound graphs with lines and columns which can be
+            collapsed and extended.</p></div>
+    </div>
+    <div class="grid-50">
+        <div class="cell white"><p style="text-align: center;"><b>Let's visually traverse the graph</b></p>
+            The model being a graph, it is possible from a node, an
+            edge or a group of them to select:<ul>
+            <li>connected edges and nodes or neighborhood with a
+            given depth</li>
+            <li>Shortest path from a source node to a target node
+            if it exists</li>
+            <li>Roots and Leaves …</li></ul>
+            <p>Future versions will extend graph traversal to compound
+            graph traversal, which is more suited for Composite
+            Graph analysis</p></div>
+        <div class="cell gray">Ligne 9, Cellule 2</div>
+    </div>
+    <div class="grid-50">
+        <div class="cell gray">Ligne 9, Cellule 1</div>
+        <div class="cell white"><p style="text-align: center;"><b>Let's filter models according to Architectural viewpoints</b></p>
+            <p>Based on <a href="https://www.iso.org/standard/74393.html"> ISO 42010 (Systems and software engineering —
+            Architecture description)</a>, ArchiMate proposes a set of
+            predefined viewpoints, which are suited for guiding
+            production of views suited for different kind of
+            stakeholders, having given concerns and purposes.
+            ArchiMateCG allows to filter the palette according to these
+            viewpoints.</p>
+            <p>Combined with the ability to export a visible graph as an
+            ArchiMate view based on the Open Exchange Format and
+            to preserve identifiers during import and export, it makes it
+            possible to quickly push compound diagrams resulting from
+            you analysis in you usual ArchiMate modeling tools
+            supporting import of Open Format.</p>
+            <p>It is also plan to create you own viewpoints, or to use those
+            which will be defined by the <a href="https://www.nato.int/cps/en/natohq/topics_157575.htm">NATO Architecture Framework V4</a> when available</p></div>
+    </div>
+    <div class="grid-50">
+        <div class="cell white"><p style="text-align: center;"><b>Let's develop exports script on your preferred tools
+            (Archi, Enterprise Architect, etc.) in order to feed the
+            ArchiMate Compound Graph viewer and analyzers.</b></p>
+            ArchiMateCG comes with a set of jArchi scripts
+            allowing to make some preprocessing before to export
+            data to ArchiMateCG :<ul>
+            <li>what is contained in a view or a set of views</li>
+            <li>the content of a model</li>
+            <li>a subset of a model</li></ul>
+            <p>The goal is to be able to aggregate data coming from
+            various model repositories relying on various products
+            and languages, in order to aggregate them and perform
+            required analysis on you desktop.</p></div>
+        <div class="cell gray">Ligne 9, Cellule 2</div>
+    </div>
+    <div class="grid-50">
+        <div class="cell gray"><p style="text-align: center;"><b>Let's automate algorithms defined
+            for relevant architecture analysis</b></p>
+            <p>Relying on the set of available features for graph
+            analytics and for advanced visualization, it is possible to
+            create and includes modules launching parameterized
+            treatments on subsets of your model, eventually filtered
+            by relevant viewpoints, which are suited for such or
+            such Architectural analysis, and to display it in the
+            appropriate presentations for communication or results
+            publishing, being in a document or in models
+            repositories.</p></div>
+        <div class="cell gray"><p style="text-align: center;"><b>Let's register some animation on top of model for story
+            telling applied to your model</b></p>
+            <p>It is possible to automate and registed a set of interactions
+            with you graph model as an animation, which you can make
+            available in ArchiMateCG and run on you model.</p>
+            <p>It can be used for communication purpose, or as a way to
+            publish some results as dynamic animation, and not static
+            (office documents) or impossible to change (videos)
+            documents./p></div>
     </div>
 </body>
 </html>
