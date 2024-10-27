@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF.js Viewer with Navigation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.min.js"></script>
+    <style>
+        /* Styling for the PDF viewer and navigation */
+        #pdf-container {
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+            overflow-y: auto;
+            height: 600px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background-color: #f8f8f8;
+            text-align: center;
+        }
+        canvas {
+            display: block;
+            margin: 10px auto;
+            width: 100%;
+            height: auto;
+        }
+        #navigation {
+            margin: 10px auto;
+            text-align: center;
+        }
+        button {
+            margin: 5px;
+            padding: 8px 16px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div id="pdf-container">
+    <canvas id="pdf-canvas"></canvas>
+</div>
+
+<div id="navigation">
+    <button id="prev-page">Previous Page</button>
+    <span>Page: <span id="page-num"></span> / <span id="page-count"></span></span>
+    <button id="next-page">Next Page</button>
+</div>
+
+<script>
+    const pdfUrl = './docs/ArchiMateCGWorksheet'; 
+    let pdfDoc = null;
+    let pageNum = 1;
+    let pageRendering = false;
+    let pageNumPending = null;
+    const scale = 1.5;
+    const canvas = document.getElementById('pdf-canvas');
+    const ctx = canvas.getContext('2d');
+
+    // Load the PDF document
+    pdfjsLib.getDocument(pdfUrl).promise.then(pdf => {
+        pdfDoc = pdf;
+        document.getElementById('page-count').textContent = pdf.numPages;
+        renderPage(pageNum);
+    }).catch(error => {
+        console.error('Error loading PDF:', error);
+    });
+
+    // Render the page
+    function renderPage(num) {
+        pageRendering = true;
+        pdfDoc.getPage(num).then(page => {
+            const viewport = page.getViewport({ scale });
+            canvas.width = viewport.width;
+            canvas.height = viewport.height;
+
+            const renderContext = {
+                canvasContext: ctx,
+                viewport: viewport
+            };
+
+            const renderTask = page.render(renderContext);
+            renderTask.promise.then(() => {
+                pageRendering = false;
+                if (pageNumPending !== null) {
+                    renderPage(pageNumPending);
+                    pageNumPending = null;
+                }
+            });
+            document.getElementById('page-num').textContent = num;
+        });
+    }
+
+    // Handle Previous and Next button clicks
+    function queueRenderPage(num) {
+        if (pageRendering) {
+            pageNumPending = num;
+        } else {
+            renderPage(num);
+        }
+    }
+
+    function onPrevPage() {
+        if (pageNum <= 1) return;
+        pageNum--;
+        queueRenderPage(pageNum);
+    }
+
+    function onNextPage() {
+        if (pageNum >= pdfDoc.numPages) return;
+        pageNum++;
+        queueRenderPage(pageNum);
+    }
+
+    document.getElementById('prev-page').addEventListener('click', onPrevPage);
+    document.getElementById('next-page').addEventListener('click', onNextPage);
+</script>
+
+</body>
+</html>

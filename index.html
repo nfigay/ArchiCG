@@ -1,121 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF.js Viewer with Navigation</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.min.js"></script>
+    <title>Tableau avec CSS Grid</title>
     <style>
-        /* Styling for the PDF viewer and navigation */
-        #pdf-container {
-            width: 100%;
-            max-width: 800px;
-            margin: auto;
-            overflow-y: auto;
-            height: 600px;
-            border: 1px solid #ddd;
-            padding: 10px;
-            background-color: #f8f8f8;
-            text-align: center;
+        /* Réinitialisation et styles de base */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; /* Fond du corps */
         }
-        canvas {
-            display: block;
-            margin: 10px auto;
-            width: 100%;
-            height: auto;
+
+        .container {
+            width: 100%; /* Prendre toute la largeur de la fenêtre */
+            background: #fff; /* Fond blanc */
+            padding: 20px;
+            box-sizing: border-box; /* Inclure le padding dans la largeur totale */
         }
-        #navigation {
-            margin: 10px auto;
-            text-align: center;
+
+        /* Styles du tableau utilisant CSS Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Deux colonnes égales */
+            width: 100%; /* Prendre toute la largeur */
+            border-collapse: collapse; /* Éliminer les espaces entre les cellules */
         }
-        button {
-            margin: 5px;
-            padding: 8px 16px;
-            font-size: 16px;
-            cursor: pointer;
+
+        .cell {
+            padding: 12px;
+            border: 1px solid #000; /* Bordures noires */
+            text-align: left;
+            background: #fff; /* Fond blanc pour chaque cellule */
+        }
+
+        /* Styles pour la deuxième ligne */
+        .row-2 {
+            grid-column: span 2; /* Occupe les deux colonnes */
         }
     </style>
 </head>
 <body>
-
-<div id="pdf-container">
-    <canvas id="pdf-canvas"></canvas>
-</div>
-
-<div id="navigation">
-    <button id="prev-page">Previous Page</button>
-    <span>Page: <span id="page-num"></span> / <span id="page-count"></span></span>
-    <button id="next-page">Next Page</button>
-</div>
-
-<script>
-    const pdfUrl = './docs/ArchiMateCGWorksheet'; 
-    let pdfDoc = null;
-    let pageNum = 1;
-    let pageRendering = false;
-    let pageNumPending = null;
-    const scale = 1.5;
-    const canvas = document.getElementById('pdf-canvas');
-    const ctx = canvas.getContext('2d');
-
-    // Load the PDF document
-    pdfjsLib.getDocument(pdfUrl).promise.then(pdf => {
-        pdfDoc = pdf;
-        document.getElementById('page-count').textContent = pdf.numPages;
-        renderPage(pageNum);
-    }).catch(error => {
-        console.error('Error loading PDF:', error);
-    });
-
-    // Render the page
-    function renderPage(num) {
-        pageRendering = true;
-        pdfDoc.getPage(num).then(page => {
-            const viewport = page.getViewport({ scale });
-            canvas.width = viewport.width;
-            canvas.height = viewport.height;
-
-            const renderContext = {
-                canvasContext: ctx,
-                viewport: viewport
-            };
-
-            const renderTask = page.render(renderContext);
-            renderTask.promise.then(() => {
-                pageRendering = false;
-                if (pageNumPending !== null) {
-                    renderPage(pageNumPending);
-                    pageNumPending = null;
-                }
-            });
-            document.getElementById('page-num').textContent = num;
-        });
-    }
-
-    // Handle Previous and Next button clicks
-    function queueRenderPage(num) {
-        if (pageRendering) {
-            pageNumPending = num;
-        } else {
-            renderPage(num);
-        }
-    }
-
-    function onPrevPage() {
-        if (pageNum <= 1) return;
-        pageNum--;
-        queueRenderPage(pageNum);
-    }
-
-    function onNextPage() {
-        if (pageNum >= pdfDoc.numPages) return;
-        pageNum++;
-        queueRenderPage(pageNum);
-    }
-
-    document.getElementById('prev-page').addEventListener('click', onPrevPage);
-    document.getElementById('next-page').addEventListener('click', onNextPage);
-</script>
-
+    <div class="container">
+        <div class="grid">
+            <div class="cell">Ligne 1, Cellule 1</div>
+            <div class="cell">Ligne 1, Cellule 2</div>
+            <div class="cell row-2">Ligne 2, Cellule unique</div> <!-- Ligne avec 1 cellule -->
+            <div class="cell">Ligne 3, Cellule 1</div>
+            <div class="cell">Ligne 3, Cellule 2</div>
+            <div class="cell">Ligne 4, Cellule 1</div>
+            <div class="cell">Ligne 4, Cellule 2</div>
+            <div class="cell">Ligne 5, Cellule 1</div>
+            <div class="cell">Ligne 5, Cellule 2</div>
+            <div class="cell">Ligne 6, Cellule 1</div>
+            <div class="cell">Ligne 6, Cellule 2</div>
+            <div class="cell">Ligne 7, Cellule 1</div>
+            <div class="cell">Ligne 7, Cellule 2</div>
+            <div class="cell">Ligne 8, Cellule 1</div>
+            <div class="cell">Ligne 8, Cellule 2</div>
+            <div class="cell">Ligne 9, Cellule 1</div>
+            <div class="cell">Ligne 9, Cellule 2</div>
+        </div>
+    </div>
 </body>
 </html>
