@@ -1,14 +1,193 @@
-<!-- Exemple de contenu pour index.html -->
-<!DOCTYPE html>
-<html lang="fr">
+<!DOCTYPE>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ArchiMateCG Viewer and Editor Web Site</title>
+
+  <title>ArchiMate Compound Graph Viewer and Analyzer</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" type="text/css" href="w2ui-2.0.min.css" />
+  <link rel="stylesheet" type="text/css" href="ArchiMate Compound Graph Viewer and Analyzer.css">
+  <link rel="stylesheet" type="text/css" href="vis-timeline-graph2d.min.css"/>
+  <link rel="stylesheet" type="text/css" href="lib/sweetalert.css"/>
+  <link rel="stylesheet" type="text/css" href="lib/pivot.min.css"/>
  
+
+  <script type="text/javascript" src="lib/log4javascript.js"></script>
+  <script src="./config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatted@3.3.1/min.min.js"></script>
+  <script src="lib/jquery.min.js"></script>
+  <script src="lib/w2ui-2.0.min.js"></script>
+  <script src="lib/cytoscape.min.js"></script>
+  <script src="lib/cytoscape-undo-redo.js"></script>
+  <script src="lib/ArchiMateCompoundGraphViewerAndAnalyzer.js"></script>
+  <script src="lib/initialgraph.js"></script>
+  <script src="lib/archimate.js"></script>
+  <script src="lib/paletteArchiMate.js"></script>
+  <script src="lib/archimateExtension.js"></script>
+  <script src="lib/dmn.js"></script>
+  <script src="lib/complexity.js"></script>
+  <script src="lib/toolACGTraversal.js"></script>
+  <script src="lib/toolACGDegrees.js"></script>
+  <script src="lib/toolPropertyColoredMap.js"></script> 
+  <script src="lib/toolColoring.js"></script> 
+  <script src="lib/layout-base.js"></script>
+  <script src="lib/cose-base.js"></script>
+  <script src="lib/cytoscape-fcose.js"></script>
+  <script src="lib/cytoscape-layout-utilities.js"></script>
+  <script src="lib/cytoscape-expand-collapse.js"></script>
+ 
+  <script src="lib/cytoscape-compound-drag-and-drop.js"></script>
+  <script src="lib/lodash.js"></script>
+  <script src="lib/cytoscape-edgehandles.js"></script>
+  <script src="lib/d3-array@3.js"></script>
+  <script src="lib/d3-color@3.js"></script>
+  <script src="lib/d3-format@3.js"></script>
+  <script src="lib/d3-interpolate@3.js"></script>
+  <script src="lib/d3-scale@4.js"></script>
+  <script src="lib/d3-scale-chromatic@3.js"></script>
+  <script src="lib/d3.min.js"></script>
+  <script src="lib/papaparse.js"></script>
+  <script src="lib/jszip.min.js"></script>
+  <script src="lib/FileSaver.js"></script>
+  <script src="lib/uuid.js"></script>
+  <script src="lib/cytoscape-svg.js"></script>
+  <script src="lib/jsnetworkx.js"></script>
+  <script src="lib/toolGraphAsMatrix.js"></script>
+  <script src="lib/toolFcose.js"></script> 
+  <script src="lib/toolURLNavigation.js"></script>
+  <script src="lib/vis-timeline-graph2d.min.js"></script>
+  <script src="lib/vis-data.min.js"></script>
+  <script src="lib/toolTimeline.js"></script>
+  <script src="lib/sweetalert.min.js"></script>
+  <script src="lib/toolComplexity.js"></script>
+  <script src="lib/toolPivotTable.js"></script>
+  
+  <script src="lib/jszip-utils.js"></script>
+  <script src="lib/pivot.min.js"></script>
+
+
+<!-- on going prototypes
+  <script src="lib/toolEAM.js"></script>
+  <script src="lib/onecompassdata.js"></script> 
+    
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jsonld/1.0.0/jsonld.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.22.1/full/pyodide.js"></script>
+  <script src="lib/BubbleMatrix.js"></script>
+  <script src="lib/toolAnimations.js"></script> 
+  <script src="lib/cytoscape-layers.js"></script>
+  <script src="lib/cytoscape-bubblesets.js"></script>
+  <script src="lib/toolBubblesSet.js"></script> 
+  <script src="lib/rdflib.min.js" ></script>></script>//tested for ontology import - not suited for web client alone without web server
+  <script src="lib/jsonld.min.js"></script>// tested for ontolgy import - not suited for web client alone without web server
+  -->
+
 </head>
 <body>
-  <h1>Welcome on the ArchiMateCG Viewer and Editor site </h1>
-  <p>This is a test</p>
+  
+  <div id="mainmenu" style="padding: 0px; height: 4%;"></div>
+  <div id="archimatecg-layout" style="width: 100%; height: 96%;"></div>
+  <div  id="popup" style="width: 800px; height: 600px; overflow: hidden; display:none; " >
+
+    <div rel="title" style="display: block;">
+        About ArchiMateCG
+    </div>
+    <div rel="body" id="about" style="display: none;">
+      <input id="load-from-rdf" type="file" name="name" style="display: none;" />
+      <input id="load-from-inp" type="file" name="name" style="display: none;" />
+      <input id="add-from-inp" type="file" name="name" style="display: none;" />
+      <input id="load-from-jarchi" type="file" name="name" style="display: none;" />
+      <input id="load-from-cytogen" type="file" name="name" style="display: none;" />
+      <input id="load-from-open-format" type="file" name="name" style="display: none;" />
+      <input id="load-entity-definitions-from-alfabet" type="file" name="name" style="display: none;" />
+      <input id="load-attribute-definitions-from-alfabet" type="file" name="name" style="display: none;" />
+      <input id="load-relation-definitions-from-alfabet" type="file" name="name" style="display: none;" />
+      <input id="load-onecompass" type="file" name="name" multiple style="display: none;" />
+      <input id="load-entities-from-OC" type="file" name="name"  style="display: none;" />
+      
+
+
+      <input id="parseerror" type="errors" name="errors" style="display: none;" />
+      <table>
+        <tbody>
+            <tr>
+                <td width="120px"><svg xmlns="http://www.w3.org/2000/svg"  id="archimatecg" width="100" height="100" viewBox="0 0 100 100">
+                <rect x="0" y="0" width="100" height="100" fill="white" stroke-width="3" stroke="black" ></rect><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+                <g><polygon fill="#E0A94A" points="28.39735803824,29.909844 44.8589176271,29.909844 53.089516407590004,43.678824 44.8589176271,57.447803 28.39735803824,57.447803 20.16675925775,43.678824" style="fill:#99ccff" />
+                <polygon fill="#E0A94A" points="55.32160450328001,44.804442 71.78280310457001,44.804442 80.01376287263,58.573074 71.78280310457001,72.342054 55.32160450328001,72.342054 47.09136567005,58.573074" style="fill:#ffff99" />
+                <polygon fill="#E0A94A" points="28.39735803824,59.699738 44.8589176271,59.699738 53.089516407590004,73.468717 44.8589176271,87.236999 28.39735803824,87.236999 20.16675925775,73.468717" style="fill:#ccf4cc" />
+                <polygon fill="#E0A94A" points="34.257127779890006,78.132449 31.72564158713,73.894792 34.257127779890006,69.65692 39.32020939796001,69.65692 41.85169455041,73.894792 39.32020939796001,78.132449" style="fill:#009900" />
+                <polygon fill="#E0A94A" points="33.74702945666,38.787938 38.81011107473,38.787938 41.341596227180005,43.025809 38.81011107473,47.263466 33.74702945666,47.263466 31.215543263900003,43.025809" style="fill:#0066cc" />
+                <polygon fill="#E0A94A" points="66.19790303081001,54.230892 68.72938922357001,58.468763 66.19790303081001,62.70642 61.13482141274001,62.70642 58.60333626029,58.468763 61.13482141274001,54.230892" style="fill:#ffcc00" />
+                <path style="fill:none;stroke:#000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-width:1.1429829598131216" d="M 41.3416 43.0258 C 41.3416 43.0258 89.3429 23.3981 77.2842 41.0447 L 66.1979 54.2309"/></g>
+                <g aria-label="ArchiMateCG" style="font-size:15.0498px;line-height:1.25;stroke-width:0.37624379399882873">
+                  <path d="M 15.5901 25.66 L 14.2441 25.66 L 13.3128 22.1467 L 9.20491 22.1467 L 8.27361 25.66 L 6.99148 25.66 L 10.4488 13.0545 L 12.1328 13.0545 Z M 12.9237 20.7075 L 11.2589 14.5191 L 9.58763 20.7075 Z" style="stroke-width:0.38375078988859496"/>
+                <path d="M 21.382 17.9393 L 21.3182 17.9393 C 21.1396 17.8828 20.9652 17.8433 20.7951 17.8207 C 20.6293 17.7925 20.4315 17.7784 20.2019 17.7784 C 19.8319 17.7784 19.4747 17.8885 19.1303 18.1086 C 18.7858 18.323 18.4541 18.6024 18.1352 18.9467 L 18.1352 25.66 L 16.936 25.66 L 16.936 16.2038 L 18.1352 16.2038 L 18.1352 17.6006 C 18.6115 17.0927 19.0303 16.7343 19.3918 16.5255 C 19.7575 16.311 20.1296 16.2038 20.5081 16.2038 C 20.7165 16.2038 20.8674 16.2122 20.961 16.2292 C 21.0545 16.2405 21.1949 16.2659 21.382 16.3054 Z" style="stroke-width:0.38375078988859496"/>
+                <path d="M 27.7926 25.0674 C 27.3929 25.3214 27.0123 25.5189 26.6508 25.66 C 26.2936 25.8011 25.913 25.8716 25.509 25.8716 C 24.9945 25.8716 24.5224 25.7729 24.0929 25.5753 C 23.6634 25.3722 23.2956 25.0674 22.9894 24.661 C 22.679 24.2547 22.4387 23.7411 22.2686 23.1203 C 22.0985 22.4995 22.0135 21.7742 22.0135 20.9446 C 22.0135 19.3982 22.3324 18.1848 22.9703 17.3043 C 23.6124 16.4239 24.4587 15.9837 25.509 15.9837 C 25.9173 15.9837 26.317 16.0599 26.7082 16.2122 C 27.1037 16.3646 27.4652 16.5509 27.7926 16.771 L 27.7926 18.5403 L 27.7288 18.5403 C 27.3631 18.1622 26.9847 17.8715 26.5934 17.6684 C 26.2064 17.4652 25.828 17.3636 25.458 17.3636 C 24.7776 17.3636 24.2397 17.6684 23.8442 18.2779 C 23.4529 18.8818 23.2573 19.7707 23.2573 20.9446 C 23.2573 22.0846 23.4487 22.9623 23.8314 23.5774 C 24.2184 24.187 24.7606 24.4917 25.458 24.4917 C 25.7004 24.4917 25.947 24.4494 26.1979 24.3647 C 26.4488 24.2801 26.6742 24.17 26.8741 24.0346 C 27.0484 23.9161 27.2122 23.7919 27.3653 23.6621 C 27.5183 23.5266 27.6395 23.4109 27.7288 23.315 L 27.7926 23.315 Z" style="stroke-width:0.38375078988859496"/>
+                <path d="M 35.2941 25.66 L 34.0948 25.66 L 34.0948 20.2758 C 34.0948 19.8412 34.0757 19.4349 34.0374 19.0567 C 33.9992 18.673 33.929 18.3738 33.8269 18.1594 C 33.7206 17.9223 33.5675 17.7474 33.3677 17.6345 C 33.1678 17.516 32.9084 17.4567 32.5895 17.4567 C 32.262 17.4567 31.9197 17.5639 31.5625 17.7784 C 31.2053 17.9929 30.8629 18.2666 30.5355 18.5996 L 30.5355 25.66 L 29.3363 25.66 L 29.3363 12.4873 L 30.5355 12.4873 L 30.5355 17.2535 C 30.9097 16.8415 31.2967 16.5198 31.6964 16.2884 C 32.0962 16.057 32.5065 15.9413 32.9275 15.9413 C 33.6972 15.9413 34.2841 16.2489 34.6881 16.8641 C 35.0921 17.4793 35.294 18.3654 35.294 19.5223 Z" style="stroke-width:0.38375078988859496" />
+                <path d="M 38.8917 14.6207 L 37.5394 14.6207 L 37.5394 12.9699 L 38.8917 12.9699 Z M 38.8151 25.66 L 37.6159 25.66 L 37.6159 16.2038 L 38.8151 16.2038 Z" style="stroke-width:0.38375078988859496" />
+                <path d="M 49.7547 25.66 L 48.4917 25.66 L 48.4917 14.7985 L 45.8509 22.1891 L 45.0982 22.1891 L 42.4765 14.7985 L 42.4765 25.66 L 41.2965 25.66 L 41.2965 13.0545 L 43.0187 13.0545 L 45.5511 20.0726 L 48.0005 13.0545 L 49.7547 13.0545 Z" style="stroke-width:0.38375078988859496" />
+                <path d="M 57.7601 25.66 L 56.5672 25.66 L 56.5672 24.6526 C 56.4609 24.7485 56.3163 24.884 56.1335 25.0589 C 55.9549 25.2282 55.7805 25.3637 55.6104 25.4653 C 55.4105 25.5951 55.1809 25.7023 54.9215 25.787 C 54.6621 25.8773 54.3581 25.9224 54.0093 25.9224 C 53.3672 25.9224 52.8229 25.6402 52.3764 25.0759 C 51.9299 24.5115 51.7066 23.7919 51.7066 22.9171 C 51.7066 22.2003 51.8214 21.6218 52.0511 21.1816 C 52.285 20.7358 52.6166 20.3859 53.0462 20.1319 C 53.4799 19.8779 54.0008 19.7058 54.609 19.6155 C 55.2171 19.5252 55.8698 19.4574 56.5672 19.4123 L 56.5672 19.1668 C 56.5672 18.8056 56.5183 18.5065 56.4205 18.2694 C 56.327 18.0324 56.1909 17.8461 56.0123 17.7107 C 55.8422 17.5809 55.6381 17.4934 55.3999 17.4482 C 55.1618 17.4031 54.913 17.3805 54.6536 17.3805 C 54.3389 17.3805 53.9881 17.437 53.6011 17.5498 C 53.2141 17.6571 52.8144 17.8151 52.4019 18.0239 L 52.3381 18.0239 L 52.3381 16.407 C 52.572 16.3223 52.9101 16.2292 53.3523 16.1276 C 53.7946 16.026 54.2305 15.9752 54.66 15.9752 C 55.1618 15.9752 55.5977 16.0316 55.9676 16.1445 C 56.3418 16.2517 56.665 16.438 56.9372 16.7033 C 57.2051 16.9629 57.4092 17.2987 57.5496 17.7107 C 57.6899 18.1227 57.7601 18.6334 57.7601 19.243 Z M 56.5672 23.3319 L 56.5672 20.6991 C 56.2015 20.7273 55.7699 20.7696 55.2723 20.8261 C 54.7791 20.8825 54.3878 20.9643 54.0986 21.0716 C 53.7542 21.2014 53.4757 21.4046 53.263 21.6811 C 53.0504 21.952 52.9441 22.3273 52.9441 22.8071 C 52.9441 23.3489 53.0674 23.758 53.3141 24.0346 C 53.5607 24.3055 53.9371 24.4409 54.4431 24.4409 C 54.8641 24.4409 55.249 24.3337 55.5977 24.1192 C 55.9464 23.8991 56.2696 23.6367 56.5672 23.3319 Z" id="path4511" />
+                <path d="M 63.7816 25.5753 C 63.5562 25.6544 63.3096 25.7193 63.0417 25.7701 C 62.778 25.8209 62.542 25.8463 62.3336 25.8463 C 61.6065 25.8463 61.0536 25.5866 60.6752 25.0674 C 60.2967 24.5482 60.1074 23.7157 60.1074 22.57 L 60.1074 17.5414 L 59.2973 17.5414 L 59.2973 16.2038 L 60.1074 16.2038 L 60.1074 13.4863 L 61.3067 13.4863 L 61.3067 16.2038 L 63.7816 16.2038 L 63.7816 17.5414 L 61.3067 17.5414 L 61.3067 21.8504 C 61.3067 22.3471 61.3152 22.7365 61.3322 23.0187 C 61.3492 23.2952 61.4087 23.5549 61.5108 23.7975 C 61.6043 24.0233 61.7319 24.1898 61.8935 24.297 C 62.0593 24.3986 62.3102 24.4494 62.6462 24.4494 C 62.8418 24.4494 63.0459 24.4127 63.2585 24.3394 C 63.4712 24.2603 63.6243 24.1954 63.7178 24.1446 L 63.7816 24.1446 Z" style="stroke-width:0.38375078988859496"/>
+                <path d="M 71.2001 21.097 L 65.9504 21.097 C 65.9504 21.6783 66.0163 22.1862 66.1481 22.6208 C 66.28 23.0497 66.4607 23.4025 66.6903 23.679 C 66.9115 23.9499 67.173 24.1531 67.4749 24.2886 C 67.7811 24.424 68.117 24.4917 68.4828 24.4917 C 68.9675 24.4917 69.4545 24.3647 69.9435 24.1108 C 70.4368 23.8512 70.7876 23.5972 70.996 23.3489 L 71.0598 23.3489 L 71.0598 25.0843 C 70.6558 25.3101 70.2433 25.4992 69.8223 25.6515 C 69.4013 25.8039 68.959 25.8801 68.4955 25.8801 C 67.3133 25.8801 66.3905 25.4568 65.7271 24.6103 C 65.0637 23.758 64.7321 22.5503 64.7321 20.9869 C 64.7321 19.4405 65.0489 18.213 65.6825 17.3043 C 66.3204 16.3957 67.1581 15.9413 68.1957 15.9413 C 69.1568 15.9413 69.8967 16.3138 70.4155 17.0588 C 70.9386 17.8038 71.2001 18.862 71.2001 20.2335 Z M 70.0328 19.8779 C 70.0286 19.0426 69.8691 18.3964 69.5544 17.9393 C 69.244 17.4821 68.7698 17.2535 68.1319 17.2535 C 67.4898 17.2535 66.9774 17.5047 66.5946 18.007 C 66.2162 18.5093 66.0014 19.1329 65.9504 19.8779 Z" style="stroke-width:0.38375078988859496"/>
+                <path d="M 80.4493 24.7457 C 80.2154 24.8812 80.0028 25.0081 79.8114 25.1267 C 79.6243 25.2452 79.3777 25.3693 79.0715 25.4992 C 78.8121 25.6064 78.5293 25.6967 78.2231 25.7701 C 77.9212 25.8491 77.5874 25.8886 77.2217 25.8886 C 76.5328 25.8886 75.9055 25.7616 75.3399 25.5076 C 74.7786 25.248 74.2896 24.8445 73.8728 24.297 C 73.4646 23.7609 73.1456 23.0808 72.916 22.2568 C 72.6864 21.4271 72.5715 20.4649 72.5715 19.37 C 72.5715 18.3315 72.6821 17.4031 72.9032 16.5847 C 73.1244 15.7664 73.4433 15.075 73.8601 14.5106 C 74.264 13.9632 74.751 13.5455 75.3208 13.2577 C 75.8949 12.9699 76.5306 12.826 77.228 12.826 C 77.7383 12.826 78.2465 12.9078 78.7526 13.0715 C 79.2629 13.2351 79.8285 13.523 80.4493 13.935 L 80.4493 15.9244 L 80.3536 15.9244 C 79.8306 15.3431 79.3118 14.9198 78.7972 14.6545 C 78.2827 14.3893 77.732 14.2567 77.1451 14.2567 C 76.6646 14.2567 76.2308 14.3611 75.8439 14.5699 C 75.4611 14.7731 75.1188 15.0919 74.8169 15.5265 C 74.5234 15.9498 74.2938 16.486 74.128 17.135 C 73.9664 17.7784 73.8856 18.5234 73.8856 19.37 C 73.8856 20.256 73.9749 21.018 74.1535 21.6557 C 74.3363 22.2935 74.5702 22.8127 74.8551 23.2134 C 75.1528 23.631 75.4994 23.9415 75.8949 24.1446 C 76.2946 24.3422 76.7156 24.4409 77.1579 24.4409 C 77.766 24.4409 78.3358 24.3027 78.8674 24.0261 C 79.399 23.7496 79.8965 23.3347 80.36 22.7817 L 80.4493 22.7817 Z" style="stroke-width:0.38375078988859496" />
+                <path d="M 90.1706 24.7288 C 89.6518 25.0448 89.084 25.3214 88.4674 25.5584 C 87.8551 25.7898 87.2618 25.9055 86.6878 25.9055 C 85.9478 25.9055 85.2695 25.7701 84.6529 25.4992 C 84.0363 25.2283 83.5111 24.8219 83.0774 24.2801 C 82.6394 23.7326 82.3013 23.0497 82.0631 22.2314 C 81.825 21.4074 81.7059 20.4451 81.7059 19.3446 C 81.7059 17.3297 82.1482 15.741 83.0327 14.5784 C 83.9215 13.4101 85.1398 12.826 86.6878 12.826 C 87.2278 12.826 87.7785 12.9134 88.3399 13.0884 C 88.9054 13.2577 89.5135 13.5484 90.1642 13.9604 L 90.1642 15.9498 L 90.0494 15.9498 C 89.9175 15.8144 89.7262 15.6366 89.4753 15.4165 C 89.2244 15.1964 88.9777 15.0129 88.7353 14.8662 C 88.4419 14.6912 88.1081 14.5473 87.7339 14.4344 C 87.3639 14.3159 86.9429 14.2567 86.4709 14.2567 C 85.4077 14.2567 84.5657 14.711 83.9449 15.6196 C 83.3283 16.5227 83.02 17.7474 83.02 19.2938 C 83.02 20.9248 83.3432 22.1947 83.9895 23.1034 C 84.6359 24.0064 85.5162 24.4579 86.6303 24.4579 C 87.0386 24.4579 87.4447 24.4043 87.8487 24.297 C 88.2569 24.1898 88.6141 24.0515 88.9203 23.8822 L 88.9203 20.7922 L 86.3752 20.7922 L 86.3752 19.3192 L 90.1706 19.3192 Z" style="stroke-width:0.38375078988859496"/></g></svg>
+                </svg></td>
+                <td width="100%">ArchiMateCG is a  solution aiming at assessing the value of using ArchiMate Interactive Compound Graphs for the various stakeholders involved in architecting the enterprise for its digitalisation and who adopted the ArchiMate language as the standardized architecture description language.<br>
+                <br>ArchiMateCG aims at serving actors dealing with End to End Digital Processes, Model Based System Engineering, Product Lifecycle Managment industrial approach and Inteperability of Enterprise Application components.<br>
+                <br>For this, ArchiMateCG supports creation of advanced interactive compound graphs visualization and algorithms in order to analyze architecture descriptions and blueprints produced using the ArchiMate language.<br>
+                <br>ArchiMateCG is not intended to replace legacy ArchiMate modeling platforms and enterprise repositories, but to complement and extend them with previously described features.<br>
+                <br>Consequently ArchiMateCG comes with various import and export functionalities, and complementary sets of scripts for Archi and Enterprise Architects.<br>
+                <br>ArchiMateCG is realized by combined usage of HTML, SVG and JavaScript, in order to run on and require only a Web Navigator.<br><br>
+                Contact point: <a href="mailto:nicolas.figay@airbus.com?subject=ArchiMateCG">Nicolas Figay </a>
+                <div >ArchiCG Version 1.0.21<br>
+                  (c) 2022 Nicolas Figay   </div>
+                </td>
+            </tr>
+            
+      </div>
+        </tbody>
+    </table>
+    </div>
+
+</div>
+
+<div id="actions" style="display: none;"></div>
+<div id="error-message" style="display: none;"></div>
+<div id="log" style="display: none;">
+
+
+</div>
+<div style="display:none;">
+  <div id="ArchiMateSVGIconWithBox" ></div>
+</div>
+<div style="display: block;">
+  <div id="topLogDiv" style="height: 250px;" ></div>
+  <div id="logDiv" ></div>
+</div>
+
+
+<div id="defs" style="display: none;"></div>
+<div id="imports"style="display: none;" ></div>
+<script>
+  //favorite icon building
+     // Fonction pour encoder l'élément SVG en Base64
+     function svgToBase64(svgElement) {
+      return "data:image/svg+xml;base64," + btoa(svgElement.outerHTML);
+  }
+
+  // Sélectionner l'élément SVG par son ID
+  const svgElement = document.getElementById('archimatecg');
+
+  // Appeler la fonction pour encoder en Base64
+  const base64EncodedSVG = svgToBase64(svgElement);
+
+  // Créer ou mettre à jour la balise <link> pour le favicon
+  let link = document.querySelector("link[rel='icon']") || document.createElement('link');
+  link.rel = 'icon';
+  link.href = base64EncodedSVG;
+  document.head.appendChild(link);
+</script>
+
+
 </body>
 </html>
