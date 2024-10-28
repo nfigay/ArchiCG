@@ -160,8 +160,11 @@
                   <img width=300 height=220 src="./img/ArchiMateCGWorksheet/image004.gif"></div>
         </div>
         <div class="grid-50">
-            <div class="cell gray" style="display: flex;justify-content: center; align-items: center; ">
-                <img width=300 height=220 src="./img/ArchiMateCGWorksheet/image005.gif"></div>
+            <div class="cell gray" style="display: flex; flex-direction: column; align-items: center;">
+                <img  src="./img/ArchiMateCGWorksheet/archimatecg06.gif">
+                <img src="./img/ArchiMateCGWorksheet/archimatecg07.jfif">
+            </div>
+            
             <div class="cell white"><p style="text-align: center;"><b>Let's change the presentation of a composite model.</b></p>
                 This can be done by:<ul>
                 <li>Transforming a graph of model elements with
@@ -173,7 +176,9 @@
                 displayed on the graph.</p>
             <p>You can also shows graph content as dynamic interactive
                 matrixes, displaying various graph characteristics or
-                calculate weights.</p></div>
+                calculate weights.</p>
+                <img src="./img/ArchiMateCGWorksheet/archimatecg08.jfif">
+            </div>
         </div>
         <div class="grid-50">
             <div class="cell white"><p style="text-align: center;"><b>Let's manipulate the graphs in order to show what
@@ -224,7 +229,7 @@
     
     <div class="grid-50">
         <div class="cell gray" style="display: flex;justify-content: center; align-items: center; ">
-            <img width=500 height=220 src="./img/ArchiMateCGWorksheet/image009.png">
+            <img  src="./img/ArchiMateCGWorksheet/image009.png">
         </div>
         <div class="cell white"><p style="text-align: center;"><b>Let's color the graph elements according two their
             values for a given property</b></p>
@@ -236,7 +241,6 @@
             support the analysis of an architecture.</p></div>
     </div>
     <div class="grid-50">
-       
         <div class="cell white"><p style="text-align: center;"><b>Let's visualize the graph as matrixes</b></p>
             With complex graph with many relations, you have to face
             the "hairball" effect. Adjacency matrixes provides
@@ -253,21 +257,13 @@
             compound graphs with lines and columns which can be
             collapsed and extended.</p></div>
             <div class="cell gray"  style="display: flex;justify-content: center; align-items: center; ">
-                <img width=320 height=300 src="./img/ArchiMateCGWorksheet/image010.png"></div>
+                <img src="./img/ArchiMateCGWorksheet/archimatecg14.png"></div>
     </div>
 
     <div class="grid-50">
-        <div class="cell white"><p style="text-align: center;"><b>Let's visually traverse the graph</b></p>
-            The model being a graph, it is possible from a node, an
-            edge or a group of them to select:<ul>
-            <li>connected edges and nodes or neighborhood with a
-            given depth</li>
-            <li>Shortest path from a source node to a target node
-            if it exists</li>
-            <li>Roots and Leaves …</li></ul>
-            <p>Future versions will extend graph traversal to compound
-            graph traversal, which is more suited for Composite
-            Graph analysis</p></div>
+        <div class="cell gray"  style="display: flex;justify-content: center; align-items: center; ">
+            <img src="./img/ArchiMateCGWorksheet/archimatecg16.png">
+        </div>
              
         <div class="cell white"><p style="text-align: center;"><b>Let's filter models according to Architectural viewpoints</b></p>
             <p>Based on <a href="https://www.iso.org/standard/74393.html"> ISO 42010 (Systems and software engineering —
@@ -284,9 +280,31 @@
             you analysis in you usual ArchiMate modeling tools
             supporting import of Open Format.</p>
             <p>It is also plan to create you own viewpoints, or to use those
-            which will be defined by the <a href="https://www.nato.int/cps/en/natohq/topics_157575.htm">NATO Architecture Framework V4</a> when available</p></div>
+            which will be defined by the <a href="https://www.nato.int/cps/en/natohq/topics_157575.htm">NATO Architecture Framework V4</a> when available</p>
+        </div>
+    </div>
+
+    <div class="grid-50">
+        <div class="cell white"><p style="text-align: center;"><b>Let's visually traverse the graph</b></p>
+            The model being a graph, it is possible from a node, an
+            edge or a group of them to select:<ul>
+            <li>connected edges and nodes or neighborhood with a
+            given depth</li>
+            <li>Shortest path from a source node to a target node
+            if it exists</li>
+            <li>Roots and Leaves …</li></ul>
+            <p>Future versions will extend graph traversal to compound
+            graph traversal, which is more suited for Composite
+            Graph analysis</p></div>
+             
+            <div class="cell gray"  style="display: flex;justify-content: center; align-items: center; ">
+                <img src="./img/ArchiMateCGWorksheet/archimatecg15.png">
+        </div>
     </div>
     <div class="grid-50">
+        <div class="cell gray"  style="display: flex;justify-content: center; align-items: center; ">
+            <img  src="./img/ArchiMateCGWorksheet/archimatecg17.png">
+    </div>
         <div class="cell white"><p style="text-align: center;"><b>Let's develop exports script on your preferred tools
             (Archi, Enterprise Architect, etc.) in order to feed the
             ArchiMate Compound Graph viewer and analyzers.</b></p>
@@ -299,19 +317,46 @@
             <p>The goal is to be able to aggregate data coming from
             various model repositories relying on various products
             and languages, in order to aggregate them and perform
-            required analysis on you desktop.</p></div>
-            <div class="cell white"><p style="text-align: center;"><b>Let's export as CSV/OWL files the model contained
-                in a selected part of the graph</b></p>
-                CSV export provides :<ul>
-                <li>a list of model elements (nodes.csv)</li>
-                <li>a list of relationships (edges.csv)</li>
-                <li>a list of properties (properties.csv)</li></ul>
-                <p>The goal is to be able to complete an architecture analysis
-                relying on worksheets.</p>
-                <p>OWL export produces a JSON LD file which can be
-                imported on Protégé or various graph/knowledge data
-                base, such as RDFox, Stardog, OpenLink Virtuoso, etc.</p></div>
+            required analysis on you desktop.</p>
+        </div>
     </div>
+    <div class="grid-50">
+        <div class="cell gray"><p style="text-align: center;">
+            <b>Let's produce pivot tables from the graph</b></p>
+            <p>An alternative way for producing matrixes from a graph is to generate pivot tables relying on legacy javascript libraries. </p>
+            <p>The produced pivto tables can in addition dal with fugures in order to perform some analytics.</p>
+        </div>
+        <div class="cell gray"  style="display: flex;justify-content: center; align-items: center; ">
+            <img src="./img/ArchiMateCGWorksheet/archimatecgPivotTable.PNG">
+        </div>
+    </div>
+ 
+    <div class="grid-50">
+        <div class="cell gray"  style="display: flex;justify-content: center; align-items: center; ">
+            <img src="./img/ArchiMateCGWorksheet/archimatecgComplexity.PNG">
+        </div>
+        <div class="cell gray"><p style="text-align: center;">
+            <b>Let's introduce new sets of icons dedicated to a particular topic</b></p>
+            <p>It is possible to add new sets of icons in the palette dedicated to a given topic which can be, or not, an extension of ArchiMate, or an alternative modeling language to be used in conjunction with ArchiMate.</p>
+            <p>An example is given with the "Complexity" tool which is about describing the compelx connected systems industry is dealing with, being for aeronautic, automative, space or city surveillance, with associated enterprise application families related to PLM, MES, MOM, ERP, etc.</p>
+            <p>Such visual elements can enrich the semantic of the cartography, using symbols not only for ArchiMate language constructs, but also for the kind of systems which are bing developed or supporting the working organisations.</p>
+        </div>
+    </div>
+
+    <div class="grid-50">
+
+        <div class="cell gray"><p style="text-align: center;">
+            <b>Let's project your architecture on an interactive timeline</b></p>
+            <p>Let's project sets of architecture elemetns on an interactive timeline providing a synchronized view of the some predefined graph elements owning time related properties, such as starting and enging planned and actual date, or configuration management information related to time. </p>
+            <p></p>
+            <p>Related to the "timeline" tool, alpha version withc illustrates the feaseability</p>
+        </div>
+
+        <div class="cell gray"  style="display: flex;justify-content: center; align-items: center;">
+            <img src="./img/ArchiMateCGWorksheet/archimatecgtimeline.png">
+        </div>
+    </div>
+
     <div class="grid-50">
         <div class="cell gray"><p style="text-align: center;"><b>Let's automate algorithms defined
             for relevant architecture analysis</b></p>
