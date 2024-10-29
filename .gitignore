@@ -95,6 +95,8 @@ dist
 .serverless/
 
 # FuseBox cache
+## Ignore macOS system files
+.DS_Store
 .fusebox/
 
 # DynamoDB Local files
