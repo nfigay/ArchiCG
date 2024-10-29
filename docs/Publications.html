@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArchiMateCG Publications List</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body, html {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #4A90E2;
+            color: white;
+            padding: 1em;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            font-size: 1.8em;
+        }
+        .main-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+        .publication-list {
+            width: 50%;
+            max-width: 800px;
+            overflow-y: auto;
+            padding: 1em;
+            background-color: #f4f4f4;
+        }
+        .preview-panel {
+            width: 50%;
+            background-color: #ffffff;
+            padding: 1em;
+            overflow-y: auto;
+            border-left: 2px solid #ddd;
+        }
+        .preview-panel iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .publication {
+            background-color: #ffffff;
+            padding: 1em;
+            margin-bottom: 1em;
+            border: 1px solid #ddd;
+            border-left: 4px solid #4A90E2;
+            transition: transform 0.3s ease;
+        }
+        .publication:hover {
+            transform: scale(1.02);
+        }
+        .publication h2 {
+            font-size: 1.3em;
+            color: #4A90E2;
+            margin-bottom: 0.5em;
+        }
+        .publication .author, .publication .reference, .publication .summary {
+            margin-bottom: 0.5em;
+        }
+        .open-reference-btn {
+            background-color: #4A90E2;
+            color: white;
+            border: none;
+            padding: 0.5em;
+            cursor: pointer;
+            font-size: 0.9em;
+            border-radius: 4px;
+            margin-top: 0.5em;
+        }
+        .open-reference-btn:hover {
+            background-color: #357ABD;
+        }
+        .main-button {
+            background-color: #ffffff;
+            color: #4A90E2;
+            border: 1px solid #4A90E2;
+            padding: 0.5em 1em;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .main-button:hover {
+            background-color: #357ABD;
+            color: #ffffff;
+        }
+        .footer {
+            background-color: #2C3E50;
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>ArchiMateCG Publications (draft structure - to be improved)</h1>
+        <a class="main-button" href="https://nfigay.github.io/ArchiMateCG/" target="_blank">ArchiMateCG</a>
+    </header>
+
+    <div class="main-container">
+        <section class="publication-list">
+            <!-- 20 Sample Publications -->
+            <article class="publication">
+                <h2 class="title">Title 1: Exploring the ArchiMate Universe with ArchiMateCG</h2>
+                <p class="author">Author: Dr Nicolas Figay</p>
+                <p class="reference">Reference: <a href="https://www.linkedin.com/pulse/archimate-universe-compound-graph-dr-nicolas-figay-hdr" target="_blank">https://www.linkedin.com/pulse/archimate-universe-compound-graph-dr-nicolas-figay-hdr/</a></p>
+                <p class="summary">Summary: ArchiMate Universe is a ArchiMateCG model, aiming at describing and explaining ArchiMate, associated usage and related implementation, to the different kind of stakeholders who can make advantage of ArchiMate. The added value of usage of Cytoscape Compound Graphs is to provide an easy way to explore a complex modular representation of composite systems, with different levels of granularity, or multi-scale models. </p>
+                <button class="open-reference-btn" onclick="openReference('https://medium.com/@nfigay/exploring-the-archimate-universe-with-archimatecg-a009c69d1a5c')">Open Reference</button>
+            </article>
+
+            <article class="publication">
+                <h2 class="title">Title 2: ArchiMate suited for emerging Data centric processes?</h2>
+                <p class="author">Author: Dr Nicolas Figay</p>
+                <p class="reference">Reference: <a href="https://www.linkedin.com/pulse/archimate-suited-emerging-data-centric-processes-figay-hdr-osjze/" target="_blank">https://www.linkedin.com/pulse/archimate-suited-emerging-data-centric-processes-figay-hdr-osjze/</a></p>
+                <p class="summary">Summary: Introduction ArchiMate not suited for data?The question arises about Archimate (standard enterprise architectural description visual modeling language) being suited for data, when considering emerging data related practices and process related to data quality, data exchange, data sharing, data architecture …</p>
+                <button class="open-reference-btn" onclick="openReference('https://www.linkedin.com/pulse/archimate-suited-emerging-data-centric-processes-figay-hdr-osjze/')">Open Reference</button>
+            </article>
+
+            <article class="publication">
+                <h2 class="title">Title 3: ArchiMate, a formal language?</h2>
+                <p class="author">Author: Dr Nicolas Figay</p>
+                <p class="reference">Reference: <a href="https://www.linkedin.com/pulse/archimate-formal-language-dr-nicolas-figay-hdr-lw7oe/" target="_blank">https://www.linkedin.com/pulse/archimate-formal-language-dr-nicolas-figay-hdr-lw7oe/</a></p>
+                <p class="summary">Summary: In various conferences about Model Based Engineering and simulation, I often face some negative reactions when starting to talk about UML or SysML."They are not formal language!" has been the answer closing the discussion before the discussion starts. </p>
+                <button class="open-reference-btn" onclick="openReference('https://www.linkedin.com/pulse/archimate-formal-language-dr-nicolas-figay-hdr-lw7oe/')">Open Reference</button>
+            </article>
+            <article class="publication">
+                <h2 class="title">Title 4: Building Interoperability between Enterprise Architecture IT Portfolio Management and Visual Modeling Platform</h2>
+                <p class="author">Author: Dr Nicolas Figay</p>
+                <p class="reference">Reference: <a href="https://www.linkedin.com/pulse/introduction-dr-nicolas-figay-hdr-sucqe/" target="_blank">https://www.linkedin.com/pulse/introduction-dr-nicolas-figay-hdr-sucqe/</a></p>
+                <p class="summary">Summary: I recently participated in a pilot project to integrate two platforms: SoftwareAG’s Alfabet for enterprise architecture and IT management, and Sparx Enterprise Architect with ProCloud Server for collaborative modeling and standardized ArchiMate architecture documentation. This project provided a real-world case of enterprise interoperability, aligning with the theoretical approach I've developed in my research. It also highlighted new aspects to enhance my framework. In this article, I outline the project, its challenges, and key lessons learned. </p>
+                <button class="open-reference-btn" onclick="openReference('https://www.linkedin.com/pulse/introduction-dr-nicolas-figay-hdr-sucqe/')">Open Reference</button>
+            </article>
+
+        </section>
+
+        <section class="preview-panel">
+            <iframe id="reference-preview" src="" title="Reference Preview"></iframe>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 - ArchiMateCG Publications</p>
+    </footer>
+
+    <script>
+        function openReference(url) {
+            document.getElementById("reference-preview").src = url;
+        }
+    </script>
+</body>
+</html>
