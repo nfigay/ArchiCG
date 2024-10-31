@@ -1,4 +1,15 @@
 
+.custom-title-style {
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #007bff;
+  padding: 0px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 30px;
+  height: 30px;
+}
+
 body {
   font-family: helvetica neue, helvetica, liberation sans, arial, sans-serif;
   font-size: 14px;
