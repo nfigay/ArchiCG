@@ -1,48 +1,15 @@
-# ArchiCG
-The documentation is available on the Wiki of the project
+ArchiCG is a solution aiming at assessing the value of using Architectural Description relying on Interactive Compound Graphs for the various stakeholders involved in architecting the enterprises or the products for their digitalisation and who adopted standard visual modeling languages such as the ArchiMate language.
 
-## Chapter 1: Getting Started
-- [Introduction](./Introduction)
-- [Installation](./Installation)
+ArchiCG aims at serving actors dealing with End to End Digital Processes, Model Based System Engineering, Product Lifecycle Management industrial approach (as defined by CIMDATA) and Interoperability of Enterprise Application. For this, ArchiCG supports creation of advanced interactive compound graphs visualisation and algorithms in order to analyse architecture descriptions and blueprints produced using visual standardized or specific languages, such as ArchiMate.
 
-## Chapter 2: Using the Tool
-- [Interacting with the graph](./Interacting-Graph)
-- [Exploration of the menu](./Exploration-of-the-menu)
+ArchiCG is not intended to replace legacy modeling platforms and enterprise repositories, but to complement and extend them with previously described features.
 
-## Chapter 3: Advanced Topics
+Consequently ArchiCG comes with various import and export functionalities, and complementary sets of scripts for Archi® and Enterprise Architect®
 
-ArchiCG is aiming at supporting the development of innovative features and approaches for descriptive architecture, relying on graph theory, compound graphs, semantic cartography... While some of these topics come with some implementation which can already be experimented, some are topic for future implementations.
+ArchiCG is realized by combined usage of standardized Web technologies such as HTML, SVG and JavaScript, in order to run on and require only a Web Navigator.
 
-### With some implementation
-- [Usage for architects dealing with architectural representation using ArchiMate language](./Usage-for-architects-dealing-with-Architectural-representation-in-ArchiMate)
-- [Usage based on graph and network theories](./usage-based-on-graph-and-network-theories)
-- [Colorizing a graph according to the values of a given data property](./colorizing-a-graph-according-to-the-values-of-a-given-data-property)
-- [Searching with graph analytics](./searching-with-graph-analytics)
-- [Usage related to data aggregation and end to end processes](./usage-related-to-data-aggregation-and-end-to-end-processes)
-- [ArchiCG and Semantic Web Ontology](./archicg-and-semantic-web-ontology)
+ArchiCG is also a research incubator, aiming at demonstrating and assessing research results on Continuous Operational Interoperability for digital collaboration within and between enterprises applying Model Based approaches. It will in future versions address the combined usage of Linked Data, Semantic Web, Standardized Application Protocols and Graph based technologies.
 
+ArchiCG is currently a prototype constituting a Proof of Concept and a Proof of value concerning innovative combination of enterprise modeling, Compound Graph visualisation and analysis and Semantic Web technologies.
 
-### For future implementations
-
-- [Advanced visualisation: present and future](./advanced-visualization:-present-and-future)
-- [Animations for storytelling and demonstration scenarios](./animations-for-storytelling-and-demonstration-scenarios)
-- [Visual group representations which are not implying partitioning](./visual-group-representations-which-are-not-implying-partitioning)
-- [Quantitative analysis of enterprise architecture: present and future](./Quantitative-analysis-of-enterprise-architecture:-present-and-future)
-- [Cartography](./cartography)
-- [IDentity cards](./identity-cards)
-- [Visual polyglot model element](./Visual-polyglot-model-element)
-
-## Chapter 4: For researchers
-
-ArchiCG aims at supporting collaboration between researchers in different fields contributing to or requiring continuous operational interoperability in order to ensure secured digital collaboration within networked organizations. It includes ontology, model driven products and services development, enterprise architecture and service oriented platforms.
-
-In order preventing the production of isolated demonstrators, ArchiCG can provide a core demonstrator on top of which complementary tools (module) can be added for specific demonstration of innovative elements. This is the way it has been used so far.
-
- 
-- [Some open questions in terms of research](./Some-open-questions-in-terms-of-research)
-
-## Chapter 5: For developers
-
-ArchiCG also aims at experimenting and assessing technologies suited for end to end collaboration, with a particular focus on Web technologies suited for Semantic Cartographies, polymorphic model representations, visual mining, data fusion, etc. One driver is the ability to easily deployed or make available ArchiCG despite the heterogeneity of security policies which can be encountered within the enterprises.
-
-Some technological choices have been made in terms of components, technologies and software architecture which are subjects to discussion. New contributors are welcome for extending and improving what was defined so far.
+The documentation is available on the wiki of the project at https://github.com/nfigay/ArchiCG/wiki
