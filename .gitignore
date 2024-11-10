@@ -4,6 +4,10 @@
 # Ignore all .pages files
 *.pages
 
+# Ignore all .mp4 or .mov files
+*.mp4
+*.mov
+
 # Logs
 logs
 *.log
