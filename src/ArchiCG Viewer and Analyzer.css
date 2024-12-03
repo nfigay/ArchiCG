@@ -1,3 +1,19 @@
+         /* Customize panel title height */
+         .w2ui-panel-title {
+          line-height: 1.5em;
+          height: 40px; /* Adjust this value as needed */
+          padding: 10px;
+          font-size: 16px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+      }
+
+      /* Adjust panel content padding */
+      .w2ui-panel-content {
+          padding: 10px;
+          font-size: 14px;
+      }  
 
 .custom-title-style {
   font-size: 16px;
@@ -30,6 +46,7 @@ body {
  
 line {
   stroke: #fff;}
+
 
 text.active {
   fill: red;}

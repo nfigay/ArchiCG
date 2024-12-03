@@ -1,15 +1,4 @@
 // archicg.js
-
-(function(global) {
-    // Ensure config.js is loaded before accessing config
-    if (!global.config) {
-        console.error('Config file not loaded');
-        return;
-    }
-
-    // Accessing the config object from config.js
-    const config = global.config;
-    
     // Initialize core state object
     const state = {
         userSettings: null,
@@ -30,28 +19,17 @@
         } else {
             console.error('W2UI not found.');
         }
-    }
 
-    // Initialize the application by setting up libraries, state, and UI
-    function initApp() {
-        initializeLibraries();
+        window.addEventListener('beforeunload', function (event) {
+            // Cancel the event to trigger the confirmation dialog
+            event.preventDefault();
         
-        console.log('ArchiCG application initialized.');
-
-        // Call the main app logic function (defined in app.js)
-        if (typeof startApp === 'function') {
-            startApp();
-        } else {
-            console.error('Main application logic not found in app.js');
-        }
+            // Setting event.returnValue triggers the browser's confirmation dialog
+            event.returnValue = 'Are you sure you want to leave? You may have unsaved changes.';
+        
+            // Note: The text inside event.returnValue will not be shown in modern browsers;
+            // the browser will display a standard message instead.
+        });
     }
 
-    // Expose necessary objects globally (config, state, initApp)
-    global.config = config;
-    global.state = state;
-    global.initApp = initApp;
 
-    // Call the initialization function immediately after loading
-    initApp();
-
-})(window); // Expose to the global window object

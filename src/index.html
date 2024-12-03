@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>W2UI Layout Example</title>
+    
+    <!-- Link to the local W2UI CSS file -->
+    <link rel="stylesheet" type="text/css" href="w2ui-2.0.min.css" />
+    
+    <!-- Include jQuery (required by W2UI) -->
+    <script src="lib/jquery.min.js"></script>
+    
+    <!-- Include W2UI JavaScript from the local lib folder -->
+    <script src="lib/w2ui-2.0.min.js"></script>
+    
+    <style>
+        /* Ensure the layout container takes full height */
+        #app {
+            width: 100%;
+            height: 100vh;  /* Full height of the viewport */
+        }
+
+         /* Customize panel title height */
+         .w2ui-panel-title {
+            line-height: 1.5em;
+            height: 40px; /* Adjust this value as needed */
+            padding: 10px;
+            font-size: 16px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Adjust panel content padding */
+        .w2ui-panel-content {
+            padding: 10px;
+            font-size: 14px;
+        }   
+    </style>
+</head>
+<body>
+    <!-- Container for W2UI layout -->
+    <div id="app"></div>
+
+    <script>
+        // This function initializes the W2UI layout
+        function initW2UILayout() {
+            let pstyle = 'border: 1px solid #efefef; padding: 5px'
+            $('#app').w2layout({
+                name: 'layout',
+                panels: [
+                    { type: 'top', resizable: true, style: pstyle,size: "20%", html: 'Menu Principal', title:"top" },
+                    { type: 'left', resizable: true,style: pstyle, size: "20%", html: 'Panneau Outils',title:"left" },
+                    { type: 'right',resizable: true,style: pstyle, resizable: true,  size: "20%", title: 'Panneau Outils',content:"right" },
+                    { type: 'main',resizable: true,style: pstyle,  html: 'Graphe Cytoscape', title:"main" },
+                    { type: 'preview',resizable: true,style: pstyle,  size: 150, html: 'Attributs', title:"preview" },
+                    { type: 'bottom',resizable: true, style: pstyle, size: "20%", html: 'Palette',title:"bottom" }
+                ]
+            });
+
+            // Optionally, store references to the panels
+            this.panels = {};
+            this.panels.mainMenu = w2ui['layout'].get('top');
+            this.panels.leftPanelTools = w2ui['layout'].get('left');
+            this.panels.centerPanelGraph = w2ui['layout'].get('main');
+            this.panels.bottomPanelAttributes = w2ui['layout'].get('preview');
+            this.panels.leftPanelPalette = w2ui['layout'].get('bottom');
+
+            console.log("W2UI Layout initialized:", this.panels);
+        }
+
+        // Initialize the layout when the document is ready
+        $(document).ready(function() {
+            
+            initW2UILayout();
+        });
+    </script>
+</body>
+</html>

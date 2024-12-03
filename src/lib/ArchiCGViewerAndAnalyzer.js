@@ -82,6 +82,200 @@ inPageAppender.setLayout(new log4javascript.PatternLayout("%d{HH:mm:ss} %-5p - %
 var logger = log4javascript.getLogger();
 logger.addAppender(inPageAppender);
 
+//try for capturing interactions with the graph
+
+let interactionLog = [];
+let lastEventTime = Date.now(); // Initialize time tracking
+
+// Function to log interactions
+function logInteraction(event) {
+  const currentTime = Date.now();
+  const durationSinceLastEvent = currentTime - lastEventTime;
+  lastEventTime = currentTime;
+
+  // Ensure the target is a Cytoscape element (node or edge) before accessing its ID
+  const targetId =
+    event.target && (event.target.isNode?.() || event.target.isEdge?.())
+      ? event.target.id()
+      : null;
+
+  // Create the log entry with non-circular properties
+  const logEntry = {
+    eventType: event.type,                  // Event type: e.g., 'tap', 'add', 'remove', etc.
+    target: targetId,                       // Node/edge ID, or null for graph-wide events
+    position: event.position || null,       // Position (e.g., for zoom or pan events)
+    timestamp: currentTime,                 // Event timestamp
+    durationSinceLastEvent: durationSinceLastEvent, // Time since last event
+  };
+
+  // Capture only non-circular properties for 'add' or 'remove' events
+  if (event.type === 'add' || event.type === 'remove') {
+    const elementData = {
+      id: event.target.id(),
+      type: event.target.isNode() ? 'node' : 'edge',
+      // Manually extract only simple, non-circular data properties
+      data: extractNonCircularData(event.target)
+    };
+    logEntry.elementData = elementData;
+  }
+
+  // Push the log entry to the interaction log
+  interactionLog.push(logEntry);
+
+  // Log to console for debugging
+  console.log("Logged interaction:", logEntry);
+}
+
+// Function to extract non-circular data from a Cytoscape element
+function extractNonCircularData(element) {
+  // Extract relevant properties. Be cautious to not include references to other elements.
+  const data = element.data(); // This gets the attributes of the element
+  const nonCircularData = {};
+
+  // Include only basic properties (avoid complex, nested structures that may cause circular references)
+  for (let key in data) {
+    if (data.hasOwnProperty(key)) {
+      // Here you can filter out certain data if necessary (e.g., relationships, references)
+      if (key !== 'parent' && key !== 'edges') {  // Example of avoiding circular references
+        nonCircularData[key] = data[key];
+      }
+    }
+  }
+
+  return nonCircularData;
+}
+
+
+
+function exportLog() {
+  const blob = new Blob([JSON.stringify(interactionLog, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'interaction-log.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function saveLogToFile() {
+  const blob = new Blob([JSON.stringify(interactionLog, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'interaction-log.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// Function to open the log file using FileReader API
+function openLogFile() {
+  // Create an <input> element to allow the user to choose a file
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.json';  // Assuming the log is stored in JSON format
+
+  // When the user selects a file, process the file
+  input.onchange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      readLogFile(file);
+    }
+  };
+
+  // Trigger the input file dialog
+  input.click();
+}
+
+
+function openLogFileForReplay() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.json';
+
+  input.onchange = async (e) => {
+      const file = e.target.files[0];
+      if (file) {
+          const text = await file.text();
+          const logData = JSON.parse(text);
+          replayLog(logData, cy);
+      }
+  };
+
+  input.click();
+}
+
+function replayLog(log, cy, speedFactor = 1) {
+  openLogFileForReplay()
+  let startTime = Date.now();
+
+  log.forEach((entry, index) => {
+    const delay = index === 0 ? 0 : entry.durationSinceLastEvent / speedFactor;
+
+    setTimeout(() => {
+      switch (entry.eventType) {
+        case 'add':
+          if (entry.elementData) {
+            cy.add(entry.elementData);
+          }
+          break;
+        case 'remove':
+          if (entry.target) {
+            cy.$(`#${entry.target}`).remove();
+          }
+          break;
+        case 'show':
+          if (entry.target) {
+            cy.$(`#${entry.target}`).show();
+          }
+          break;
+        case 'hide':
+          if (entry.target) {
+            cy.$(`#${entry.target}`).hide();
+          }
+          break;
+        case 'grabify':
+          if (entry.target) {
+            cy.$(`#${entry.target}`).grabify();
+          }
+          break;
+        case 'ungrabify':
+          if (entry.target) {
+            cy.$(`#${entry.target}`).ungrabify();
+          }
+          break;
+        default:
+          console.warn(`Unhandled event type: ${entry.eventType}`);
+      }
+      console.log(`Replayed event: ${entry.eventType} on ${entry.target}`);
+    }, delay);
+  });
+}
+
+function stopLogging(cy) {
+  // Remove all the interaction listeners
+  cy.off('tap', logInteraction);
+  cy.off('select', logInteraction);
+  cy.off('dragfree', logInteraction);
+  cy.off('zoom pan', logInteraction);
+
+  console.log("Stopped logging interactions.");
+}
+var isLogging=false;
+
+function startLogging(cy) {
+  if (isLogging) return; // Prevent multiple logging sessions
+  isLogging = true;
+
+  // Register all relevant events
+  cy.on(
+    'tap select dragfree zoom pan add remove show hide grabify ungrabify',
+    logInteraction
+  );
+
+  console.log('Started logging events.');
+}
+
+
 
 //default property of graph elements giving the resource to be navigated
 var URLProperty="URL";
@@ -1258,6 +1452,11 @@ form: {
       name: 'mainmenu',
       tooltip:"bottom",
       items: [
+        { type: 'menu', id: 'logging', text: 'Logging', items: [
+          { id: 'start', text: 'Start Logging', icon: 'fa fa-play' },
+          { id: 'stopSave', text: 'Stop Logging and Save', icon: 'fa fa-stop' },
+          { id: 'replay', text: 'Open File for Replay', icon: 'fa fa-folder-open' }
+      ]},
           { type: 'menu', id: 'submenu2',
               text(item) {return "File"},
               items: [
@@ -1443,6 +1642,20 @@ form: {
 
       ],
       onClick: function(event) {
+        if (event.target=="logging:start"){
+          startLogging(cy);
+          w2alert('Event logging started.');
+        }
+        if (event.target=="logging:stopSave"){
+          stopLogging(cy);
+                  saveLogToFile();
+          
+        }
+        if (event.target=="logging:replay"){
+          replayLog();     
+        }
+
+       
 
         //alert('item '+ event.target.split(':').shift() + ' is clicked.' + this.get([event.target]).checked);
         if (event.target.split(':').shift() =="menuPalettes")
@@ -3416,7 +3629,6 @@ document.getElementById('load-from-jarchi').addEventListener('change', function 
 document.getElementById('load-from-open-format').addEventListener('change', function () {
   var nodeIdentifiers=[]
   var nonExistingNodes = [];
-
   readTxtFile(this.files[0], function (xmlString) {
     // test if the file is an XML file
     const model = new window.DOMParser().parseFromString(xmlString, "text/xml");
@@ -3545,7 +3757,7 @@ const modelRelationships = [].map.call(model.querySelectorAll("relationship"), (
    w2confirm('Do you want to replace? If yes, current graph will be removed, if no, it will be fusionned with the import)')
      .yes(() => {cy.$().remove(); 
        cy.add(modelNode);
-       cy.add(modelElements);
+      cy.add(modelElements);
        cy.add(modelRelationships);
        cy.add(modelViews);
        includeFolders(model, modelId);
@@ -3555,7 +3767,7 @@ const modelRelationships = [].map.call(model.querySelectorAll("relationship"), (
        cy.add(modelNode);
        cy.add(modelElements);
        cy.add(modelViews);
-       cy.add(modelRelationships);
+     cy.add(modelRelationships);
        api.collapseAll();
        api.collapseAllEdges(getEdgeOptions());
        });  
@@ -3682,8 +3894,6 @@ function includeFolders(model, modelId) {
     logger.error("An error occurred in includeFolders: " + error.message);
     console.error(error);
   }
-}
-
 }
 
 document.addEventListener('DOMContentLoaded', main);
@@ -4228,6 +4438,7 @@ myAggregation=myAttributes.reduce(function (accumulator, currentObject) {
   })
 }
 
+
 function importAlfabetRelations(txt){
   try {
     var myParseResult=Papa.parse(txt, {header: true});
@@ -4258,9 +4469,6 @@ function importAlfabetRelations(txt){
   try {cy.add(relation)}catch(e){logger.error("[importAlfabetRelations]"+index+"=>"+e)}})
 }
 
-
-
-
 function attributesParent(attribute){
   var myEntity = "alfabet-entity-type-"+String(attribute.Entity).trim().replace(/ +/g, "_");
   //console.log("attributeParent()=>"+myEntity)
@@ -4278,7 +4486,6 @@ function attributesParent(attribute){
         myEntity="alfabet-information-model";logger.debug("alfabet-information-model");}
     }
     return myEntity;
-
   }
 
   function gridEntityAttribute(theJSONAttributes){
