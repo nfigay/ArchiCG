@@ -1,19 +1,20 @@
-         /* Customize panel title height */
-         .w2ui-panel-title {
-          line-height: 1.5em;
-          height: 40px; /* Adjust this value as needed */
-          padding: 10px;
-          font-size: 16px;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-      }
+/* Customize panel title height */
+.w2ui-panel-title {
+  line-height: 1.5em;
+  height: 40px;
+  /* Adjust this value as needed */
+  padding: 10px;
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
-      /* Adjust panel content padding */
-      .w2ui-panel-content {
-          padding: 10px;
-          font-size: 14px;
-      }  
+/* Adjust panel content padding */
+.w2ui-panel-content {
+  padding: 10px;
+  font-size: 14px;
+}
 
 .custom-title-style {
   font-size: 16px;
@@ -26,35 +27,79 @@
   height: 30px;
 }
 
+.palette-container {
+  display: inline-block;
+  overflow: auto;
+  max-width: 100%;
+  padding: 0;
+}
+
+.palette-group {
+  display: inline-block;
+  margin: 0px;
+  padding: 0;
+  border: 1px solid #ddd;
+  width: 100%; /* Width will be dynamically applied */
+}
+
+.icon-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0px; /* Reduced gap between buttons */
+  padding: 0;
+  justify-content: flex-start;
+  width: 850px; /* Adjusted dynamically */
+}
+
+
+.palette-icon-button {
+  display: inline-block;
+  margin: 0px; /* Remove any default margin */
+  padding: 0; /* Remove padding from the buttons */
+  width: 50px;
+  height: 50px;
+  border: none;
+  background: none;
+  cursor: pointer;s
+}
+
+
+
+
 body {
   font-family: helvetica neue, helvetica, liberation sans, arial, sans-serif;
   font-size: 14px;
 }
+
 .background {
-  fill: #eee;}
+  fill: #eee;
+}
 
 .matrix {
-    fill: blue;
-    opacity: 0.5;
-  }  
+  fill: blue;
+  opacity: 0.5;
+}
 
 .white-box {
-      background-color: white;
-      width: 50px;
-      height: 50px;
-    }
- 
+  background-color: white;
+  width: 50px;
+  height: 50px;
+}
+
 line {
-  stroke: #fff;}
+  stroke: #fff;
+}
 
 
 text.active {
-  fill: red;}
+  fill: red;
+}
 
-table td, table td * {
+table td,
+table td * {
   vertical-align: top;
   padding-right: 10px;
-  
+
 }
 
 #cy {
@@ -78,7 +123,8 @@ h1 {
   height: 100%;
   overflow-y: scroll;
 }
-.fcheck{  
+
+.fcheck {
   float: top;
 }
 
@@ -90,10 +136,10 @@ h1 {
 .fright {
   float: right;
   height: 100%;
-  width:100%;
+  width: 100%;
   /*width: calc(80% - 4px);*/
   /* count border wid*/
- /* border: 2px solid #2F4154;
+  /* border: 2px solid #2F4154;
   border-radius: 0px;*/
 }
 
@@ -229,6 +275,7 @@ input[type='checkbox'] {
   padding: 10px;
   background-color: white;
 }
+
 .el-button {
   width: 50px;
   height: 50px;
@@ -241,7 +288,7 @@ input[type='checkbox'] {
 fieldset {
   margin: 0px;
   border: 1px;
-  padding: 0px;    
+  padding: 0px;
   border-radius: 0px;
   padding: 0px 0px;
   position: relative;
@@ -251,42 +298,45 @@ fieldset {
 
 }
 
-#palette{
+#palette {
   margin: 0px;
   border: 1px solid white;
-  padding: 0px;    
+  padding: 0px;
   border-radius: 0px;
   padding: 0px 0px;
   transform: scaleX(1);
   transform-origin: left top;
   width: calc(100%);
-  
+
   overflow: auto;
 
 }
-#palette-tr{
-  border:1px solide black;
+
+#palette-tr {
+  border: 1px solide black;
   font-size: 12px;
   position: relative;
   width: calc(100%);
   transform: scaleY(1);
   transform: scaleX(1);
   transform-origin: left top;
-  
+
 }
+
 #legend {
-  padding: 0px;  
-  font-size: 24px; 
+  padding: 0px;
+  font-size: 24px;
   overflow: auto;
   width: 250px;
   height: 300px;
- 
+
 }
-#tb_toolbarPropertyColoredMapDefinition_item_legend
-{
+
+#tb_toolbarPropertyColoredMapDefinition_item_legend {
   overflow: auto;
   height: 100%;
 }
+
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
@@ -306,9 +356,3 @@ fieldset {
 ::-webkit-scrollbar-thumb:hover {
   background: #cfcfcf;
 }
-
-
-
-
-
-

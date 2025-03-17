@@ -57,19 +57,40 @@
   <script src="https://cdn.jsdelivr.net/npm/flatted@3.3.1/min.min.js"></script>
 
   <link rel="stylesheet" type="text/css" href="ArchiCG Viewer and Analyzer.css" />
+  
+  <!-- Library for configuring ArchiCG -->
+  
+  <!-- It provides the structure the imported script can register to and global variables-->
   <script src="config.js"></script>
 
+  <!-- It provides the initial graph which will be displayed, usually the archimate description of archiCG-->  
   <script src="initialgraph.js"></script>
+  
+  <!-- The definition of the W2UI based User Interface, with the panels and main menu-->
   <script src="ui/ui.js"></script>
 
-  <!--  
-  <script src="palettes/paletteArchiMate.js"></script>
- -->
-  <script src="app.js"></script>
-  <script src="archicg.js"></script>
-  <script src="palettes/palettes.js"></script>
-  <script src="languages/archimate.js"</script></script>
+    <!-- The palettes manager-->
+    <script src="palettes/palettes.js"></script>
 
+<!-- The languages manager-->
+    <script src="languages/languages.js"></script>
+
+    
+  <!--  The window onload function which initialize the user interface, language palette-->
+  <script src="app.js"></script>
+
+
+  <!-- The tools manager-->
+    <script src="tools/tools.js"></script>
+
+   <!-- The definitions of archimate languages including types, icons, textual definition, constraints-->
+   <!-- It serves as inputs for the palettes and the constraint checking-->
+   <script src="languages/archimate.js"</script></script>
+
+  <!-- The definition of the interaction between all the parts of the applications-->
+  <script src="archicg.js"></script>
+
+  
 
   <!-- ArchiCG libraries 
   

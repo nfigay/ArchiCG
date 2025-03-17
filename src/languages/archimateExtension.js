@@ -1,3 +1,4 @@
+(function archimateExtension_iffe(global) {
 acg_ArchiMateExtensions=["view", "viewpoint", "model", "folder","package", "group", "note", "drawing", "extensions", "relations", "metamodel","layer","not-defined"];
 
 archimateNonViewpointRelatedFieldset=["relationships","visual"];
@@ -280,3 +281,6 @@ id='viewpoint-button' class="el-button" data-toggle="tooltip" >
 `
 
 globalPalette =globalPalette +metaFieldset+visualFieldset;
+console.log ("ArchiMate Language extensions loaded")
+
+})(window); // Pass window object to the IIFE

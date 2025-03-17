@@ -1503,7 +1503,7 @@
 
     const ui = {
         init: function () {
-            console.log('init started.');
+            console.log('UI init started');
             this.menu = [];
             this.panels = {
                 mainMenu: null,
@@ -1544,7 +1544,7 @@
             w2ui.layoutProperties.html('main', $().w2form(ui_config.form2));
             w2ui.layoutProperties.html('main', $().w2form(ui_config.form));
             $('#mainmenu').w2toolbar(ui_config.mainmenu)
-            ui.test()
+            //ui.test()
             global.w2ui=w2ui
 
         },

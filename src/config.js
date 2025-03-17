@@ -27,6 +27,17 @@ var palettesMenu= [
     global.initialgraph=initialgraph
     global.acg_Edges=acg_Edges
     global.acg_Nodes=acg_Nodes
+    global.languageConfig = {
+      coreLanguages: [
+          { name: "archimate", addToPalette: true }
+          //,
+          //{ name: "archimateExtension", addToPalette: false }
+      ],
+      extensionLanguages: [
+        //  { name: "Extension1", coreLanguages: ["CoreLanguage1"], addToPalette: true },
+        //  { name: "Extension2", coreLanguages: ["CoreLanguage1", "CoreLanguage2"], addToPalette: false }
+      ]
+  };
 
 })(window); // Pass window object to the IIFE
 

@@ -10,13 +10,29 @@
   <link rel="stylesheet" type="text/css" href="lib/vis-timeline-graph2d.min.css"/>
   <link rel="stylesheet" type="text/css" href="lib/sweetalert.css"/>
   <link rel="stylesheet" type="text/css" href="lib/pivot.min.css"/>
- 
 
   <script type="text/javascript" src="lib/log4javascript.js"></script>
   <script src=""></script>
   <script src="https://cdn.jsdelivr.net/npm/flatted@3.3.1/min.min.js"></script>
   <script src="lib/jquery.min.js"></script>
   <script src="lib/w2ui-2.0.min.js"></script>
+  <style>
+       /* Style for the presentation container */
+       #presentation-container {
+            width: 900px;          /* Set custom width */
+            height: 600px;         /* Set custom height */
+            margin: 50px auto;     /* Center the container with margin */
+            border: 2px solid #ccc; /* Optional border for visibility */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        /* Reveal.js-specific styling to fit the container */
+        #presentation-container .reveal {
+            width: 100%;
+            height: 100%;
+        }
+</style>
+ 
   <script src="lib/cytoscape.min.js"></script>
   <script src="lib/cytoscape-undo-redo.js"></script>
   <script src="lib/ArchiCGViewerAndAnalyzer.js"></script>
@@ -26,6 +42,7 @@
   <script src="lib/archimateExtension.js"></script>
   <script src="lib/dmn.js"></script>
   <script src="lib/complexity.js"></script>
+  <script src="lib/noel.js"></script>
   <script src="lib/toolACGTraversal.js"></script>
   <script src="lib/toolACGDegrees.js"></script>
   <script src="lib/toolPropertyColoredMap.js"></script> 
@@ -82,11 +99,11 @@
 
 </head>
 <body>
-  
+  <div style="display: none;" id="presentation-container"></div>
   <div id="mainmenu" style="padding: 0px; height: 4%;"></div>
   <div id="archicg-layout" style="width: 100%; height: 96%;"></div>
   <div  id="popup" style="width: 800px; height: 600px; overflow: hidden; display:none; " >
-
+  
     <div rel="title" style="display: block;">
         About ArchiCG
     </div>
@@ -156,6 +173,7 @@
 </div>
 
 
+
 <div id="defs" style="display: none;"></div>
 <div id="imports"style="display: none;" ></div>
 <script>
@@ -177,6 +195,13 @@
   link.href = base64EncodedSVG;
   document.head.appendChild(link);
 </script>
+
+<script src="dist/reveal.js"></script>
+<script src="plugin/zoom/zoom.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/search/search.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
 
 
 </body>
