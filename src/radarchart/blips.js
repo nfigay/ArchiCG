@@ -6580,7 +6580,7 @@ myBlips=[
     "Status Version": "",
     "Responsible": "",
     "specialisation": "",
-    "type": ""
+    "type": "business-object"
   },
   {
     "id": "228",

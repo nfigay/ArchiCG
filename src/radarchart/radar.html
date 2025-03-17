@@ -7,6 +7,7 @@
   <title>Radar with Cytoscape.js</title>
   <script src="https://d3js.org/d3.v6.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.23.0/cytoscape.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
   <script src="./blips.js"></script>
   <style>
     #container {
@@ -30,7 +31,22 @@
   <input type="file" id="loadRadarButton" accept=".json">
   <button id="enableGrabbingBtn">Enable Grabbing</button>
   <button id="disableGrabbingBtn">Disable Grabbing</button>
-  <div id="node-info" style="position: absolute; top: 10px; left: 850px; background: white; padding: 8px; border: 1px solid black; font-family: Arial, sans-serif;">
+  <input type="file" id="csvFileInput" />
+  <label for="radarType">Select Radar Type:</label>
+  <select id="radarType">
+    <option value="pda">PDA Radar</option>
+    <option value="se">SE Radar</option>
+    <option value="ils">ILS Radar</option>
+    <option value="manuf">Manufacturing Radar</option>
+    <option value="tli">TLI Radar</option>
+    <option value="supply_chain">Supply Chain Radar</option>
+  </select>
+
+  <!-- Button to load blips into the radar -->
+  <button id="loadRadarBtn">Load Radar</button>
+  <pre id="output"></pre>
+  <div id="node-info"
+    style="position: absolute; top: 10px; left: 850px; background: white; padding: 8px; border: 1px solid black; font-family: Arial, sans-serif;">
     <strong>Node Info:</strong> <br>
     ID: <span id="info-id">None</span> <br>
     X: <span id="info-x">0</span>, Y: <span id="info-y">0</span> <br>
@@ -38,11 +54,67 @@
     Radius: <span id="info-rayon">0</span> <br>
     Zone: <span id="info-zone">None</span> <br>
     Quadrant: <span id="info-quadrant">None</span>
-</div>
+  </div>
 
 
   <script>
     var cy;
+    // Event listener for file input
+    document.getElementById('csvFileInput').addEventListener('change', handleFileUpload, false);
+
+    
+
+    function handleFileUpload(event) {
+      const file = event.target.files[0];
+      if (file) {
+        Papa.parse(file, {
+          header: true, // Treat first row as header
+          skipEmptyLines: true,
+          complete: function (results) {
+            myBlips = processCSVData(results.data);
+            displayBlips(myBlips);  // Optionally display all data
+          }
+        });
+        createRadarWithCytoscape({ workingGroup: "PLM", containerId: "container" });
+      }
+    }
+
+    // Function to process CSV data and convert it to JSON format
+    function processCSVData(csvData) {
+      return csvData.map(row => ({
+        id: row.id,
+        working_group: row.working_group,
+        in_pda_radar: row.in_pda_radar,
+        in_se_radar: row.in_se_radar,
+        in_ils_radar: row.in_ils_radar,
+        in_manuf_radar: row.in_manuf_radar,
+        in_tli_radar: row.in_tli_radar,
+        in_supply_chain_radar: row.in_supply_chain_radar,
+        label: row.label,
+        ring: row.ring,  // ring corresponds to zone
+        quadrant: row.quadrant,  // quadrant corresponds to quarter
+        name: row.name,
+        hasBlip: row.hasBlip,
+        description: row.description,
+        standard_type1: row.standard_type1,
+        // Additional fields can go here
+      }));
+    }
+
+    // Function to display all blips (optional)
+    function displayBlips(blips) {
+      document.getElementById('output').textContent = JSON.stringify(blips, null, 2);
+    }
+
+    
+ 
+
+    // Function to filter blips based on selected radar type
+    function filterBlipsByRadarType(radarType) {
+      return myBlips.filter(blip => {
+        return blip[`in_${radarType}_radar`] === 'Y';  // Filter based on 'Y' value
+      });
+    }
     // Sélection du champ d'affichage
     const infoId = document.getElementById('info-id');
     const infoX = document.getElementById('info-x');
@@ -56,20 +128,20 @@
     const radii = [150, 250, 350]; // Rayons des cercles concentriques (modifiable)
 
     // Fonction pour déterminer la zone d'un nœud
-function getZone(x, y, radii) {
-    let relX = x - chartCenter.x;
-    let relY = y - chartCenter.y;
-    let r = Math.sqrt(relX ** 2 + relY ** 2);
-    let theta = Math.atan2(relY, relX); // Angle en radians (-π à π)
-    let angleDeg = (theta * 180) / Math.PI; // Conversion en degrés
+    function getZone(x, y, radii) {
+      let relX = x - chartCenter.x;
+      let relY = y - chartCenter.y;
+      let r = Math.sqrt(relX ** 2 + relY ** 2);
+      let theta = Math.atan2(relY, relX); // Angle en radians (-π à π)
+      let angleDeg = (theta * 180) / Math.PI; // Conversion en degrés
 
-    let circleIndex = radii.findIndex(radius => r < radius);
-    if (circleIndex === -1) circleIndex = radii.length;
+      let circleIndex = radii.findIndex(radius => r < radius);
+      if (circleIndex === -1) circleIndex = radii.length;
 
-    let sectorIndex = Math.floor(((theta + Math.PI) / (2 * Math.PI)) * 4) % 4;
+      let sectorIndex = Math.floor(((theta + Math.PI) / (2 * Math.PI)) * 4) % 4;
 
-    return { relX, relY, r, angleDeg, circleIndex, sectorIndex };
-}
+      return { relX, relY, r, angleDeg, circleIndex, sectorIndex };
+    }
 
     function enableNodeGrabbing() {
       cy.nodes().grabify();
@@ -282,7 +354,8 @@ function getZone(x, y, radii) {
 
 
       // Append SVG Object to the Page
-      const svg = d3.select(`#${containerId}`)
+      var svg = ""
+      svg= d3.select(`#${containerId}`)
         .append("svg")
         .attr("viewBox", [-width / 2, -height / 2, width, height])
       var arc = d3.arc();
@@ -562,28 +635,28 @@ function getZone(x, y, radii) {
     createRadarWithCytoscape({ workingGroup: "PLM", containerId: "container" });
     // Exemple d'utilisation avec Cytoscape.js
     cy.on('free', 'node', function (evt) { // Événement lorsqu'un nœud est relâché après un drag
-    let node = evt.target;
-    let pos = node.position();
-    let zone = getZone(pos.x, pos.y, radii);
+      let node = evt.target;
+      let pos = node.position();
+      let zone = getZone(pos.x, pos.y, radii);
 
-    // Mise à jour des données du nœud
-    node.data({
+      // Mise à jour des données du nœud
+      node.data({
         status: `Zone ${zone.circleIndex}`,
         origin: `Quadrant ${zone.sectorIndex}`
-    });
+      });
 
-    // Mise à jour de l'affichage
-    infoId.textContent = node.id();
-    infoX.textContent = pos.x.toFixed(1);
-    infoY.textContent = pos.y.toFixed(1);
-    infoAngle.textContent = zone.angleDeg.toFixed(1);
-    infoRayon.textContent = zone.r.toFixed(1);
-    infoZone.textContent = `Zone ${zone.circleIndex}`;
-    infoQuadrant.textContent = `Quadrant ${zone.sectorIndex}`;
+      // Mise à jour de l'affichage
+      infoId.textContent = node.id();
+      infoX.textContent = pos.x.toFixed(1);
+      infoY.textContent = pos.y.toFixed(1);
+      infoAngle.textContent = zone.angleDeg.toFixed(1);
+      infoRayon.textContent = zone.r.toFixed(1);
+      infoZone.textContent = `Zone ${zone.circleIndex}`;
+      infoQuadrant.textContent = `Quadrant ${zone.sectorIndex}`;
 
-    // Optionnel : Changer la couleur du nœud selon la zone
-    const colors = ['red', 'blue', 'green', 'purple'];
-    node.style('background-color', colors[zone.circleIndex] || 'black');
+      // Optionnel : Changer la couleur du nœud selon la zone
+      const colors = ['red', 'blue', 'green', 'purple'];
+      node.style('background-color', colors[zone.circleIndex] || 'black');
     });
 
 
