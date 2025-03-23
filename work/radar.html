@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Radar with Cytoscape.js</title>
+  <script src="https://d3js.org/d3.v6.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.23.0/cytoscape.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+  <script src="lib/w2ui-2.0.min.js"></script>
+  <script src="lib/i18next.min.js"></script>
+  <script src="./blips.js"></script>
+  <style>
+    #radar {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      /* Ensures no unexpected scrolling */
+    }
+
+    #container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    #svg-overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      /* Allows interactions to pass through to Cytoscape */
+    }
+
+    label {
+      font-size: 14px;
+      font-weight: 400;
+      color: black;
+    }
+
+    .file-button {
+      display: inline-block;
+      padding: 0px 6px;
+      font-size: 12px;
+      font-weight: 400;
+      color: black;
+      background-color: white;
+      border: 1px solid lightgray;
+      border-radius: 4px;
+      cursor: pointer;
+      text-align: center;
+      vertical-align: middle;
+      user-select: none;
+    }
+
+    .file-button:hover {
+      background-color: lightgray;
+      border-color: gray;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app" style="width: 100%; height: 70vh;">
+    <div id="mainLayout" style="height: calc(100% - 40px);" />
+  </div>
+
+
+  <!-- Button to trigger the download -->
+  <button id="downloadButton">Download Radar Data as JSON</button>
+
+
+  <input type="file" id="loadRadarButton" accept=".json" style="display: none;">
+  <label for="loadRadarButton" class="file-button">Load JSON File</label>
+
+  <button id="enableGrabbingBtn">Enable Grabbing</button>
+  <button id="disableGrabbingBtn">Disable Grabbing</button>
+  <input type="file" id="csvFileInput" />
+  <label for="csvFileInput" class="file-button">Load CSV File</label>
+  <label for="radarType">Select Radar Type:</label>
+  <select id="radarType">
+    <option value="pda">PDA Radar</option>
+    <option value="se">SE Radar</option>
+    <option value="ils">ILS Radar</option>
+    <option value="manuf">Manufacturing Radar</option>
+    <option value="tli">TLI Radar</option>
+    <option value="supply_chain">Supply Chain Radar</option>
+  </select>
+
+  <!-- Button to load blips into the radar -->
+  <button id="loadRadarBtn">Load Radar</button>
+  <pre id="output"></pre>
+
+  <script>
+    var cy;
+    const resources = {
+      en: {
+        translation: {
+          menu: {
+            language: "Language",
+            fr: "🇫🇷 French",
+            en: "🇬🇧 English",
+            files: "Files",
+            opencsv: "Open CSV",
+            savecsv: "Save CSV",
+            savegraph: "Save Graph",
+            loadgraph: "Load Graph",
+            exportradar: "Export Radar",
+            expandCollapse: "Expand/Collapse",
+            nodes: "Nodes",
+            expandAllNodes: "Expand All",
+            collapseAllNodes: "Collapse All",
+            expandSelectedNodes: "Expand Selected",
+            collapseSelectedNodes: "Collapse Selected",
+            expandSelectedNodesRecursively: "Expand Selected Recursively",
+            collapseSelectedNodesRecursively: "Collapse Selected Recursively",
+            edges: "Edges",
+            expandAllEdges: "Expand All",
+            collapseAllEdges: "Collapse All",
+            expandSelectedEdges: "Expand Selected",
+            collapseSelectedEdges: "Collapse Selected",
+            collapseEdgesBetweenNodes: "Reduce Between Selected Nodes",
+            expandEdgesBetweenNodes: "Expand Between Selected Nodes",
+            rendering: "Rendering",
+            renderingnodeirishortname: "Render by Entity IRI Short Name(id)",
+            noderenderinglabel: "Render by Label(RDFS Label)",
+            noderenderingprefix: "Render by prefixed name",
+            noderenderingannotation: "Render by annotation property",
+            noderenderingcustom: "Customed rendering",
+            edgeirishortName: "Render by Property IRI Short Name(id)",
+            edgerenderingprefixName: "Render by prefixed name",
+            edgerenderinglabel: "Render by Label(RDFS Label)",
+            edgerenderingannotationProperty: "Render by annotation property",
+            edgerenderingcustom: "Customed rendering",
+            label: "Label",
+            prefixName: "Prefix Name",
+            annotationProperty: "Annotation Property",
+            customRendering: "Custom Rendering",
+            display: "Display",
+            showowlconstructs: "Show OWL Constructs Nodes",
+            showisa: "Show isa as link",
+            showdomainrange: "Show domain and range as nodes",
+            showlabelasnode: "Show labels as nodes",
+            showlabelasedge: "Show labels as edges",
+            showannotationasnode: "Show annotations as nodes",
+            showannotationasedge: "Show annotations as edges",
+            viewpoint: "Viewpoints",
+            individual: "Individuals",
+            ontology: "Ontologies",
+            sop: "Subject Object Properties",
+            data: "Data",
+            layout: "Layouts",
+            fcose: "Fcose",
+            grid: "Grid",
+            circle: "Circle",
+            cose: "Cose",
+            breadthfirst: "Breadthfirst",
+            concentric: "Concentric",
+            random: "Random",
+            cola: "Cola",
+            dagre: "Dagre",
+            showhidegrabifydelete: "Actions on graph elements",
+            showhide: "Show/Hide",
+            hideselected: "Hide Selected",
+            hidenonselected: "Hide Non Selected",
+            unhideall: "Unhide All",
+            grabifyungrabify: "Grabify/Ungrabify",
+            ungrabifyselected: "Ungrabify Selected",
+            ungrabifynonselected: "Ungrabify Non Selected",
+            grabifyselected: "Grabify Selected",
+            grabifynonselect: "Grabify Non Selected",
+            lockunlock: "Lock/Unlock",
+            lockselected: "Lock Selected",
+            locknonselected: "Lock Non Selected",
+            unlockselected: "Unlock Selected",
+            unlocknonselect: "Unlock Non Select",
+            removerestore: "Remove Restore",
+            removeselected: "Remove Selected",
+            removeunselected: "Remove Unselected",
+            removeall: "Remove All",
+            restore: "Restore"
+          },
+          confirm: {
+            replacegraph: "Do you want to replace the current graph? If yes, current graph will be removed, if no, it will be merged with the import.",
+            rdfinplaceofowl: "Do you want to show RDF triples in place of OWL?"
+          },
+          alert: {
+            selectowlinferred: "Please select the inferred OWL File",
+            selectowl: "Please select you OWL File"
+          }
+        }
+      },
+      fr: {
+        translation: {
+          menu: {
+            language: "Langage",
+            fr: "🇫🇷 Français",
+            en: "🇬🇧 English",
+            files: "Fichiers",
+            opencsv: "Ouvrir CSV",
+            savecsv: "Sauve CSV",
+            savegraph: "Sauve Graphe",
+            loadgraph: "Charge Graphe",
+            exportradar: "Exporte Radar",
+            expandCollapse: "Développer/Réduire",
+            nodes: "Nœuds",
+            expandAllNodes: "Tout développer",
+            collapseAllNodes: "Tout réduire",
+            expandSelectedNodes: "Développer sélectionnés",
+            collapseSelectedNodes: "Réduire sélectionnés",
+            expandSelectedNodesRecursively: "Développer sélectionnés récursivement",
+            collapseSelectedNodesRecursively: "Réduire sélectionnés récursivement",
+            edges: "Arêtes",
+            expandAllEdges: "Tout développer",
+            collapseAllEdges: "Tout réduire",
+            expandSelectedEdges: "Développer sélectionnés",
+            collapseSelectedEdges: "Réduire sélectionnés",
+            collapseEdgesBetweenNodes: "Réduire entre les noeuds sélectionnés",
+            expandEdgesBetweenNodes: "Développer entre les noeuds sélectionnés",
+            rendering: "Rendu",
+            renderingnodeirishortname: "Nom court IRI",
+            label: "Étiquette",
+            prefixName: "Nom du préfixe",
+            annotationProperty: "Propriété d’annotation",
+            customRendering: "Rendu personnalisé",
+            display: "Affichage",
+            showowlconstructs: "... des nœuds OWL",
+            showisa: "... de 'isa' comme lien",
+            showdomainrange: "... des domaines et portées comme nœuds",
+            showlabelasnode: "... des labels comme noeuds",
+            showlabelasedge: "... des labels comme liens",
+            showannotationasnode: "... des annotations comme noeuds",
+            showannotationasedge: "... des annotations comme liens",
+            viewpoint: "Points de vue",
+            individual: "Individus",
+            ontology: "Ontologies",
+            sop: "Propriétés sujet-objet",
+            data: "Données",
+            layout: "Mises en page",
+            fcose: "Fcose",
+            grid: "Grille",
+            circle: "Cercle",
+            cose: "Cose",
+            breadthfirst: "Parcours en largeur",
+            concentric: "Concentrique",
+            random: "Aléatoire",
+            cola: "Cola",
+            dagre: "Dagre",
+            showhidegrabifydelete: "Actions sur éléments du graphe",
+            showhide: "Montrer/Cacher",
+            hideselected: "Cacher les sélectionnés",
+            hidenonselected: "Cacher les non sélectionnés",
+            unhideall: "Révéler tout",
+            grabifyungrabify: "Activer/Désactiver la prise",
+            ungrabifyselected: "Libérer la sélection",
+            ungrabifynonselected: "Libérer les non sélectionnés",
+            grabifyselected: "Prendre la sélection",
+            grabifynonselect: "Prendre les non sélectionnés",
+            lockunlock: "Verrouiller/Déverrouiller",
+            lockselected: "Verrouiller la sélection",
+            locknonselected: "Verrouiller les non sélectionnés",
+            unlockselected: "Déverrouiller la sélection",
+            unlocknonselect: "Déverrouiller les non sélectionnés",
+            removerestore: "Supprimer/Restaurer",
+            removeselected: "Supprimer la sélection",
+            removeunselected: "Supprimer les non sélectionnés",
+            removeall: "Tout supprimer",
+            restore: "Restaurer",
+            rendering: "Rendu",
+            renderingnodeirishortname: "Rendu par Nom Court de l'IRI de l'Entité (id)",
+            noderenderinglabel: "Rendu par Libellé (RDFS Label)",
+            noderenderingprefix: "Rendu par Nom Préfixé",
+            noderenderingannotation: "Rendu par Propriété d'Annotation",
+            noderenderingcustom: "Rendu Personnalisé",
+            edgeirishortName: "Rendu par Nom Court de l'IRI de la Propriété (id)",
+            edgerenderingprefixName: "Rendu par Nom Préfixé",
+            edgerenderinglabel: "Rendu par Libellé (RDFS Label)",
+            edgerenderingannotationProperty: "Rendu par Propriété d'Annotation",
+            edgerenderingcustom: "Rendu Personnalisé"
+          },
+          confirm: {
+            replacegraph: "Voulez vous remplacer le graphe courant? Sinon l'import sera fusionné avec le graphe courant.",
+            rdfinplaceofowl: "Voulez vous visualizer le graphe RDF au lien de l'ontologie OWL?   "
+          },
+          alert: {
+            selectowlinferred: "Veuillez sélectionner le fichier OWL inferred.",
+            selectowl: "Veuillez sélectionner un fichier OWL."
+          }
+        }
+      }
+    };
+    i18next.init({
+      lng: "fr", // Default language
+      fallbackLng: "en", // Fallback language
+      resources: resources // Use in-memory translations
+    })
+    function changeLanguage(lang) {
+      i18next.changeLanguage(lang, () => {
+        updateToolbarTranslations();
+        updateTabsTranslations();
+      });
+    }
+    function updateToolbarTranslations() {
+      mainMenu.items.forEach(item => {
+        if (item.id in i18next.t("menu", { returnObjects: true })) {
+          item.text = i18next.t(`menu.${item.id}`);
+          //  console.log(item.id)
+          // console.log(item.id + " -> " + item.text)
+          if (item.items) {
+            item.items.forEach(subItem => {
+              if (subItem.id in i18next.t("menu", { returnObjects: true })) {
+                subItem.text = i18next.t(`menu.${subItem.id}`);
+              }
+              // console.log(subItem.id + " -> " + subItem.text)
+              if (subItem.items) {
+                subItem.items.forEach(subSubItem => {
+                  if (subSubItem.id in i18next.t("menu", { returnObjects: true })) {
+                    subSubItem.text = i18next.t(`menu.${subSubItem.id}`);
+                  }
+                  //  console.log(subSubItem.id + " -> " + subSubItem.text)
+                });
+              }
+            });
+          }
+        }
+
+      });
+
+      mainMenu.refresh(); // Apply the changes
+    }
+    // Event listener for file input
+    function initializeToolbar() {
+      if (w2ui.mainMenu) return; // Prevent multiple initializations
+      mainMenu = new w2toolbar({
+        name: "mainMenu",
+        items: getMenuItems(),
+        onClick: function (event) {
+          handleMenuAction(event); // Handle menu actions
+        }
+      });
+      updateToolbarTranslations()
+      return mainMenu;
+    }
+
+    function getMenuItems() {
+      return [
+        {
+          type: "menu", id: "file", text: i18next.t("menu.files"),
+          items: [
+            { id: "opencsv", text: i18next.t("menu.opencsv") },
+            { id: "savecsv", text: i18next.t("menu.savecsv") },
+            { type: 'break' },
+            { id: "savegraph", text: i18next.t("menu.savegraph") },
+            { id: "loadgraph", text: i18next.t("menu.loadgraph") },
+            { type: 'break' },
+            { id: "exportjson", text: i18next.t("menu.exportjson") }
+          ]
+        },
+        {
+          type: "menu-radio", id: "language", text: i18next.t("menu.language"),
+          selected: "fr",
+          items: [
+            { id: "fr", text: i18next.t("fr") },
+            { id: "en", text: i18next.t("en") },
+          ]
+        }
+      ];
+    }
+
+
+    function handleMenuAction(event) {
+      switch (event.target) {
+        case 'menu.opencsv':
+          break;
+        case 'menu.savecsv':
+          break;
+        case 'menu.saegraph':
+          break;
+        case 'menu.loadgraph':
+          break;
+        case 'menu.exportjson':
+          break;
+      }
+    }
+
+
+
+
+    // Define the layout first
+    let layout = new w2layout({
+      //box: '#layout',
+      name: 'mainLayout',
+      panels: [
+        { type: 'top', size: 50, style: 'border-bottom: 1px solid #ccc;' },
+        { type: 'left', size: 200, style: 'border-right: 1px solid #ccc;' },
+        { type: 'main', style: 'background: #f8f9fa;', html: '<div id="radar"><div id="container"></div><svg id="svg-overlay"></svg></div> ' },
+        {
+          type: 'right', size: 250, style: 'border-left: 1px solid #ccc;', html: `
+                           ` },
+        {
+          type: 'bottom', size: 50, style: 'border-top: 1px solid #ccc;', html: ``
+        }
+      ]
+    })
+    layout.render('#mainLayout'); // Render the layout in the container      
+    w2ui.mainLayout.html('top', initializeToolbar());
+
+
+
+
+    document.getElementById('csvFileInput').addEventListener('change', handleFileUpload, false);
+
+
+
+    function handleFileUpload(event) {
+      const file = event.target.files[0];
+      if (file) {
+        Papa.parse(file, {
+          header: true, // Treat first row as header
+          skipEmptyLines: true,
+          complete: function (results) {
+            myBlips = processCSVData(results.data);
+            displayBlips(myBlips);  // Optionally display all data
+          }
+        });
+        createRadarWithCytoscape({ workingGroup: "PLM", containerId: "container" });
+      }
+    }
+
+    // Function to process CSV data and convert it to JSON format
+    function processCSVData(csvData) {
+      return csvData.map(row => ({
+        id: row.id,
+        working_group: row.working_group,
+        in_pda_radar: row.in_pda_radar,
+        in_se_radar: row.in_se_radar,
+        in_ils_radar: row.in_ils_radar,
+        in_manuf_radar: row.in_manuf_radar,
+        in_tli_radar: row.in_tli_radar,
+        in_supply_chain_radar: row.in_supply_chain_radar,
+        label: row.label,
+        ring: row.ring,  // ring corresponds to zone
+        quadrant: row.quadrant,  // quadrant corresponds to quarter
+        name: row.name,
+        hasBlip: row.hasBlip,
+        description: row.description,
+        standard_type1: row.standard_type1,
+        // Additional fields can go here
+      }));
+    }
+
+    // Function to display all blips (optional)
+    function displayBlips(blips) {
+      document.getElementById('output').textContent = JSON.stringify(blips, null, 2);
+    }
+
+
+    // Function to filter blips based on selected radar type
+    function filterBlipsByRadarType(radarType) {
+      return myBlips.filter(blip => {
+        return blip[`in_${radarType}_radar`] === 'Y';  // Filter based on 'Y' value
+      });
+    }
+    // Sélection du champ d'affichage
+    const infoId = document.getElementById('info-id');
+    const infoX = document.getElementById('info-x');
+    const infoY = document.getElementById('info-y');
+    const infoAngle = document.getElementById('info-angle');
+    const infoRayon = document.getElementById('info-rayon');
+    const infoZone = document.getElementById('info-zone');
+    const infoQuadrant = document.getElementById('info-quadrant');
+
+    // Sélection du champ d'affichage
+    const infoIdPrev = document.getElementById('info-id-prev');
+    const infoXPrev = document.getElementById('info-x-prev');
+    const infoYPrev = document.getElementById('info-y-prev');
+    const infoAnglePrev = document.getElementById('info-angle-prev');
+    const infoRayonPrev = document.getElementById('info-rayon-prev');
+    const infoZonePrev = document.getElementById('info-zone-prev');
+    const infoQuadrantPrev = document.getElementById('info-quadrant-prev');
+    // Définition du centre et des rayons des cercles
+    const chartCenter = { x: 400, y: 400 }; // Centre du radar chart (dans un espace 800x800)
+    const radii = [150, 250, 350]; // Rayons des cercles concentriques (modifiable)
+
+    // Fonction pour déterminer la zone d'un nœud
+    function getZone(x, y, radii) {
+      let relX = x - chartCenter.x;
+      let relY = y - chartCenter.y;
+      let r = Math.sqrt(relX ** 2 + relY ** 2);
+      let theta = Math.atan2(relY, relX); // Angle en radians (-π à π)
+      let angleDeg = (theta * 180) / Math.PI; // Conversion en degrés
+
+      let circleIndex = radii.findIndex(radius => r < radius);
+      if (circleIndex === -1) circleIndex = radii.length - 1; // Évite un index hors limites
+
+      let sectorIndex = Math.floor(((theta + Math.PI) / (2 * Math.PI)) * 4) % 4;
+
+      return { zone: circleIndex, quadrant: sectorIndex }; // 🔥 Correction : Associer aux bonnes variables
+    }
+
+    function enableNodeGrabbing() {
+      cy.nodes().grabify();
+    }
+
+    function disableNodeGrabbing() {
+      cy.nodes().ungrabify();
+    }
+
+    function loadRadarData(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        try {
+          const jsonData = JSON.parse(e.target.result);
+
+          // Clear existing graph
+          cy.elements().remove();
+
+          // Load new graph from the JSON
+          cy.json(jsonData);
+
+          // Reapply `ungrabify()` to keep nodes non-grabbable
+          cy.nodes().ungrabify();
+
+          console.log("Radar data successfully loaded.");
+        } catch (error) {
+          console.error("Error loading radar data:", error);
+          alert("Invalid JSON file.");
+        }
+      };
+      reader.readAsText(file);
+    }
+    function downloadCompleteRadarData() {
+      cy.nodes().ungrabify();  // Correct function to disable grabbing
+      // Get the full graph data including nodes, edges, styles, and positions
+      const jsonData = cy.json();
+
+      // Create a Blob from the JSON data
+      const blob = new Blob([JSON.stringify(jsonData, null, 2)], { type: 'application/json' });
+
+      // Create a link to download the data
+      const url = URL.createObjectURL(blob);
+
+      // Create an anchor element to simulate the download action
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'complete_radar_data.json'; // Set the filename for the downloaded file
+      a.click();
+
+      // Clean up the created URL object after the download
+      URL.revokeObjectURL(url);
+    }
+
+    function nodeMouseOut(event, d) {
+      // Hide tooltip on mouse out
+      toolTip.style("display", "none"); // Hide toolTip
+
+      // Optional cursor change removed
+      d3.select(event.target).style("cursor", "default");
+
+      // Optional highlight removed
+      // d3.select(event.target)    .transition()    .attr("stroke", "#fff")    .attr("stroke-width", 0);
+    }
+    function nodeMouseOver(event, d) {
+      // Get the toolTip, update the position, and append the inner html depending on your content
+      // I tend to use template literal to more easily output variables.
+      toolTip
+        .style("left", event.pageX + 18 + "px")
+        .style("top", event.pageY + 18 + "px")
+        .style("display", "block")
+        .html(`<strong>${d.name}</strong>`);
+
+      // Optional cursor change on target
+      d3.select(event.target).style("cursor", "pointer");
+
+      // Optional highlight effects on target
+      //  d3.select(event.target)    .transition()    .attr("stroke", "#A8234E")    .attr("stroke-width", 3);
+    }
+    function ticked(groups, width) {
+
+      dimColor = d3
+        .scaleOrdinal()
+        .domain(["STEP", "ASD S-Series", "3D Visualisation", "LOTAR"])
+        .range(["white", "white", "white", "white"])
+      // .range(["#3db5be", "#84ad78", "#e88744", "#8d2045"])
+
+      groups
+        .append("circle")
+        .attr("r", width / 150)
+        .style("fill", function (d) {
+          return dimColor(d.quadrant);
+        })
+        .each((d) => {
+          // Calculate positions based on quadrant and store them in nodePositions
+          let newPoints;
+          if (d.quadrant === "Available") {
+            newPoints = d3.pointRadial(Math.random() * (6.2 - 4.8) + 4.8, d.radius);
+            d.x = newPoints[0];
+            d.y = newPoints[1];
+          } else if (d.quadrant === "Monitored") {
+            newPoints = d3.pointRadial(Math.random() * (7.7 - 6.4) + 6.4, d.radius);
+            d.x = newPoints[0];
+            d.y = newPoints[1];
+          } else if (d.quadrant === "Participated") {
+            newPoints = d3.pointRadial(Math.random() * (9.3 - 8) + 8, d.radius);
+            d.x = newPoints[0];
+            d.y = newPoints[1];
+          } else if (d.quadrant === "Developed") {
+            newPoints = d3.pointRadial(Math.random() * (10.9 - 9.6) + 9.6, d.radius);
+            d.x = newPoints[0];
+            d.y = newPoints[1];
+          }
+          // Add highlight color information based on the blip property
+          d.highlightColor = d.asBlip === "TRUE" ? dimColor(d.quadrant) : "none";
+        })
+        .attr("cx", function (d) {
+          return d.x;
+        })
+        .attr("cy", function (d) {
+          return d.y;
+        })
+        .attr("transform", (d) => {
+          if (d.quadrant === "Available") {
+            return "translate(" + [-10, -10] + ")";
+          } else if (d.quadrant === "Monitored") {
+            return "translate(" + [10, -10] + ")";
+          } else if (d.quadrant === "Participated") {
+            return "translate(" + [10, 10] + ")";
+          } else if (d.quadrant === "Developed") {
+            return "translate(" + [-10, 10] + ")";
+          }
+        });
+
+      // circle highlight
+      groups
+        .append("circle")
+        .attr("r", width / 140)
+        .style("fill", "green")
+        .style("stroke-width", "2px")
+        .style("opacity", "0.5")
+        .style("stroke", function (d) {
+          return d.highlightColor; // Use the highlightColor stored in the node data
+        })
+        .attr("cx", function (d) {
+          return d.x;
+        })
+        .attr("cy", function (d) {
+          return d.y;
+        })
+        .attr("transform", (d) => {
+          if (d.quadrant === "Available") {
+            return "translate(" + [-10, -10] + ")";
+          } else if (d.quadrant === "Monitored") {
+            return "translate(" + [10, -10] + ")";
+          } else if (d.quadrant === "Participated") {
+            return "translate(" + [10, 10] + ")";
+          } else if (d.quadrant === "Developed") {
+            return "translate(" + [-10, 10] + ")";
+          }
+        });
+    }
+
+    function createRadarWithCytoscape({
+      workingGroup,
+      containerId,
+      width = 800,
+      height = 800,
+      ringSizes = [
+        { ringSize: 350, ringColor: "#e6e6e4" },
+        { ringSize: 250, ringColor: "#dddcda" },
+        { ringSize: 150, ringColor: "#c7c7c7" }
+      ]
+    }) {
+
+      // Set Dimensions
+      const xSize = 800;
+      var width = xSize;
+      const ySize = 800;
+      var height = ySize
+      margin = ({
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0
+      })
+      graphWidth = xSize - margin.left - margin.right
+      graphHeight = ySize - margin.top - margin.bottom
+
+      const xMax = xSize - margin * 2;
+      const yMax = ySize - margin * 2;
+
+
+      const radarTitle = `${workingGroup} Standards Radar Chart ` + new Date().toLocaleDateString();
+
+      var ASD_SSG_Blips = myBlips;
+      //console.log(ASD_SSG_Blips)
+
+
+      var RadarInputs = ASD_SSG_Blips.filter(function (blip) {
+        return blip.working_group == workingGroup;
+      })
+      // console.log("radar inputs")
+      // console.log(RadarInputs)
+
+
+
+      // Append SVG Object to the Page
+      // Select the existing <svg> element inside #svg-overlay
+      var svg = d3.select("#svg-overlay")
+        .attr("viewBox", [-width / 2, -height / 2, width, height]);
+      var arc = d3.arc();
+
+      // ---------------------------//
+      //          RINGS             //
+      // ---------------------------//
+
+      svg.append("circle").attr("id", "allRings");
+
+      svg
+        .selectAll("allRings")
+        .data(ringSizes)
+        .enter()
+        .append("circle")
+        .style("stroke", "black")
+        .style("stroke-width", "1px")
+        .style("fill", (d) => "white")
+        .attr("r", (d) => d.ringSize);
+
+      // ---------------------------//
+      //          TITLE              //
+      // ---------------------------//
+      svg
+        .append("rect")
+        .attr("x", -400)
+        .attr("y", -400)
+        .style("stroke", "black")
+        .style("stroke-width", "1px")
+        .style("fill", "none")
+        .attr("width", "800")
+        .attr("height", "800");
+
+      var title = svg
+        .append("text")
+        .style("font-size", "25px")
+        .text(radarTitle)
+        .attr("x", -200)
+        .attr("y", -370)
+        .attr("fill", "black");
+
+      var myblock1 = svg
+        .append("foreignObject")
+        .attr("x", -330)
+        .attr("y", -310)
+        .attr("width", 200)
+        .attr("height", 150)
+        .attr("class", "svg-quarter-title");
+
+      var myblock2 = svg
+        .append("foreignObject")
+        .attr("x", 180)
+        .attr("y", -310)
+        .attr("width", 200)
+        .attr("height", 150)
+        .attr("class", "svg-quarter-title");
+
+      var myblock3 = svg
+        .append("foreignObject")
+        .attr("x", -320)
+        .attr("y", 250)
+        .attr("width", 200)
+        .attr("height", 150)
+        .attr("class", "svg-quarter-title");
+
+      var myblock4 = svg
+        .append("foreignObject")
+        .attr("x", 250)
+        .attr("y", 230)
+        .attr("width", 200)
+        .attr("height", 150)
+        .attr("class", "svg-quarter-title");
+
+      var div1 = myblock1
+        .append("xhtml:div")
+        .append("div")
+        .style("display", "table")
+        .attr("font-family", "futura")
+        .attr("font-weight", "bold")
+        .style("color", "#0000FF")
+        .style("font-size", "15px")
+        .append("p")
+        .style("display", "table-cell")
+        .style("text-align", "center")
+        .style("vertical-align", "middle")
+        .html("Available External<br> Standards");
+
+      var div2 = myblock2
+        .append("xhtml:div")
+        .append("div")
+        .style("display", "table")
+        .attr("font-family", "futura")
+        .attr("font-weight", "bold")
+        .style("color", "#0000FF")
+        .style("font-size", "15px")
+        .append("p")
+        .style("display", "table-cell")
+        .style("text-align", "center")
+        .style("vertical-align", "middle")
+        .html(" Monitored External Development");
+
+      var div3 = myblock3
+        .append("xhtml:div")
+        .append("div")
+        .style("display", "table")
+        .attr("font-family", "futura")
+        .attr("font-weight", "bold")
+        .style("color", "#0000FF")
+        .style("font-size", "15px")
+        .append("p")
+        .style("display", "table-cell")
+        .style("text-align", "center")
+        .style("vertical-align", "middle")
+        .html(" ASD<br>Development");
+
+      var div4 = myblock4
+        .append("xhtml:div")
+        .append("div")
+        .style("display", "table")
+        .append("p")
+        .attr("font-family", "futura")
+        .attr("font-weight", "bold")
+        .style("color", "#0000FF")
+        .style("font-size", "15px")
+        .style("display", "table-cell")
+        .style("text-align", "center")
+        .style("vertical-align", "middle")
+        .html(" Participate<br>in External<br>Development");
+
+      // ---------------------------//
+      //          BARS              //
+      // ---------------------------//
+
+      // horizontal text-bg
+      svg
+        .append("rect")
+        .attr("x", -349.4)
+        .attr("y", -10)
+        .style("fill", "#f0f0ee")
+        .attr("width", "699.8")
+        .attr("height", "20");
+
+      // vertical text-bg
+      svg
+        .append("rect")
+        .attr("x", -10)
+        .attr("y", -349.4)
+        .style("fill", "#f0f0ee")
+        .attr("width", "20")
+        .attr("height", "699.8");
+
+      // ---------------------------//
+      //       LABELS ON-AXES       //
+      // ---------------------------//
+
+      // label on right x-axes
+      svg.append("text").attr("id", "labelRightAxes");
+      svg
+        .selectAll("labelRightAxes")
+        .data(["    TRACK    ", "CANDIDATE", " ADOPTED"])
+        .join("text")
+        .attr("x", (d, i) => i * -100)
+        .attr("y", 0)
+        .attr("dy", "3.5")
+        .attr("dx", "270")
+        .attr("font-family", "futura")
+        .attr("font-weight", "bold")
+        .style("fill", "black")
+        .style("font-size", "8px")
+        .text((d) => d);
+
+      // label on left x-axes
+      svg.append("text").attr("id", "labelLeftAxes");
+      svg
+        .selectAll("labelLeftAxes")
+        .data(["    TRACK    ", "CANDIDATE", "ADOPTED "])
+        .join("text")
+        .attr("x", (d, i) => i * 100)
+        .attr("y", 0)
+        .attr("dy", "3.5")
+        .attr("dx", "-310")
+        .attr("font-family", "futura")
+        .attr("font-weight", "bold")
+        .style("fill", "black")
+        .style("font-size", "8px")
+        .text((d) => d);
+
+      // ---------------------------//
+      //       PLOT DATA            //
+      // ---------------------------//
+
+      // setting up force simulation
+      // learn more here: https://www.d3indepth.com/force-layout/
+
+      const groups = svg.selectAll("g").data(RadarInputs).join("g");
+
+      var simulation = d3
+        .forceSimulation()
+        .nodes(ASD_SSG_Blips)
+        .velocityDecay(0.19)
+        .force(
+          "r",
+          d3.forceRadial(function radiusRadialPoints(d) {
+            if (d.ring === "Adopted") {
+              d.radius = d3.randomUniform(30, 130)();
+              return d.radius;
+            } else if (d.ring === "Candidate") {
+              d.radius = d3.randomUniform(180, 230)();
+              return d.radius;
+            } else if (d.ring === "Track") {
+              d.radius = d3.randomUniform(280, 320)();
+              return d.radius;
+            }
+          })
+        )
+        .force(
+          "collision",
+          d3.forceCollide().radius(12).strength(0.1).iterations(100)
+        )
+
+        //   .force("collision",d3.forceCollide().strength(100).radius(function (d) {return d.radius + 1000;}).iterations(100))
+        //   .force(d3.forceCollide().radius(12).strength(0.85).iterations(100))
+        .on("tick", ticked(groups, width));
+
+      // Convert blip positions into Cytoscape.js format
+      console.log("radar inputs after processing")
+      console.log(RadarInputs)
+      let elements = RadarInputs.map(blip => ({
+        data: { ...blip },
+        position: { x: blip.x + 400, y: blip.y + 400 }
+      }));
+
+      // Initialize Cytoscape.js
+      cy = cytoscape({
+        container: document.getElementById(containerId),
+        elements: elements,
+        style: [
+          {
+            selector: 'node',
+            style: {
+              'background-color': 'red',
+              'width': "10px",
+              'height': "10px",
+              'label': 'data(label)',
+              'text-valign': 'top',
+              'color': 'black',
+              'font-size': '10px'
+            }
+          },
+          {
+            selector: 'node[ring="Track"]',
+            style: { 'background-color': 'lightgray' }
+          },
+          {
+            selector: 'node[ring="Candidate"]',
+            style: { 'background-color': 'gray' }
+          },
+          {
+            selector: 'node[ring="Adopted"]',
+            style: { 'background-color': 'black' }
+          }
+        ],
+        zoomingEnabled: false,         // Disable zooming
+        userZoomingEnabled: false,     // Disable user-initiated zooming
+        userPanningEnabled: false,     // Disable user-initiated panning
+        panningEnabled: false,         // Disable panning
+        autolock: false,                // Lock nodes in place (prevents accidental grabbing)
+        autoungrabify: false,           // Prevents nodes from being grabbed and moved
+        layout: {
+          name: 'preset',            // Use 'preset' layout to respect given node positions
+          fit: false,                // Prevent auto-fit adjustment after layout
+          padding: 30                // Optional padding for the layout
+        }
+      });
+      console.log(cy.zoom())
+      console.log(cy.pan())
+      groups.selectAll("circle").remove();
+    }
+
+    // Event listener for download button
+    document.getElementById('downloadButton').addEventListener('click', downloadCompleteRadarData);
+    document.getElementById('loadRadarButton').addEventListener('change', loadRadarData);
+    document.getElementById('enableGrabbingBtn').addEventListener('click', enableNodeGrabbing);
+    document.getElementById('disableGrabbingBtn').addEventListener('click', disableNodeGrabbing);
+
+    // Sample data
+    createRadarWithCytoscape({ workingGroup: "PLM", containerId: "container" });
+
+    let originalZones = new Map(); // Store original zone and quadrant information
+    // Zone and Quarter Definitions
+    const zoneRingMapping = {
+      2: "Track",         // Zone 0 (outer zone)
+      1: "Candidate",     // Zone 1 (middle zone)
+      0: "Adopted"        // Zone 2 (inner zone)
+    };
+
+    const quadrantMapping = {
+      1: "Monitored",     // Quadrant 0 (0-90 degrees)
+      0: "Available",     // Quadrant 1 (90-180 degrees)
+      2: "Participated",  // Quadrant 2 (180-270 degrees)
+      3: "Developed"      // Quadrant 3 (270-360 degrees)
+    };
+
+    cy.on('grab', 'node', function (evt) {
+      let node = evt.target;
+      let pos = node.position();
+      let { zone, quadrant } = getZone(pos.x, pos.y, radii);
+
+      console.log(`GRAB: Node ${node.id()} -> Zone: ${zone}, Quadrant: ${quadrant}`);
+
+      // Vérifier que getZone() retourne bien une valeur correcte
+      if (zone === undefined || quadrant === undefined) {
+        console.error(`⚠️ ERREUR: getZone() a retourné undefined pour le noeud ${node.id()}`);
+        return;
+      }
+
+      // Stocker la position et les attributs initiaux
+      node.scratch('_initialPosition', { x: pos.x, y: pos.y });
+      node.scratch('_initialZone', zoneRingMapping[zone]); // Stocke la valeur en texte ("Track", "Candidate", ...)
+      node.scratch('_initialQuadrant', quadrantMapping[quadrant]); // Stocke en texte ("Monitored", "Available", ...)
+    });
+
+    cy.on('free', 'node', function (evt) {
+      let node = evt.target;
+      let pos = node.position();
+
+      let { zone, quadrant } = getZone(pos.x, pos.y, radii);
+      let newZone = zoneRingMapping[zone]; // Convertir la zone en son label
+      let newQuadrant = quadrantMapping[quadrant]; // Convertir le quadrant en son label
+
+      let initialZone = node.scratch('_initialZone');
+      let initialQuadrant = node.scratch('_initialQuadrant');
+
+      console.log(`FREE: Node ${node.id()} -> New Zone: ${newZone}, New Quadrant: ${newQuadrant}`);
+      console.log(`Initial Zone: ${initialZone}, Initial Quadrant: ${initialQuadrant}`);
+
+      // Vérifier si la zone ou le quadrant ont changé
+      if (newZone !== initialZone || newQuadrant !== initialQuadrant) {
+        console.warn(`Zone ou quadrant modifié pour le nœud ${node.id()}! Retour à la position initiale.`);
+
+        let initialPos = node.scratch('_initialPosition');
+
+        // Animation du retour à la position initiale
+        node.animate({
+          position: { x: initialPos.x, y: initialPos.y }
+        }, {
+          duration: 300
+        });
+        console.log("avant")
+        console.log(node.data())
+
+        // Réinitialiser les attributs du nœud
+        node.data({
+          ring: initialZone,
+          quadrant: initialQuadrant
+        });
+        console.log("apres")
+        console.log(node.data())
+      }
+    });
+
+
+  </script>
+</body>
+
+</html>
