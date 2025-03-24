@@ -1,18 +1,50 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ArchiCG Editor and Analyser</title>
+    <title>ArchiCG - Semantic Cartography</title>
+    <meta name="description"
+        content="Explore semantic cartography with ArchiCG, an open-source tool for interactive compound graphs.">
+    <meta name="keywords" content="semantic cartography, ArchiCG, open source, graph visualization">
+    <meta name="author" content="Dr. Nicolas Figay">
+    <meta name="keywords"
+        content="semantic cartography, ArchiMate, interoperability, graph visualization, figay nicolas, cytoscape, ontology">
+    <meta name="robots" content="index, follow">
+    <!-- Social Media Preview -->
+    <meta property="og:title" content="ArchiCG - Semantic Cartography">
+    <meta property="og:description"
+        content="Explore semantic cartography with ArchiCG, an open-source tool for interactive graphs.">
+    <meta property="og:image" content="https://nfigay.github.io/archicg/preview.png">
+    <meta property="og:image:alt"
+        content="An interactive graph representing the semantic cartography of an enterprise architecture model" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="https://nfigay.github.io/archicg/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ArchiCG - Semantic Cartography Tool">
+    <meta name="twitter:description"
+        content="Explore interactive semantic cartographies with ArchiCG. Visualize and analyze enterprise architecture models using ArchiMate and SysML with Cytoscape.js and W2UI.">
+    <meta name="twitter:image" content="https://nfigay.github.io/archicg/preview.png">
+    <meta name="twitter:image:alt"
+        content="A screenshot of ArchiCG, showcasing an interactive semantic cartography tool for enterprise architecture modeling">
+
+    <link rel="canonical" href="https://nfigay.github.io/archicg/">
     <style>
         /* Réinitialisation et styles de base */
-        body, html {
+        body,
+        html {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0; /* Fond du corps */
-            font-size: 16px; /* Taille de police par défaut */
-            text-align: justify; /* Justification du texte */
+            background-color: #f0f0f0;
+            /* Fond du corps */
+            font-size: 16px;
+            /* Taille de police par défaut */
+            text-align: justify;
+            /* Justification du texte */
         }
 
         /* Styles pour les liens */
@@ -22,92 +54,129 @@
         }
 
         a:hover {
-            text-decoration: underline; /* Soulignement au survol */
+            text-decoration: underline;
+            /* Soulignement au survol */
         }
 
         .container {
-            width: 100%; /* Prendre toute la largeur de la fenêtre */
-            background: #fff; /* Fond blanc */
+            width: 100%;
+            /* Prendre toute la largeur de la fenêtre */
+            background: #fff;
+            /* Fond blanc */
             padding: 20px;
-            box-sizing: border-box; /* Inclure le padding dans la largeur totale */
+            box-sizing: border-box;
+            /* Inclure le padding dans la largeur totale */
         }
 
         /* Styles du tableau utilisant CSS Grid */
         .grid {
             display: grid;
             grid-template-columns: 150px 1fr;
-            width: 100%; /* Prendre toute la largeur */
+            width: 100%;
+            /* Prendre toute la largeur */
         }
 
         .cell {
             padding: 12px;
-            border: 1px solid #000; /* Bordures noires */
+            border: 1px solid #000;
+            /* Bordures noires */
             text-align: left;
         }
+
         .cell img {
-            max-width: 100%; /* Make image responsive */
-            max-height: 100%; /* Limit height to avoid overflow */
-            object-fit: contain; /* Preserve aspect ratio */
-            
+            max-width: 100%;
+            /* Make image responsive */
+            max-height: 100%;
+            /* Limit height to avoid overflow */
+            object-fit: contain;
+            /* Preserve aspect ratio */
+
         }
 
         /* Styles pour la deuxième ligne */
         .row-2 {
-            grid-column: span 2; /* Occupe les deux colonnes */
-            border: 1px solid #000; /* Bordure noire pour la cellule unique */
-            overflow: hidden; /* Hide overflow if the image is too large */
-        
+            grid-column: span 2;
+            /* Occupe les deux colonnes */
+            border: 1px solid #000;
+            /* Bordure noire pour la cellule unique */
+            overflow: hidden;
+            /* Hide overflow if the image is too large */
+
         }
 
         /* Styles pour les lignes suivantes */
         .grid-50 {
             display: grid;
-            grid-template-columns: 1fr 1fr; /* Deux colonnes égales */
-            width: 100%; /* Prendre toute la largeur */
+            grid-template-columns: 1fr 1fr;
+            /* Deux colonnes égales */
+            width: 100%;
+            /* Prendre toute la largeur */
         }
 
         /* Couleurs de fond alternées pour les cellules */
         .white {
-            background-color: #fff; /* Blanc */
+            background-color: #fff;
+            /* Blanc */
         }
 
         .gray {
-            background-color: #f9f9f9; /* Gris clair */
+            background-color: #f9f9f9;
+            /* Gris clair */
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="grid">
             <div class="cell" style="text-align: center;">
-                <svg xmlns="http://www.w3.org/2000/svg"  id="archicg" width="100" height="100" viewBox="0 0 100 100">
-                    <rect x="0" y="0" width="100" height="100" fill="white" stroke-width="3" stroke="black" ></rect><?xml version="1.0" encoding="UTF-8" standalone="no"?>
-                    <g><polygon fill="#E0A94A" points="28.39735803824,29.909844 44.8589176271,29.909844 53.089516407590004,43.678824 44.8589176271,57.447803 28.39735803824,57.447803 20.16675925775,43.678824" style="fill:#99ccff" />
-                    <polygon fill="#E0A94A" points="55.32160450328001,44.804442 71.78280310457001,44.804442 80.01376287263,58.573074 71.78280310457001,72.342054 55.32160450328001,72.342054 47.09136567005,58.573074" style="fill:#ffff99" />
-                    <polygon fill="#E0A94A" points="28.39735803824,59.699738 44.8589176271,59.699738 53.089516407590004,73.468717 44.8589176271,87.236999 28.39735803824,87.236999 20.16675925775,73.468717" style="fill:#ccf4cc" />
-                    <polygon fill="#E0A94A" points="34.257127779890006,78.132449 31.72564158713,73.894792 34.257127779890006,69.65692 39.32020939796001,69.65692 41.85169455041,73.894792 39.32020939796001,78.132449" style="fill:#009900" />
-                    <polygon fill="#E0A94A" points="33.74702945666,38.787938 38.81011107473,38.787938 41.341596227180005,43.025809 38.81011107473,47.263466 33.74702945666,47.263466 31.215543263900003,43.025809" style="fill:#0066cc" />
-                    <polygon fill="#E0A94A" points="66.19790303081001,54.230892 68.72938922357001,58.468763 66.19790303081001,62.70642 61.13482141274001,62.70642 58.60333626029,58.468763 61.13482141274001,54.230892" style="fill:#ffcc00" />
-                    <path style="fill:none;stroke:#000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-width:1.1429829598131216" d="M 41.3416 43.0258 C 41.3416 43.0258 89.3429 23.3981 77.2842 41.0447 L 66.1979 54.2309"/></g>
-                        <text x="50" y="20" font-size="16" font-weight="bold" text-anchor="middle" fill="#000">ArchiCG</text>
-                  </svg> 
+                <svg xmlns="http://www.w3.org/2000/svg" id="archicg" width="100" height="100" viewBox="0 0 100 100">
+                    <rect x="0" y="0" width="100" height="100" fill="white" stroke-width="3" stroke="black"></rect>
+                    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+                    <g>
+                        <polygon fill="#E0A94A"
+                            points="28.39735803824,29.909844 44.8589176271,29.909844 53.089516407590004,43.678824 44.8589176271,57.447803 28.39735803824,57.447803 20.16675925775,43.678824"
+                            style="fill:#99ccff" />
+                        <polygon fill="#E0A94A"
+                            points="55.32160450328001,44.804442 71.78280310457001,44.804442 80.01376287263,58.573074 71.78280310457001,72.342054 55.32160450328001,72.342054 47.09136567005,58.573074"
+                            style="fill:#ffff99" />
+                        <polygon fill="#E0A94A"
+                            points="28.39735803824,59.699738 44.8589176271,59.699738 53.089516407590004,73.468717 44.8589176271,87.236999 28.39735803824,87.236999 20.16675925775,73.468717"
+                            style="fill:#ccf4cc" />
+                        <polygon fill="#E0A94A"
+                            points="34.257127779890006,78.132449 31.72564158713,73.894792 34.257127779890006,69.65692 39.32020939796001,69.65692 41.85169455041,73.894792 39.32020939796001,78.132449"
+                            style="fill:#009900" />
+                        <polygon fill="#E0A94A"
+                            points="33.74702945666,38.787938 38.81011107473,38.787938 41.341596227180005,43.025809 38.81011107473,47.263466 33.74702945666,47.263466 31.215543263900003,43.025809"
+                            style="fill:#0066cc" />
+                        <polygon fill="#E0A94A"
+                            points="66.19790303081001,54.230892 68.72938922357001,58.468763 66.19790303081001,62.70642 61.13482141274001,62.70642 58.60333626029,58.468763 61.13482141274001,54.230892"
+                            style="fill:#ffcc00" />
+                        <path
+                            style="fill:none;stroke:#000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-width:1.1429829598131216"
+                            d="M 41.3416 43.0258 C 41.3416 43.0258 89.3429 23.3981 77.2842 41.0447 L 66.1979 54.2309" />
+                    </g>
+                    <text x="50" y="20" font-size="16" font-weight="bold" text-anchor="middle"
+                        fill="#000">ArchiCG</text>
+                </svg>
                 <p><a href="ArchiCG Viewer and Analyzer.html">Online Editor</a></p>
                 <p><a href="https://github.com/nfigay/ArchiCG/wiki">User Guideline</a></p>
-                <p><a href="https://www.youtube.com/playlist?list=PLxT3cRUflqnHRG2JEpuwgAyjTQ3HW2aG7">ArchiCG on YouTube</a></p>
+                <p><a href="https://www.youtube.com/playlist?list=PLxT3cRUflqnHRG2JEpuwgAyjTQ3HW2aG7">ArchiCG on
+                        YouTube</a></p>
                 <p>Architectural Guideline(TBD)</p>
                 <p>Community Guideline(TBD)</p>
                 <p><a href="./docs/Publications.html">Publications</a> </p>
                 <p><a href="https://nfigay.github.io/training/Ontv">Ontology Viewer</a> </p>
-              
-                
-                    <svg  xmlns="http://www.w3.org/2000/svg" id="archicg" width="140" height="100" viewBox="0 0 140 100">
-                    <rect x="0" y="0" width="100" height="100" fill="white" stroke-width="3" stroke="black"></rect> 
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" id="archicg" width="140" height="100" viewBox="0 0 140 100">
+                    <rect x="0" y="0" width="100" height="100" fill="white" stroke-width="3" stroke="black"></rect>
                     <text x="50" y="20" font-size="16" font-weight="bold" text-anchor="middle" fill="#000">
-                      OWL Viewer
+                        OWL Viewer
                     </text>
-                <!-- Embed PNG inside SVG -->
+                    <!-- Embed PNG inside SVG -->
                     <image href="./img/owl.png" x="0" y="30" width="100" height="60" />
-                  </svg>  
+                </svg>
                 <!--
                 <img width=100 height=50 src="./img/logo_liris_160_0.png">
                 <img width=210 height=120 src="./img/airbus-1.svg">
@@ -115,292 +184,388 @@
  -->
             </div>
             <div class="cell white">
-                
-                    <p><strong>ArchiCG</strong> is an innovative editor and analysis tool designed to evaluate the benefits of using Interactive Compound Graphs derived from Architectural Descriptions. It supports descriptions created in various modeling languages, including standard languages widely used by diverse stakeholders involved in enterprise architecture and digital transformation, such as <a href="https://pubs.opengroup.org/architecture/archimate3-doc/">ArchiMate</a>.</p>
-                    
-                    <p><em>Note:</em> ArchiMate® is a registered trademark of The Open Group®.</p>
-                    
-                    <p class="MsoNormal">ArchiCG serves professionals working with End-to-End Digital Processes, Model-Based Systems Engineering, the industrial Product Lifecycle Management (PLM) approach (as defined by <a href="https://www.cimdata.com/en/resources/about-plm">CIMDATA</a>), and Enterprise Application Interoperability.</p>
-                    
-                    <p class="MsoNormal">To achieve this, ArchiCG supports the creation of advanced interactive compound graph visualizations and includes algorithms for analyzing architectural descriptions and blueprints derived from various architecture description languages.</p>
-                    
-                    <p class="MsoNormal">ArchiCG is not intended as a replacement for established modeling platforms or enterprise repositories. Instead, it complements these systems by providing the advanced features described above.</p>
-                    
-                    <p class="MsoNormal">Accordingly, ArchiCG offers various import/export functions and an additional set of scripts for legacy modeling tools, such as <a href="https://www.archimatetool.com/">Archi®</a> and <a href="https://sparxsystems.com/enterprise_architect_user_guide/15.2/model_domains/archimate.html">Enterprise Architect</a>.</p>
-                    
-                    <p class="MsoNormal">Built using standardized web technologies such as HTML, SVG, and JavaScript, ArchiCG runs on web browsers without requiring additional installations.</p>
-                    
-                    <p class="MsoNormal">ArchiCG is a research demonstrator focused on showcasing and evaluating research outcomes related to Continuous Operational Interoperability, aimed at fostering digital collaboration within and between enterprises that employ Model-Based approaches. This demonstrator specifically addresses technologies like <a href="https://www.w3.org/wiki/LinkedData">Linked Data</a>, the <a href="https://www.w3.org/standards/semanticweb/">Semantic Web</a>, <a href="https://en.wikipedia.org/wiki/ISO_10303">Standardized Application Protocols</a>, <a href="https://www.linkedin.com/pulse/some-advanced-visualization-technics-embracing-complexity-figay/">advanced visualization techniques</a>, and <a href="https://www.linkedin.com/pulse/emerging-landscape-distributed-knowledge-ontology-semantic-figay/">graph-based technologies</a>.</p>
-                    
-                    <p class="MsoNormal">However, ArchiCG can also be used for simpler tasks, such as quickly visualizing data in graph format with nested nodes, importing data, or creating data structures with the ease of a mind-mapping tool.</p>
-                    
-                    <p class="MsoNormal"><strong>ArchiCG</strong> was launched at the end of 2024 to drive innovation in solving the challenges of secure, continuous digital collaboration in a volatile, uncertain, complex, and ambiguous (VUCA) environment.</p>
-                    
-                    <p>The initiative was started by Dr. Nicolas Figay, <a href="https://liris.cnrs.fr/page-membre/nicolas-figay">external LIRIS collaborator</a>, ISO (SC4 TC184) expert, Airbus collaborator, <a href="http://www.asd-ssg.org/">ASD Strategic Standardization Group</a> member, and <a href="https://www.openpeoplefactory.fr/notre-ruche-d-experts-open-people-factory/">OpenPeopleFactory</a> expert. Dr. Figay aims to disseminate and promote his research in areas such as “Interoperability of Technical Enterprise Interoperability” (PhD) and “Continuous Operational Interoperability” (HDR), along with practical solutions to advance the current state of the art and practice. Many organizations today face risks due to challenges in establishing secure, sustainable digital collaboration with continuous operational continuity.</p>
-                    
-                    <p>This is especially crucial with the rapid emergence of technologies such as blockchain, Generative AI, Data Mesh, System Modeling, and Digital Twins.</p>
-                    
-                    <p>Publishing ArchiCG and other tools as open-source is not only a way to disseminate research findings but also to engage a diverse range of users and stakeholders in further development and exploration.</p>
-                </div>
+
+                <p><strong>ArchiCG</strong> is an innovative editor and analysis tool designed to evaluate the benefits
+                    of using Interactive Compound Graphs derived from Architectural Descriptions. It supports
+                    descriptions created in various modeling languages, including standard languages widely used by
+                    diverse stakeholders involved in enterprise architecture and digital transformation, such as <a
+                        href="https://pubs.opengroup.org/architecture/archimate3-doc/">ArchiMate</a>.</p>
+
+                <p><em>Note:</em> ArchiMate® is a registered trademark of The Open Group®.</p>
+
+                <p class="MsoNormal">ArchiCG serves professionals working with End-to-End Digital Processes, Model-Based
+                    Systems Engineering, the industrial Product Lifecycle Management (PLM) approach (as defined by <a
+                        href="https://www.cimdata.com/en/resources/about-plm">CIMDATA</a>), and Enterprise Application
+                    Interoperability.</p>
+
+                <p class="MsoNormal">To achieve this, ArchiCG supports the creation of advanced interactive compound
+                    graph visualizations and includes algorithms for analyzing architectural descriptions and blueprints
+                    derived from various architecture description languages.</p>
+
+                <p class="MsoNormal">ArchiCG is not intended as a replacement for established modeling platforms or
+                    enterprise repositories. Instead, it complements these systems by providing the advanced features
+                    described above.</p>
+
+                <p class="MsoNormal">Accordingly, ArchiCG offers various import/export functions and an additional set
+                    of scripts for legacy modeling tools, such as <a href="https://www.archimatetool.com/">Archi®</a>
+                    and <a
+                        href="https://sparxsystems.com/enterprise_architect_user_guide/15.2/model_domains/archimate.html">Enterprise
+                        Architect</a>.</p>
+
+                <p class="MsoNormal">Built using standardized web technologies such as HTML, SVG, and JavaScript,
+                    ArchiCG runs on web browsers without requiring additional installations.</p>
+
+                <p class="MsoNormal">ArchiCG is a research demonstrator focused on showcasing and evaluating research
+                    outcomes related to Continuous Operational Interoperability, aimed at fostering digital
+                    collaboration within and between enterprises that employ Model-Based approaches. This demonstrator
+                    specifically addresses technologies like <a href="https://www.w3.org/wiki/LinkedData">Linked
+                        Data</a>, the <a href="https://www.w3.org/standards/semanticweb/">Semantic Web</a>, <a
+                        href="https://en.wikipedia.org/wiki/ISO_10303">Standardized Application Protocols</a>, <a
+                        href="https://www.linkedin.com/pulse/some-advanced-visualization-technics-embracing-complexity-figay/">advanced
+                        visualization techniques</a>, and <a
+                        href="https://www.linkedin.com/pulse/emerging-landscape-distributed-knowledge-ontology-semantic-figay/">graph-based
+                        technologies</a>.</p>
+
+                <p class="MsoNormal">However, ArchiCG can also be used for simpler tasks, such as quickly visualizing
+                    data in graph format with nested nodes, importing data, or creating data structures with the ease of
+                    a mind-mapping tool.</p>
+
+                <p class="MsoNormal"><strong>ArchiCG</strong> was launched at the end of 2024 to drive innovation in
+                    solving the challenges of secure, continuous digital collaboration in a volatile, uncertain,
+                    complex, and ambiguous (VUCA) environment.</p>
+
+                <p>The initiative was started by Dr. Nicolas Figay, <a
+                        href="https://liris.cnrs.fr/page-membre/nicolas-figay">external LIRIS collaborator</a>, ISO (SC4
+                    TC184) expert, Airbus collaborator, <a href="http://www.asd-ssg.org/">ASD Strategic Standardization
+                        Group</a> member, and <a
+                        href="https://www.openpeoplefactory.fr/notre-ruche-d-experts-open-people-factory/">OpenPeopleFactory</a>
+                    expert. Dr. Figay aims to disseminate and promote his research in areas such as “Interoperability of
+                    Technical Enterprise Interoperability” (PhD) and “Continuous Operational Interoperability” (HDR),
+                    along with practical solutions to advance the current state of the art and practice. Many
+                    organizations today face risks due to challenges in establishing secure, sustainable digital
+                    collaboration with continuous operational continuity.</p>
+
+                <p>This is especially crucial with the rapid emergence of technologies such as blockchain, Generative
+                    AI, Data Mesh, System Modeling, and Digital Twins.</p>
+
+                <p>Publishing ArchiCG and other tools as open-source is not only a way to disseminate research findings
+                    but also to engage a diverse range of users and stakeholders in further development and exploration.
+                </p>
+            </div>
         </div>
         <div class="cell row-2" style="display: flex;justify-content: center; align-items: center; ">
             <img src="./img/ArchiCGWorksheet/image001.png">
         </div>
-        
+
         <div class="grid-50">
-            <div class="cell white"><p style="text-align: center;"><b>Import models from Archi and other ArchiMate
-                models repositories in order to take advantage of the
-                functionalities provided by ArchiCG</b></p>
+            <div class="cell white">
+                <p style="text-align: center;"><b>Import models from Archi and other ArchiMate
+                        models repositories in order to take advantage of the
+                        functionalities provided by ArchiCG</b></p>
                 This can be made relying on:<ul>
-                <li>specific JSON data models</li>
-                <li>the XML Open Exchange Format defined by The Open Group</li>
-                <li>and in the future many other syntaxes</li>
-            </ul></div>
+                    <li>specific JSON data models</li>
+                    <li>the XML Open Exchange Format defined by The Open Group</li>
+                    <li>and in the future many other syntaxes</li>
+                </ul>
+            </div>
             <div class="cell gray"> <img src="./img/ArchiCGWorksheet/image002.png"></div>
         </div>
         <div class="grid-50">
             <div class="cell gray" style="display: flex;justify-content: center; align-items: center; ">
-                <img width=300 height=220 src="./img/ArchiCGWorksheet/WelcomeArchiCGExpandandCollapse.gif"></div>
-            <div class="cell white"><p style="text-align: center;"><b>Collapse or Extend the graph nodes taking advantage of
-                automated layouts adapted to compound graphs.</b></p>
+                <img width=300 height=220 src="./img/ArchiCGWorksheet/WelcomeArchiCGExpandandCollapse.gif">
+            </div>
+            <div class="cell white">
+                <p style="text-align: center;"><b>Collapse or Extend the graph nodes taking advantage of
+                        automated layouts adapted to compound graphs.</b></p>
                 This can be done on:<ul>
-                <li>the whole graph</li>
-                <li>a given compound element</li>
-                <li>a selection of elements</li>
-                </ul></div>
+                    <li>the whole graph</li>
+                    <li>a given compound element</li>
+                    <li>a selection of elements</li>
+                </ul>
+            </div>
         </div>
         <div class="grid-50">
-            <div class="cell white"><p style="text-align: center;"><b>Collapse or Extend the Graph Edges taking
-                advantage of automated layouts adapted to
-                compound graphs.</b></p>
+            <div class="cell white">
+                <p style="text-align: center;"><b>Collapse or Extend the Graph Edges taking
+                        advantage of automated layouts adapted to
+                        compound graphs.</b></p>
                 This can be done on:<ul>
-                <li>the whole graph</li>
-               <li>a given selection of edges</li>
-               <li>the edges existing between a selections of nodes</li>
-               <li>grouping per types of edges</li> 
-            </ul></div>
+                    <li>the whole graph</li>
+                    <li>a given selection of edges</li>
+                    <li>the edges existing between a selections of nodes</li>
+                    <li>grouping per types of edges</li>
+                </ul>
+            </div>
             <div class="cell gray" style="display: flex;justify-content: center; align-items: center; ">
-                <img width=300 height=220 src="./img/ArchiCGWorksheet/edgesCollapse.gif"></div>
+                <img width=300 height=220 src="./img/ArchiCGWorksheet/edgesCollapse.gif">
+            </div>
         </div>
         <div class="grid-50">
             <div class="cell gray" style="display: flex; flex-direction: column; align-items: center;">
-                <img  src="./img/ArchiCGWorksheet/ArchiCG Grap to Compound.gif">
+                <img src="./img/ArchiCGWorksheet/ArchiCG Grap to Compound.gif">
                 <img src="./img/ArchiCGWorksheet/archicg07.jfif">
             </div>
-            
-            <div class="cell white"><p style="text-align: center;"><b>Let's change the presentation of a composite model.</b></p>
+
+            <div class="cell white">
+                <p style="text-align: center;"><b>Let's change the presentation of a composite model.</b></p>
                 This can be done by:<ul>
-                <li>Transforming a graph of model elements with
-                composition relationships on compound nodes</li>
-                <li>Transforming compound nodes reflecting a composition
-                in a graph</li></ul>
+                    <li>Transforming a graph of model elements with
+                        composition relationships on compound nodes</li>
+                    <li>Transforming compound nodes reflecting a composition
+                        in a graph</li>
+                </ul>
 
                 <p>The composition relationships are preserved, even in not
-                displayed on the graph.</p>
-            <p>You can also shows graph content as dynamic interactive
-                matrixes, displaying various graph characteristics or
-                calculate weights.</p>
+                    displayed on the graph.</p>
+                <p>You can also shows graph content as dynamic interactive
+                    matrixes, displaying various graph characteristics or
+                    calculate weights.</p>
                 <img src="./img/ArchiCGWorksheet/archicg08.jfif">
             </div>
         </div>
         <div class="grid-50">
-            <div class="cell white"><p style="text-align: center;"><b>Let's manipulate the graphs in order to show what
-                you expect</b></p>
+            <div class="cell white">
+                <p style="text-align: center;"><b>Let's manipulate the graphs in order to show what
+                        you expect</b></p>
                 This can be done by:<ul>
-                <li>Hiding a selection of nodes</li>
-                <li>Removing a selection of nodes</li>
-                <li>Preventing the users or the software to move a
-                selection of nodes</li></ul>
+                    <li>Hiding a selection of nodes</li>
+                    <li>Removing a selection of nodes</li>
+                    <li>Preventing the users or the software to move a
+                        selection of nodes</li>
+                </ul>
                 <p>The reverse operations can be made.</p>
                 <p>Selections can be made manually, through a filter
-                expression on data (properties of nodes and edges) based
-                on shortest path or neighborhood.</p></div>
+                    expression on data (properties of nodes and edges) based
+                    on shortest path or neighborhood.</p>
+            </div>
             <div class="cell gray" style="display: flex;justify-content: center; align-items: center; ">
-                <img width=300 height=220 src="./img/ArchiCGWorksheet/Welcome ArchiCG Hide Grabify Lock Remove.gif"></div>
-        
+                <img width=300 height=220 src="./img/ArchiCGWorksheet/Welcome ArchiCG Hide Grabify Lock Remove.gif">
+            </div>
+
         </div>
         <div class="grid-50">
             <div class="cell gray" style="display: flex;justify-content: center; align-items: center; ">
-                <img width=400 height=220 src="./img/ArchiCGWorksheet/archicgEditor.gif"></div>
+                <img width=400 height=220 src="./img/ArchiCGWorksheet/archicgEditor.gif">
+            </div>
             <div class="cell white">
                 <p style="text-align: center;"><b>Let's Create complementary models elements, as nodes,
-                    compound nodes and edges</b></p>
-                    This can be done by relying on :<ul>
+                        compound nodes and edges</b></p>
+                This can be done by relying on :<ul>
                     <li>an enrichment of the ArchiMate language suited for
-                    Architects' needs</li>
+                        Architects' needs</li>
                     <li>specializations of ArchiMate language constructs</li>
                     <li>ergonomic combined usage of a palette and of action
-                    buttons</li></ul>
-                    <p>The goal is to reach the same level of ergonomy than
-                        mindmap solutions.</p>
-                </div>
+                        buttons</li>
+                </ul>
+                <p>The goal is to reach the same level of ergonomy than
+                    mindmap solutions.</p>
+            </div>
         </div>
         <div class="grid-50">
-            <div class="cell white"><p style="text-align: center;"><b>Let's visualize, modify and create properties of the
-                model elements and relationships</b></p>
+            <div class="cell white">
+                <p style="text-align: center;"><b>Let's visualize, modify and create properties of the
+                        model elements and relationships</b></p>
                 This can be done with :<ul>
-                <li>the property pane displaying what concerns double
-                clicked graph elements</li>
-                <li>the node creation menu</li>
-                <li>the node selection which then allow typing the label on the graph</li></ul>
+                    <li>the property pane displaying what concerns double
+                        clicked graph elements</li>
+                    <li>the node creation menu</li>
+                    <li>the node selection which then allow typing the label on the graph</li>
+                </ul>
                 <p>The goal is to access both data model and visual
-                properties of the nodes, in order to control both the
-                content and how it is rendered.</p></div>
+                    properties of the nodes, in order to control both the
+                    content and how it is rendered.</p>
+            </div>
             <div class="cell gray" style="display: flex;justify-content: center; align-items: center; ">
-                <img width=300 height=220 src="./img/ArchiCGWorksheet/image008.png"></div>
+                <img width=300 height=220 src="./img/ArchiCGWorksheet/image008.png">
+            </div>
         </div>
-    
-    <div class="grid-50">
-        <div class="cell gray" style="display: flex;justify-content: center; align-items: center; ">
-            <img  src="./img/ArchiCGWorksheet/image009.png">
-        </div>
-        <div class="cell white"><p style="text-align: center;"><b>Let's color the graph elements according two their
-            values for a given property</b></p>
-            This can be done by :<ul>
-            <li>selecting the property</li>
-            <li>automatically generating the colors legend and
-            coloring the graph</li></ul>
-            <p>The goal is to perform some visual mining in order to
-            support the analysis of an architecture.</p></div>
-    </div>
-    <div class="grid-50">
-        <div class="cell white"><p style="text-align: center;"><b>Let's visualize the graph as matrixes</b></p>
-            With complex graph with many relations, you have to face
-            the "hairball" effect. Adjacency matrixes provides
-            alternative way for visualizing a graph. But many other
-            kinds of matrixes can be derived for analysing an
-            architecture:<ul>
-            <li>matrixes of distance between nodes</li>
-            <li>matrixes with relations between nodes</li>
-            <li>Matrixes with shortest paths between nodes …</li></ul>
-            <p>Proposing only a simple adjacency matrix with the current
-            version, it is intended to extend the proposed interactive
-            matrixes with those bringing value for the architecture
-            analysis in future versions, including matrixes suited for
-            compound graphs with lines and columns which can be
-            collapsed and extended.</p></div>
-            <div class="cell gray"  style="display: flex;justify-content: center; align-items: center; ">
-                <img src="./img/ArchiCGWorksheet/archicg14.png"></div>
-    </div>
 
-    <div class="grid-50">
-        <div class="cell gray"  style="display: flex;justify-content: center; align-items: center; ">
-            <img src="./img/ArchiCGWorksheet/archicg16.png">
+        <div class="grid-50">
+            <div class="cell gray" style="display: flex;justify-content: center; align-items: center; ">
+                <img src="./img/ArchiCGWorksheet/image009.png">
+            </div>
+            <div class="cell white">
+                <p style="text-align: center;"><b>Let's color the graph elements according two their
+                        values for a given property</b></p>
+                This can be done by :<ul>
+                    <li>selecting the property</li>
+                    <li>automatically generating the colors legend and
+                        coloring the graph</li>
+                </ul>
+                <p>The goal is to perform some visual mining in order to
+                    support the analysis of an architecture.</p>
+            </div>
         </div>
-             
-        <div class="cell white"><p style="text-align: center;"><b>Let's filter models according to Architectural viewpoints</b></p>
-            <p>Based on <a href="https://www.iso.org/standard/74393.html"> ISO 42010 (Systems and software engineering —
-            Architecture description)</a>, the ArchiMate language specification proposes a set of
-            predefined viewpoints, which are suited for guiding
-            production of views suited for different kind of
-            stakeholders, having given concerns and purposes.
-            ArchiCG allows to filter the palette according to these
-            viewpoints.</p>
-            <p>Combined with the ability to export a visible graph as an
-            ArchiMate view based on the Open Exchange Format and
-            to preserve identifiers during import and export, it makes it
-            possible to quickly push compound diagrams resulting from
-            you analysis in you usual ArchiMate modeling tools
-            supporting import of Open Format.</p>
-            <p>It is also plan to create you own viewpoints, or to use those
-            which will be defined by the <a href="https://www.nato.int/cps/en/natohq/topics_157575.htm">NATO Architecture Framework V4</a> when available</p>
+        <div class="grid-50">
+            <div class="cell white">
+                <p style="text-align: center;"><b>Let's visualize the graph as matrixes</b></p>
+                With complex graph with many relations, you have to face
+                the "hairball" effect. Adjacency matrixes provides
+                alternative way for visualizing a graph. But many other
+                kinds of matrixes can be derived for analysing an
+                architecture:<ul>
+                    <li>matrixes of distance between nodes</li>
+                    <li>matrixes with relations between nodes</li>
+                    <li>Matrixes with shortest paths between nodes …</li>
+                </ul>
+                <p>Proposing only a simple adjacency matrix with the current
+                    version, it is intended to extend the proposed interactive
+                    matrixes with those bringing value for the architecture
+                    analysis in future versions, including matrixes suited for
+                    compound graphs with lines and columns which can be
+                    collapsed and extended.</p>
+            </div>
+            <div class="cell gray" style="display: flex;justify-content: center; align-items: center; ">
+                <img src="./img/ArchiCGWorksheet/archicg14.png">
+            </div>
         </div>
-    </div>
 
-    <div class="grid-50">
-        <div class="cell white"><p style="text-align: center;"><b>Let's visually traverse the graph</b></p>
-            The model being a graph, it is possible from a node, an
-            edge or a group of them to select:<ul>
-            <li>connected edges and nodes or neighborhood with a
-            given depth</li>
-            <li>Shortest path from a source node to a target node
-            if it exists</li>
-            <li>Roots and Leaves …</li></ul>
-            <p>Future versions will extend graph traversal to compound
-            graph traversal, which is more suited for Composite
-            Graph analysis</p></div>
-             
-            <div class="cell gray"  style="display: flex;justify-content: center; align-items: center; ">
+        <div class="grid-50">
+            <div class="cell gray" style="display: flex;justify-content: center; align-items: center; ">
+                <img src="./img/ArchiCGWorksheet/archicg16.png">
+            </div>
+
+            <div class="cell white">
+                <p style="text-align: center;"><b>Let's filter models according to Architectural viewpoints</b></p>
+                <p>Based on <a href="https://www.iso.org/standard/74393.html"> ISO 42010 (Systems and software
+                        engineering —
+                        Architecture description)</a>, the ArchiMate language specification proposes a set of
+                    predefined viewpoints, which are suited for guiding
+                    production of views suited for different kind of
+                    stakeholders, having given concerns and purposes.
+                    ArchiCG allows to filter the palette according to these
+                    viewpoints.</p>
+                <p>Combined with the ability to export a visible graph as an
+                    ArchiMate view based on the Open Exchange Format and
+                    to preserve identifiers during import and export, it makes it
+                    possible to quickly push compound diagrams resulting from
+                    you analysis in you usual ArchiMate modeling tools
+                    supporting import of Open Format.</p>
+                <p>It is also plan to create you own viewpoints, or to use those
+                    which will be defined by the <a href="https://www.nato.int/cps/en/natohq/topics_157575.htm">NATO
+                        Architecture Framework V4</a> when available</p>
+            </div>
+        </div>
+
+        <div class="grid-50">
+            <div class="cell white">
+                <p style="text-align: center;"><b>Let's visually traverse the graph</b></p>
+                The model being a graph, it is possible from a node, an
+                edge or a group of them to select:<ul>
+                    <li>connected edges and nodes or neighborhood with a
+                        given depth</li>
+                    <li>Shortest path from a source node to a target node
+                        if it exists</li>
+                    <li>Roots and Leaves …</li>
+                </ul>
+                <p>Future versions will extend graph traversal to compound
+                    graph traversal, which is more suited for Composite
+                    Graph analysis</p>
+            </div>
+
+            <div class="cell gray" style="display: flex;justify-content: center; align-items: center; ">
                 <img src="./img/ArchiCGWorksheet/archicg15.png">
+            </div>
         </div>
-    </div>
-    <div class="grid-50">
-        <div class="cell gray"  style="display: flex;justify-content: center; align-items: center; ">
-            <img  src="./img/ArchiCGWorksheet/archicg17.png">
-    </div>
-        <div class="cell white"><p style="text-align: center;"><b>Let's develop exports script on your preferred tools
-            (Archi, Enterprise Architect, etc.) in order to feed the
-            ArchiCG viewer and analyzers.</b></p>
-            ArchiCG comes with a set of jArchi scripts
-            allowing to make some preprocessing before to export
-            data to ArchiCG :<ul>
-            <li>what is contained in a view or a set of views</li>
-            <li>the content of a model</li>
-            <li>a subset of a model</li></ul>
-            <p>The goal is to be able to aggregate data coming from
-            various model repositories relying on various products
-            and languages, in order to aggregate them and perform
-            required analysis on you desktop.</p>
+        <div class="grid-50">
+            <div class="cell gray" style="display: flex;justify-content: center; align-items: center; ">
+                <img src="./img/ArchiCGWorksheet/archicg17.png">
+            </div>
+            <div class="cell white">
+                <p style="text-align: center;"><b>Let's develop exports script on your preferred tools
+                        (Archi, Enterprise Architect, etc.) in order to feed the
+                        ArchiCG viewer and analyzers.</b></p>
+                ArchiCG comes with a set of jArchi scripts
+                allowing to make some preprocessing before to export
+                data to ArchiCG :<ul>
+                    <li>what is contained in a view or a set of views</li>
+                    <li>the content of a model</li>
+                    <li>a subset of a model</li>
+                </ul>
+                <p>The goal is to be able to aggregate data coming from
+                    various model repositories relying on various products
+                    and languages, in order to aggregate them and perform
+                    required analysis on you desktop.</p>
+            </div>
         </div>
-    </div>
-    <div class="grid-50">
-        <div class="cell gray"><p style="text-align: center;">
-            <b>Let's produce pivot tables from the graph</b></p>
-            <p>An alternative way for producing matrixes from a graph is to generate pivot tables relying on legacy javascript libraries. </p>
-            <p>The produced pivto tables can in addition dal with fugures in order to perform some analytics.</p>
-        </div>
-        <div class="cell gray"  style="display: flex;justify-content: center; align-items: center; ">
-            <img src="./img/ArchiCGWorksheet/archicgPivotTable.png">
-        </div>
-    </div>
- 
-    <div class="grid-50">
-        <div class="cell gray"  style="display: flex;justify-content: center; align-items: center; ">
-            <img src="./img/ArchiCGWorksheet/archicgComplexity.png">
-        </div>
-        <div class="cell gray"><p style="text-align: center;">
-            <b>Let's introduce new sets of icons dedicated to a particular topic</b></p>
-            <p>It is possible to add new sets of icons in the palette dedicated to a given topic which can be, or not, an extension of ArchiMate, or an alternative modeling language to be used in conjunction with ArchiMate.</p>
-            <p>An example is given with the "Complexity" tool which is about describing the compelx connected systems industry is dealing with, being for aeronautic, automative, space or city surveillance, with associated enterprise application families related to PLM, MES, MOM, ERP, etc.</p>
-            <p>Such visual elements can enrich the semantic of the cartography, using symbols not only for ArchiMate language derived constructs, but also for the kind of systems which are bing developed or supporting the working organisations.</p>
-        </div>
-    </div>
-
-    <div class="grid-50">
-
-        <div class="cell gray"><p style="text-align: center;">
-            <b>Let's project your architecture on an interactive timeline</b></p>
-            <p>Let's project sets of architecture elemetns on an interactive timeline providing a synchronized view of the some predefined graph elements owning time related properties, such as starting and enging planned and actual date, or configuration management information related to time. </p>
-            <p></p>
-            <p>Related to the "timeline" tool, alpha version withc illustrates the feaseability</p>
+        <div class="grid-50">
+            <div class="cell gray">
+                <p style="text-align: center;">
+                    <b>Let's produce pivot tables from the graph</b>
+                </p>
+                <p>An alternative way for producing matrixes from a graph is to generate pivot tables relying on legacy
+                    javascript libraries. </p>
+                <p>The produced pivto tables can in addition dal with fugures in order to perform some analytics.</p>
+            </div>
+            <div class="cell gray" style="display: flex;justify-content: center; align-items: center; ">
+                <img src="./img/ArchiCGWorksheet/archicgPivotTable.png">
+            </div>
         </div>
 
-        <div class="cell gray"  style="display: flex;justify-content: center; align-items: center;">
-            <img src="./img/ArchiCGWorksheet/ArchicgTimeline.png">
+        <div class="grid-50">
+            <div class="cell gray" style="display: flex;justify-content: center; align-items: center; ">
+                <img src="./img/ArchiCGWorksheet/archicgComplexity.png">
+            </div>
+            <div class="cell gray">
+                <p style="text-align: center;">
+                    <b>Let's introduce new sets of icons dedicated to a particular topic</b>
+                </p>
+                <p>It is possible to add new sets of icons in the palette dedicated to a given topic which can be, or
+                    not, an extension of ArchiMate, or an alternative modeling language to be used in conjunction with
+                    ArchiMate.</p>
+                <p>An example is given with the "Complexity" tool which is about describing the compelx connected
+                    systems industry is dealing with, being for aeronautic, automative, space or city surveillance, with
+                    associated enterprise application families related to PLM, MES, MOM, ERP, etc.</p>
+                <p>Such visual elements can enrich the semantic of the cartography, using symbols not only for ArchiMate
+                    language derived constructs, but also for the kind of systems which are bing developed or supporting
+                    the working organisations.</p>
+            </div>
         </div>
-    </div>
 
-    <div class="grid-50">
-        <div class="cell gray"><p style="text-align: center;"><b>Let's automate algorithms defined
-            for relevant architecture analysis</b></p>
-            <p>Relying on the set of available features for graph
-            analytics and for advanced visualization, it is possible to
-            create and includes modules launching parameterized
-            treatments on subsets of your model, eventually filtered
-            by relevant viewpoints, which are suited for such or
-            such Architectural analysis, and to display it in the
-            appropriate presentations for communication or results
-            publishing, being in a document or in models
-            repositories.</p></div>
-        <div class="cell gray"><p style="text-align: center;"><b>Let's register some animation on top of model for story
-            telling applied to your model</b></p>
-            <p>It is possible to automate and registed a set of interactions
-            with you graph model as an animation, which you can make
-            available in ArchiCG and run on you model.</p>
-            <p>It can be used for communication purpose, or as a way to
-            publish some results as dynamic animation, and not static
-            (office documents) or impossible to change (videos)
-            documents./p></div>
-    </div>
+        <div class="grid-50">
+
+            <div class="cell gray">
+                <p style="text-align: center;">
+                    <b>Let's project your architecture on an interactive timeline</b>
+                </p>
+                <p>Let's project sets of architecture elemetns on an interactive timeline providing a synchronized view
+                    of the some predefined graph elements owning time related properties, such as starting and enging
+                    planned and actual date, or configuration management information related to time. </p>
+                <p></p>
+                <p>Related to the "timeline" tool, alpha version withc illustrates the feaseability</p>
+            </div>
+
+            <div class="cell gray" style="display: flex;justify-content: center; align-items: center;">
+                <img src="./img/ArchiCGWorksheet/ArchicgTimeline.png">
+            </div>
+        </div>
+
+        <div class="grid-50">
+            <div class="cell gray">
+                <p style="text-align: center;"><b>Let's automate algorithms defined
+                        for relevant architecture analysis</b></p>
+                <p>Relying on the set of available features for graph
+                    analytics and for advanced visualization, it is possible to
+                    create and includes modules launching parameterized
+                    treatments on subsets of your model, eventually filtered
+                    by relevant viewpoints, which are suited for such or
+                    such Architectural analysis, and to display it in the
+                    appropriate presentations for communication or results
+                    publishing, being in a document or in models
+                    repositories.</p>
+            </div>
+            <div class="cell gray">
+                <p style="text-align: center;"><b>Let's register some animation on top of model for story
+                        telling applied to your model</b></p>
+                <p>It is possible to automate and registed a set of interactions
+                    with you graph model as an animation, which you can make
+                    available in ArchiCG and run on you model.</p>
+                <p>It can be used for communication purpose, or as a way to
+                    publish some results as dynamic animation, and not static
+                    (office documents) or impossible to change (videos)
+                    documents./p>
+            </div>
+        </div>
 </body>
+
 </html>
