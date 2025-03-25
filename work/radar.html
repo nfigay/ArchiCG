@@ -998,20 +998,7 @@
     // Sample data
     createRadarWithCytoscape({ workingGroup: "PLM", containerId: "container" });
 
-    let originalZones = new Map(); // Store original zone and quadrant information
-    // Zone and Quarter Definitions
-    const zoneRingMapping = {
-      2: "Track",         // Zone 0 (outer zone)
-      1: "Candidate",     // Zone 1 (middle zone)
-      0: "Adopted"        // Zone 2 (inner zone)
-    };
-
-    const quadrantMapping = {
-      1: "Monitored",     // Quadrant 0 (0-90 degrees)
-      0: "Available",     // Quadrant 1 (90-180 degrees)
-      2: "Participated",  // Quadrant 2 (180-270 degrees)
-      3: "Developed"      // Quadrant 3 (270-360 degrees)
-    };
+ 
 
     cy.on('grab', 'node', function (evt) {
       let node = evt.target;

@@ -129,46 +129,15 @@
                     forms: {
                         blipForm: 'Standard follow up relative data'
                     },
-                    tabs: {
-                        triplesTab: "Triples",
-                        classesTab: "Classes",
-                        classEquivalenceTab: "Equivalence Classes",
-                        objectPropertiesTab: "Obj. Properties",
-                        dataPropertiesTab: "Data Properties",
-                        namedIndividualsTab: "Individuals",
-                        isaRelationsTab: "Individual Typing",
-                        classSubsumptionTab: "Class Subsumption",
-                        propertySubsumptionTab: "Property Subsumption",
-                        propertyEquivalenceTab: "Property Equivalence",
-                        propertyInverseTab: "Inverse Properties",
-                        individualRelationsTab: "Individual Relations",
-                        domainsTab: "Domains",
-                        rangesTab: "Ranges",
-                        triplesLabel: "Triplets trouvés",
-                        classesLabel: "Found OWL Classes",
-                        classEquivalenceLabel: "Equivalence classes between properties",
-                        objectPropertiesLabel: "Found object properties",
-                        dataPropertiesLabel: "Found datatype properties",
-                        namedIndividualsLabel: "Found NamedIndividuals",
-                        isaRelationsLabel: "Individuals typring Relations",
-                        classSubsumptionLabel: "Classes subsumption relations",
-                        propertySubsumptionLabel: "Properties subsumption relations",
-                        propertyEquivalenceLabel: "Properties equivalence relations",
-                        propertyInverseLabel: "Properties inverse relations",
-                        individualRelationsLabel: "Relations between individuals",
-                        domainsLabel: "Domain declarations",
-                        rangesLabel: "Tange declarations",
-                    },
                     menu: {
                         language: "Language",
                         fr: "🇫🇷 French",
                         en: "🇬🇧 English",
                         files: "Files",
                         open: "Open CSV",
-                        // importinferred
                         save: "Save CSV",
-                        savegraph: "Save Graph",
-                        loadgraph: "Load Graph",
+                        savejson: "Save Graph",
+                        loadjson: "Load Graph",
                         exportjson: "Export Json",
                         radars: "Legacy radars",
                         mbse: "SE and MBSE Radar",
@@ -263,37 +232,6 @@
                     forms: {
                         blipForm: 'Données relatives au standard suivi',
                     },
-                    tabs: {
-                        triplesTab: "Triplets",
-                        classesTab: "Classes",
-                        classEquivalenceTab: "Équivalence Classes",
-                        objectPropertiesTab: "Propriétés Obj.",
-                        dataPropertiesTab: "Propriétés Données",
-                        namedIndividualsTab: "Individus",
-                        isaRelationsTab: "Typage Individus",
-                        classSubsumptionTab: "Subsomption Classes",
-                        propertySubsumptionTab: "Subsomption Prop.",
-                        propertyEquivalenceTab: "Équivalence Prop.",
-                        propertyInverseTab: "Propriétés Inverses",
-                        individualRelationsTab: "Relations Individus",
-                        domainsTab: "Domaines",
-                        rangesTab: "Portées",
-                        triplesLabel: "Found triples",
-                        classesLabel: "Classes OWL trouvées",
-                        classEquivalenceLabel: "Classes d'équivalence entre propriétés",
-                        objectPropertiesLabel: "Propriétés de type objet trouvées",
-                        dataPropertiesLabel: "Propriétés de type données trouvées",
-                        namedIndividualsLabel: "Individus nommés OWL trouvés",
-                        isaRelationsLabel: "Relations de typage d'individus",
-                        classSubsumptionLabel: "Relations de subsomption entre classes",
-                        propertySubsumptionLabel: "Relations de subsomption entre propriétés",
-                        propertyEquivalenceLabel: "Relations d'équivalence entre propriétés",
-                        propertyInverseLabel: "Relations inverses entre propriétés",
-                        individualRelationsLabel: "Relations entre individus",
-                        domainsLabel: "Déclarations de domaines",
-                        rangesLabel: "Déclarations de portées",
-
-                    },
                     menu: {
                         language: "Langage",
                         fr: "🇫🇷 Français",
@@ -302,8 +240,8 @@
                         open: "Ouvrir CSV",
                         save: "Sauve CSV",
                         savegraph: "Sauve Graphe",
-                        loadgraph: "Charge Graphe",
-                        exportjson: "Exporte Json",
+                        loadjson: "Charge Graphe",
+                        savejson: "Exporte Json",
                         radars: "Radars existant",
                         mbse: "Radar SE et MBSE",
                         plm: "Radar PLM de l'ASD SSG",
@@ -475,8 +413,8 @@
         function changeLanguage(lang) {
             i18next.changeLanguage(lang, () => {
                 updateToolbarTranslations();
-                w2ui.blipForm.header = i18next.t("forms.blipForm");
-                w2ui.blipForm.refresh();
+                //   w2ui.blipForm.header = i18next.t("forms.blipForm");
+                //   w2ui.blipForm.refresh();
 
             });
         }
@@ -653,18 +591,16 @@
                     ]
                 },
                 {
-                    type: "menu", id: "files", text: i18next.t("menu.files"), icon: "fa fa-folder-open",
+                    type: "menu", id: "files", text: i18next.t("menu.files"),
                     items: [
                         { id: "open", text: i18next.t("menu.open") },
                         { id: "save", text: i18next.t("menu.save") },
-                        { type: 'break' },
-                        { id: "savegraph", text: i18next.t("menu.savegraph") },
-                        { id: "loadgraph", text: i18next.t("menu.loadgraph") },
-                        { type: 'break' },
-                        { id: "exportjson", text: i18next.t("menu.exportjson") }
+                        { type: "break" },
+                        { id: "loadjson", text: i18next.t("menu.loadjson") },
+                        { id: "savejson", text: i18next.t("menu.savejson") },
+
                     ]
                 },
-
                 {
                     type: "menu", id: "expandCollapse", text: i18next.t("menu.expandCollapse"), hidden: true, icon: "fa fa-object-group",
                     items: [
@@ -824,15 +760,17 @@
                 text: group.text, // Display name
                 count: group.count
             }));
-
+           
+            // Set the title separately by updating the panel's `toolbar` or using custom HTML
+            document.getElementById('toolbar-title').innerHTML = 'Strategic Radars';
             return new w2toolbar({
-                box: '#toolbar',
+                box: '#toolbar-container',
                 name: 'toolbar',
                 items: [
                     {
                         type: 'label',
                         id: 'item1',
-                        text: 'ASD SSG 2019 Radars',                 
+                        text: 'ASD SSG 2019 Radars',
                         tooltip: 'Working groups Radars in 2019',
                     },
                     { type: 'new-line' },
@@ -842,18 +780,44 @@
                         icon: 'fa fa-bullseye',
                         tooltip: 'You can select blips per Working Group(WG)from hardoded historic data.<br/>The number of standards is indicated.<br/>nly those with a valid value for both ring and quadrant will be displayed.',
                         text(item) {
-                            let selectedId = this.get('item2')?.selected; // Get selected ID
-                            let selectedItem = workingGroupMenuItems.find(i => i.id === selectedId); // Find the selected item in the list
+                            // Get the full item object from the toolbar
+                            let fullItem = w2ui.toolbar.get('item2');
+                            let selectedId = fullItem?.selected; // Get selected ID
+                            let selectedItem = fullItem?.items.find(i => i.id === selectedId); // Find the selected item
 
                             if (selectedItem) {
                                 return `WG: ${selectedItem.text}`; // Show count for selected WG
+                            } else {
+                                return 'Select Group'; // Default text if no selection
                             }
-
-                            return 'Select Group'; // Default text if no selection
                         },
                         selected: workingGroupMenuItems.length > 0 ? workingGroupMenuItems[0].id : null, // Default to first item
                         items: workingGroupMenuItems
-                    }
+                    },
+                    { type: 'new-line' },
+                    { type: 'new-line' },
+                    {
+                        type: 'label',
+                        id: 'item3',
+                        text: 'Change Mode',
+                        tooltip: 'For locking, allowing grabbing in the same zone or grabbing with zone changes.',
+                    },
+                    { type: 'new-line' },
+                    {
+                        type: 'menu-radio', id: 'item4',
+                        selected: 'locked',
+                        items: [
+                            { id: 'locked', text: '🔒 Locked' },
+                            { id: 'grabon', text: '✋ Grab On' },
+                            { id: 'changeon', text: '🔄 Change On' }
+                        ],
+                        text(item) {
+                            let text = item.selected;
+                            let el = this.get('item4:' + item.selected);
+                            return el.text;
+                        },
+
+                    },
 
                 ],
                 // Place onClick *outside* of the items array
@@ -866,16 +830,24 @@
                                 drawSelectedWorkgroup(subTarget)
                             }
                             break;
-                        case 'draw': // Handle Draw button
-                            let selectedId = w2ui.toolbar.get('item2')?.selected; // Get selected workgroup
-                            if (selectedId) {
-                                console.log("Drawing Workgroup:", selectedId); // Debugging
-                                drawSelectedWorkgroup(selectedId); // Call function
-                            } else {
-                                console.warn("No workgroup selected.");
+                        case 'item4': // Handle workgroup selection
+                            if (subTarget) {
+                                switch (subTarget) {
+                                    case 'locked':
+                                        cy.nodes().ungrabify();
+                                        allowZoneChanges = false
+                                        break;
+                                    case 'grabon':
+                                        cy.nodes().grabify();
+                                        allowZoneChanges = false
+                                        break;
+                                    case 'changeon':
+                                        cy.nodes().grabify();
+                                        allowZoneChanges = true
+                                        break;
+                                }
                             }
                             break;
-
                     }
                 }
             });
@@ -1147,7 +1119,13 @@
             name: 'mainLayout',
             panels: [
                 { type: 'top', size: 50, style: 'border-bottom: 1px solid #ccc;' },
-                { type: 'left', resizable: true, size: 250, style: 'border-right: 1px solid #ccc;', html: `Left Panel` },
+                {
+                    type: 'left', resizable: true, size: 250, style: 'border-right: 1px solid #ccc;',
+                    html: `<div id="toolbar-title" style="padding: 5px; font-weight: bold; background: #f1f1f1; border-bottom: 1px solid #ddd;">
+                             My Custom Title
+                          </div>
+                          <div id="toolbar-container"></div>`
+                },
                 { type: 'main', resizable: true, style: 'background: #f8f9fa;', html: '<div id="radar-container"><div id="svg-container"></div><div id="cy-container"></div></div>' },
                 { type: 'right', resizable: true, size: 500, style: 'border-left: 1px solid #ccc;', html: `Right Panel` },
                 { type: 'bottom', resizable: true, size: 50, style: 'border-top: 1px solid #ccc;', html: `Bottom Panel` }
@@ -1155,7 +1133,8 @@
         })
         myLayout.render('#mainLayout'); // Render the layout in the container      
         w2ui.mainLayout.html('top', initializeMainMenu());
-        w2ui.mainLayout.html('left', initializeToolbar());//initializeToolbar2());
+        //w2ui.mainLayout.html('left', initializeToolbar());//initializeToolbar2());
+        initializeToolbar().render("#toolbar-container")
         w2ui.mainLayout.html('bottom', "");
 
 
@@ -1441,7 +1420,7 @@
             userPanningEnabled: false,     // Disable user-initiated panning
             panningEnabled: false,         // Disable panning
             autolock: false,                // Lock nodes in place (prevents accidental grabbing)
-            autoungrabify: false,           // Prevents nodes from being grabbed and moved
+            autoungrabify: false,           // Prevents nodes from being grabbed and moved          
             layout: {
                 name: 'preset',            // Use 'preset' layout to respect given node positions
                 fit: false,                // Prevent auto-fit adjustment after layout
@@ -1450,6 +1429,7 @@
         });
         console.log(cy.zoom())
         console.log(cy.pan())
+       
         cy.on('grab', 'node', function (evt) {
             let node = evt.target;
             let pos = node.position();
@@ -1472,19 +1452,41 @@
         cy.on('free', 'node', function (evt) {
             let node = evt.target;
             let pos = node.position();
-
-            let { zone, quadrant } = getZone(pos.x, pos.y, radii);
-            let newZone = zoneRingMapping[zone]; // Convertir la zone en son label
-            let newQuadrant = quadrantMapping[quadrant]; // Convertir le quadrant en son label
-
+             backToInitialPosition = false
             let initialZone = node.scratch('_initialZone');
             let initialQuadrant = node.scratch('_initialQuadrant');
+            
+             
+          //  alert ("x:"+ pos.x + " y;"+ pos.y + " raddi:"+ radii)
+            let { zone, quadrant } = getZone(pos.x, pos.y, radii);
+          //  alert ("zone:"+ zone+ " quadrant:"+ quadrant)
+            if (zone === undefined || quadrant === undefined) {
+                console.log(`⚠️ ATTENTION: getZone() a retourné undefined pour le noeud ${node.id()}`);
+                backToInitialPosition = true;
+            }
+            else {
+                backToInitialPosition = false
+                let newZone = zoneRingMapping[zone]; // Convertir la zone en son label
+                let newQuadrant = quadrantMapping[quadrant]; // Convertir le quadrant en son label
+                console.log(`FREE: Node ${node.id()} -> New Zone: ${newZone}, New Quadrant: ${newQuadrant}`);
+                console.log(`Initial Zone: ${initialZone}, Initial Quadrant: ${initialQuadrant}`);
+                
+                node.data({
+                    ring: newZone,
+                    quadrant: newQuadrant
+                });
+                
+                // Vérifier si la zone ou le quadrant ont changé
+                if ((newZone !== initialZone || newQuadrant !== initialQuadrant) && !allowZoneChanges) {
+                //    alert ("newZone:"+ newZone+ " newQuadrant:"+ newQuadrant +"initialZone:"+ initialZone+ " initialQuadrant:"+ initialQuadrant )
+                    backToInitialPosition = true
+                }
+            }
 
-            console.log(`FREE: Node ${node.id()} -> New Zone: ${newZone}, New Quadrant: ${newQuadrant}`);
-            console.log(`Initial Zone: ${initialZone}, Initial Quadrant: ${initialQuadrant}`);
 
             // Vérifier si la zone ou le quadrant ont changé
-            if (newZone !== initialZone || newQuadrant !== initialQuadrant) {
+            if (backToInitialPosition) {
+
                 console.warn(`Zone ou quadrant modifié pour le nœud ${node.id()}! Retour à la position initiale.`);
 
                 let initialPos = node.scratch('_initialPosition');
@@ -1506,6 +1508,12 @@
                 console.log("apres")
                 console.log(node.data())
             }
+           
+            let form = generateFormFromCytoscapeElement(node);
+
+            // Render form inside the right panel of w2ui layout
+            w2ui.mainLayout.html('right', '<div id="form"></div>');
+            form.render('#form');
         });
 
 

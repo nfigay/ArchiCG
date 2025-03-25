@@ -2,6 +2,8 @@
 
 const validRings = ["Adopted", "Candidate", "Track"];
 const validQuadrants = ["", "Available", "Monitored", "Participated", "Developed"];
+var allowZoneChanges=false
+var backToInitialPosition
 
 function drawSelectedWorkgroup(workgroup) {
 
@@ -192,9 +194,14 @@ const radii = [150, 250, 350]; // Rayons des cercles concentriques (modifiable)
 function getZone(x, y, radii) {
   let relX = x - chartCenter.x;
   let relY = y - chartCenter.y;
-  let r = Math.sqrt(relX ** 2 + relY ** 2);
+  let r = Math.sqrt(relX ** 2 + relY ** 2);  // Calcul de la distance au centre
   let theta = Math.atan2(relY, relX); // Angle en radians (-π à π)
   let angleDeg = (theta * 180) / Math.PI; // Conversion en degrés
+
+  // Si la distance est supérieure au rayon du cercle le plus grand, on renvoie undefined pour zone et quadrant
+  if (r > radii[radii.length - 1]) {
+    return { zone: undefined, quadrant: undefined };
+  }
 
   let circleIndex = radii.findIndex(radius => r < radius);
   if (circleIndex === -1) circleIndex = radii.length - 1; // Évite un index hors limites
@@ -262,11 +269,13 @@ function filterBlipsByRadarType(radarType) {
 
 //createRadarSVG("PLM",800,800)
 function drawSVG() {
+  // Définition des tailles et couleurs des cercles
   ringSizes = [
-    { ringSize: 350, ringColor: "#e6e6e4" },
-    { ringSize: 250, ringColor: "#dddcda" },
-    { ringSize: 150, ringColor: "#c7c7c7" }
-  ]
+    { ringSize: 350, ringColor: "white" },  // Cercle extérieur
+    { ringSize: 250, ringColor: "white" },  // Cercle intermédiaire
+    { ringSize: 150, ringColor: "white" }   // Cercle intérieur
+  ];
+  
   let container = d3.select("#svg-container");
 
   if (container.empty()) {
@@ -283,218 +292,131 @@ function drawSVG() {
   let width = containerNode.clientWidth;
   let height = containerNode.clientHeight;
 
-  console.log(`✅ SVG Container Size: ${width} x ${height}`);
-
-  // Remove old SVG if it exists
   container.select("svg").remove();
 
-
-  margin = ({
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0
-  })
-  graphWidth = width - margin.left - margin.right
-  graphHeight = height - margin.top - margin.bottom
-
-  const xMax = width - margin * 2;
-  const yMax = height - margin * 2;
-
-  const radarTitle = `Standards Radar Chart ` + new Date().toLocaleDateString();
-
-  // Append SVG Object to the Page
-  // Select the existing <svg> element inside #svg-overlay
   let svg = container.append("svg")
     .attr("width", width)
     .attr("height", height)
     .attr("viewBox", [-width / 2, -height / 2, width, height]);
 
-  var arc = d3.arc();
-
   // ---------------------------//
-  //          RINGS             //
-  // ---------------------------//
-
-  svg.append("circle").attr("id", "allRings");
-
-  svg
-    .selectAll("allRings")
-    .data(ringSizes)
-    .enter()
-    .append("circle")
-    .style("stroke", "black")
-    .style("stroke-width", "1px")
-    .style("fill", (d) => "white")
-    .attr("r", (d) => d.ringSize);
-
-  // ---------------------------//
-  //          TITLE              //
+  //          TITLE             //
   // ---------------------------//
   svg
-    .append("rect")
-    .attr("x", -400)
-    .attr("y", -400)
-    .style("stroke", "black")
-    .style("stroke-width", "1px")
-    .style("fill", "none")
-    .attr("width", "800")
-    .attr("height", "800");
-
-  var title = svg
     .append("text")
+    .attr("id", "svgTitle") // ✅ ID ajouté pour modification dynamique
     .style("font-size", "25px")
-    .text(radarTitle)
+    .text(`Standards Radar Chart ` + new Date().toLocaleDateString())
     .attr("x", -200)
     .attr("y", -370)
     .attr("fill", "black");
 
-  var myblock1 = svg
-    .append("foreignObject")
-    .attr("x", -330)
-    .attr("y", -310)
-    .attr("width", 200)
-    .attr("height", 150)
-    .attr("class", "svg-quarter-title");
-
-  var myblock2 = svg
-    .append("foreignObject")
-    .attr("x", 180)
-    .attr("y", -310)
-    .attr("width", 200)
-    .attr("height", 150)
-    .attr("class", "svg-quarter-title");
-
-  var myblock3 = svg
-    .append("foreignObject")
-    .attr("x", -320)
-    .attr("y", 250)
-    .attr("width", 200)
-    .attr("height", 150)
-    .attr("class", "svg-quarter-title");
-
-  var myblock4 = svg
-    .append("foreignObject")
-    .attr("x", 250)
-    .attr("y", 230)
-    .attr("width", 200)
-    .attr("height", 150)
-    .attr("class", "svg-quarter-title");
-
-  var div1 = myblock1
-    .append("xhtml:div")
-    .append("div")
-    .style("display", "table")
-    .attr("font-family", "futura")
-    .attr("font-weight", "bold")
-    .style("color", "#0000FF")
-    .style("font-size", "15px")
-    .append("p")
-    .style("display", "table-cell")
-    .style("text-align", "center")
-    .style("vertical-align", "middle")
-    .html("Available External<br> Standards");
-
-  var div2 = myblock2
-    .append("xhtml:div")
-    .append("div")
-    .style("display", "table")
-    .attr("font-family", "futura")
-    .attr("font-weight", "bold")
-    .style("color", "#0000FF")
-    .style("font-size", "15px")
-    .append("p")
-    .style("display", "table-cell")
-    .style("text-align", "center")
-    .style("vertical-align", "middle")
-    .html(" Monitored External Development");
-
-  var div3 = myblock3
-    .append("xhtml:div")
-    .append("div")
-    .style("display", "table")
-    .attr("font-family", "futura")
-    .attr("font-weight", "bold")
-    .style("color", "#0000FF")
-    .style("font-size", "15px")
-    .append("p")
-    .style("display", "table-cell")
-    .style("text-align", "center")
-    .style("vertical-align", "middle")
-    .html(" ASD<br>Development");
-
-  var div4 = myblock4
-    .append("xhtml:div")
-    .append("div")
-    .style("display", "table")
-    .append("p")
-    .attr("font-family", "futura")
-    .attr("font-weight", "bold")
-    .style("color", "#0000FF")
-    .style("font-size", "15px")
-    .style("display", "table-cell")
-    .style("text-align", "center")
-    .style("vertical-align", "middle")
-    .html(" Participate<br>in External<br>Development");
+  // ---------------------------//
+  //       RINGS (CERCLES)      //
+  // ---------------------------//
+  ringSizes.forEach((ring) => {
+    svg.append("circle")
+      .attr("cx", 0)
+      .attr("cy", 0)
+      .attr("r", ring.ringSize)
+      .attr("fill", ring.ringColor) // Fond des cercles en blanc
+      .attr("stroke", "black")
+      .attr("stroke-width", 2);
+  });
 
   // ---------------------------//
-  //          BARS              //
+  //     AXES (Limités au plus grand cercle) //
+  // ---------------------------//
+  const maxRadius = ringSizes[0].ringSize; // Limite des axes au rayon 350
+  const axisThickness = 20; // Hauteur de l'axe égale à la hauteur du texte des labels + quelques points
+
+  // Couleur gris clair transparent
+  const axisColor = "rgba(169, 169, 169, 0.2)"; // Gris clair avec transparence de 50%
+
+  svg.append("line")
+    .attr("x1", -maxRadius+10)
+    .attr("y1", 0)
+    .attr("x2", maxRadius-10)
+    .attr("y2", 0)
+    .attr("stroke", axisColor)
+    .attr("stroke-width", axisThickness)
+    .attr("stroke-linecap", "round"); // Arrondir l'extrémité
+
+  svg.append("line")
+    .attr("x1", 0)
+    .attr("y1", -maxRadius+10)
+    .attr("x2", 0)
+    .attr("y2", maxRadius-10)
+    .attr("stroke", axisColor)
+    .attr("stroke-width", axisThickness)
+    .attr("stroke-linecap", "round"); // Arrondir l'extrémité
+
+  // ---------------------------//
+  //     LABELS DES RINGS      //
   // ---------------------------//
 
-  // horizontal text-bg
-  svg
-    .append("rect")
-    .attr("x", -349.4)
-    .attr("y", -10)
-    .style("fill", "#f0f0ee")
-    .attr("width", "699.8")
-    .attr("height", "20");
+  function createRingLabel(text, ringIndex) {
+    // Calcul de la position du label à l'extérieur du ring
+    let xCenter=0;
+    if (ringIndex == 0){
+      xCenter=-75;//milieu du rayon du cercle central, soit 150/2, vers la gauche
+    }
+    else{
+     xCenter = - (ringSizes[ringIndex].ringSize + (ringIndex > 0 ? ringSizes[ringIndex - 1].ringSize : 0)) / 2;
+    }
+     let label = svg.append("text")
+      .attr("font-size", "15px")
+      .attr("fill", "black")
+      .attr("text-anchor", "start") // Position initiale arbitraire
+      .text(text)
+      .attr("x", xCenter)
+      .attr("y", 5);
 
-  // vertical text-bg
-  svg
-    .append("rect")
-    .attr("x", -10)
-    .attr("y", -349.4)
-    .style("fill", "#f0f0ee")
-    .attr("width", "20")
-    .attr("height", "699.8");
+    // Ajustement de la position pour centrer le texte sur le segment
+    let textWidth = label.node().getBBox().width;
+    label.attr("x", xCenter - textWidth / 2);
+  }
+
+  // Labels des rings
+  createRingLabel("Track", 0);  // Premier ring
+  createRingLabel("Candidate", 1); // Deuxième ring
+  createRingLabel("Adopted", 2);  // Troisième ring
 
   // ---------------------------//
-  //       LABELS ON-AXES       //
+  //       QUARTER LABELS       //
   // ---------------------------//
 
-  // label on right x-axes
-  svg.append("text").attr("id", "labelRightAxes");
-  svg
-    .selectAll("labelRightAxes")
-    .data(["    TRACK    ", "CANDIDATE", " ADOPTED"])
-    .join("text")
-    .attr("x", (d, i) => i * -100)
-    .attr("y", 0)
-    .attr("dy", "3.5")
-    .attr("dx", "270")
-    .attr("font-family", "futura")
-    .attr("font-weight", "bold")
-    .style("fill", "black")
-    .style("font-size", "8px")
-    .text((d) => d);
+  function createQuarterLabel(id, x, y, text) {
+    let block = svg
+      .append("foreignObject")
+      .attr("id", id) // ID pour modification dynamique
+      .attr("x", x)
+      .attr("y", y)
+      .attr("width", 200)
+      .attr("height", 150)
+      .attr("class", "svg-quarter-title");
 
-  // label on left x-axes
-  svg.append("text").attr("id", "labelLeftAxes");
-  svg
-    .selectAll("labelLeftAxes")
-    .data(["    TRACK    ", "CANDIDATE", "ADOPTED "])
-    .join("text")
-    .attr("x", (d, i) => i * 100)
-    .attr("y", 0)
-    .attr("dy", "3.5")
-    .attr("dx", "-310")
-    .attr("font-family", "futura")
-    .attr("font-weight", "bold")
-    .style("fill", "black")
-    .style("font-size", "8px")
-    .text((d) => d);
+    block.append("xhtml:div")
+      .append("div")
+      .style("display", "table")
+      .attr("font-family", "futura")
+      .attr("font-weight", "bold")
+      .style("color", "#0000FF")
+      .style("font-size", "15px")
+      .append("p")
+      .style("display", "table-cell")
+      .style("text-align", "center")
+      .style("vertical-align", "middle")
+      .html(text);
+  }
+
+  // Labels des quarters
+  createQuarterLabel("quarter1", -330, -310, "Available External<br> Standards");
+  createQuarterLabel("quarter2", 180, -310, "Monitored External Development");
+  createQuarterLabel("quarter3", -320, 250, "ASD<br>Development");
+  createQuarterLabel("quarter4", 250, 230, "Participate<br>in External<br>Development");
 }
+
 
 function plotData(RadarInputs) {
   cy.elements().remove();
@@ -536,6 +458,18 @@ function plotData(RadarInputs) {
 
   // Add elements to Cytoscape
   cy.add(elements);
+  cy.nodes().ungrabify();
+  allowZoneChanges=false
+  // Update toolbar selection to 'Locked'
+  let toolbarItem = w2ui.toolbar.get('item4'); // Access the toolbar item
+  if (toolbarItem) {
+      // Set selected state to 'locked' for item4
+      toolbarItem.selected = 'locked';
+      
+      // Refresh the toolbar to reflect the new selected state
+      w2ui.toolbar.refresh('item4'); 
+  }
+ 
   cy.fit();
 }
 
