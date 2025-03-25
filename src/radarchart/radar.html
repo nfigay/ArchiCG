@@ -582,14 +582,7 @@
 
         function getMenuItems() {
             return [
-                {
-                    type: "menu", id: "radars", text: i18next.t("menu.radars"), icon: "fa fa-bullseye",
-                    items: [
-                        { id: "plm", text: i18next.t("menu.plm") },
-                        { id: "mbse", text: i18next.t("menu.mbse") },
-                        { id: "virtualmanufacturing", text: i18next.t("menu.virtualmanufacturing") },
-                    ]
-                },
+                
                 {
                     type: "menu", id: "files", text: i18next.t("menu.files"),
                     items: [
@@ -762,7 +755,7 @@
             }));
            
             // Set the title separately by updating the panel's `toolbar` or using custom HTML
-            document.getElementById('toolbar-title').innerHTML = 'Strategic Radars';
+            document.getElementById('toolbar-title').innerHTML = 'Strategic Standardization Radars';
             return new w2toolbar({
                 box: '#toolbar-container',
                 name: 'toolbar',
