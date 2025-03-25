@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cytoscape Dual View</title>
+    <script src="https://unpkg.com/cytoscape@3.21.0/dist/cytoscape.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            height: 100vh;
+        }
+
+        #cy {
+            width: 50vw; /* Left half of the screen */
+            height: 100vh;
+            border-right: 2px solid #ccc;
+        }
+
+        #cy2 {
+            flex-grow: 1; /* Takes the remaining right space */
+            height: 50vh; /* Top part of the right side */
+            border-bottom: 2px solid #ccc;
+        }
+
+        /* Optional: Make sure there's space for the second graph below cy2 */
+        #right-container {
+            display: flex;
+            flex-direction: column;
+            width: 50vw;
+            height: 100vh;
+        }
+
+        #cy3 { /* Optional third container below cy2 */
+            flex-grow: 1; 
+            background: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="cy"></div>  
+    <div id="right-container">
+        <div id="cy2"></div>
+        <div id="cy3"></div> <!-- Placeholder for another visualization -->
+    </div>
+
+    <script>
+        // Initialize first Cytoscape instance (Left side)
+        const cy = cytoscape({
+            container: document.getElementById('cy'),
+            elements: [
+                { data: { id: 'A' }, position: { x: 100, y: 100 } },
+                { data: { id: 'B' }, position: { x: 200, y: 200 } },
+                { data: { id: 'AB', source: 'A', target: 'B' } }
+            ],
+            style: [
+                { selector: 'node', style: { 'label': 'data(id)', 'background-color': '#3498db' } },
+                { selector: 'edge', style: { 'width': 2, 'line-color': '#7f8c8d', 'target-arrow-shape': 'triangle' } }
+            ],
+            layout: { name: 'grid' }
+        });
+
+        // Initialize second Cytoscape instance (Top-Right)
+        const cy2 = cytoscape({
+            container: document.getElementById('cy2'),
+            elements: [
+                { data: { id: 'X' }, position: { x: 100, y: 100 } },
+                { data: { id: 'Y' }, position: { x: 200, y: 200 } },
+                { data: { id: 'XY', source: 'X', target: 'Y' } }
+            ],
+            style: [
+                { selector: 'node', style: { 'label': 'data(id)', 'background-color': '#e74c3c' } },
+                { selector: 'edge', style: { 'width': 2, 'line-color': '#7f8c8d', 'target-arrow-shape': 'triangle' } }
+            ],
+            layout: { name: 'grid' }
+        });
+    </script>
+
+</body>
+</html>

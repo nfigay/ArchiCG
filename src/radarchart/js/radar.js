@@ -473,6 +473,27 @@ function plotData(RadarInputs) {
   cy.fit();
 }
 
+function downloadCompleteRadarData() {
+  cy.nodes().ungrabify();  // Correct function to disable grabbing
+  // Get the full graph data including nodes, edges, styles, and positions
+  const jsonData = cy.json();
+
+  // Create a Blob from the JSON data
+  const blob = new Blob([JSON.stringify(jsonData, null, 2)], { type: 'application/json' });
+
+  // Create a link to download the data
+  const url = URL.createObjectURL(blob);
+
+  // Create an anchor element to simulate the download action
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'radar.json'; // Set the filename for the downloaded file
+  a.click();
+
+  // Clean up the created URL object after the download
+  URL.revokeObjectURL(url);
+}
+
 
 
 

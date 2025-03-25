@@ -123,6 +123,7 @@
         var myLayout
         var removed;
         let cy;
+        var api;
         const resources = {
             en: {
                 translation: {
@@ -134,11 +135,11 @@
                         fr: "🇫🇷 French",
                         en: "🇬🇧 English",
                         files: "Files",
-                        open: "Open CSV",
-                        save: "Save CSV",
-                        savejson: "Save Graph",
-                        loadjson: "Load Graph",
-                        exportjson: "Export Json",
+                        savecsvssr: "Save",
+                        loadcsvssr: "Load",
+                        loadgraphssr: "Load",
+                        savegraphssr: "Save",
+                        switch: "Switch",
                         radars: "Legacy radars",
                         mbse: "SE and MBSE Radar",
                         plm: "PLM ASD SSG Radar",
@@ -237,11 +238,13 @@
                         fr: "🇫🇷 Français",
                         en: "🇬🇧 English",
                         files: "Fichiers",
-                        open: "Ouvrir CSV",
-                        save: "Sauve CSV",
-                        savegraph: "Sauve Graphe",
-                        loadjson: "Charge Graphe",
-                        savejson: "Exporte Json",
+                        loadcsvssr: "Ouvrir",
+                        savecsvssr: "Sauver",
+                        loadgraphssr: "Ouvrir",
+                        savegraphssr: "Sauver",
+                        switch: "Inverser",
+                        semanticlandscape: "Standardization Landscape",
+                        semanticlandscape: "Paysage de la standadisation",
                         radars: "Radars existant",
                         mbse: "Radar SE et MBSE",
                         plm: "Radar PLM de l'ASD SSG",
@@ -582,15 +585,15 @@
 
         function getMenuItems() {
             return [
-                
+
                 {
                     type: "menu", id: "files", text: i18next.t("menu.files"),
                     items: [
-                        { id: "open", text: i18next.t("menu.open") },
-                        { id: "save", text: i18next.t("menu.save") },
+                        { id: "loadcsvssr", text: i18next.t("menu.loadcsvssr") },
+                        { id: "savecsvssr", text: i18next.t("menu.savecsvssr") },
                         { type: "break" },
-                        { id: "loadjson", text: i18next.t("menu.loadjson") },
-                        { id: "savejson", text: i18next.t("menu.savejson") },
+                        { id: "loadgraphssr", text: i18next.t("menu.loadgraphssr") },
+                        { id: "savegraphssr", text: i18next.t("menu.savegraphssr") },
 
                     ]
                 },
@@ -753,7 +756,7 @@
                 text: group.text, // Display name
                 count: group.count
             }));
-           
+
             // Set the title separately by updating the panel's `toolbar` or using custom HTML
             document.getElementById('toolbar-title').innerHTML = 'Strategic Standardization Radars';
             return new w2toolbar({
@@ -811,6 +814,40 @@
                         },
 
                     },
+                    { type: 'new-line' },
+                    { type: 'new-line' },
+                    {
+                        type: 'label', id: 'item5', text: 'CSV SSR',
+                        tooltip: 'SSR CSV with dedicated worksheet structure ',
+                    },
+                    { type: 'new-line' },
+                    { type: 'button', id: 'loadcsvssr', text: '📂' + i18next.t("menu.loadcsvssr") },
+                    { type: 'break' },
+                    { type: 'button', id: 'savecsvssr', text: '💾' + i18next.t("menu.savecsvssr") },
+
+                    { type: 'new-line' },
+                    {
+                        type: 'label',
+                        id: 'item9',
+                        text: 'Graph SSR',
+                        tooltip: 'SSR Graph with dedicated graph structure',
+                    },
+                    { type: 'new-line' },
+                    { type: 'button', id: 'loadgraphssr', text: '📂' + i18next.t("menu.loadgraphssr") },
+                    { type: 'break' },
+                    { type: 'button', id: 'savegraphssr', text: '💾' + i18next.t("menu.savegraphssr") },
+                    { type: 'new-line', hidden: true },
+                    { type: 'new-line', hidden: true },
+                    { type: 'button', id: 'switch', text: '🔄' + i18next.t("menu.switch"), hidden: true },
+                    { type: 'new-line', hidden: true },
+                    { type: 'new-line', hidden: true },
+                    {
+                        type: 'label', id: 'semanticlandscape', text: i18next.t("menu.semanticlandscape"),
+                        tooltip: 'Strategic Standardization Landscape ',
+                        hidden: true
+                    },
+
+
 
                 ],
                 // Place onClick *outside* of the items array
@@ -840,6 +877,33 @@
                                         break;
                                 }
                             }
+                            break;
+
+                        case 'savegraphssr':
+                            // downloadCompleteRadarData()
+                            if (typeof cy === 'undefined' || !cy) {
+                                console.warn("Cytoscape instance (cy) is not initialized.");
+                                w2alert("Graph non initialisé. Impossible de sauvegarder.");
+                                break;
+                            }
+                            var fileNameToSave = "radar.ssr";
+                            w2prompt({
+                                label: 'Enter value',
+                                value: fileNameToSave,
+                                attrs: 'size=6'
+                            })
+                                .change((event) => {
+                                    fileNameToSave = event.detail.originalEvent.target.value;
+                                })
+                                .ok(() => {
+                                    var visibleElements = cy.elements(':visible'); // Sélectionne uniquement les éléments visibles
+                                    api.saveJson(visibleElements, fileNameToSave);
+                                });
+                            break;
+                        case 'loadgraphssr':
+                            const el = document.getElementById('load-from-inp');
+                            el.value = '';
+                            el.click();
                             break;
                     }
                 }
@@ -1119,8 +1183,18 @@
                           </div>
                           <div id="toolbar-container"></div>`
                 },
-                { type: 'main', resizable: true, style: 'background: #f8f9fa;', html: '<div id="radar-container"><div id="svg-container"></div><div id="cy-container"></div></div>' },
-                { type: 'right', resizable: true, size: 500, style: 'border-left: 1px solid #ccc;', html: `Right Panel` },
+                {
+                    type: 'main', resizable: true, style: 'background: #f8f9fa;',
+                    html: `
+                <div id="radar-container">
+                    <div id="svg-container"></div>
+                    <div id="cy-container"></div>
+                    <div id="cy2-container"></div>
+                </div>` },
+                {
+                    type: 'right', resizable: true, size: 300, style: 'border-left: 1px solid #ccc;',
+                    html: ``
+                },
                 { type: 'bottom', resizable: true, size: 50, style: 'border-top: 1px solid #ccc;', html: `Bottom Panel` }
             ]
         })
@@ -1372,13 +1446,12 @@
                     .yes(() => {
                         cy.$().remove();
                         api.loadJson(txt);
-                        api.collapseAll();
-                        api.collapseAllEdges(getEdgeOptions());
+                       
                     })
                     .no(() => {
-                        api.loadJson(txt);
-                        api.collapseAll();
-                        api.collapseAllEdges(getEdgeOptions());
+                       // api.loadJson(txt);
+                       alert("Merging content of radards not supported at this stage.")
+                    
                     });
             })
         });
@@ -1422,7 +1495,17 @@
         });
         console.log(cy.zoom())
         console.log(cy.pan())
-       
+        // Ajout des plugins
+        var ur = cy.undoRedo();
+
+        var api = cy.expandCollapse({
+            layoutBy: { name: 'fcose', animate: true },
+            fisheye: true,
+            animate: 'end',
+            undoable: true
+        });
+
+
         cy.on('grab', 'node', function (evt) {
             let node = evt.target;
             let pos = node.position();
@@ -1445,14 +1528,14 @@
         cy.on('free', 'node', function (evt) {
             let node = evt.target;
             let pos = node.position();
-             backToInitialPosition = false
+            backToInitialPosition = false
             let initialZone = node.scratch('_initialZone');
             let initialQuadrant = node.scratch('_initialQuadrant');
-            
-             
-          //  alert ("x:"+ pos.x + " y;"+ pos.y + " raddi:"+ radii)
+
+
+            //  alert ("x:"+ pos.x + " y;"+ pos.y + " raddi:"+ radii)
             let { zone, quadrant } = getZone(pos.x, pos.y, radii);
-          //  alert ("zone:"+ zone+ " quadrant:"+ quadrant)
+            //  alert ("zone:"+ zone+ " quadrant:"+ quadrant)
             if (zone === undefined || quadrant === undefined) {
                 console.log(`⚠️ ATTENTION: getZone() a retourné undefined pour le noeud ${node.id()}`);
                 backToInitialPosition = true;
@@ -1463,15 +1546,15 @@
                 let newQuadrant = quadrantMapping[quadrant]; // Convertir le quadrant en son label
                 console.log(`FREE: Node ${node.id()} -> New Zone: ${newZone}, New Quadrant: ${newQuadrant}`);
                 console.log(`Initial Zone: ${initialZone}, Initial Quadrant: ${initialQuadrant}`);
-                
+
                 node.data({
                     ring: newZone,
                     quadrant: newQuadrant
                 });
-                
+
                 // Vérifier si la zone ou le quadrant ont changé
                 if ((newZone !== initialZone || newQuadrant !== initialQuadrant) && !allowZoneChanges) {
-                //    alert ("newZone:"+ newZone+ " newQuadrant:"+ newQuadrant +"initialZone:"+ initialZone+ " initialQuadrant:"+ initialQuadrant )
+                    //    alert ("newZone:"+ newZone+ " newQuadrant:"+ newQuadrant +"initialZone:"+ initialZone+ " initialQuadrant:"+ initialQuadrant )
                     backToInitialPosition = true
                 }
             }
@@ -1501,7 +1584,7 @@
                 console.log("apres")
                 console.log(node.data())
             }
-           
+
             let form = generateFormFromCytoscapeElement(node);
 
             // Render form inside the right panel of w2ui layout
