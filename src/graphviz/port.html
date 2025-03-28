@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Composite Node Selection with Two Cytoscapes</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.24.0/cytoscape.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape-cola/3.0.0/cytoscape-cola.min.js"></script>
+  <style>
+    #cy {
+      width: 100%;
+      height: 600px;
+      position: absolute;
+      z-index: 1;
+    }
+    #cy-background {
+      width: 100%;
+      height: 600px;
+      position: absolute;
+      z-index: 0;
+    }
+    #node-info {
+      margin-top: 10px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div id="cy-background"></div>
+  <div id="cy"></div>
+  <div id="node-info">
+    <strong>Node Information:</strong>
+    <p id="node-position">Position: N/A</p>
+    <p id="node-size">Size: N/A</p>
+  </div>
+
+  <script>
+    // Initialisation du graphe de fond (cy-background)
+    let cyBackground = cytoscape({
+      container: document.getElementById('cy-background'),
+      elements: [
+        { data: { id: 'background-rect', label: 'Background Node' } }
+      ],
+      style: [
+        { selector: 'node', style: { 
+            'label': 'data(label)', 
+            'text-valign': 'center', 
+            'background-color': '#ccc', 
+            'shape': 'roundrectangle', 
+            'width': 150, 
+            'height': 150 
+          }
+        },
+        { selector: 'edge', style: { 'width': 2, 'line-color': '#888' } }
+      ],
+      layout: {
+        name: 'preset',  // Position statique pour le fond
+        positions: {
+          'background-rect': { x: 300, y: 300 }
+        }
+      },
+      userZoomingEnabled: false,
+      userPanningEnabled: false
+    });
+
+    // Initialisation du graphe principal (cy)
+    let cy = cytoscape({
+      container: document.getElementById('cy'),
+      elements: [
+        // Nœud composite (par exemple un rectangle)
+        { data: { id: 'rectangle', label: 'Composite Node' } },
+
+        // Ports positionnés autour du rectangle
+        { data: { id: 'port1', label: 'Port 1', parent: 'rectangle' } },
+        { data: { id: 'port2', label: 'Port 2', parent: 'rectangle' } },
+        { data: { id: 'port3', label: 'Port 3', parent: 'rectangle' } },
+        { data: { id: 'port4', label: 'Port 4', parent: 'rectangle' } }
+      ],
+      style: [
+        { selector: 'node', style: { 
+            'label': 'data(label)', 
+            'text-valign': 'center', 
+            'background-color': '#007bff', 
+            'shape': 'roundrectangle', 
+            'width': 150, 
+            'height': 150 
+          }
+        },
+        { selector: 'node[parent]', style: { 'background-color': '#ff7f0e', 'shape': 'ellipse', 'width': 15, 'height': 15 } },
+        { selector: 'edge', style: { 'width': 2, 'line-color': '#888' } }
+      ],
+      layout: {
+        name: 'preset',
+        positions: {
+          'rectangle': { x: 300, y: 300 }
+        }
+      },
+      userZoomingEnabled: true,
+      userPanningEnabled: true
+    });
+
+    // Synchroniser le zoom et le pan des deux graphes
+    cy.on('zoom pan', function() {
+      let pan = cy.pan();
+      let zoom = cy.zoom();
+      cyBackground.pan(pan);
+      cyBackground.zoom(zoom);
+    });
+
+    // Ajouter un événement sur le tap pour ajouter un nœud au fond
+    cy.on('tap', 'node', function(event) {
+      var node = event.target;
+      
+      // Vérifier si le nœud sélectionné est un nœud composite
+      if (node.data('id') === 'rectangle') {
+        var position = node.position();
+        var size = { width: node.width(), height: node.height() };
+
+        // Afficher la position et la taille dans l'interface
+        document.getElementById('node-position').textContent = `Position: x = ${position.x}, y = ${position.y}`;
+        document.getElementById('node-size').textContent = `Size: width = ${size.width}, height = ${size.height}`;
+
+        // Vérifier si le nœud 'new-background-node' existe déjà
+        let existingNode = cyBackground.getElementById('new-background-node');
+
+        if (existingNode.length > 0) {
+          // Si le nœud existe, le déplacer
+          existingNode.position({ x: position.x, y: position.y });
+        } else {
+          // Si le nœud n'existe pas, le créer
+          cyBackground.add({
+            data: { id: 'new-background-node' },
+            position: { x: position.x, y: position.y },
+            style: {
+              'background-color': '#ff0000',
+              'width': size.width + 20, // Un peu plus grand que le nœud composite
+              'height': size.height + 20,
+              'border-width': 5 // Plus épais
+            }
+          });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

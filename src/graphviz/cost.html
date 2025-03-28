@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reactive Graph with Cytoscape.js and RxJS</title>
+  <script src="https://unpkg.com/cytoscape@3.21.0/dist/cytoscape.min.js"></script>
+  <script src="https://unpkg.com/rxjs@7.0.0/dist/bundles/rxjs.umd.min.js"></script>
+  <style>
+    #cy {
+      width: 600px;
+      height: 600px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div id="cy"></div>
+
+  <script>
+    // Initializing Cytoscape graph
+    const cy = cytoscape({
+      container: document.getElementById('cy'),
+      elements: [
+        { data: { id: 'a', cost: 10 } },
+        { data: { id: 'b', cost: 15 } },
+        { data: { id: 'c', cost: 20 } },
+        { data: { source: 'a', target: 'b' } },
+        { data: { source: 'b', target: 'c' } }
+      ],
+      style: [
+        {
+          selector: 'node',
+          style: {
+            'label': 'data(id) + " (Cost: " + data("cost") + ")"', // Show the cost in the label
+            'background-color': '#66ccff'
+          }
+        },
+        {
+          selector: 'edge',
+          style: {
+            'width': 3,
+            'line-color': '#999999'
+          }
+        }
+      ],
+      layout: {
+        name: 'grid',
+        rows: 1
+      }
+    });
+
+    // Create an observable stream for the 'cost' attribute change on nodes
+    const cost$ = rxjs.fromEvent(cy, 'tap').pipe(
+      rxjs.operators.filter((event) => {
+        // Ensure event.target is defined and is a Cytoscape node
+        return event.target && event.target.isNode();
+      }),
+      rxjs.operators.map((event) => event.target),  // Extract the target node
+      rxjs.operators.map((node) => {
+        // Calculate the new cost based on connected edges' source node costs
+        const connectedEdges = node.edges();
+        let newCost = 0;
+        connectedEdges.forEach((edge) => {
+          const sourceNode = edge.source();
+          newCost += sourceNode.data('cost');
+        });
+        return { node, newCost };
+      })
+    );
+
+    // Subscribe to the cost change stream and update the node cost dynamically
+    cost$.subscribe(({ node, newCost }) => {
+      node.data('cost', newCost); // Update node cost dynamically
+      console.log(`Node ${node.id()} new cost: ${newCost}`);
+      cy.refresh(); // Refresh the graph to show updated data
+    });
+
+    // Initially display costs of the nodes
+    cy.nodes().forEach(node => {
+      console.log(`Node ${node.id()} initial cost: ${node.data('cost')}`);
+    });
+  </script>
+</body>
+</html>
