@@ -534,6 +534,7 @@
       };
       reader.readAsText(file);
     }
+    
     function downloadCompleteRadarData() {
       cy.nodes().ungrabify();  // Correct function to disable grabbing
       // Get the full graph data including nodes, edges, styles, and positions
@@ -999,7 +1000,6 @@
     createRadarWithCytoscape({ workingGroup: "PLM", containerId: "container" });
 
  
-
     cy.on('grab', 'node', function (evt) {
       let node = evt.target;
       let pos = node.position();

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>XMI + XSLT Transformer</title>
+</head>
+<body>
+  <h1>Transformateur XMI (local)</h1>
+
+  <p><strong>1. Charger le fichier XMI :</strong></p>
+  <input type="file" id="xmiFile" />
+  <p id="xmiStatus">❌ XMI non chargé</p>
+
+  <p><strong>2. Charger le fichier XSLT :</strong></p>
+  <input type="file" id="xsltFile" />
+  <p id="xsltStatus">❌ XSLT non chargé</p>
+
+  <button onclick="transform()">3. Appliquer la transformation</button>
+
+  <h2>Résultat :</h2>
+  <pre id="result"></pre>
+
+  <script>
+    let xmiDoc = null;
+    let xsltDoc = null;
+
+    document.getElementById('xmiFile').addEventListener('change', function () {
+      const file = this.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const parser = new DOMParser();
+        xmiDoc = parser.parseFromString(e.target.result, 'application/xml');
+        document.getElementById('xmiStatus').textContent = "✅ XMI chargé";
+      };
+      reader.readAsText(file);
+    });
+
+    document.getElementById('xsltFile').addEventListener('change', function () {
+      const file = this.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const parser = new DOMParser();
+        xsltDoc = parser.parseFromString(e.target.result, 'application/xml');
+        document.getElementById('xsltStatus').textContent = "✅ XSLT chargé";
+      };
+      reader.readAsText(file);
+    });
+
+    function transform() {
+      if (!xmiDoc || !xsltDoc) {
+        alert("Les deux fichiers doivent être chargés avant de transformer.");
+        return;
+      }
+
+      try {
+        const processor = new XSLTProcessor();
+        processor.importStylesheet(xsltDoc);
+
+        const result = processor.transformToDocument(xmiDoc);
+        const serializer = new XMLSerializer();
+        const output = serializer.serializeToString(result);
+
+        document.getElementById('result').textContent = output;
+      } catch (err) {
+        alert("Erreur pendant la transformation : " + err.message);
+        console.error(err);
+      }
+    }
+  </script>
+</body>
+</html>

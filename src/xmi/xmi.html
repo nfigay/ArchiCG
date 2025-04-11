@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UAF XMI to Cytoscape</title>
+    <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        #cy {
+            width: 80vw;
+            height: 60vh;
+            margin: auto;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>UAF XMI to Cytoscape</h2>
+    <input type="file" id="fileInput" accept=".xmi,.xml" />
+    <button id="downloadBtn" style="display:none;">Download Intermediate Output</button>
+    <div id="cy"></div>
+
+    <!-- XSLT producing valid JSON array -->
+    <script type="text/xml" id="xmi-xslt">
+    <xsl:stylesheet version="1.0"
+      xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+      <xsl:output method="text" />
+
+      <xsl:template name="escape-quotes">
+        <xsl:param name="text" />
+        <xsl:choose>
+          <xsl:when test="contains($text, '&quot;')">
+            <xsl:value-of select="substring-before($text, '&quot;')" />
+            <xsl:text>\&quot;</xsl:text>
+            <xsl:call-template name="escape-quotes">
+              <xsl:with-param name="text" select="substring-after($text, '&quot;')" />
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$text" />
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:template>
+      
+
+      <xsl:template name="escape-backslash">
+        <xsl:param name="text" />
+        <xsl:choose>
+          <xsl:when test="contains($text, '\')">
+            <xsl:value-of select="substring-before($text, '\')" />
+            <xsl:text>\\</xsl:text>
+            <xsl:call-template name="escape-backslash">
+              <xsl:with-param name="text" select="substring-after($text, '\')" />
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$text" />
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:template>      
+
+      <!-- Template to sanitize comment strings for JSON -->
+      <xsl:template name="cleanText">
+        <xsl:param name="text"/>
+      
+        <!-- Step 1: Replace line breaks and carriage returns with space -->
+        <xsl:variable name="noBreaks" select="translate($text, '&#xA;&#xD;', '  ')" />
+      
+        <!-- Step 2: Escape backslashes first -->
+        <xsl:variable name="escapedBackslashes">
+          <xsl:call-template name="escape-backslash">
+            <xsl:with-param name="text" select="$noBreaks" />
+          </xsl:call-template>
+        </xsl:variable>
+      
+        <!-- Step 3: Escape double quotes -->
+        <xsl:call-template name="escape-quotes">
+          <xsl:with-param name="text" select="$escapedBackslashes" />
+        </xsl:call-template>
+      </xsl:template>
+      
+
+      <xsl:template match="/">
+        
+        [
+
+          <xsl:variable name="profile" select="//*[contains(@*[local-name() = 'type'], 'Profile')][1]" />
+
+          <xsl:variable name="ns" select="namespace-uri($profile)" />
+
+          <xsl:variable name="profileId" select="$profile/@*[local-name() = 'id']" />
+          <xsl:variable name="profileName" select="$profile/@name" />
+          <xsl:variable name="profileURI" select="$profile/*[local-name() = 'URI']" />
+          <xsl:variable name="profileComment" select="$profile/*[local-name() = 'ownedComment']/@body" />
+          
+
+          <!-- Profil -->
+          {
+            "data": {
+              "id": "<xsl:value-of select="$profileId" />",
+              "name": "<xsl:value-of select="$profileName" />",
+              "type": "package",
+              "specialization": "profile",
+              "parent": "",
+              "label": "<xsl:value-of select="$profileName" />",
+              "uri": "<xsl:value-of select="$profileURI" />",
+              "comment": "<xsl:value-of select="$profileComment" />",
+              "description": "<xsl:value-of select="$profileComment" />",
+              "namespace": "<xsl:value-of select="$ns" />"
+            }
+          }
+
+          <!-- Éléments suivants -->
+          <xsl:variable name="elements" select="//*[@*[local-name() = 'id'] and not(@*[local-name() = 'id'] = $profileId)]" />
+          <xsl:for-each select="$elements">
+            <xsl:variable name="elemId" select="@*[local-name() = 'id']"/>
+            <xsl:variable name="elemType" select="@*[local-name() = 'type']"/>
+            <xsl:variable name="parentId">
+              <xsl:value-of select="parent::*[@*[local-name() = 'id']]/@*[local-name() = 'id']"/>
+            </xsl:variable>
+            <xsl:variable name="type">
+              <xsl:choose>
+                <xsl:when test="contains(@*[local-name() = 'type'], 'Package')">package</xsl:when>
+                <xsl:when test="contains(@*[local-name() = 'type'], 'Constraint')">constraint</xsl:when>
+                <xsl:when test="contains(@*[local-name() = 'type'], 'OpaqueExpression')">note</xsl:when>
+                <xsl:when test="contains(@*[local-name() = 'type'], 'Class') or contains(@*[local-name() = 'type'], 'Stereotype')">business-object</xsl:when>
+                <xsl:otherwise>unknown</xsl:otherwise>
+              </xsl:choose>
+            </xsl:variable>
+            <!-- Nettoyage du commentaire -->
+            <xsl:variable name="commentBody" select="ownedComment/@body" />
+            <xsl:variable name="cleanedComment">
+              <xsl:call-template name="cleanText">
+                <xsl:with-param name="text" select="$commentBody" />
+              </xsl:call-template>
+            </xsl:variable>
+
+            <!-- Only process elements where type is not 'unknown' -->
+            <xsl:if test="$type != 'unknown'">
+              ,
+              {
+                "data": {
+                  "id": "<xsl:value-of select="$elemId" />",
+                  "xmiType": "<xsl:value-of select="$elemType" />",
+                  "name": "<xsl:value-of select="@*[local-name() = 'name']" />",
+                  "type": "<xsl:value-of select="$type" />",
+                  "specialization": "<xsl:if test="contains(@*[local-name() = 'type'], 'Stereotype')">
+                                      <xsl:value-of select="@name"/>
+                                    </xsl:if>",
+                  "parent": "<xsl:value-of select="$parentId"/>",               
+                  "label": "<xsl:value-of select="@name" />",
+                  "comment": "<xsl:value-of select="$cleanedComment" />",
+                  "description": "<xsl:value-of select="$cleanedComment" />"
+                }
+              }
+            </xsl:if>
+          </xsl:for-each>
+        ]
+      </xsl:template>
+    </xsl:stylesheet>
+  </script>
+
+    <script>
+        document.getElementById("fileInput").addEventListener("change", function (event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function (event) {
+                const xmlData = event.target.result;
+                const xsltText = document.getElementById("xmi-xslt").textContent;
+                const parser = new DOMParser();
+                const xml = parser.parseFromString(xmlData, "text/xml");
+                const xslt = parser.parseFromString(xsltText, "text/xml");
+
+                const xsltProcessor = new XSLTProcessor();
+                xsltProcessor.importStylesheet(xslt);
+                const resultFragment = xsltProcessor.transformToFragment(xml, document);
+
+                if (!resultFragment || !resultFragment.firstChild) {
+                    console.error("XSLT transformation resulted in an empty or invalid output.");
+                    alert("XSLT transformation failed. Check the console for details.");
+                    return;
+                }
+
+                const transformedText = resultFragment.textContent.trim();
+
+                if (!transformedText) {
+                    console.error("XSLT transformation resulted in an empty output.");
+                    alert("XSLT transformation failed. Check the console for details.");
+                    return;
+                }
+
+                console.log("Intermediate XSLT Output:", transformedText);
+                downloadIntermediateOutput(transformedText);
+
+                try {
+                    const jsonData = JSON.parse(transformedText); // plus besoin de []
+                    createCytoscapeGraph(jsonData);
+                } catch (error) {
+                    console.error("Error parsing transformed JSON:", error);
+                    alert("Error parsing JSON. Check the intermediate output file.");
+                }
+            };
+            reader.readAsText(file);
+        });
+
+        function createCytoscapeGraph(elements) {
+            // Filter elements to ensure there are no 'unknown' types in the graph
+            const validElements = elements.filter(element => element.data.type !== "unknown");
+
+            cytoscape({
+                container: document.getElementById("cy"),
+                elements: validElements,  // Only include valid elements
+                style: [
+                    { selector: "node", style: { label: "data(label)", "background-color": "#666" } },
+                    { selector: "edge", style: { label: "data(type)", "line-color": "#999" } }
+                ]
+            });
+        }
+
+        function downloadIntermediateOutput(content) {
+            const button = document.getElementById("downloadBtn");
+            button.style.display = "block";
+            button.onclick = function () {
+                const blob = new Blob([content], { type: "text/plain" });
+                const link = document.createElement("a");
+                link.href = URL.createObjectURL(blob);
+                link.download = "intermediate_output.json";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            };  
+        }
+    </script>
+</body>
+
+</html>

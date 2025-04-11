@@ -494,6 +494,31 @@ function downloadCompleteRadarData() {
   URL.revokeObjectURL(url);
 }
 
+function loadRadarData(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    try {
+      const jsonData = JSON.parse(e.target.result);
+
+      // Clear existing graph
+      cy.elements().remove();
+
+      // Load new graph from the JSON
+      cy.json(jsonData);
+
+      // Reapply `ungrabify()` to keep nodes non-grabbable
+      cy.nodes().ungrabify();
+
+      console.log("Radar data successfully loaded.");
+    } catch (error) {
+      console.error("Error loading radar data:", error);
+      alert("Invalid JSON file.");
+    }
+  };
+
 
 
 
