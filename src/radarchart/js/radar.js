@@ -1,5 +1,3 @@
-
-
 const validRings = ["Adopted", "Candidate", "Track"];
 const validQuadrants = ["", "Available", "Monitored", "Participated", "Developed"];
 var allowZoneChanges=false
@@ -518,16 +516,4 @@ function loadRadarData(event) {
       alert("Invalid JSON file.");
     }
   };
-
-
-
-
-
-
-
-
-
-
-
-
-
+}

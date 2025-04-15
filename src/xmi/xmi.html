@@ -8,16 +8,16 @@
     <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
+    font-family: Arial, sans-serif;
+}
 
-        #cy {
-            width: 80vw;
-            height: 60vh;
-            margin: auto;
-            border: 1px solid #ddd;
-        }
+#cy {
+    width: 80vw;
+    height: 60vh;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #ddd;
+}
     </style>
 </head>
 
@@ -158,6 +158,16 @@
                   "label": "<xsl:value-of select="@name" />",
                   "comment": "<xsl:value-of select="$cleanedComment" />",
                   "description": "<xsl:value-of select="$cleanedComment" />"
+                  <xsl:if test="contains(@*[local-name() = 'type'], 'OpaqueExpression')">
+                    <xsl:variable name="Body" select="body" />
+                    <xsl:variable name="cleanedBody">
+                         <xsl:call-template name="cleanText">
+                         <xsl:with-param name="text" select="$Body" />
+                        </xsl:call-template>
+                    </xsl:variable>
+                    ,"body": "<xsl:value-of select='$cleanedBody' />",
+                    "language": "<xsl:value-of select='language' />"
+                  </xsl:if>
                 }
               }
             </xsl:if>
