@@ -34,6 +34,8 @@
     <!-- Cytoscape-Dagre Extension -->
     <script src="lib/cytoscape-dagre.js"></script>
     <script src="lib/i18next.min.js"></script>
+    <script src="js/ics.js"></script>
+
 
 
 
@@ -113,6 +115,7 @@
 
     <input type="file" name="name" id="inputfile" style="display:none" />
     <input type="file" name="name" id="load-from-inp" style="display:none" />
+    <input type="file" id="jsonl-hidden-input" accept=".jsonl,.ndjson" style="display:none;">
 
 
 
@@ -132,6 +135,10 @@
                     },
                     menu: {
                         language: "Language",
+                        iso: "ISO",
+                        tc: "Technical Committees",
+                        loadtc: "Load",
+                        savetc: "Save",
                         fr: "🇫🇷 French",
                         en: "🇬🇧 English",
                         files: "Files",
@@ -235,6 +242,10 @@
                     },
                     menu: {
                         language: "Langage",
+                        iso: "ISO",
+                        tc: "Comités Techniques",
+                        loadtc: "Charger",
+                        savetc: "Sauver",
                         fr: "🇫🇷 Français",
                         en: "🇬🇧 English",
                         files: "Fichiers",
@@ -731,7 +742,22 @@
                         { id: "fr", text: i18next.t("fr") },
                         { id: "en", text: i18next.t("en") },
                     ]
-                }
+                },
+                { type: 'spacer' },
+                {
+                    type: "menu", id: "iso", text: i18next.t("menu.iso"), icon: "fa fa-eye",
+                    items: [
+                        {
+                            id: 'tc', text: i18next.t("menu.tc"), icon: 'fa fa-star', expanded: true,
+                            items: [
+                                { id: "loadtc", text: i18next.t("menu.loadtc") },
+                                { id: "savetc", text: i18next.t("menu.savetc") },
+                            ]
+                        }
+                    ]
+                },
+
+
             ];
 
         }
@@ -1168,6 +1194,15 @@
                 case 'showhidegrabifydelete:restore':
                     removed.restore();
                     break;
+                case 'iso:loadtc':
+                    document.getElementById('jsonl-hidden-input').click();
+                    break;
+                case 'iso:savetc':
+
+                    break;
+                default:
+                    // alert(event.target)
+                    break;
             }
         }
         // Define the layout first
@@ -1446,12 +1481,12 @@
                     .yes(() => {
                         cy.$().remove();
                         api.loadJson(txt);
-                       
+
                     })
                     .no(() => {
-                       // api.loadJson(txt);
-                       alert("Merging content of radards not supported at this stage.")
-                    
+                        // api.loadJson(txt);
+                        alert("Merging content of radards not supported at this stage.")
+
                     });
             })
         });
@@ -1472,6 +1507,101 @@
                     openCSV(file); // Pass file object
                 });
         });
+        //// Loading Technical Committees file and downloading the JSON for archicg
+        document.getElementById('jsonl-hidden-input').addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            readJSONLFile(file, (jsonArray) => {
+                const graphData = {
+                    nodes: [{
+                        "data": {
+                            "id": "iso-tc",
+                            "label": "ISO Technical Committees",
+                            "type": "business-actor",
+                            "specialization": "isotc",
+                            
+                        }
+                    }],
+                    edges: []
+                };
+
+                jsonArray.forEach(tc => {
+                    const nodeId = 'tc-' + tc.id;
+                    const nodeData = {
+                        id: nodeId,
+                        label: tc.reference,
+                        type: 'business-actor',
+                        specialization: 'isotc',
+                        description:tc.title.en
+                    };
+
+                    // Transformation de parentId → parent (si non nul)
+                    if (tc.parentId !== null) {
+                        nodeData.parent = 'tc-' + tc.parentId;
+                        parentRelationId= 'tc-' + tc.parentId;
+                        parentRelationType="composition"
+
+
+                    }
+                    else{
+                        nodeData.parent = 'iso-tc';
+                    }
+
+                    // Transformation des autres propriétés avec aplatissement
+                    Object.entries(tc).forEach(([key, value]) => {
+                        if (key === 'parentId') return; // déjà traité
+                        if (key === 'id') return; // déjà traité
+                        if (value && typeof value === 'object' && !Array.isArray(value)) {
+                            // propriété composite => on aplatit
+                            Object.entries(value).forEach(([subKey, subValue]) => {
+                                nodeData[`${key}.${subKey}`] = subValue;
+                            });
+                        } else {
+                            // propriété simple
+                            nodeData[key] = value;
+                        }
+                    });
+
+                    graphData.nodes.push({ data: nodeData });
+
+                    // Création de l’edge si parentId existe
+                    if (tc.parentId) {
+                        graphData.edges.push({
+                            data: {
+                                id: `rel-${tc.parentId}-${tc.id}`,
+                                source: 'tc-' + tc.parentId,
+                                target: nodeId,
+                                edgeType:"composition",
+                                label: 'subCommitteeOf'
+                            }
+                        });
+                    }
+                });
+
+                // Export du fichier JSON
+                const blob = new Blob([JSON.stringify(graphData, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'tc-graph.json';
+                document.body.appendChild(a);
+                a.click();
+                setTimeout(() => {
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                }, 0);
+
+                e.target.value = ''; // reset input
+            }, (err, line, i) => {
+                alert(`Erreur à la ligne ${i + 1}: ${line}`);
+            });
+        });
+
+
+
+
+
         // Initialize Cytoscape.js
         var elements = [
             //  { data: { id: 'a', label: "Feed the radar" }, position: { x: 400, y: 400 } },
