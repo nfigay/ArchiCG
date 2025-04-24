@@ -1507,79 +1507,136 @@
                     openCSV(file); // Pass file object
                 });
         });
-        //// Loading Technical Committees file and downloading the JSON for archicg
+
         document.getElementById('jsonl-hidden-input').addEventListener('change', function (e) {
             const file = e.target.files[0];
             if (!file) return;
 
+            const maxSizeMB = 100;
+            const fileSizeMB = file.size / (1024 * 1024);
+            if (fileSizeMB > maxSizeMB) {
+                alert(`Le fichier est trop volumineux (${fileSizeMB.toFixed(2)} MB). Veuillez sélectionner un fichier de moins de ${maxSizeMB} MB.`);
+                e.target.value = '';
+                return;
+            }
+
             readJSONLFile(file, (jsonArray) => {
                 const graphData = {
-                    nodes: [{
-                        "data": {
-                            "id": "iso-tc",
-                            "label": "ISO Technical Committees",
-                            "type": "business-actor",
-                            "specialization": "isotc",
-                            
-                        }
-                    }],
+                    nodes: [],
                     edges: []
                 };
 
+                const nodeIndex = new Map();
+                const edgeIndex = new Set();
+
+                // Racine du graphe
+                const rootNode = {
+                    data: {
+                        id: "iso-tc",
+                        label: "ISO Technical Committees",
+                        type: "business-actor",
+                        specialization: "isotc"
+                    }
+                };
+                graphData.nodes.push(rootNode);
+                nodeIndex.set(rootNode.data.id, rootNode);
+
+                function ensureOrgNode(org) {
+                    const orgNodeId = org.id;
+                    if (!nodeIndex.has(orgNodeId)) {
+                        const node = {
+                            data: {
+                                id: orgNodeId,
+                                label: org.acronym || org.name || orgNodeId,
+                                type: 'organization',
+                                specialization: 'member-body'
+                            }
+                        };
+                        graphData.nodes.push(node);
+                        nodeIndex.set(orgNodeId, node);
+                    }
+                    return orgNodeId;
+                }
+
+                function addEdge(source, target, label, type) {
+                    return;
+                    const edgeId = `rel-${source}-${label}-${target}`;
+                    if (!edgeIndex.has(edgeId)) {
+                        graphData.edges.push({
+                            data: {
+                                id: edgeId,
+                                source,
+                                target,
+                                edgeType: type,
+                                label
+                            }
+                        });
+                        edgeIndex.add(edgeId);
+                    }
+                }
+
+                function processMembers(tc, nodeId, members, label) {
+                    if (label == 'committeeLiaison') { 
+                        if (!Array.isArray(members)) return;
+                        members.forEach(member => {
+                            const memberNodeId = ensureOrgNode(member);
+                            addEdge(nodeId, memberNodeId, label, 'aggregation');
+                        });
+
+                    }
+                    else {
+                        if (!Array.isArray(members)) return;
+                        members.forEach(member => {
+                            const memberNodeId = ensureOrgNode(member);
+                            addEdge(nodeId, memberNodeId, label, 'aggregation');
+                        });
+                    }
+                }
+
                 jsonArray.forEach(tc => {
-                    const nodeId = 'tc-' + tc.id;
+                    const nodeId = tc.id;
                     const nodeData = {
                         id: nodeId,
                         label: tc.reference,
                         type: 'business-actor',
                         specialization: 'isotc',
-                        description:tc.title.en
+                        description: tc.title?.en || ''
                     };
 
-                    // Transformation de parentId → parent (si non nul)
                     if (tc.parentId !== null) {
-                        nodeData.parent = 'tc-' + tc.parentId;
-                        parentRelationId= 'tc-' + tc.parentId;
-                        parentRelationType="composition"
-
-
-                    }
-                    else{
+                        nodeData.parent = tc.parentId;
+                    } else {
                         nodeData.parent = 'iso-tc';
                     }
 
-                    // Transformation des autres propriétés avec aplatissement
+                    const relationKeys = ['pMembers', 'oMembers', 'committeeLiaisons', 'organizationLiaisons', 'childrenId'];
+
                     Object.entries(tc).forEach(([key, value]) => {
-                        if (key === 'parentId') return; // déjà traité
-                        if (key === 'id') return; // déjà traité
+                        if (key === 'parentId' || key === 'id' || relationKeys.includes(key)) return;
                         if (value && typeof value === 'object' && !Array.isArray(value)) {
-                            // propriété composite => on aplatit
                             Object.entries(value).forEach(([subKey, subValue]) => {
                                 nodeData[`${key}.${subKey}`] = subValue;
                             });
                         } else {
-                            // propriété simple
                             nodeData[key] = value;
                         }
                     });
 
-                    graphData.nodes.push({ data: nodeData });
+                    const node = { data: nodeData };
+                    graphData.nodes.push(node);
+                    nodeIndex.set(nodeId, node);
 
-                    // Création de l’edge si parentId existe
-                    if (tc.parentId) {
-                        graphData.edges.push({
-                            data: {
-                                id: `rel-${tc.parentId}-${tc.id}`,
-                                source: 'tc-' + tc.parentId,
-                                target: nodeId,
-                                edgeType:"composition",
-                                label: 'subCommitteeOf'
-                            }
-                        });
+                    processMembers(tc, nodeId, tc.pMembers, 'pMember');
+                    processMembers(tc, nodeId, tc.oMembers, 'oMember');
+                    processMembers(tc, nodeId, tc.committeeLiaisons, 'committeeLiaison');
+                    processMembers(tc, nodeId, tc.organizationLiaisons, 'organizationLiaison');
+
+                    if (tc.parentId !== null) {
+                        const parentId = tc.parentId;
+                        addEdge(parentId, nodeId, 'subCommitteeOf', 'composition');
                     }
                 });
 
-                // Export du fichier JSON
                 const blob = new Blob([JSON.stringify(graphData, null, 2)], { type: 'application/json' });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
@@ -1592,14 +1649,11 @@
                     URL.revokeObjectURL(url);
                 }, 0);
 
-                e.target.value = ''; // reset input
+                e.target.value = '';
             }, (err, line, i) => {
                 alert(`Erreur à la ligne ${i + 1}: ${line}`);
             });
         });
-
-
-
 
 
         // Initialize Cytoscape.js
