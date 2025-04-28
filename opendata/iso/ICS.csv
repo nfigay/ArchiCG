@@ -1,0 +1,1382 @@
+﻿identifier,parent,titleEn,titleFr,scopeEn,scopeFr
+"01",,"Generalities. Terminology. Standardization. Documentation","Généralités. Terminologie. Normalisation. Documentation",,
+"03",,"Services. Company organization, management and quality. Administration. Transport. Sociology","Services. Organisation de l'entreprise. Gestion et qualité. Administration. Transport. Sociologie",,
+"07",,"Natural and applied sciences","Sciences naturelles et sciences appliquées",,
+"11",,"Health care technology","Technologies de la santé",,
+"13",,"Environment. Health protection. Safety","Environnement. Protection de la santé. Sécurité",,
+"17",,"Metrology and measurement. Physical phenomena","Métrologie et mesurage. Phénomènes physiques",,
+"19",,"Testing","Essais",,
+"21",,"Mechanical systems and components for general use","Systèmes et composants mécaniques à usage général",,
+"23",,"Fluid systems and components for general use","Fluidique et composants à usage général",,
+"25",,"Manufacturing engineering","Techniques de fabrication",,
+"27",,"Energy and heat transfer engineering","Ingénierie de l'énergie et de la transmission de la chaleur",,
+"29",,"Electrical engineering","Électrotechnique",,
+"31",,"Electronics","Électronique",,
+"33",,"Telecommunications. Audio and video engineering","Télécommunications. Technique audio et vidéo",,
+"35",,"Information technology","Technologies de l'information",,
+"37",,"Image technology","Technologie de l'image",,
+"39",,"Precision mechanics. Jewellery","Mécanique de précision. Bijouterie",,
+"43",,"Road vehicles engineering","Véhicules routiers",,
+"45",,"Railway engineering","Chemins de fer",,
+"47",,"Shipbuilding and marine structures","Construction navale et structures maritimes",,
+"49",,"Aircraft and space vehicle engineering","Aéronautique et espace",,
+"53",,"Materials handling equipment","Matériel de manutention des matériaux",,
+"55",,"Packaging and distribution of goods","Emballage et distribution des marchandises",,
+"59",,"Textile and leather technology","Industrie textile et technologie du cuir",,
+"61",,"Clothing industry","Industrie du vêtement",,
+"65",,"Agriculture","Agriculture",,
+"67",,"Food technology","Technologie alimentaire",,
+"71",,"Chemical technology","Génie chimique",,
+"73",,"Mining and minerals","Mines et minerais",,
+"75",,"Petroleum and related technologies","Industrie du pétrole et technologies associées",,
+"77",,"Metallurgy","Métallurgie",,
+"79",,"Wood technology","Technologie du bois",,
+"81",,"Glass and ceramics industries","Industries du verre et de la céramique",,
+"83",,"Rubber and plastic industries","Industrie des élastomères et des plastiques",,
+"85",,"Paper technology","Technologie du papier",,
+"87",,"Paint and colour industries","Industries des peintures et des couleurs",,
+"91",,"Construction materials and building","Bâtiment et matériaux de construction",,
+"93",,"Civil engineering","Génie civil",,
+"95",,"Military affairs. Military engineering. Weapons","Affaires militaires. Génie militaire. Systèmes d'armes",,
+"97",,"Domestic and commercial equipment. Entertainment. Sports","Équipement ménager et commercial. Loisirs. Sports",,
+"01.020","01","Terminology (principles and coordination)","Terminologie (principes et coordination)","Including terminography","Y compris terminographie"
+"01.040","01","Vocabularies","Vocabulaires",,
+"01.060","01","Quantities and units","Grandeurs et unités",,
+"01.070","01","Colour coding","Codification par couleurs",,
+"01.075","01","Character symbols","Symboles littéraux",,
+"01.080","01","Graphical symbols","Symboles graphiques",,
+"01.100","01","Technical drawings","Dessins techniques",,
+"01.110","01","Technical product documentation","Documentation technique des produits","Including rules for preparation of user guides, manuals, product specifications, etc.","Y compris les règles pour la préparation des guides d'utilisateurs, manuels, spécifications techniques des produits, etc."
+"01.120","01","Standardization. General rules","Normalisation. Règles générales","Including rules for the preparation of standards catalogues and management of technical documents","Y compris les règles pour la préparation des catalogues de normes et la gestion des documents techniques"
+"01.140","01","Information sciences. Publishing","Sciences de l'information. Édition",,
+"03.020","03","Sociology. Demography","Sociologie. Démographie",,
+"03.040","03","Labour. Employment","Travail. Emploi",,
+"03.060","03","Finances. Banking. Monetary systems. Insurance","Finances. Banque. Systèmes monétaires. Assurance","Including personal financial planning","Y compris la gestion de patrimoine"
+"03.080","03","Services","Services",,
+"03.100","03","Company organization and management. Management systems","Organisation et gestion d'entreprise. Systèmes de management",,
+"03.120","03","Quality","Qualité",,
+"03.140","03","Patents. Intellectual property","Brevets. Propriété intellectuelle",,
+"03.160","03","Law. Administration","Législation. Administration","Including flags and associated symbols (emblems) of political and administrative entities, military flags, flags of organizations, etc.","Y compris les drapeaux et symboles associés (emblèmes) des entités politiques et administratives. Drapeaux militaires, drapeaux d'organisations, etc."
+"03.180","03","Education","Éducation",,
+"03.200","03","Leisure. Tourism","Loisirs. Tourisme",,
+"03.220","03","Transport","Transport",,
+"03.240","03","Postal services","Services postaux","Including postal equipment, post-boxes and letter-boxes, etc.","Y compris matériel postal, boîtes postales, boîtes à lettres, etc."
+"07.020","07","Mathematics","Mathématiques",,
+"07.030","07","Physics. Chemistry","Physique. Chimie",,
+"07.040","07","Astronomy. Geodesy. Geography","Astronomie. Géodésie. Géographie",,
+"07.060","07","Geology. Meteorology. Hydrology","Géologie. Météorologie. Hydrologie",,
+"07.080","07","Biology. Botany. Zoology","Biologie. Botanique. Zoologie","Including biotechnology","Y compris biotechnologie"
+"07.100","07","Microbiology","Microbiologie",,
+"07.120","07","Nanotechnologies","Nanotechnologies",,
+"07.140","07","Forensic science","Criminalistique",,
+"11.020","11","Medical sciences and health care facilities in general","Sciences médicales et équipement de soins médicaux en général",,
+"11.040","11","Medical equipment","Matériel médical",,
+"11.060","11","Dentistry","Art dentaire",,
+"11.080","11","Sterilization and disinfection","Stérilisation et désinfection",,
+"11.100","11","Laboratory medicine","Médecine de laboratoire",,
+"11.120","11","Pharmaceutics","Pharmacie",,
+"11.140","11","Hospital equipment","Équipements des hôpitaux","Including hospital beds, surgical tables, medical garments, medical gloves, containers for sharp disposal, etc.","Y compris lits d'hôpitaux, tables d'opération, vêtements médicaux, gants médicaux, récipients pour déchets pointus d'activités de soin, etc."
+"11.160","11","First aid","Premiers secours","Including kits, equipment, facilities and medical transport for first aid","Y compris trousse, matériel, installations et transport médical de première urgence"
+"11.180","11","Aids for disabled or handicapped persons","Aides pour les invalides ou handicapés","Including aids for elderly people","Y compris aides aux personnes âgées"
+"11.200","11","Birth control. Mechanical contraceptives","Contrôle des naissances. Contraceptifs mécaniques",,
+"11.220","11","Veterinary medicine","Médecine vétérinaire","Including equipment specific to veterinary medicine","Y compris matériel spécifique à la médecine vétérinaire"
+"13.020","13","Environmental protection","Protection de l'environnement",,
+"13.030","13","Wastes","Déchets",,
+"13.040","13","Air quality","Qualité de l'air",,
+"13.060","13","Water quality","Qualité de l'eau","Including toxicity, biodegradability, protection against pollution, related installations and equipment","Y compris toxicité, biodégradabilité, prévention de la pollution, installations et équipements connexes"
+"13.080","13","Soil quality. Pedology","Qualité du sol. Pédologie",,
+"13.100","13","Occupational safety. Industrial hygiene","Sécurité professionnelle. Hygiène industrielle",,
+"13.110","13","Safety of machinery","Sécurité des machines et appareils",,
+"13.120","13","Domestic safety","Sécurité domestique",,
+"13.140","13","Noise with respect to human beings","Bruit et ses effets sur l'homme","Including audiometry","Y compris audiométrie"
+"13.160","13","Vibration and shock with respect to human beings","Vibrations, chocs et leurs effets sur l'homme",,
+"13.180","13","Ergonomics","Ergonomie",,
+"13.200","13","Accident and disaster control","Prévention des accidents et des catastrophes","Including emergency evacuations and emergency control systems","Y compris évacuations d'urgence et systèmes de commande d'urgence"
+"13.220","13","Protection against fire","Protection contre l'incendie",,
+"13.230","13","Explosion protection","Protection contre l'explosion",,
+"13.240","13","Protection against excessive pressure","Protection contre les excès de pression","Including safety valves, bursting disc devices, etc.","Y compris soupapes de sécurité, disques de rupture, etc."
+"13.260","13","Protection against electric shock. Live working","Protection contre l'électrocution. Travaux sous tension","Including tools for working with voltages","Y compris outils pour travaux sous tension"
+"13.280","13","Radiation protection","Protection contre les rayonnements","Including protection against radio-frequency radiation","Y compris protection contre les rayonnements radioélectriques"
+"13.300","13","Protection against dangerous goods","Protection contre les matières dangereuses","Including performance requirements for dangerous goods, their handling, storage, transportation, marking, labelling, etc.","Y compris exigences de performances pour les matières dangereuses, leur manutention, leur stockage, leur transport, leur marquage, leur étiquetage, etc."
+"13.310","13","Protection against crime","Protection contre les crimes","Including security services, security procedures, burglar alarm devices, burglary resisting materials and equipment, bullet resisting materials and equipment, anti-theft devices for vehicles, safes, strong rooms, etc.","Y compris services de sécurité, procédures de sécurité, dispositifs d'alarme, matériaux et équipements résistant au cambriolage, matériaux et équipements résistant aux balles, dispositifs antivol pour véhicules, coffres-forts, chambres fortes, etc."
+"13.320","13","Alarm and warning systems","Systèmes d'alarme et d'alerte",,
+"13.340","13","Protective equipment","Équipement de protection individuelle",,
+"17.020","17","Metrology and measurement in general","Métrologie et mesurage en général","Including measuring instruments in general, preferred numbers, standard measures, general aspects of reference materials, etc.","Y compris instruments de mesure en général, nombres normaux, étalons de mesure, aspects généraux des matériaux de référence, etc."
+"17.040","17","Linear and angular measurements","Mesurage de longueur et mesurage angulaire",,
+"17.060","17","Measurement of volume, mass, density, viscosity","Mesurage de volume, masse, densité, viscosité","Including measuring instruments","Y compris instruments de mesure correspondants"
+"17.080","17","Measurement of time, velocity, acceleration, angular velocity","Mesurage de temps, vitesse, accélération, vitesse angulaire","Including measuring instruments","Y compris instruments de mesure correspondants"
+"17.100","17","Measurement of force, weight and pressure","Mesurage de force, poids et pression","Including measuring and weighing instruments","Y compris instruments de mesure correspondants"
+"17.120","17","Measurement of fluid flow","Mesurage de débit des fluides","Including measuring instruments and installations","Y compris instruments et installations de mesure correspondants"
+"17.140","17","Acoustics and acoustic measurements","Acoustique et mesurage acoustique","Including measuring instruments and testing equipment","Y compris instruments de mesure et d'essai"
+"17.160","17","Vibrations, shock and vibration measurements","Vibrations, chocs et mesurage des vibrations","Including measuring instruments and installations","Y compris installations et instruments de mesure"
+"17.180","17","Optics and optical measurements","Optique et mesurage optique",,
+"17.200","17","Thermodynamics and temperature measurements","Thermodynamique et mesurage de température",,
+"17.220","17","Electricity. Magnetism. Electrical and magnetic measurements","Électricité. Magnétisme. Mesurage électrique et magnétique",,
+"17.240","17","Radiation measurements","Mesurage des rayonnements","Including dosimetry","Y compris dosimétrie"
+"19.020","19","Test conditions and procedures in general","Modes opératoires et conditions d'essai en général",,
+"19.040","19","Environmental testing","Essais d'environnement","Including testing equipment","Y compris le matériel correspondant"
+"19.060","19","Mechanical testing","Essais mécaniques","Including testing equipment","Y compris le matériel correspondant"
+"19.080","19","Electrical and electronic testing","Essais électriques et électroniques","Including testing equipment","Y compris le matériel correspondant"
+"19.100","19","Non-destructive testing","Essais non destructifs","Including testing equipment: industrial apparatus for X-ray and gamma radiography, penetrant flaw detectors, etc.","Y compris le matériel correspondant : appareillage industriel pour radiographie à rayons X et radiographie gamma, contrôle par ressuage, etc."
+"19.120","19","Particle size analysis. Sieving","Analyse dimensionnelle des particules. Tamisage","Including test sieves and porosimetry","Y compris les tamis de contrôle et la porosimétrie"
+"21.020","21","Characteristics and design of machines, apparatus, equipment","Caractéristiques et conception des machines, appareils et équipements","Including reliability, dependability, maintainability, durability, etc.","Y compris fiabilité, sûreté de fonctionnement, maintenabilité, durabilité, etc."
+"21.040","21","Screw threads","Filetages",,
+"21.060","21","Fasteners","Éléments de fixation",,
+"21.080","21","Hinges, eyelets and other articulated joints","Articulations , oeillets et autres éléments articulés",,
+"21.100","21","Bearings","Paliers et roulements",,
+"21.120","21","Shafts and couplings","Arbres et accouplements",,
+"21.140","21","Seals, glands","Joints d'étanchéité, garnitures mécanique d'étanchéité",,
+"21.160","21","Springs","Ressorts",,
+"21.180","21","Housings, enclosures, other machine parts","Logements, enceintes, autres parties de machines",,
+"21.200","21","Gears","Engrenages",,
+"21.220","21","Flexible drives and transmissions","Transmissions et entraînements souples",,
+"21.240","21","Rotary-reciprocating mechanisms and their parts","Mécanismes tournants et alternatifs et leurs composants","Including pistons, piston-rings, crankshafts, etc. for general engineering","Y compris pistons, segments de pistons, vilebrequins, etc. pour la mécanique générale"
+"21.260","21","Lubrication systems","Systèmes de lubrification",,
+"23.020","23","Fluid storage devices","Dispositifs d'entreposage des fluides",,
+"23.040","23","Pipeline components and pipelines","Canalisations et accessoires",,
+"23.060","23","Valves","Robinetterie",,
+"23.080","23","Pumps","Pompes",,
+"23.100","23","Fluid power systems","Transmissions hydrauliques et pneumatiques",,
+"23.120","23","Ventilators. Fans. Air-conditioners","Ventilateurs et climatiseurs",,
+"23.140","23","Compressors and pneumatic machines","Compresseurs et machines pneumatiques",,
+"23.160","23","Vacuum technology","Technologie du vide","Including vacuum pumps","Y compris pompes à vide"
+"25.020","25","Manufacturing forming processes","Procédés de formage",,
+"25.030","25","Additive manufacturing","Fabrication additive",,
+"25.040","25","Industrial automation systems","Systèmes d'automatisation industrielle",,
+"25.060","25","Machine tool systems","Systèmes de machines-outils",,
+"25.080","25","Machine tools","Machines-outils",,
+"25.100","25","Cutting tools","Outils de coupe","Including industrial diamonds","Y compris diamants industriels"
+"25.120","25","Chipless working equipment","Matériel opérant sans copeaux",,
+"25.140","25","Hand-held tools","Outils à main",,
+"25.160","25","Welding, brazing and soldering","Soudage et brasage","Including gas welding, electric welding, plasma welding, electron beam welding, plasma cutting, etc.","Y compris le soudage aux gaz, le soudage électrique, le soudage par faisceau d'électrons, le soudage et le coupage au plasma, etc."
+"25.180","25","Industrial furnaces","Fours industriels",,
+"25.200","25","Heat treatment","Traitement thermique",,
+"25.220","25","Surface treatment and coating","Traitement et revêtement de surface","Including processes and equipment for surface treatment and coating","Y compris procédés et matériels de traitement et de revêtement de surface"
+"27.010","27","Energy and heat transfer engineering in general","Ingénierie de l'énergie et de la transmission de la chaleur en général",,
+"27.015","27","Energy efficiency. Energy conservation in general","Efficacité énergétique. Économies d’énergie en général","Including energy audits","Y compris les audits énergétiques"
+"27.020","27","Internal combustion engines","Moteurs à combustion interne",,
+"27.040","27","Gas and steam turbines. Steam engines","Turbines à gaz et à vapeur. Machines à vapeur",,
+"27.060","27","Burners. Boilers","Brûleurs. Chaudières",,
+"27.070","27","Fuel cells","Piles à combustible",,
+"27.075","27","Hydrogen technologies","Technologies de l'hydrogène",,
+"27.080","27","Heat pumps","Pompes à chaleur",,
+"27.100","27","Power stations in general","Centrales énergétiques en général","Including thermal power plants","Y compris centrales thermiques"
+"27.120","27","Nuclear energy engineering","Énergie nucléaire",,
+"27.140","27","Hydraulic energy engineering","Énergie hydraulique","Including hydraulic turbines","Y compris turbines hydrauliques"
+"27.160","27","Solar energy engineering","Énergie solaire","Including photovoltaic energy systems","Y compris systèmes photovoltaïques"
+"27.180","27","Wind turbine energy systems","Énergie éolienne","Including generation of electrical energy","Y compris production d'énergie électrique"
+"27.190","27","Biological sources and alternative sources of energy","Sources biologiques et autres sources d'énergie alternatives",,
+"27.200","27","Refrigerating technology","Technologie frigorifique",,
+"27.220","27","Heat recovery. Thermal insulation","Récupération de la chaleur. Isolation thermique",,
+"29.020","29","Electrical engineering in general","Électrotechnique en général","Including voltages, general electrical terminology, electrical documentation, electrical tables, safety, fire hazard testing, etc.","Y compris normes concernant les tensions, la terminologie électrique générale, la documentation électrique, les tableaux électriques, la sécurité, les essais de comportement au feu, etc."
+"29.030","29","Magnetic materials","Matériaux magnétiques",,
+"29.035","29","Insulating materials","Matériaux isolants électriques",,
+"29.040","29","Insulating fluids","Fluides isolants",,
+"29.045","29","Semiconducting materials","Matériaux semi-conducteurs",,
+"29.050","29","Superconductivity and conducting materials","Supraconductivité et matériaux conducteurs",,
+"29.060","29","Electrical wires and cables","Fils et câbles électriques",,
+"29.080","29","Insulation","Isolation",,
+"29.100","29","Components for electrical equipment","Composants pour matériel électrique",,
+"29.120","29","Electrical accessories","Accessoires électriques",,
+"29.130","29","Switchgear and controlgear","Appareillages de connexion et de commande",,
+"29.140","29","Lamps and related equipment","Lampes et accessoires",,
+"29.160","29","Rotating machinery","Machines électriques tournantes",,
+"29.180","29","Transformers. Reactors","Transformateurs. Réacteurs",,
+"29.200","29","Rectifiers. Converters. Stabilized power supply","Redresseurs. Convertisseurs. Alimentations stabilisées","Including semiconductor converters","Y compris convertisseurs à semi-conducteurs"
+"29.220","29","Galvanic cells and batteries","Piles galvaniques et accumulateurs",,
+"29.240","29","Power transmission and distribution networks","Réseau de transport et de distribution de courant",,
+"29.260","29","Electrical equipment for working in special conditions","Installations électriques pour conditions particulières",,
+"29.280","29","Electric traction equipment","Matériel de traction électrique","Including railway electric fixed installations","Y compris installations fixes de traction électrique"
+"31.020","31","Electronic components in general","Composants électroniques en général",,
+"31.040","31","Resistors","Résistances électriques",,
+"31.060","31","Capacitors","Condensateurs",,
+"31.080","31","Semiconductor devices","Dispositifs à semi-conducteurs",,
+"31.100","31","Electronic tubes","Tubes électroniques",,
+"31.120","31","Electronic display devices","Dispositifs d'affichage électroniques","Including liquid crystal displays","Y compris affichage à cristaux liquides"
+"31.140","31","Piezoelectric devices","Dispositifs piézo-électriques",,
+"31.160","31","Electric filters","Filtres électriques",,
+"31.180","31","Printed circuits and boards","Cartes et circuits imprimés",,
+"31.190","31","Electronic component assemblies","Assemblages de composants électroniques","Including preassembled modules","Y compris modules préassemblés"
+"31.200","31","Integrated circuits. Microelectronics","Circuits intégrés. Micro-électronique","Including electronic chips, logical and analogue microstructures","Y compris puces électroniques, microstructures logiques et analogiques"
+"31.220","31","Electromechanical components for electronic and telecommunications equipment","Composants électromécaniques pour matériel électronique et de télécommunication",,
+"31.240","31","Mechanical structures for electronic equipment","Structures mécaniques pour équipement électronique",,
+"31.260","31","Optoelectronics. Laser equipment","Optoélectronique. Appareils à laser","Including photoelectric tubes and cells","Y compris tubes et cellules photoélectriques"
+"33.020","33","Telecommunications in general","Télécommunications en général","Including infrastructure","Y compris infrastructure"
+"33.030","33","Telecommunication services. Applications","Services de télécommunication. Applications","Including supplementary services, service aspects and associated legal traceability aspects","Y compris compléments de service, aspects de service et aspects légaux de traçabilité associés (interface d'interception autorisée)"
+"33.040","33","Telecommunication systems","Systèmes de télécommunication","Including network (system) aspects","Y compris les aspects réseau (système)"
+"33.050","33","Telecommunication terminal equipment","Équipements terminaux de télécommunication",,
+"33.060","33","Radiocommunications","Radiocommunications",,
+"33.070","33","Mobile services","Services mobiles",,
+"33.080","33","Integrated Services Digital Network (ISDN)","Réseau numérique à intégration de services (RNIS)",,
+"33.100","33","Electromagnetic compatibility (EMC)","Compatibilité électromagnétiques (CEM)","Including radio interference","Y compris les interférences radio"
+"33.120","33","Components and accessories for telecommunications equipment","Composants et accessoires pour matériel de télécommunication",,
+"33.140","33","Special measuring equipment for use in telecommunications","Matériel de mesure spécifique aux télécommunications",,
+"33.160","33","Audio, video and audiovisual engineering","Techniques audio, vidéo et audiovisuelles",,
+"33.170","33","Television and radio broadcasting","Radiodiffusion sonore et de télévision",,
+"33.180","33","Fibre optic communications","Communication par fibres optiques",,
+"33.200","33","Telecontrol. Telemetering","Télécommande. Télémesure","Including Supervising, Control and Data Acquisition System (SCADA)","Y compris système de commande de surveillance et d'acquisition de données (SCADA)"
+"35.020","35","Information technology (IT) in general","Technologie de l'information (TI) en général","Including general aspects of IT equipment","Y compris les aspects généraux du matériel des technologies de l'information"
+"35.030","35","IT Security","Sécurité des technologies de l’information","Including encryption","Y compris le chiffrement"
+"35.040","35","Information coding","Codage de l'information","Including coding of audio, picture, multimedia and hypermedia information, bar coding, etc.","Y compris le codage d’informations audio, multimédias ou hypermédias, le codage d’images, les codes à barres, etc."
+"35.060","35","Languages used in information technology","Langages utilisés dans les technologies de l'information",,
+"35.080","35","Software","Logiciels","Including software development, documentation and use","Y compris développement, documentation et utilisation de logiciel"
+"35.100","35","Open systems interconnection (OSI)","Interconnexion des systèmes ouverts (modèle OSI)",,
+"35.110","35","Networking","Réseaux","Including local area networks (LAN), metropolitan area networks (MAN), wide area networks (WAN), etc.","Y compris réseau locaux, réseaux métropolitains, réseaux longue distance, etc."
+"35.140","35","Computer graphics","Infographie",,
+"35.160","35","Microprocessor systems","Systèmes à microprocesseurs","Including PCs, calculators, etc.","Y compris ordinateurs personnels, calculateurs, etc."
+"35.180","35","IT terminal and other peripheral equipment","Terminaux et autres équipements périphériques des technologies de l'information","Including modems","Y compris les modems"
+"35.200","35","Interface and interconnection equipment","Matériel d'interface et d'interconnexion",,
+"35.210","35","Cloud computing","Informatique en nuage",,
+"35.220","35","Data storage devices","Unités de stockage des données",,
+"35.240","35","Applications of information technology","Applications des technologies de l'information",,
+"35.260","35","Office machines","Machines de bureau","Including typewriters, dictation equipment, addressing machines, letter opening machines, letter folding machines, postal franking machines, their ribbons and other accessories, etc.","Y compris machines à écrire, dictaphones, machines à adresser, machines à ouvrir les enveloppes, machines à plier les lettres, machines à affranchir, leurs rubans et autres accessoires, etc."
+"37.020","37","Optical equipment","Matériel optique","Including microscopes, telescopes, binoculars, optical materials, optical components and optical systems","Y compris microscopes, télescopes, jumelles, systèmes, matériels et accessoires optiques"
+"37.040","37","Photography","Photographie",,
+"37.060","37","Cinematography","Cinématographie",,
+"37.080","37","Document imaging applications","Applications imagerie documentaire","Including micrographic, electronic and optical applications","Y compris micrographie, applications optiques et électroniques"
+"37.100","37","Graphic technology","Technologie graphique",,
+"39.020","39","Precision mechanics","Mécanique de précision","Including microsystems","Y compris microsystèmes"
+"39.040","39","Horology","Horlogerie",,
+"39.060","39","Jewellery","Bijouterie","Including precious metals, precious and semi-precious stones","Y compris les métaux précieux, les pierres précieuses et semi-précieuses"
+"43.020","43","Road vehicles in general","Véhicules routiers en général","Including testing and recycling of road vehicles","Y compris essais et recyclage des véhicules routiers"
+"43.040","43","Road vehicle systems","Systèmes automobiles",,
+"43.060","43","Internal combustion engines for road vehicles","Moteurs à combustion interne pour véhicules routiers",,
+"43.080","43","Commercial vehicles","Véhicules utilitaires",,
+"43.100","43","Passenger cars. Caravans and light trailers","Voitures particulières. Caravanes et remorques légères",,
+"43.120","43","Electric road vehicles","Véhicules routiers électriques","Including their components and systems","Y compris leurs composants et systèmes"
+"43.140","43","Motorcycles and mopeds","Motocycles et cyclomoteurs","Including their components and systems","Y compris leurs composants et systèmes"
+"43.150","43","Cycles","Bicyclettes","Including their components and systems","Y compris leurs composants et systèmes"
+"43.160","43","Special purpose vehicles","Véhicules spéciaux","Including waste collection vehicles and components and systems for special purpose vehicles","Y compris les véhicules de collecte des ordures, les équipements et systèmes des véhicules spéciaux"
+"43.180","43","Diagnostic, maintenance and test equipment","Matériel de diagnostic, d'entretien et d'essai","Including repairing facilities","Y compris installations de réparation"
+"45.020","45","Railway engineering in general","Génie ferroviaire en général",,
+"45.040","45","Materials and components for railway engineering","Matériaux et composants pour les chemins de fer",,
+"45.060","45","Railway rolling stock","Matériel roulant de chemins de fer","Including materials, components, electric and electronic equipment for railway rolling stock","Y compris matériaux, composants et équipements électriques et électroniques pour matériel roulant de chemins de fer"
+"45.080","45","Rails and railway components","Rails et éléments constitutifs de la ligne de chemin de fer","Including track components","Y compris éléments de la voie ferrée"
+"45.100","45","Cableway equipment","Matériel pour transporteurs aériens par câble","Including ropeway equipment","Y compris matériel pour télésièges"
+"45.120","45","Equipment for railway/cableway construction and maintenance","Matériel pour la construction et l'entretien des chemins de fer et des transporteurs aériens par câble",,
+"45.140","45","Metro, tram and light rail equipment","Equipements pour le métro, le tramway et le rail léger",,
+"47.020","47","Shipbuilding and marine structures in general","Construction navale et structures maritimes en général","Including offshore structures, except offshore structures for petroleum and natural gas industries, and seabed mining","Y compris constructions en haute mer sauf les constructions pour les industries du pétrole et du gaz naturel, et pour l'exploitation des gisements marins"
+"47.040","47","Seagoing vessels","Navires de haute mer","Including their systems and components","Y compris leurs systèmes et composants"
+"47.060","47","Inland navigation vessels","Navires fluviaux","Including their systems and components","Y compris leurs systèmes et composants"
+"47.080","47","Small craft","Petits navires","Including small craft systems and components, and life-saving appliances","Y compris leurs systèmes et composants et les engins de sauvetage"
+"49.020","49","Aircraft and space vehicles in general","Aéronautique et espace en général","Including aircraft performance, flight dynamics, etc.","Y compris performance des aéronefs, mécanique du vol, etc."
+"49.025","49","Materials for aerospace construction","Matériaux pour la construction aéronautique",,
+"49.030","49","Fasteners for aerospace construction","Éléments de fixation pour la construction aéronautique",,
+"49.035","49","Components for aerospace construction","Composants pour la construction aéronautique","Including bearings, rod ends and other mechanical components","Y compris les roulements, les embouts de bielles et autres composants mécaniques"
+"49.040","49","Coatings and related processes used in aerospace industry","Revêtements et procédés connexes pour la construction aéronautique",,
+"49.045","49","Structure and structure elements","Structure et éléments de structure",,
+"49.050","49","Aerospace engines and propulsion systems","Moteurs et systèmes de propulsion aérospatiaux","Including fuel systems","Y compris systèmes d'alimentation en carburant"
+"49.060","49","Aerospace electric equipment and systems","Équipement et systèmes électriques aérospatiaux","Including Avionics","Y compris électronique aérospatiale"
+"49.080","49","Aerospace fluid systems and components","Systèmes aérospatiaux de fluides et leurs composants",,
+"49.090","49","On-board equipment and instruments","Équipement et instruments de bord","Including navigation instruments and telecommunications equipment","Y compris instruments de navigation et matériel de télécommunication"
+"49.095","49","Passenger and cabin equipment","Équipement de cabine et équipement pour passagers",,
+"49.100","49","Ground service and maintenance equipment","Matériel d'entretien et pour les services au sol",,
+"49.120","49","Cargo equipment","Matériel de fret",,
+"49.140","49","Space systems and operations","Systèmes spatiaux, développement et mise en oeuvre","Including space data and information transfer systems, and ground support equipment for launch site operations","Y compris les systèmes de transfert des informations et données spatiales et les équipements au sol pour les opérations de lancement"
+"53.020","53","Lifting equipment","Matériel de levage",,
+"53.040","53","Continuous handling equipment","Engins de manutention continue",,
+"53.060","53","Industrial trucks","Chariots industriels","Including fork-lift trucks, sliding platforms, etc.","Y compris chariots élévateurs à fourche, plates-formes coulissantes, etc."
+"53.080","53","Storage equipment","Matériel de stockage","Including loading devices, shelves, etc.","Y compris dispositifs de chargement, rayonnages, etc."
+"53.100","53","Earth-moving machinery","Engins de terrassement","Including tractors, excavators, loaders, graders, etc.","Y compris tracteurs, excavatrices, pelleteuses, niveleuses, etc."
+"53.120","53","Equipment for manual handling","Équipement pour manutention manuelle","Including shovels, spades, crowbars, picks, etc.","Y compris pelles, bêches, pinces, pioches, etc."
+"55.020","55","Packaging and distribution of goods in general","Emballage et distribution des marchandises en général",,
+"55.040","55","Packaging materials and accessories","Matériaux d'emballage et accessoires","Including wrappers, paper, films, foils, cords, sealing devices, cushioning, etc.","Y compris feuilles, films, papier, ficelles, dispositifs de cachetage, de matelassage, etc."
+"55.060","55","Spools. Bobbins","Canettes. Bobines","Including holders, supports, etc. for externally wound or mounted material","Y compris supports pour matériaux enveloppés extérieurement"
+"55.080","55","Sacks. Bags","Sacs. Pochettes","Including sachets, envelopes","Y compris sachets, enveloppes"
+"55.100","55","Bottles. Pots. Jars","Bouteilles. Pots. Bocaux","Small containers for liquids and their closures","Petits récipients pour liquides et leurs dispositifs de fermeture"
+"55.120","55","Cans. Tins. Tubes","Boîtiers. Boîtes de conserve. Tubes","Light gauge metal and plastics containers","Récipients légers en métal et plastique"
+"55.130","55","Aerosol containers","Récipients pour aérosols",,
+"55.140","55","Barrels. Drums. Canisters","Barils. Tonneaux. Bidons","Containers mainly for transportation of fluids, including also casks, pails, large tin cans for shipping materials, etc.","Conteneurs destinés principalement au transport de liquides, y compris aussi fûts, seaux, etc."
+"55.160","55","Cases. Boxes. Crates","Boîtes. Caisses. Cageots","Containers for solid goods or objects and bulk materials","Conteneurs pour objets et marchandises solides et matériaux en vrac"
+"55.180","55","Freight distribution of goods","Distribution des marchandises",,
+"55.200","55","Packaging machinery","Machines d'emballage","Including labelling, marking, branding, filling, sealing machines, etc.","Y compris machines à étiqueter, à marquer, à remplir, à plomber, etc."
+"55.220","55","Storing. Warehousing","Entrepôts. Magasins",,
+"55.230","55","Distribution and vending machines","Distributeurs automatiques","Including distribution of tickets, food, beverages, tobacco products, etc.","Y compris distributeurs de tickets, nourriture, boissons, tabac, etc."
+"59.020","59","Processes of the textile industry","Procédés de l'industrie textile",,
+"59.040","59","Textile auxiliary materials","Matériaux auxiliaires du textile","Including feathers and down","Y compris plumes et duvets"
+"59.060","59","Textile fibres","Fibres textiles",,
+"59.080","59","Products of the textile industry","Produits de l'industrie textile",,
+"59.100","59","Materials for the reinforcement of composites","Matériaux pour le renforcement des composites",,
+"59.120","59","Textile machinery","Matériel pour l'industrie textile",,
+"59.140","59","Leather technology","Technologie du cuir","Including fur and imitation leather","Y compris fourrure et imitation du cuir"
+"61.020","61","Clothes","Vêtements","Including underwear, nightwear, knitwear, military clothing, hosiery, etc. and their labelling and size coding schemes","Y compris sous-vêtements, vêtements de nuit, tricot, vêtements militaires, bonneterie, etc. et leur étiquetage et modes de codage des tailles"
+"61.040","61","Headgear. Clothing accessories. Fastening of clothing","Coiffures. Accessoires d'habillage. Dispositif de fermeture","Including ties, gloves, scarves, handkerchiefs, belts, braces, buttons, zip-fasteners, umbrellas, etc.","Y compris cravates, gants, foulards, mouchoirs, ceintures, bretelles, boutons, fermetures à glissière, boucles, parapluies, etc."
+"61.060","61","Footwear","Chaussures","Including shoelaces","Y compris lacets de chaussures"
+"61.080","61","Sewing machines and other equipment for the clothing industry","Machines à coudre et autres matériels pour l'industrie du vêtement","Including household sewing machines","Y compris machines à coudre domestiques"
+"65.020","65","Farming and forestry","Agriculture et sylviculture",,
+"65.040","65","Farm buildings, structures and installations","Bâtiments, structures et installations agricoles",,
+"65.060","65","Agricultural machines, implements and equipment","Machines, instruments et matériel à usage agricole",,
+"65.080","65","Fertilizers","Engrais","Including soil conditioners and culture medium","Y compris amendements et supports de culture"
+"65.100","65","Pesticides and other agrochemicals","Pesticides et autres produits agropharmaceutiques",,
+"65.120","65","Animal feeding stuffs","Aliments des animaux",,
+"65.140","65","Beekeeping","Apiculture","Including equipment and installations for beekeeping","Y compris équipements et installations correspondants"
+"65.145","65","Hunting","Chasse","Including equipment and installations for hunting","Y compris équipements et installations correspondants"
+"65.150","65","Fishing and fish breeding","Pêche et aquaculture","Including hunting of marine mammals and reptiles, collection and breeding of aquatic molluscs and other marine products, equipment and installations for fishing and fish breeding, etc.","Y compris chasse des mammifères et des reptiles marins, collecte et élevage des mollusques aquatiques et des autres produits de la mer, équipements et installations pour la pêche et l'aquaculture, etc."
+"65.160","65","Tobacco, tobacco products and related equipment","Tabac, produits du tabac et équipements connexes",,
+"67.020","67","Processes in the food industry","Procédés dans l'industrie alimentaire","Including food hygiene and food safety","Y compris hygiène et sécurité alimentaires"
+"67.040","67","Food products in general","Produits alimentaires en général",,
+"67.050","67","General methods of tests and analysis for food products","Méthodes générales d'analyse et d'essai des produits alimentaires",,
+"67.060","67","Cereals, pulses and derived products","Céréales, légumineuses et produits dérivés","Including grains, corn, flours, baked products, etc.","Y compris semences, grains, farines, produits de boulangerie, etc."
+"67.080","67","Fruits. Vegetables","Fruits. Légumes","Including canned, dried and quick-frozen fruits and vegetables","Y compris fruits et légumes en conserve, séchés ou congelés"
+"67.100","67","Milk and milk products","Lait et produits laitiers",,
+"67.120","67","Meat, meat products and other animal produce","Viande, produits à base de viande ou d'origine animale","Including frozen products","Y compris produits congelés"
+"67.140","67","Tea. Coffee. Cocoa","Thé. Café. Cacao",,
+"67.160","67","Beverages","Boissons",,
+"67.180","67","Sugar. Sugar products. Starch","Sucre. Produits sucrés. Amidon",,
+"67.190","67","Chocolate","Chocolat",,
+"67.200","67","Edible oils and fats. Oilseeds","Huiles et corps gras comestibles. Graines oléagineuses",,
+"67.220","67","Spices and condiments. Food additives","Épices et condiments. Additifs alimentaires",,
+"67.230","67","Prepackaged and prepared foods","Aliments pré-emballés et cuisinés","Including baby food","Y compris aliments infantiles"
+"67.240","67","Sensory analysis","Analyse sensorielle",,
+"67.250","67","Materials and articles in contact with foodstuffs","Matériaux et articles au contact des aliments","Including catering containers, and materials and articles in contact with drinking water","Y compris bacs pour la cuisine et le transport de nourriture et matériaux et articles au contact de l'eau potable"
+"67.260","67","Plants and equipment for the food industry","Installation et matériel pour l'industrie alimentaire",,
+"71.020","71","Production in the chemical industry","Production dans l'industrie chimique","Including plant layout and services, process design and control, processing operations, security measures, etc.","Y compris agencement et services de l'usine, conception et contrôle des processus, opérations de traitement, mesures de sécurité, etc."
+"71.040","71","Analytical chemistry","Chimie analytique",,
+"71.060","71","Inorganic chemicals","Chimie minérale",,
+"71.080","71","Organic chemicals","Chimie organique",,
+"71.100","71","Products of the chemical industry","Produits de l'industrie chimique",,
+"71.120","71","Equipment for the chemical industry","Matériel pour l'industrie chimique",,
+"73.020","73","Mining and quarrying","Exploitation minière et de carrière","Including exploration, opening-up, development, working of mineral deposits, drilling, construction of mines, mining operations, processing of minerals, etc.","Y compris prospection, exploitation des gisements, forage, construction des mines, traitement des minerais, etc."
+"73.040","73","Coals","Charbon","Including lignites","Y compris lignites"
+"73.060","73","Metalliferous minerals and their concentrates","Minerais métallifères et leurs concentrés",,
+"73.080","73","Non-metalliferous minerals","Minerais non métallifères","Including mica, fluorspar, etc.","Y compris mica, spathfluor, etc."
+"73.100","73","Mining equipment","Matériel pour exploitation minière",,
+"73.120","73","Equipment for processing of minerals","Matériel pour le traitement des minerais","Including equipment for milling, sizing, separation, flotation, concentration, etc.","Y compris matériel de broyage, de calibrage, de séparation, de flottation, de concentration, etc."
+"75.020","75","Extraction and processing of petroleum and natural gas","Extraction et traitement du pétrole et du gaz naturel",,
+"75.040","75","Crude petroleum","Pétrole brut",,
+"75.060","75","Natural gas","Gaz naturel",,
+"75.080","75","Petroleum products in general","Produits pétroliers en général",,
+"75.100","75","Lubricants, industrial oils and related products","Lubrifiants, huiles industrielles et produits connexes","Including mineral oils, fluids for metal working and for temporary protection against corrosion","Y compris huiles minérales, fluides pour le travail du métal et pour la protection temporaire contre la corrosion"
+"75.120","75","Hydraulic fluids","Fluides hydrauliques",,
+"75.140","75","Waxes, bituminous materials and other petroleum products","Cires, produits bitumineux et autres produits pétroliers",,
+"75.160","75","Fuels","Combustibles",,
+"75.180","75","Equipment for petroleum and natural gas industries","Équipement pour les industries du pétrole et du gaz naturel",,
+"75.200","75","Petroleum products and natural gas handling equipment","Équipement de transport du pétrole, des produits pétroliers et du gaz naturel","Including petroleum and natural gas storage devices, distribution systems, pipelines, petrol stations, dispensing devices, etc.","Y compris dispositifs de stockage du pétrole et du gaz naturel, systèmes et appareils de distribution, canalisations de transport, stations-service, appareils de distribution, etc."
+"77.020","77","Production of metals","Production des métaux",,
+"77.040","77","Testing of metals","Essais des métaux",,
+"77.060","77","Corrosion of metals","Corrosion des métaux",,
+"77.080","77","Ferrous metals","Métaux ferreux","Including classification, designation, sampling, chemical analysis, etc.","Y compris classification, désignation, échantillonnage, analyse chimique, etc."
+"77.100","77","Ferroalloys","Ferro-alliages","Including classification, designation, sampling, chemical analysis, etc.","Y compris classification, désignation, échantillonnage, analyse chimique, etc."
+"77.120","77","Non-ferrous metals","Métaux non ferreux","Including classification, designation, sampling, chemical analysis, etc.","Y compris classification, désignation, échantillonnage, analyse chimique, etc."
+"77.140","77","Iron and steel products","Produits en fonte et produits en acier",,
+"77.150","77","Products of non-ferrous metals","Produits en métaux non ferreux","Including products of non-ferrous metal alloys","Y compris produits en alliages de métaux non ferreux"
+"77.160","77","Powder metallurgy","Métallurgie des poudres","Including sintered metal materials and hard metals","Y compris matériaux métalliques frittés et métaux durs"
+"77.180","77","Equipment for the metallurgical industry","Équipement pour l'industrie métallurgique",,
+"79.020","79","Wood technology processes","Procédés technologiques du bois","Including logging and wood treatment","Y compris bûcheronnage et traitement du bois"
+"79.040","79","Wood, sawlogs and sawn timber","Bois, grumes à sciages et bois sciés",,
+"79.060","79","Wood-based panels","Panneaux à base de bois",,
+"79.080","79","Semi-manufactures of timber","Bois semi-manufacturés","Including parquet, wood paving, handles, etc.","Y compris parquet, pavages en bois, manches d'outils, etc."
+"79.100","79","Cork and cork products","Liège et produits en liège",,
+"79.120","79","Woodworking equipment","Matériel pour le travail du bois",,
+"81.020","81","Processes in the glass and ceramics industries","Procédés des industries du verre et de la céramique",,
+"81.040","81","Glass","Verre",,
+"81.060","81","Ceramics","Céramiques","Including glass-ceramics","Y compris vitro-céramiques"
+"81.080","81","Refractories","Matériaux réfractaires","Including ceramic refractories","Y compris réfractaires à base de céramiques"
+"81.100","81","Equipment for the glass and ceramics industries","Matériel pour les industries du verre et de la céramique",,
+"83.020","83","Manufacturing processes in the rubber and plastics industries","Procédés de fabrication dans les industries des élastomères et des plastiques",,
+"83.040","83","Raw materials for rubber and plastics","Matières premières pour les élastomères et les plastiques",,
+"83.060","83","Rubber","Élastomères",,
+"83.080","83","Plastics","Plastiques",,
+"83.100","83","Cellular materials","Matériaux alvéolaires",,
+"83.120","83","Reinforced plastics","Plastiques renforcés",,
+"83.140","83","Rubber and plastics products","Produits en élastomères ou en matières plastiques",,
+"83.160","83","Tyres","Pneumatiques","Including tubes and valves","Y compris chambres à air et valves"
+"83.180","83","Adhesives","Adhésifs","Including adhesive tapes","Y compris rubans adhésifs"
+"83.200","83","Equipment for the rubber and plastics industries","Équipement pour les industries des élastomères et des plastiques",,
+"85.020","85","Paper production processes","Procédés de production du papier","Including paper recycling","Y compris recyclage du papier"
+"85.040","85","Pulps","Pâtes à papier",,
+"85.060","85","Paper and board","Papiers et cartons",,
+"85.080","85","Paper products","Produits en papier","Including paper based stationery","Y compris articles de papeterie"
+"85.100","85","Equipment for the paper industry","Équipement pour l'industrie papetière",,
+"87.020","87","Paint coating processes","Procédés de revêtement par peinturage",,
+"87.040","87","Paints and varnishes","Peintures et vernis","Including coating powders, paint coatings and protective paint systems","Y compris poudres pour revêtements, surfaces peintes et systèmes de peinture anticorrosion"
+"87.060","87","Paint ingredients","Ingrédients des peintures",,
+"87.080","87","Inks. Printing inks","Encres. Encres d'imprimerie",,
+"87.100","87","Paint coating equipment","Équipement d'application de la peinture",,
+"91.010","91","Construction industry","Industrie de la construction",,
+"91.020","91","Physical planning. Town planning","Aménagement. Urbanisme",,
+"91.040","91","Buildings","Bâtiments",,
+"91.060","91","Elements of buildings","Éléments de construction",,
+"91.080","91","Structures of buildings","Structures de construction","Including design, loading on and calculation of structures","Y compris conception, charges permanentes et d'exploitation, règles de calcul des structures"
+"91.090","91","External structures","Structures extérieures","Including fences, gates, arches, sheds, garages, etc.","Y compris clôtures, portails, arches, hangars, garages, etc."
+"91.100","91","Construction materials","Matériaux de construction","Including sustainability of construction materials","Y compris la durabilité des matériaux de construction"
+"91.120","91","Protection of and in buildings","Protection extérieure et intérieure des bâtiments",,
+"91.140","91","Installations in buildings","Installations dans les bâtiments",,
+"91.160","91","Lighting","Éclairage","Including oil and gas lamps","Y compris lampes à huile et à gaz"
+"91.180","91","Interior finishing","Finitions intérieures",,
+"91.190","91","Building accessories","Accessoires pour le bâtiment","Including locks, buzzers, bells, bolts, door and window hardware, etc.","Y compris serrures, sonnettes, carillons, verrous, quincaillerie pour les portes et fenêtres, etc."
+"91.200","91","Construction technology","Techniques de construction","Including measuring methods, construction sites, demolition of structures, etc.","Y compris méthodes de mesure, chantiers, démolition des structures, etc."
+"91.220","91","Construction equipment","Matériel de construction","Including scaffolding, mixers for concrete and mortar, etc.","Y compris échafaudages, mélangeurs à béton et mortier, etc."
+"93.010","93","Civil engineering in general","Génie civil en général",,
+"93.020","93","Earthworks. Excavations. Foundation construction. Underground works","Travaux de terrassement. Excavation. Fondation. Travaux en souterrain","Including geotechnics","Y compris géotechnique"
+"93.025","93","External water conveyance systems","Systèmes externes d'adduction d'eau","Including buried and above ground installations","Y compris installations aériennes et enterrées"
+"93.030","93","External sewage systems","Systèmes externes d'évacuation des eaux usées",,
+"93.040","93","Bridge construction","Construction des ponts",,
+"93.060","93","Tunnel construction","Construction des tunnels",,
+"93.080","93","Road engineering","Génie routier",,
+"93.100","93","Construction of railways","Construction ferroviaire","Including the construction of tramways, funicular railways, cableways, rail traffic control equipment and installations, etc.","Y compris constructions pour tramways, funiculaires, téléphériques, installations et équipements de régulation du trafic ferroviaire, etc."
+"93.110","93","Construction of ropeways","Construction des télésièges",,
+"93.120","93","Construction of airports","Construction des aéroports","Including air transport control equipment and installations","Y compris installations et matériel de régulation du transport aérien"
+"93.140","93","Construction of waterways, ports and dykes","Construction des canaux des ports et des digues","Including river embankments, water transport control equipment and installations, etc.","Y compris endiguements, installations et matériel de régulation du transport maritime et fluvial, etc."
+"93.160","93","Hydraulic construction","Construction hydraulique",,
+"95.020","95","Military in general","Affaires militaires en général","Including defense procurement, defense standardization, etc.","Y compris les acquisitions de systèmes de défense, la normalisation dans le domaine de la défense, etc."
+"95.040","95","Military engineering","Génie militaire",,
+"95.060","95","Weapons","Systèmes d’armes",,
+"97.020","97","Home economics in general","Économie domestique en général","Including consumer information","Y compris information des consommateurs"
+"97.030","97","Domestic electrical appliances in general","Appareils électrodomestiques en général","Including water-bed heaters and electric blankets","Y compris dispositifs de chauffage des lits à eau et couvertures chauffantes"
+"97.040","97","Kitchen equipment","Équipements de cuisine",,
+"97.060","97","Laundry appliances","Équipements de blanchisserie","Including washing-machines, dry-cleaners, driers, ironing and pressing appliances, etc.","Y compris machines à laver, appareils de nettoyage à sec, séchoirs, appareils de repassage et de pressage, etc."
+"97.080","97","Cleaning appliances","Appareils de nettoyage des sols","Including vacuum cleaners, floor-cleaning machines, floor polishers, steam cleaners, pressure cleaners, hand operated cleaners, etc.","Y compris aspirateurs, machines à nettoyer les sols, cireuses, appareils de nettoyage à vapeur, nettoyeurs haute pression, nettoyeurs à main, etc."
+"97.100","97","Domestic, commercial and industrial heating appliances","Appareils de chauffage à usage domestique, industriel et commercial","Including thermal storage room heating appliances","Y compris appareils de chauffage des locaux à accumulation"
+"97.120","97","Automatic controls for household use","Commandes automatiques à usage domestique",,
+"97.130","97","Shop fittings","Aménagement des magasins",,
+"97.140","97","Furniture","Ameublement","Including upholstery, mattresses, office furniture, school furniture, etc.","Y compris tapisserie d'ameublement, matelas, mobilier de bureau, mobilier scolaire, etc."
+"97.145","97","Ladders","Echelles",,
+"97.150","97","Floor coverings","Revêtements de sol",,
+"97.160","97","Home textiles. Linen","Textiles de maison. Linge","Including duvets, blankets, bedding","Y compris duvets, couvertures, literie"
+"97.170","97","Body care equipment","Équipements pour les soins du corps","Including hair-driers, razors, shavers, toothbrushes, massage appliances, radiation skin treatment appliances, etc.","Y compris sèche-cheveux, rasoirs, brosses à dents, appareils de massage, appareils de traitement de la peau par rayonnement, etc."
+"97.180","97","Miscellaneous domestic and commercial equipment","Équipements ménagers et commerciaux divers","Including scissors, aquarium equipment, articles for domestic animals, battery chargers, mops, insect electrocutors, lighters, matches, paper clips, pens, pencils, etc.","Y compris ciseaux, équipements pour les aquariums, articles pour les animaux domestiques, chargeurs de batteries, balais, électrocuteurs d'insectes, briquets, allumettes, trombones, stylos, crayons, etc."
+"97.190","97","Equipment for children","Équipements pour les enfants","Including child safety requirements for other household equipment","Y compris les exigences en matière de sécurité des enfants pour les équipements domestiques"
+"97.195","97","Items of art and handicrafts. Cultural property and heritage","Objets d'art et produits de l'industrie artisanale. Biens culturels et patrimoine culturel","Including conservation of collections and equipment and materials for creating items of art and handicrafts","Y compris la conservation des collections, les matériaux et matériels utilisés pour la création des objets d'art et des produits de l'industrie artisanale"
+"97.200","97","Equipment for entertainment","Équipements de loisirs",,
+"97.220","97","Sports equipment and facilities","Équipements et installations de sports",,
+"01.040.01","01.040","Generalities. Terminology. Standardization. Documentation (Vocabularies)","Généralités. Terminologie. Normalisation. Documentation (Vocabulaires)",,
+"01.040.03","01.040","Services. Company organization, management and quality. Administration. Transport. Sociology. (Vocabularies)","Services. Organisation de l'entreprise. Gestion et qualité. Administration. Transport. Sociologie. (Vocabulaires)",,
+"01.040.07","01.040","Natural and applied sciences (Vocabularies)","Sciences naturelles et sciences appliquées (Vocabulaires)",,
+"01.040.11","01.040","Health care technology (Vocabularies)","Technologies de la santé (Vocabulaires)",,
+"01.040.13","01.040","Environment. Health protection. Safety (Vocabularies)","Environnement. Protection de la santé. Sécurité (Vocabulaires)",,
+"01.040.17","01.040","Metrology and measurement. Physical phenomena (Vocabularies)","Métrologie et mesurage. Phénomènes physiques (Vocabulaires)",,
+"01.040.19","01.040","Testing (Vocabularies)","Essais (Vocabulaires)",,
+"01.040.21","01.040","Mechanical systems and components for general use (Vocabularies)","Systèmes et composants mécaniques à usage général (Vocabulaires)",,
+"01.040.23","01.040","Fluid systems and components for general use (Vocabularies)","Fluidique et composants à usage général (Vocabulaires)",,
+"01.040.25","01.040","Manufacturing engineering (Vocabularies)","Techniques de fabrication (Vocabulaires)",,
+"01.040.27","01.040","Energy and heat transfer engineering (Vocabularies)","Ingénierie de l'énergie et de la transmission de la chaleur (Vocabulaires)",,
+"01.040.29","01.040","Electrical engineering (Vocabularies)","Électrotechnique (Vocabulaires)",,
+"01.040.31","01.040","Electronics (Vocabularies)","Électronique (Vocabulaires)",,
+"01.040.33","01.040","Telecommunications. Audio and video engineering (Vocabularies)","Télécommunications. Techniques audio et vidéo (Vocabulaires)",,
+"01.040.35","01.040","Information technology (Vocabularies)","Technologies de l'information (Vocabulaires)",,
+"01.040.37","01.040","Image technology (Vocabularies)","Technologie de l'image (Vocabulaires)",,
+"01.040.39","01.040","Precision mechanics. Jewellery (Vocabularies)","Mécanique de précision. Bijouterie (Vocabulaires)",,
+"01.040.43","01.040","Road vehicle engineering (Vocabularies)","Véhicules routiers (Vocabulaires)",,
+"01.040.45","01.040","Railway engineering (Vocabularies)","Chemins de fer (Vocabulaires)",,
+"01.040.47","01.040","Shipbuilding and marine structures (Vocabularies)","Construction navale et structure maritimes (Vocabulaires)",,
+"01.040.49","01.040","Aircraft and space vehicle engineering (Vocabularies)","Aéronautique et espace (Vocabulaires)",,
+"01.040.53","01.040","Materials handling equipment (Vocabularies)","Matériel de manutention des matériaux (Vocabulaires)",,
+"01.040.55","01.040","Packaging and distribution of goods (Vocabularies)","Emballage et distribution des marchandises (Vocabulaires)",,
+"01.040.59","01.040","Textile and leather technology (Vocabularies)","Industrie textile et technologie du cuir (Vocabulaires)",,
+"01.040.61","01.040","Clothing industry (Vocabularies)","Industrie du vêtement (Vocabulaires)",,
+"01.040.65","01.040","Agriculture (Vocabularies)","Agriculture (Vocabulaires)",,
+"01.040.67","01.040","Food technology (Vocabularies)","Technologie alimentaire (Vocabulaires)",,
+"01.040.71","01.040","Chemical technology (Vocabularies)","Génie chimique (Vocabulaires)",,
+"01.040.73","01.040","Mining and minerals (Vocabularies)","Mines et minerais (Vocabulaires)",,
+"01.040.75","01.040","Petroleum and related technologies (Vocabularies)","Industrie du pétrole et technologies associées (Vocabulaires)",,
+"01.040.77","01.040","Metallurgy (Vocabularies)","Métallurgie (Vocabulaires)",,
+"01.040.79","01.040","Wood technology (Vocabularies)","Technologie du bois (Vocabulaires)",,
+"01.040.81","01.040","Glass and ceramics industries (Vocabularies)","Industries du verre et de la céramique (Vocabulaires)",,
+"01.040.83","01.040","Rubber and plastics industries (Vocabularies)","Industries des élastomères et des plastiques (Vocabulaires)",,
+"01.040.85","01.040","Paper technology (Vocabularies)","Technologie du papier (Vocabulaires)",,
+"01.040.87","01.040","Paint and colour industries (Vocabularies)","Industries des peintures et des couleurs (Vocabulaires)",,
+"01.040.91","01.040","Construction materials and building (Vocabularies)","Bâtiment et matériaux de construction (Vocabulaires)",,
+"01.040.93","01.040","Civil engineering (Vocabularies)","Génie civil (Vocabulaires)",,
+"01.040.95","01.040","Military Affairs. Military engineering. Weapons (Vocabularies)","Affaires militaires. Génie militaire. Armes (Vocabulaires)",,
+"01.040.97","01.040","Domestic and commercial equipment. Entertainment. Sports (Vocabularies)","Équipement ménager et commercial. Loisirs. Sports (Vocabulaires)",,
+"01.080.01","01.080","Graphical symbols in general","Symboles graphiques en général",,
+"01.080.10","01.080","Public information symbols. Signs. Plates. Labels","Symboles graphiques destinés à l'information du public","Including safety signs, safety colours, etc.","Y compris les signaux de sécurité, les couleurs de sécurité, etc."
+"01.080.20","01.080","Graphical symbols for use on specific equipment","Symboles graphiques utilisés sur des équipements spécifiques",,
+"01.080.30","01.080","Graphical symbols for use on mechanical engineering and construction drawings, diagrams, plans, maps and in relevant technical product documentation","Symboles graphiques utilisés dans les dessins, schémas, plans, cartes de construction mécanique et de bâtiment et dans la documentation technique des produits s'y rapportant",,
+"01.080.40","01.080","Graphical symbols for use on electrical and electronics engineering drawings, diagrams, charts and in relevant technical product documentation","Symboles graphiques utilisés dans les dessins, diagrammes, tableaux d'électronique et d'électrotechnique et dans la documentation technique des produits s'y rapportant",,
+"01.080.50","01.080","Graphical symbols for use on information technology and telecommunications technical drawings and in relevant technical product documentation","Symboles graphiques utilisés dans les dessins techniques en technologies de l'information et de télécommunications et dans la documentation technique des produits s'y rapportant",,
+"01.080.99","01.080","Other graphical symbols","Autres symboles graphiques",,
+"01.100.01","01.100","Technical drawings in general","Dessins techniques en général",,
+"01.100.20","01.100","Mechanical engineering drawings","Dessins de construction mécanique",,
+"01.100.25","01.100","Electrical and electronics engineering drawings","Dessins d'électronique et d'électrotechnique","Including electrical tables, diagrams and charts","Y compris les diagrammes et les schémas électriques"
+"01.100.27","01.100","Technical drawings for telecommunications and information technology fields","Dessins utilisés dans les domaines des télécommunications et du traitement de l'information",,
+"01.100.30","01.100","Construction drawings","Dessins de bâtiment","Including civil engineering drawings","Y compris dessins de génie civil"
+"01.100.40","01.100","Drawing equipment","Matériel de dessin",,
+"01.100.99","01.100","Other standards related to technical drawings","Autres normes relatives aux dessins techniques",,
+"01.140.10","01.140","Writing and transliteration","Règles d'écriture et translittération",,
+"01.140.20","01.140","Information sciences","Sciences de l'information","Including documentation, librarianship and archive systems","Y compris documentation, bibliothéconomie et archivistiques"
+"01.140.30","01.140","Documents in administration, commerce and industry","Documents dans l'administration, le commerce et l'industrie",,
+"01.140.40","01.140","Publishing","Édition",,
+"03.080.01","03.080","Services in general","Services en général",,
+"03.080.10","03.080","Maintenance services. Facilities management","Services de maintenance. Gestion des infrastructures","Including cleaning and pest control","Y compris le nettoyage et la maîtrise des nuisibles"
+"03.080.20","03.080","Services for companies","Services aux entreprises","Including publicity, advertising, professional services, recruitment services, management consultancy, outsourcing, etc.","Y compris publicité, communication, services professionnels, services de recrutement, conseil en gestion, sous-traitance, etc."
+"03.080.30","03.080","Services for consumers","Services aux consommateurs","Including hotels, restaurants, washing, cleaning, removals, funerals, real estate, vehicle repair and servicing, furniture removals, services for elderly, sheltered housing services for elderly, sheltered housing, etc.","Y compris hôtels, restaurants, laverie, nettoyage, déménagement, pompes funèbres, immobilier, réparation et révision des véhicules, enlèvement de meubles, services destinésaux personnes âgées, logements accompagnés, etc."
+"03.080.99","03.080","Other services","Autres services",,
+"03.100.01","03.100","Company organization and management in general","Organisation et gestion d'entreprise en général","Including legal aspects and risk management, societal security, outsourcing","Y compris les aspects légaux et la gestion du risque, la sécurité sociétale, la gestion de la sous-traitance"
+"03.100.02","03.100","Governance and ethics","Gouvernance et éthique","Including anti-bribery, anti-procurement fraud, corporate social responsibility","Y compris la lutte contre la corruption, la lutte contre la fraude aux achats, la responsabilité sociétale des entreprises"
+"03.100.10","03.100","Purchasing. Procurement. Logistics","Approvisionnement. Achats. Logistique","Including asset management, supply chain, etc.","Y compris la gestion d'actifs, la chaîne d'approvisionnement, etc."
+"03.100.20","03.100","Trade. Commercial function. Marketing","Commerce. Fonction commerciale. Mercatique",,
+"03.100.30","03.100","Management of human resources","Gestion des ressources humaines","Including staff training, staff responsibilities, staff qualifications and certification","Y compris encadrement, formation, qualification et certification du personnel"
+"03.100.40","03.100","Research and development","Recherche et développement","Including project management, value analysis, etc.","Y compris gestion de projet, analyse de la valeur, etc."
+"03.100.50","03.100","Production. Production management","Production. Gestion de production",,
+"03.100.60","03.100","Accountancy","Comptabilité",,
+"03.100.70","03.100","Management systems","Systèmes de management","Including environmental management systems (EMS), road traffic management systems, energy management systems, health care management systems, etc.","Y compris les systèmes de management environnemental (SME), les systèmes de management de la circulation routière, les systèmes de management de l'énergie, les sysèmes de management dans le domaine de la santé, etc."
+"03.100.99","03.100","Other standards related to company organization and management","Autres normes relatives à l'organisation et à la gestion d'entreprise",,
+"03.120.01","03.120","Quality in general","Qualité en général","Including general aspects related to reliability and maintainability","Y compris les aspects généraux concernant la fiabilité et la maintenabilité"
+"03.120.10","03.120","Quality management and quality assurance","Management et assurance de la qualité",,
+"03.120.20","03.120","Product and company certification. Conformity assessment","Certification des produits et des entreprises. Évaluation de la conformité","Including laboratory accreditation and audit programmes and auditing","Y compris l'accréditation de laboratoires, l'audit et les programmes d'audit"
+"03.120.30","03.120","Application of statistical methods","Application des méthodes statistiques",,
+"03.120.99","03.120","Other standards related to quality","Autres normes relatives à la qualité",,
+"03.200.01","03.200","Leisure and tourism in general","Loisirs et tourisme en général","Including outdoor events management, tourist information offices, tourism services, hotels, etc.","Y compris le management d'événements en plein air, les offices de tourisme, les services touristiques, les hôtels, etc."
+"03.200.10","03.200","Adventure tourism","Tourisme d'aventure",,
+"03.200.99","03.200","Other standards relating to leisure and tourism","Autres normes relatives aux loisirs et au tourisme","Including recreational diving services","Y compris les services dans le domaine de la plongée de loisirs"
+"03.220.01","03.220","Transport in general","Transport en général",,
+"03.220.20","03.220","Road transport","Transport routier","Including road transport services","Y compris services de transport routier"
+"03.220.30","03.220","Transport by rail","Transport ferroviaire","Including rail transport services","Y compris services de transport ferroviaire"
+"03.220.40","03.220","Transport by water","Transport fluvial et maritime","Including water transport services","Y compris services de transport fluvial et maritime"
+"03.220.50","03.220","Air transport","Transport aérien","Including air transport services","Y compris services de transport aérien"
+"03.220.99","03.220","Other forms of transport","Autres modes de transport",,
+"07.100.01","07.100","Microbiology in general","Microbiologie en général",,
+"07.100.10","07.100","Medical microbiology","Microbiologie médicale",,
+"07.100.20","07.100","Microbiology of water","Microbiologie de l'eau",,
+"07.100.30","07.100","Food microbiology","Microbiologie alimentaire","Including microbiology of animal feeding stuffs","Y compris la microbiologie des produits d'alimentation animale"
+"07.100.40","07.100","Cosmetics microbiology","Microbiologie des produits cosmétiques",,
+"07.100.99","07.100","Other standards related to microbiology","Autres normes relatives à la microbiologie",,
+"11.020.01","11.020","Quality and environmental management in health care","Management de la qualité et management environnemental dans le domaine de la santé","Including quality and environmental management in health care technology","Y compris le management de la qualité et le management environnemental dans le domaine des technologies de la santé"
+"11.020.10","11.020","Health care services in general","Prestation de soins de santé en général","Including care homes, dementia care, assisted living, aesthetic surgery, chiropractic services, etc.","Y compris les centres d'hébergement médicalisés, les soins à destination des personnes souffrant de démence, l'aide à domicile, la chirurgie esthétique, les services de chiropraxie, etc."
+"11.020.20","11.020","Medical science","Sciences médicales","Including regenerative medicine, cell therapy, stratified medicine","Y compris la médecine régénératrice, la thérapie cellulaire et la médecine stratifiée"
+"11.020.99","11.020","Other standards related to health care in general","Autres normes relatives à la santé en général",,
+"11.040.01","11.040","Medical equipment in general","Matériel médical en général",,
+"11.040.10","11.040","Anaesthetic, respiratory and reanimation equipment","Matériel d'anesthésie, de réanimation et respiratoire","Including medical gas installations","Y compris installations de gaz médical"
+"11.040.20","11.040","Transfusion, infusion and injection equipment","Matériel de transfusion, de perfusion et d'injection","Including blood packs and containers for transfusion","Y compris les poches de sang et les conteneurs utilisés pour les transfusions"
+"11.040.25","11.040","Syringes, needles and catheters","Seringues, aiguilles et cathéters",,
+"11.040.30","11.040","Surgical instruments and materials","Instruments et matériaux chirurgicaux","Including surgical dressings, sutures, etc.","Y compris pansements, sutures, etc."
+"11.040.40","11.040","Implants for surgery, prosthetics and orthotics","Implants chirurgicaux, prothèses et orthèses","Including pacemakers","Y compris stimulateurs cardiaques"
+"11.040.50","11.040","Radiographic equipment","Appareils de radiographie","Including radiographic diagnostic and therapy equipment","Y compris matériel radiographique de diagnostic et de thérapie"
+"11.040.55","11.040","Diagnostic equipment","Matériel de diagnostic","Including medical monitoring equipment, medical thermometers and related materials","Y compris matériel de surveillance, thermomètres médicaux et matériels connexes"
+"11.040.60","11.040","Therapy equipment","Matériel de thérapie",,
+"11.040.70","11.040","Ophthalmic equipment","Matériel ophtalmique","Including ophthalmic implants, glasses, contact lenses and their cleaning products","Y compris implants ophtalmiques, lunettes, lentilles de contacts et leurs produits d'entretien"
+"11.040.99","11.040","Other medical equipment","Autres matériels médicaux",,
+"11.060.01","11.060","Dentistry in general","Art dentaire en général",,
+"11.060.10","11.060","Dental materials","Produits et matériaux dentaires",,
+"11.060.15","11.060","Dental implants","Implants dentaires","Including dentures","Y compris prothèses dentaires"
+"11.060.20","11.060","Dental equipment","Instruments et matériel dentaires",,
+"11.060.25","11.060","Dental instruments","Instruments dentaires",,
+"11.080.01","11.080","Sterilization and disinfection in general","Stérilisation et désinfection en général","Including sterilization methods, air quality of surgery rooms, etc.","Y compris méthodes de stérilisation, qualité de l'air des salles d'opération, etc."
+"11.080.10","11.080","Sterilizing equipment","Matériel de stérilisation et de désinfection",,
+"11.080.20","11.080","Disinfectants and antiseptics","Désinfectants et antiseptiques","Including indicators","Y compris les indicateurs"
+"11.080.30","11.080","Sterilized packaging","Emballage stérile",,
+"11.080.99","11.080","Other standards related to sterilization and disinfection","Autres normes de stérilisation et de désinfection",,
+"11.100.01","11.100","Laboratory medicine in general","Médecine de laboratoire en général",,
+"11.100.10","11.100","In vitro diagnostic test systems","Systèmes de diagnostic in vitro",,
+"11.100.20","11.100","Biological evaluation of medical devices","Évaluation biologique des dispositifs médicaux",,
+"11.100.30","11.100","Analysis of blood and urine","Analyse du sang et analyse d'urine","Including doping control","Y compris contrôle du dopage"
+"11.100.99","11.100","Other standards related to laboratory medicine","Autres normes relatives à la médecine de laboratoire",,
+"11.120.01","11.120","Pharmaceutics in general","Pharmacie en général",,
+"11.120.10","11.120","Medicaments","Médicaments","Including medical prescriptions and medicinal herbs","Y compris ordonnances et plantes médicinales"
+"11.120.20","11.120","Wound dressings and compresses","Pansements et compresses",,
+"11.120.99","11.120","Other standards related to pharmaceutics","Autres normes relatives à la pharmacie","Including equipment for pharmaceutical industry","Y compris matériel pour l'industrie pharmaceutique"
+"11.180.01","11.180","Aids for disabled and handicapped persons in general","Aides pour les invalides ou handicapés en général",,
+"11.180.10","11.180","Aids and adaptation for moving","Aides à la marche","Including wheelchairs, walking sticks and lifting platforms","Y compris fauteuils roulants, cannes de marche et plate-formes élévatrices pour personnes à mobilité réduite"
+"11.180.15","11.180","Aids for deaf and hearing impaired people","Aides aux sourds et malentendants",,
+"11.180.20","11.180","Aids for incontinence and ostomy","Aides aux incontinents et stomisés",,
+"11.180.30","11.180","Aids for blind or partially sighted people","Aides aux aveugles et malvoyants","Including Braille","Y compris le Braille"
+"11.180.40","11.180","Aids for drinking and eating","Aides pour boire et manger",,
+"11.180.99","11.180","Other standards related to aids for disabled and handicapped people","Autres normes pour les invalides ou handicapés",,
+"13.020.01","13.020","Environment and environmental protection in general","Environnement et protection de l'environnement en général",,
+"13.020.10","13.020","Environmental management","Management environnemental","Including certification and audit","Y compris certification et audit"
+"13.020.20","13.020","Environmental economics. Sustainability","Économie de l'environnement. Durabilité","Including responsible sourcing, procurement, sustainable development, sustainable events management, sustainable communities, smart urban infrastructure, biodiversity","Y compris l'approvisionnement responsable, les achats responsables, le développement durable, le management responsable d'événements, l'aménagement durable, les infrastructures urbaines intelligentes, la biodiversité"
+"13.020.30","13.020","Environmental impact assessment","Études d'impact environnemental","Including environmental risk management","Y compris management du risque environnemental"
+"13.020.40","13.020","Pollution, pollution control and conservation","Pollution, maîtrise de la pollution et protection de l'environnement","Including ecotoxicology and greenhouse gas emissions","Y compris écotoxicologie, émissions de gaz à effet de serre"
+"13.020.50","13.020","Ecolabelling","Écolabels",,
+"13.020.55","13.020","Biobased products","Produits biosourcés",,
+"13.020.60","13.020","Product life-cycles","Cycle de vie des produits","Including environmental footprint, carbon neutrality","Y compris l'empreinte environnementale, la neutralité carbone"
+"13.020.70","13.020","Environmental projects","Projets environnementaux",,
+"13.020.99","13.020","Other standards related to environmental protection","Autres normes relatives à la protection de l'environnement",,
+"13.030.01","13.030","Wastes in general","Déchets en général",,
+"13.030.10","13.030","Solid wastes","Déchets solides",,
+"13.030.20","13.030","Liquid wastes. Sludge","Déchets liquides. Boues",,
+"13.030.30","13.030","Special wastes","Déchets spéciaux","Including radioactive wastes, hospital wastes, carcasses, electrical, electronic equipment and other hazardous wastes","Y compris déchets radioactifs, déchets hospitaliers, carcasses, équipements électriques et électroniques, ainsi que les autres déchets dangereux"
+"13.030.40","13.030","Installations and equipment for waste disposal and treatment","Installations et équipements pour enlèvement et traitement des déchets","Including street cleaning equipment, waste containers, incineration and compaction equipment, equipment for dumping of refuse, landfill sites, etc.","Y compris matériel pour nettoyage des rues, conteneurs à déchets, équipements pour incinération, compactage et stockage des déchets, décharges publiques, etc."
+"13.030.50","13.030","Recycling","Recyclage","Including relevant equipment","Y compris l'équipement correspondant"
+"13.030.99","13.030","Other standards related to wastes","Autres normes relatives aux déchets","Including waste prevention","Y compris réduction des déchets"
+"13.040.01","13.040","Air quality in general","Qualité de l'air en général",,
+"13.040.20","13.040","Ambient atmospheres","Air ambiant","Including indoor air","Y compris air intérieur"
+"13.040.30","13.040","Workplace atmospheres","Air des lieux de travail",,
+"13.040.35","13.040","Cleanrooms and associated controlled environments","Salles propres et environnements contrôlés apparentés",,
+"13.040.40","13.040","Stationary source emissions","Émissions de sources fixes",,
+"13.040.50","13.040","Transport exhaust emissions","Émissions de gaz d'échappement",,
+"13.040.99","13.040","Other standards related to air quality","Autres normes relatives à la qualité de l'air",,
+"13.060.01","13.060","Water quality in general","Qualité de l'eau en général",,
+"13.060.10","13.060","Water of natural resources","Eau d'origine naturelle",,
+"13.060.20","13.060","Drinking water","Eau potable",,
+"13.060.25","13.060","Water for industrial use","Eaux à usage industriel","Including water for commercial use: for swimming pools, fish breeding, etc.","Y compris les eaux entrant dans le cadre d'une activité commerciale : eaux de piscine, eaux piscicoles, etc."
+"13.060.30","13.060","Sewage water","Eaux usées","Including sewage water disposal and treatment","Y compris assainissement et traitement des eaux usées"
+"13.060.45","13.060","Examination of water in general","Essais des eaux en général","Including sampling","Y compris échantillonnage"
+"13.060.50","13.060","Examination of water for chemical substances","Détermination des substances chimiques de l'eau",,
+"13.060.60","13.060","Examination of physical properties of water","Détermination des propriétés physiques de l'eau",,
+"13.060.70","13.060","Examination of biological properties of water","Détermination des propriétés biologiques de l'eau",,
+"13.060.99","13.060","Other standards related to water quality","Autres normes relatives à la qualité de l'eau",,
+"13.080.01","13.080","Soil quality and pedology in general","Qualité du sol et pédologie en général","Including pollution, erosion, degradation, etc.","Y compris pollution, érosion, dégradation, etc."
+"13.080.05","13.080","Examination of soils in general","Essais des sols en général","Including sampling","Y compris échantillonnage"
+"13.080.10","13.080","Chemical characteristics of soils","Propriétés chimiques des sols",,
+"13.080.20","13.080","Physical properties of soils","Propriétés physiques des sols",,
+"13.080.30","13.080","Biological properties of soils","Propriétés biologiques des sols",,
+"13.080.40","13.080","Hydrological properties of soils","Propriétés hydrologiques des sols",,
+"13.080.99","13.080","Other standards related to soil quality","Autres normes relatives à la qualité du sol","Including agricultural aspects related to soils and re-use of soil materials","Y compris les aspects liés à l'agriculture"
+"13.220.01","13.220","Protection against fire in general","Normes générales relatives à la protection contre l'incendie","Including fire safety","Y compris la sécurité incendie"
+"13.220.10","13.220","Fire-fighting","Lutte contre l'incendie","Including equipment and vehicles","Y compris le matériel et les véhicules correspondant"
+"13.220.20","13.220","Fire protection","Protection contre l'incendie","Including equipment","Y compris le matériel correspondant"
+"13.220.40","13.220","Ignitability and burning behaviour of materials and products","Comportement au feu et facilité d'allumage des matériaux et des produits",,
+"13.220.50","13.220","Fire-resistance of building materials and elements","Résistance au feu des matériaux et éléments de construction",,
+"13.220.99","13.220","Other standards related to protection against fire","Autres normes relatives à la protection contre l'incendie",,
+"13.340.01","13.340","Protective equipment in general","Equipements de protection en général",,
+"13.340.10","13.340","Protective clothing","Vêtements de protection","Including flameproof clothing","Y compris vêtements ignifuges"
+"13.340.20","13.340","Head protective equipment","Matériel de protection de la tête","Including helmets, eye-protectors, hearing protectors, ear muffs, teeth protectors and hoods.","Y compris casques, cagoules, dispositifs de protection des yeux, des dents et des oreilles."
+"13.340.30","13.340","Respiratory protective devices","Dispositifs de protection respiratoire",,
+"13.340.40","13.340","Hand and arm protection","Protection de la main et du bras","Including protective gloves, sleeves and mits","Y compris gants, moufles et protège-bras"
+"13.340.50","13.340","Leg and foot protection","Protection de la jambe et du pied","Including safety boots and shoes","Y compris chaussures et bottes de sécurité"
+"13.340.60","13.340","Protection against falling and slipping","Protection contre les chutes","Including safety ropes, harnesses and fall arrestors","Y compris cordes, harnais et dispositifs d'arrêt"
+"13.340.70","13.340","Lifejackets, buoyancy aids and flotation devices","Bouées, gilets de sauvetage et dispositifs d'aide à la flottabilité",,
+"13.340.99","13.340","Other protective equipment","Autres équipements de protection",,
+"17.040.01","17.040","Linear and angular measurements in general","Mesurage de longueur et mesurage angulaire en général",,
+"17.040.10","17.040","Limits and fits","Tolérances et ajustements",,
+"17.040.20","17.040","Properties of surfaces","Etat de surfaces",,
+"17.040.30","17.040","Measuring instruments","Instruments de mesure",,
+"17.040.40","17.040","Geometrical Product Specification (GPS)","Spécification géométrique des produits (GPS)",,
+"17.040.99","17.040","Other standards related to linear and angular measurements","Autres normes de mesurage de longueur et mesurage angulaire",,
+"17.120.01","17.120","Measurement of fluid flow in general","Mesurage de débit des fluides en général",,
+"17.120.10","17.120","Flow in closed conduits","Débit dans les conduites fermées",,
+"17.120.20","17.120","Flow in open channels","Débit dans les canaux découverts","Including hydrometric determinations","Y compris déterminations hydrométriques"
+"17.140.01","17.140","Acoustic measurements and noise abatement in general","Mesurage acoustique et atténuation du bruit en général","Including acoustic insulation","Y compris l'isolation acoustique"
+"17.140.20","17.140","Noise emitted by machines and equipment","Bruit émis par les machines et matériel",,
+"17.140.30","17.140","Noise emitted by means of transport","Bruit émis par les moyens de transports","Including road noise, railway noise, harbour noise and airport noise","Y compris bruit dû au trafic routier, trafic ferroviaire, trafic portuaire et aérien"
+"17.140.50","17.140","Electroacoustics","Électroacoustique","Including sound level meters","Y compris sonomètres"
+"17.140.99","17.140","Other standards related to acoustics","Autres normes relatives à l'acoustique",,
+"17.180.01","17.180","Optics and optical measurements in general","Optique et mesurage optique en général",,
+"17.180.20","17.180","Colours and measurement of light","Couleurs et mesurage de lumière",,
+"17.180.30","17.180","Optical measuring instruments","Instruments optiques de mesure","Including spectroscopes, geodetic instruments, etc.","Y compris spectroscopes, instruments géodésiques, etc."
+"17.180.99","17.180","Other standards related to optics and optical measurements","Autres normes relatives à l'optique et au mesurage optique",,
+"17.200.01","17.200","Thermodynamics in general","Thermodynamique en général",,
+"17.200.10","17.200","Heat. Calorimetry","Chaleur. Calorimétrie",,
+"17.200.20","17.200","Temperature-measuring instruments","Instruments de mesure de température","Including thermostats","Y compris thermostats"
+"17.200.99","17.200","Other standards related to thermodynamics","Autres normes relatives à la thermodynamique",,
+"17.220.01","17.220","Electricity. Magnetism. General aspects","Electricité. Magnétisme. Aspects généraux","Including electromagnetism","Y compris électromagnétisme"
+"17.220.20","17.220","Measurement of electrical and magnetic quantities","Mesurage des grandeurs électriques et magnétiques","Including measuring instruments, instrument transformers","Y compris instruments de mesure correspondants, transformateurs de mesure"
+"17.220.99","17.220","Other standards related to electricity and magnetism","Autres normes relatives à l'électricité et au magnétisme",,
+"21.040.01","21.040","Screw threads in general","Filetages en général",,
+"21.040.10","21.040","Metric screw threads","Filetages métriques",,
+"21.040.20","21.040","Inch screw threads","Filetages en pouces","Including Whitworth screw threads","Y compris filetages Whitworth"
+"21.040.30","21.040","Special screw threads","Filetages spéciaux","Including miniature screw threads, pipe threads, etc.","Y compris filetages miniatures, filetages pour tuyauterie (dits "gaz"), etc."
+"21.060.01","21.060","Fasteners in general","Éléments de fixation en général",,
+"21.060.10","21.060","Bolts, screws, studs","Boulons, vis, goujons",,
+"21.060.20","21.060","Nuts","Écrous",,
+"21.060.30","21.060","Washers, locking elements","Rondelles, éléments de blocage",,
+"21.060.40","21.060","Rivets","Rivets",,
+"21.060.50","21.060","Pins, nails","Goupilles, clous",,
+"21.060.60","21.060","Rings, bushes, sleeves, collars","Anneaux, douilles, manchons, colliers",,
+"21.060.70","21.060","Clamps and staples","Crampons et agrafes",,
+"21.060.99","21.060","Other fasteners","Autres éléments de fixation",,
+"21.100.01","21.100","Bearings in general","Paliers et roulements en général",,
+"21.100.10","21.100","Plain bearings","Paliers lisses",,
+"21.100.20","21.100","Rolling bearings","Roulements",,
+"21.120.01","21.120","Shafts and couplings in general","Arbres et accouplements en général",,
+"21.120.10","21.120","Shafts","Arbres",,
+"21.120.20","21.120","Couplings","Accouplements",,
+"21.120.30","21.120","Keys and keyways, splines","Clavettes et cannelures",,
+"21.120.40","21.120","Balancing and balancing machines","Équilibrage et machines d'équilibrage",,
+"21.120.99","21.120","Other standards related to shafts and couplings","Autres normes relatives aux arbres et accouplements",,
+"21.220.01","21.220","Flexible drives and transmissions in general","Transmissions et entraînements souples en général",,
+"21.220.10","21.220","Belt drives and their components","Entraînements par courroie et leurs composants",,
+"21.220.20","21.220","Cable or rope drives and their components","Entraînements par câble et leurs composants",,
+"21.220.30","21.220","Chain drives and their components","Entraînements par chaîne et leurs composants",,
+"21.220.99","21.220","Other flexible drives and transmissions","Autres transmissions et entraînements souples",,
+"23.020.01","23.020","Fluid storage devices in general","Dispositifs d'entreposage des fluides en général",,
+"23.020.10","23.020","Stationary containers and tanks","Réservoirs et conteneurs fixes",,
+"23.020.20","23.020","Vessels and containers mounted on vehicles","Réservoirs et récipients sur véhicules",,
+"23.020.30","23.020","Pressure vessels","Récipients sous pression",,
+"23.020.35","23.020","Gas cylinders","Bouteilles à gaz",,
+"23.020.40","23.020","Cryogenic vessels","Récipients cryogéniques",,
+"23.020.99","23.020","Other fluid storage devices","Autres dispositifs d'entreposage des fluides",,
+"23.040.01","23.040","Pipeline components and pipelines in general","Canalisations et accessoires en général",,
+"23.040.03","23.040","Pipelines and its parts for external water conveyance systems","Canalisations et leurs composants pour les systèmes d’adduction d’eau",,
+"23.040.05","23.040","Pipelines and its parts for external sewage systems","Canalisations et leurs composants pour les systèmes de collecte d’eaux usées et d’eaux pluviales",,
+"23.040.07","23.040","Pipelines and its parts for district heat","Canalisations et leurs composants pour le chauffage urbain",,
+"23.040.10","23.040","Iron and steel pipes","Canalisations en acier et en fonte",,
+"23.040.15","23.040","Non-ferrous metal pipes","Canalisations en métaux non ferreux",,
+"23.040.20","23.040","Plastics pipes","Canalisations en matières plastiques",,
+"23.040.40","23.040","Metal fittings","Raccords métalliques",,
+"23.040.45","23.040","Plastics fittings","Raccords en matières plastiques",,
+"23.040.50","23.040","Pipes and fittings of other materials","Canalisations et raccords en autres matériaux",,
+"23.040.60","23.040","Flanges, couplings and joints","Brides, assemblages à brides et joints",,
+"23.040.70","23.040","Hoses and hose assemblies","Tuyaux et flexibles",,
+"23.040.80","23.040","Seals for pipe and hose assemblies","Joints d'étanchéité pour tuyauterie et flexibles",,
+"23.040.99","23.040","Other pipeline components","Autres accessoires de canalisation",,
+"23.060.01","23.060","Valves in general","Robinetterie en général",,
+"23.060.10","23.060","Globe valves","Robinets à soupape",,
+"23.060.20","23.060","Ball and plug valves","Robinets à tournant (sphérique, cylindrique ou conique)",,
+"23.060.30","23.060","Gate valves","Robinets-vannes",,
+"23.060.40","23.060","Pressure regulators","Régulateurs de pression","Including pressure-reducers","Y compris réducteurs de pression"
+"23.060.50","23.060","Check valves","Clapets de non-retour",,
+"23.060.99","23.060","Other valves","Autres types de robinets",,
+"23.100.01","23.100","Fluid power systems in general","Transmissions hydrauliques et pneumatiques en général",,
+"23.100.10","23.100","Pumps and motors","Pompes et moteurs",,
+"23.100.20","23.100","Cylinders","Vérins",,
+"23.100.40","23.100","Piping and couplings","Tuyauterie et raccords",,
+"23.100.50","23.100","Control components","Organes de commande","Including valves","Y compris robinets"
+"23.100.60","23.100","Filters, seals and contamination of fluids","Filtres, dispositifs d'étanchéité et contamination des fluides",,
+"23.100.99","23.100","Other fluid power system components","Autres éléments pour transmissions hydrauliques et pneumatiques",,
+"25.040.01","25.040","Industrial automation systems in general","Systèmes d'automatisation industrielle en général",,
+"25.040.10","25.040","Machining centres","Centres d'usinage",,
+"25.040.20","25.040","Numerically controlled machines","Machines à commande numérique",,
+"25.040.30","25.040","Industrial robots. Manipulators","Robots industriels. Manipulateurs",,
+"25.040.40","25.040","Industrial process measurement and control","Mesure et contrôle des processus industriels",,
+"25.040.99","25.040","Other industrial automation systems","Autres systèmes d'automatisation industrielle",,
+"25.060.01","25.060","Machine tool systems in general","Systèmes de machines-outils en général",,
+"25.060.10","25.060","Modular units and other devices","Éléments standards et autres dispositifs",,
+"25.060.20","25.060","Dividing and tool-workpiece holding devices","Appareils diviseurs et dispositifs de préhension",,
+"25.060.99","25.060","Other machine tool systems","Autres systèmes de machines-outils",,
+"25.080.01","25.080","Machine tools in general","Machines-outils en général",,
+"25.080.10","25.080","Lathes","Tours",,
+"25.080.20","25.080","Boring and milling machines","Machines à aléser et à fraiser",,
+"25.080.25","25.080","Planing machines","Machines à raboter",,
+"25.080.30","25.080","Broaching machines","Machines à brocher",,
+"25.080.40","25.080","Drilling machines","Machines à percer",,
+"25.080.50","25.080","Grinding and polishing machines","Machines à rectifier et à polir",,
+"25.080.60","25.080","Sawing machines","Machines à scier",,
+"25.080.99","25.080","Other machine tools","Autres machines-outils",,
+"25.100.01","25.100","Cutting tools in general","Outils de coupe en général",,
+"25.100.10","25.100","Turning tools","Outils de tour",,
+"25.100.20","25.100","Milling tools","Outils à fraiser",,
+"25.100.25","25.100","Tools for planing and broaching machines","Outils pour machines à raboter et machines à brocher",,
+"25.100.30","25.100","Drills, countersinks, reamers","Forets, outils à chanfreiner et alésoirs",,
+"25.100.40","25.100","Saws","Scies",,
+"25.100.50","25.100","Taps and threading dies","Tarauds et filières",,
+"25.100.60","25.100","Files","Limes",,
+"25.100.70","25.100","Abrasives","Abrasifs",,
+"25.100.99","25.100","Other cutting tools","Autres outils de coupe",,
+"25.120.01","25.120","Chipless working equipment in general","Matériel opérant sans copeaux en général",,
+"25.120.10","25.120","Forging equipment. Presses. Shears","Matériel de forgeage. Presses. Cisailles",,
+"25.120.20","25.120","Rolling, extruding and drawing equipment","Laminoirs, matériel d'extrudage et d'étirage",,
+"25.120.30","25.120","Moulding equipment","Matériel de moulage",,
+"25.120.40","25.120","Electrochemical machines","Machines électrochimiques",,
+"25.120.99","25.120","Other chipless working equipment","Autres matériels opérant sans copeaux",,
+"25.140.01","25.140","Hand-held tools in general","Outils à main en général",,
+"25.140.10","25.140","Pneumatic tools","Outils pneumatiques",,
+"25.140.20","25.140","Electric tools","Outils électriques",,
+"25.140.30","25.140","Hand-operated tools","Outils portatifs à main","Including wrenches, screwdrivers, pliers, nippers, hammers, etc.","Y compris outils de manoeuvre tels que clés, tournevis, pinces, tenailles, marteaux, etc."
+"25.140.99","25.140","Other hand-held tools","Autres outils à main",,
+"25.160.01","25.160","Welding, brazing and soldering in general","Soudage et brasage en général","Including welders' qualifications","Y compris la qualification des soudeurs"
+"25.160.10","25.160","Welding processes","Procédés de soudage","Including thermal cutting and cladding","Y compris coupage thermique et le placage par soudage"
+"25.160.20","25.160","Welding consumables","Consommables pour soudage","Including electrodes, filler metals, gases, etc.","Y compris électrodes, métaux d'apport, gaz de soudage, etc."
+"25.160.30","25.160","Welding equipment","Matériel de soudage","Including thermal cutting equipment","Y compris matériel de coupage thermique"
+"25.160.40","25.160","Welded joints and welds","Joints soudés et soudures","Including welding position and mechanical and non-destructive testing of welded joints","Y compris les positions de soudage et les essais mécaniques et essais non destructifs des joints soudés"
+"25.160.50","25.160","Brazing and soldering","Brasage","Including brazing and soldering alloys and equipment","Y compris alliages et équipements à braser"
+"25.180.01","25.180","Industrial furnaces in general","Fours industriels en général",,
+"25.180.10","25.180","Electric furnaces","Fours électriques",,
+"25.180.20","25.180","Fuel furnaces","Fours à combustibles",,
+"25.220.01","25.220","Surface treatment and coating in general","Traitement et revêtement de surface en général",,
+"25.220.10","25.220","Surface preparation","Préparation de surface","Including surface preparation for painting, cleaning, scouring, blasting, etc.","Y compris préparation de surface avant peinturage, décapage, nettoyage, grenaillage, etc."
+"25.220.20","25.220","Surface treatment","Traitement de surface","Including anodization, conversion coating, thermal spraying, etc.","Y compris anodisation, traitements de conversion, projection thermique, etc."
+"25.220.40","25.220","Metallic coatings","Revêtements métalliques","Including electrolytic depositions, cathodic coatings, autocatalytic coatings, etc.","Y compris revêtements cathodiques, dépôts électrolytiques, dépôts autocatalytiques, etc."
+"25.220.50","25.220","Enamels","Émaux",,
+"25.220.60","25.220","Organic coatings","Revêtements organiques",,
+"25.220.99","25.220","Other treatments and coatings","Autres traitements et revêtements de surface",,
+"27.060.01","27.060","Burners and boilers in general","Brûleurs et chaudières en général",,
+"27.060.10","27.060","Liquid and solid fuel burners","Brûleurs à combustible liquide et solide",,
+"27.060.20","27.060","Gas fuel burners","Brûleurs à gaz",,
+"27.060.30","27.060","Boilers and heat exchangers","Chaudières et échangeurs de chaleur","Including steam pressure vessels","Y compris appareils à pression de vapeur"
+"27.120.01","27.120","Nuclear energy in general","Energie nucléaire en général",,
+"27.120.10","27.120","Reactor engineering","Ingénierie des réacteurs",,
+"27.120.20","27.120","Nuclear power plants. Safety","Centrales nucléaires. Sécurité",,
+"27.120.30","27.120","Fissile materials and nuclear fuel technology","Matériaux fissiles et technologie du combustible nucléaire","Including raw materials","Y compris matières premières"
+"27.120.99","27.120","Other standards related to nuclear energy","Autres normes relatives à l'énergie nucléaire",,
+"29.035.01","29.035","Insulating materials in general","Matériaux isolants électriques en général",,
+"29.035.10","29.035","Paper and board insulating materials","Isolants électriques à base de papier et carton",,
+"29.035.20","29.035","Plastics and rubber insulating materials","Isolants électriques à base de matière plastique et caoutchouc","Including adhesive tapes","Y compris les rubans adhésifs électriques"
+"29.035.30","29.035","Glass and ceramic insulating materials","Isolants électriques à base de verre et céramique",,
+"29.035.50","29.035","Mica based materials","Matériaux à base de mica",,
+"29.035.60","29.035","Varnished fabrics","Isolants souples vernis",,
+"29.035.99","29.035","Other insulating materials","Autres matériaux isolants électriques",,
+"29.040.01","29.040","Insulating fluids in general","Fluides isolants en général",,
+"29.040.10","29.040","Insulating oils","Huiles isolantes",,
+"29.040.20","29.040","Insulating gases","Gaz isolants",,
+"29.040.99","29.040","Other insulating fluids","Autres fluides isolants",,
+"29.060.01","29.060","Electrical wires and cables in general","Fils et câbles électriques en général",,
+"29.060.10","29.060","Wires","Fils","Including electric rods, busbars, etc.","Y compris baguettes, barres conductrices, etc."
+"29.060.20","29.060","Cables","Câbles",,
+"29.080.01","29.080","Electrical insulation in general","Isolation électrique en général",,
+"29.080.10","29.080","Insulators","Isolateurs","Including fittings and other components for insulators","Y compris dispositifs de fixation et autres composants pour isolateurs"
+"29.080.20","29.080","Bushings","Traversées isolées",,
+"29.080.30","29.080","Insulation systems","Systèmes d'isolation",,
+"29.080.99","29.080","Other standards related to insulation","Autres normes relatives à l'isolation",,
+"29.100.01","29.100","Components for electrical equipment in general","Composants pour matériel électrique en général",,
+"29.100.10","29.100","Magnetic components","Composants magnétiques",,
+"29.100.20","29.100","Electric and electromechanical components","Composants électriques et électromécaniques",,
+"29.100.99","29.100","Other components for electrical equipment","Autres composants pour matériel électrique",,
+"29.120.01","29.120","Electrical accessories in general","Accessoires électriques en général",,
+"29.120.10","29.120","Conduits for electrical purposes","Conduits à usage électrique",,
+"29.120.20","29.120","Connecting devices","Dispositifs de connexion",,
+"29.120.30","29.120","Plugs, socket-outlets, couplers","Prises de courant, prolongateurs, connecteurs",,
+"29.120.40","29.120","Switches","Interrupteurs",,
+"29.120.50","29.120","Fuses and other overcurrent protection devices","Coupe-circuits à fusibles et autres dispositifs de protection contre les surintensités",,
+"29.120.70","29.120","Relays","Relais",,
+"29.120.99","29.120","Other electrical accessories","Autres accessoires électriques",,
+"29.130.01","29.130","Switchgear and controlgear in general","Appareillages de connexion et de commande en général",,
+"29.130.10","29.130","High voltage switchgear and controlgear","Appareillages à haute tension","Including enclosed switchgear and controlgear","Y compris appareillages sous enveloppe"
+"29.130.20","29.130","Low voltage switchgear and controlgear","Appareillages de connexion et de commande à basse tension","Including switchgear and controlgear assemblies","Y compris ensembles d'appareillages"
+"29.130.99","29.130","Other switchgear and controlgear","Autres appareillages de connexion et de commande",,
+"29.140.01","29.140","Lamps in general","Lampes en général",,
+"29.140.10","29.140","Lamp caps and holders","Douilles et culots de lampe",,
+"29.140.20","29.140","Incandescent lamps","Lampes à incandescence",,
+"29.140.30","29.140","Fluorescent lamps. Discharge lamps","Lampes à fluorescence. Lampes à décharge",,
+"29.140.40","29.140","Luminaires","Luminaires",,
+"29.140.50","29.140","Lighting installation systems","Installations d'éclairage","Including supply track systems","Y compris systèmes d'alimentation électrique par rails"
+"29.140.99","29.140","Other standards related to lamps","Autres normes relatives aux lampes",,
+"29.160.01","29.160","Rotating machinery in general","Machines électriques tournantes en général",,
+"29.160.10","29.160","Components for rotating machines","Composants pour machines tournantes",,
+"29.160.20","29.160","Generators","Génératrices",,
+"29.160.30","29.160","Motors","Moteurs électriques",,
+"29.160.40","29.160","Generating sets","Groupes électrogènes",,
+"29.160.99","29.160","Other standards related to rotating machinery","Autres normes relatives aux machines tournantes",,
+"29.220.01","29.220","Galvanic cells and batteries in general","Piles galvaniques et accumulateurs en général",,
+"29.220.10","29.220","Primary cells and batteries","Piles",,
+"29.220.20","29.220","Acid secondary cells and batteries","Accumulateurs acides",,
+"29.220.30","29.220","Alkaline secondary cells and batteries","Accumulateurs alcalins",,
+"29.220.99","29.220","Other cells and batteries","Autres piles et accumulateurs",,
+"29.240.01","29.240","Power transmission and distribution networks in general","Réseaux de transport et de distribution de l'énergie électrique en général",,
+"29.240.10","29.240","Substations. Surge arresters","Sous-stations. Parafoudres",,
+"29.240.20","29.240","Power transmission and distribution lines","Lignes de transport et de distribution de courant",,
+"29.240.30","29.240","Control equipment for electric power systems","Appareil de commande pour lignes électriques",,
+"29.240.99","29.240","Other equipment related to power transmission and distribution networks","Autres équipements relatifs aux réseaux de transport et de distribution de courant","Including capacitors for power networks","Y compris condensateurs de puissance pour réseaux d'énergie électrique"
+"29.260.01","29.260","Electrical equipment for working in special conditions in general","Installations électriques pour conditions particulières en général",,
+"29.260.10","29.260","Electrical installations for outdoor use","Installations électriques pour usage externe",,
+"29.260.20","29.260","Electrical apparatus for explosive atmospheres","Matériel électrique pour atmosphères explosives",,
+"29.260.99","29.260","Other electrical equipment for working in special conditions","Autres matériels électriques pour conditions particulières",,
+"31.040.01","31.040","Resistors in general","Résistances électriques en général",,
+"31.040.10","31.040","Fixed resistors","Résistances fixes",,
+"31.040.20","31.040","Potentiometers, variable resistors","Potentiomètres, résistances variables",,
+"31.040.30","31.040","Thermistors","Thermistances",,
+"31.040.99","31.040","Other resistors","Autres résistances électriques",,
+"31.060.01","31.060","Capacitors in general","Condensateurs en général",,
+"31.060.10","31.060","Fixed capacitors","Condensateurs fixes",,
+"31.060.20","31.060","Ceramic and mica capacitors","Condensateurs céramique et mica",,
+"31.060.30","31.060","Paper and plastics capacitors","Condensateurs papier et plastique",,
+"31.060.40","31.060","Tantalum electrolytic capacitors","Condensateurs électrolytiques au tantale",,
+"31.060.50","31.060","Aluminium electrolytic capacitors","Condensateurs électrolytiques à l'aluminium",,
+"31.060.60","31.060","Variable capacitors","Condensateurs variables",,
+"31.060.70","31.060","Power capacitors","Condensateurs de puissance",,
+"31.060.99","31.060","Other capacitors","Autres condensateurs",,
+"31.080.01","31.080","Semiconductor devices in general","Dispositifs à semi-conducteurs en général",,
+"31.080.10","31.080","Diodes","Diodes",,
+"31.080.20","31.080","Thyristors","Thyristors",,
+"31.080.30","31.080","Transistors","Transistors",,
+"31.080.99","31.080","Other semiconductor devices","Autres dispositifs à semi-conducteurs",,
+"31.220.01","31.220","Electromechanical components in general","Composants électromécaniques en général",,
+"31.220.10","31.220","Plug-and-socket devices. Connectors","Fiches. Connecteurs",,
+"31.220.20","31.220","Switches","Interrupteurs",,
+"31.220.99","31.220","Other electromechanical components","Autres composants électromécaniques",,
+"33.040.01","33.040","Telecommunication systems in general","Systèmes de télécommunication en général",,
+"33.040.20","33.040","Transmission systems","Systèmes de transmission","Including synchronization, cable systems, integrated cabling, pathways and multiplexing","Y compris synchronisation, systèmes câblés, câblage intégré, voies d'accès et multiplexage"
+"33.040.30","33.040","Switching and signalling systems","Systèmes de commutation et de signalisation","Including telecommunication call charging and billing aspects","Y compris aspects de taxation et de facturation des appels"
+"33.040.35","33.040","Telephone networks","Réseaux téléphoniques","Including Public Switched Telephone Networks (PSTN), Private Telecommunication Networks (PTN) and Private Integrated Service Networks (PISN)","Y compris réseaux publics téléphoniques commutés (RTPC) et réseaux privés à intégration de services (RPIS)"
+"33.040.40","33.040","Data communication networks","Réseaux de communication de données","Including Packet Switched Public Data Networks (PSPDN) and Ethernet","Y compris réseau public commuté de transmission de données par paquets (RPDCP) et Ethernet"
+"33.040.50","33.040","Lines, connections and circuits","Lignes, raccordements et circuits","Including access networks and network elements","Y compris réseaux d'accès et éléments de réseaux"
+"33.040.60","33.040","Powerline telecommunications","Courants porteurs en ligne",,
+"33.040.99","33.040","Other equipment for telecommunication systems","Autres équipements pour systèmes de télécommunication",,
+"33.050.01","33.050","Telecommunication terminal equipment in general","Équipements terminaux de télécommunication en général",,
+"33.050.10","33.050","Telephone equipment","Matériel téléphonique",,
+"33.050.20","33.050","Paging equipment","Équipements de radioappel",,
+"33.050.30","33.050","Equipment for telex, teletext, telefax","Matériel pour télex, télétexte, télécopie",,
+"33.050.99","33.050","Other telecommunication terminal equipment","Autres équipements terminaux de télécommunication",,
+"33.060.01","33.060","Radiocommunications in general","Radiocommunications en général",,
+"33.060.20","33.060","Receiving and transmitting equipment","Matériel de réception et de transmission",,
+"33.060.30","33.060","Radio relay and fixed satellite communications systems","Relais radio et systèmes fixes de communication par satellite",,
+"33.060.40","33.060","Cabled distribution systems","Systèmes de distribution par câble",,
+"33.060.99","33.060","Other equipment for radiocommunications","Autres matériels de radiocommunication",,
+"33.070.01","33.070","Mobile services in general","Services mobiles en général",,
+"33.070.10","33.070","Terrestrial Trunked Radio (TETRA)","Service mobile. Réseaux radio transeuropéens (TETRA)",,
+"33.070.20","33.070","Paging systems","Service mobiles. Systèmes de radioappel","Including European Radio Message System (ERMES)","Y compris système européen de radiomessagerie (ERMES)"
+"33.070.30","33.070","Digital Enhanced Cordless Telecommunications (DECT)","Services mobiles. Télécommunications numériques sans fil européennes (DECT)",,
+"33.070.40","33.070","Satellite","Services mobiles par satellite","Including Global Positioning System (GPS)","Y compris système de positionnement par satellite (GPS)"
+"33.070.50","33.070","Global System for Mobile Communication (GSM)","Services mobiles. Système global de communication mobile (GSM)",,
+"33.070.99","33.070","Other mobile services","Autres services mobiles",,
+"33.100.01","33.100","Electromagnetic compatibility in general","Compatibilité électromagnétique en général",,
+"33.100.10","33.100","Emission","Émission",,
+"33.100.20","33.100","Immunity","Immunité",,
+"33.100.99","33.100","Other aspects related to EMC","Autres aspects liés à la compatibilité électromagnétique",,
+"33.120.01","33.120","Components and accessories in general","Composants et accessoires en général",,
+"33.120.10","33.120","Coaxial cables. Waveguides","Câbles coaxiaux. Guides d'onde",,
+"33.120.20","33.120","Wires and symmetrical cables","Fils et câbles symétriques",,
+"33.120.30","33.120","RF connectors","Connecteurs pour fréquences radioélectriques",,
+"33.120.40","33.120","Aerials","Antennes",,
+"33.120.99","33.120","Other components and accessories","Autres composants et accessoires",,
+"33.160.01","33.160","Audio, video and audiovisual systems in general","Systèmes audio, vidéo et audiovisuels en général",,
+"33.160.10","33.160","Amplifiers","Amplificateurs",,
+"33.160.20","33.160","Radio receivers","Récepteurs radio",,
+"33.160.25","33.160","Television receivers","Récepteurs TV",,
+"33.160.30","33.160","Audio systems","Systèmes audio","Including tape recorders, records, magnetic tapes, cassettes, CDs, etc.","Y compris magnétophones, disques, bandes magnétiques, cassettes, CD, etc."
+"33.160.40","33.160","Video systems","Systèmes vidéo","Including video tape recorders, cameras, cassettes, laser disks, etc.","Y compris magnétoscopes, caméras, cassettes vidéo, disques laser, etc."
+"33.160.50","33.160","Accessories","Accessoires","Including headphones, loudspeakers, microphones, etc.","Y compris casques, haut-parleurs, microphones, etc."
+"33.160.60","33.160","Multimedia systems and teleconferencing equipment","Systèmes multimédia et équipement pour la téléconférence",,
+"33.160.99","33.160","Other audio, video and audiovisual equipment","Autres équipements audio et vidéo",,
+"33.180.01","33.180","Fibre optic systems in general","Systèmes à fibres optiques en général",,
+"33.180.10","33.180","Fibres and cables","Fibres et câbles",,
+"33.180.20","33.180","Fibre optic interconnecting devices","Dispositifs d'interconnexion à fibres optiques",,
+"33.180.30","33.180","Optic amplifiers","Amplificateurs à fibres optiques",,
+"33.180.99","33.180","Other fibre optic equipment","Autres équipements pour fibres optiques",,
+"35.040.01","35.040","Information coding in general","Codage de l'information en général",,
+"35.040.10","35.040","Coding of character sets","Codage de jeux de caractères",,
+"35.040.30","35.040","Coding of graphical and photographical information","Codage des informations graphiques et photographiques",,
+"35.040.40","35.040","Coding of audio, video, multimedia and hypermedia information","Codage des informations audio, vidéo, multimédias et hypermédias",,
+"35.040.50","35.040","Automatic identification and data capture techniques","Techniques automatiques d’identification et de saisie de données","Including RFID, OCR, bar coding, etc.","Y compris l’identification par radiofréquence (RFID), la reconnaissance optique des caractères (ROC), les codes à barres, etc."
+"35.040.99","35.040","Other standards related to information coding","Autres normes relatives au codage de l’information",,
+"35.100.01","35.100","Open systems interconnection in general","Interconnexion des systèmes ouverts en général",,
+"35.100.05","35.100","Multilayer applications","Applications multicouches","Including International Standardized Profiles","Y compris profils normalisés internationaux"
+"35.100.10","35.100","Physical layer","Couche physique",,
+"35.100.20","35.100","Data link layer","Couche liaison de données",,
+"35.100.30","35.100","Network layer","Couche réseau",,
+"35.100.40","35.100","Transport layer","Couche transport",,
+"35.100.50","35.100","Session layer","Couche session",,
+"35.100.60","35.100","Presentation layer","Couche présentation",,
+"35.100.70","35.100","Application layer","Couche application",,
+"35.220.01","35.220","Data storage devices in general","Unités de stockage des données en général",,
+"35.220.10","35.220","Paper cards and tapes","Cartes et bandes en papier",,
+"35.220.20","35.220","Magnetic storage devices in general","Mémoires magnétiques en général",,
+"35.220.21","35.220","Magnetic disks","Disques magnétiques","Including flexible disks, diskettes, disk packs, disk cartridges, etc.","Y compris disques souples, disquettes, chargeurs de disques, cartouches de disques, etc."
+"35.220.22","35.220","Magnetic tapes","Bandes magnétiques",,
+"35.220.23","35.220","Cassettes and cartridges for magnetic tapes","Cassettes et cartouches pour bandes magnétiques",,
+"35.220.30","35.220","Optical storage devices","Mémoires optiques","Including CD and magneto-optical devices (MO)","Y compris Cédéroms et dispositifs magnéto-optiques"
+"35.220.99","35.220","Other data storage devices","Autres dispositifs de stockage de données",,
+"35.240.01","35.240","Application of information technology in general","Applications des technologies de l'information en général",,
+"35.240.10","35.240","Computer-aided design (CAD)","Conception assistée par ordinateurs (CAO)",,
+"35.240.15","35.240","Identification cards. Chip cards. Biometrics","Cartes d'identification. Cartes à puce. Biométrie","Including application of cards for banking, trade, telecommunications, transport, etc.","Y compris cartes bancaires, cartes de téléphone, cartes de transport, cartes pour applications commerciales, etc."
+"35.240.20","35.240","IT applications in office work","Applications des TI en bureautique","Including text processing systems, text communication, text presentation, Office Document Architecture (ODA), etc.","Y compris systèmes de traitement de texte, communication de texte, présentation de texte, architecture des documents de bureau (ODA), etc."
+"35.240.30","35.240","IT applications in information, documentation and publishing","Applications des TI en information, documentation et édition","Including Standard Generalized Markup Language (SGML), Extensible Markup Language (XML), automatic translation machines, etc.","Y compris langage normalisé de balisage généralisé (SGML), langage de balisage extensible (XML), machines de traduction automatique, etc."
+"35.240.40","35.240","IT applications in banking","Applications des TI dans le domaine bancaire","Including automatic banking facilities","Y compris installations bancaires automatiques"
+"35.240.50","35.240","IT applications in industry","Applications des TI dans l'industrie","Including design automation","Y compris automatisation de la conception"
+"35.240.60","35.240","IT applications in transport","Application des TI dans le transport",,
+"35.240.63","35.240","IT applications in trade","Applications des TI dans le commerce","Including EDIFACT and e-commerce","Y compris EDIFACT et le commerce en ligne"
+"35.240.67","35.240","IT applications in building and construction industry","Applications des TI dans le bâtiment et l’industrie de la construction","Including building information modelling, Home and Building Electronic Systems (HBES)","Y compris le BIM (maquette numérique et processus numériques interopérables appliqués à la construction), les systèmes électroniques pour les foyers domestiques et les bâtiments (HBES)"
+"35.240.68","35.240","IT applications in agriculture","Applications des TI dans l’agriculture",,
+"35.240.69","35.240","IT applications in postal services","Applications des TI dans les services postaux",,
+"35.240.70","35.240","IT applications in science","Applications des TI dans les sciences","Including digital geographic information","Y compris information géographique numérique (EDIGEO)"
+"35.240.80","35.240","IT applications in health care technology","Applications des TI dans les technologies de la santé","Including computer tomography","Y compris tomodensitométrie"
+"35.240.90","35.240","IT applications in education","Applications des TI dans le domaine de l’enseignement","Including e-learning","Y compris la formation en ligne"
+"35.240.95","35.240","Internet applications","Applications liées à l'internet",,
+"35.240.99","35.240","IT applications in other fields","Applications des TI dans les autres secteurs",,
+"37.040.01","37.040","Photography in general","Photographie en général",,
+"37.040.10","37.040","Photographic equipment. Projectors","Matériel photographique. Projecteurs",,
+"37.040.20","37.040","Photographic paper, films and plates. Cartridges","Papier, films, plaques et chargeurs photographiques",,
+"37.040.25","37.040","Radiographic films","Films radiographiques","Including dental, medical and industrial radiographic films","Y compris films radiographiques dentaires, médicaux et industriels"
+"37.040.30","37.040","Photographic chemicals","Produits chimiques photographiques",,
+"37.040.99","37.040","Other standards related to photography","Autres normes relatives à la photographie",,
+"37.060.01","37.060","Cinematography in general","Cinématographie en général",,
+"37.060.10","37.060","Motion picture equipment","Matériel cinématographique",,
+"37.060.20","37.060","Motion picture films. Cartridges","Films et chargeurs cinématographiques",,
+"37.060.99","37.060","Other standards related to cinematography","Autres normes relatives à la cinématographie",,
+"37.100.01","37.100","Graphic technology in general","Technologie graphique en général","Including proof corrections","Y compris correction d'épreuves"
+"37.100.10","37.100","Reproduction equipment","Matériel de reproduction","Including printing, copying and duplicating machines, bookbinding equipment, etc.","Y compris machines à imprimer, photocopier et dupliquer, matériel de reliure, etc."
+"37.100.20","37.100","Materials for graphic technology","Matériaux pour la technologie graphique",,
+"37.100.99","37.100","Other standards related to graphic technology","Autres normes relatives à la technologie graphique",,
+"39.040.01","39.040","Horology in general","Horlogerie en général",,
+"39.040.10","39.040","Watches","Montres",,
+"39.040.20","39.040","Clocks","Horloges",,
+"39.040.99","39.040","Other time-measuring instruments","Autres instruments horaires",,
+"43.040.01","43.040","Road vehicle systems in general","Systèmes automobiles en général",,
+"43.040.10","43.040","Electrical and electronic equipment","Équipements électriques et électroniques",,
+"43.040.15","43.040","Car informatics. On board computer systems","Informatique automobile. Systèmes informatiques embarqués","Including navigation systems, car radio, etc.","Y compris systèmes de navigation, autoradios, etc."
+"43.040.20","43.040","Lighting, signalling and warning devices","Dispositifs d'éclairage, de signalisation et d'avertissement",,
+"43.040.30","43.040","Indicating and control devices","Indicateurs et dispositifs de commande",,
+"43.040.40","43.040","Braking systems","Systèmes de freinage",,
+"43.040.50","43.040","Transmissions, suspensions","Transmission, suspension","Including clutches, gearboxes, power-steering systems, cardan shafts, differentials, wheels, rims, etc.","Y compris embrayage, boîtes de vitesses, systèmes de direction assistée, cardans, différentiels, roues, jantes, etc."
+"43.040.60","43.040","Bodies and body components","Carrosserie et éléments de carrosserie","Including vehicle frame and structure, heating devices, air-conditioning systems for passenger/driver compartments, roof load carriers, etc.","Y compris châssis et structure, dispositifs de chauffage, systèmes de climatisation de l'habitacle, dispositifs porte-charge de toit, etc."
+"43.040.65","43.040","Glazing and wiper systems","Vitrage et systèmes d'essuyage","Including cleaning, defrosting and demisting devices, mirrors, etc.","Y compris dispositifs de lave-glace, de dégivrage, de désembuage, rétroviseurs, etc."
+"43.040.70","43.040","Couplings","Attelage","Including towing attachments and fifth wheel assemblies","Y compris dispositifs d'attelage et pivots d'attelage"
+"43.040.80","43.040","Crash protection and restraint systems","Protection contre les chocs et systèmes de retenue","Including airbags, safety belts, traffic accident issues and safety enhancement matters","Y compris sacs gonflables, ceintures de sécurité et ce qui a trait aux accidents de la circulation et au renforcement de la sécurité routière"
+"43.040.99","43.040","Other road vehicle systems","Autres systèmes automobiles",,
+"43.060.01","43.060","Internal combustion engines for road vehicles in general","Moteurs à combustion interne pour véhicules routiers en général",,
+"43.060.10","43.060","Engine block and internal components","Bloc moteur et composants internes",,
+"43.060.20","43.060","Pressure charging and air/exhaust gas ducting systems","Compresseurs et circuits d'admission et d'échappement",,
+"43.060.30","43.060","Cooling systems. Lubricating systems","Système de refroidissement. Système de lubrification",,
+"43.060.40","43.060","Fuel systems","Système d'alimentation en carburant",,
+"43.060.50","43.060","Electrical and electronic equipment. Control systems","Équipement électrique et électronique. Systèmes de commande","Including ignition systems and starter motors","Y compris systèmes d'allumage et démarreurs"
+"43.060.99","43.060","Other components and systems of internal combustion engines","Autres composants et systèmes de moteurs à combustion interne pour véhicules routiers",,
+"43.080.01","43.080","Commercial vehicles in general","Véhicules utilitaires en général",,
+"43.080.10","43.080","Trucks and trailers","Camions et remorques","Including tanker trucks and loading compartments","Y compris camions-citernes et compartiments de chargement"
+"43.080.20","43.080","Buses","Autobus",,
+"43.080.99","43.080","Other commercial vehicles","Autres véhicules utilitaires",,
+"45.060.01","45.060","Railway rolling stock in general","Matériel roulant de chemins de fer en général",,
+"45.060.10","45.060","Tractive stock","Matériel de traction",,
+"45.060.20","45.060","Trailing stock","Matériel tracté","Including tank wagons","Y compris wagons-citernes"
+"47.020.01","47.020","General standards related to shipbuilding and marine structures","Normes générales relatives à la construction navale et aux structures maritimes",,
+"47.020.05","47.020","Materials and components for shipbuilding","Matériaux et composants pour la construction navale",,
+"47.020.10","47.020","Hulls and their structure elements","Coques et leurs éléments de structure",,
+"47.020.20","47.020","Marine engines and propulsion systems","Moteurs et systèmes de propulsion marins",,
+"47.020.30","47.020","Piping systems","Installations de tuyauteries",,
+"47.020.40","47.020","Lifting and cargo handling equipment","Appareils de levage et de manutention du fret",,
+"47.020.50","47.020","Deck equipment and installations","Matériel, équipements et installations de pont",,
+"47.020.60","47.020","Electrical equipment of ships and of marine structures","Équipement électrique des navires et structures maritimes",,
+"47.020.70","47.020","Navigation and control equipment","Matériel de navigation et de commande",,
+"47.020.80","47.020","Accommodation spaces","Aménagements à bord des navires",,
+"47.020.85","47.020","Cargo spaces","Espaces de cargaison","Including tanks and tankers","Y compris citernes et navires-citernes"
+"47.020.90","47.020","Marine ventilation, air conditioning and heating systems","Systèmes marins de ventilation, climatisation et chauffage",,
+"47.020.99","47.020","Other standards related to shipbuilding and marine structures","Autres normes relatives à la construction navale et aux structures maritimes",,
+"49.025.01","49.025","Materials for aerospace construction in general","Matériaux pour la construction aéronautique en général",,
+"49.025.05","49.025","Ferrous alloys in general","Alliages ferreux en général",,
+"49.025.10","49.025","Steels","Acier",,
+"49.025.15","49.025","Non-ferrous alloys in general","Alliages non ferreux en général",,
+"49.025.20","49.025","Aluminium","Aluminium",,
+"49.025.30","49.025","Titanium","Titane",,
+"49.025.40","49.025","Rubber and plastics","Caoutchouc et plastiques",,
+"49.025.50","49.025","Adhesives","Adhésifs",,
+"49.025.60","49.025","Textiles","Textiles","Including textile glass and coated fabrics","Y compris verre textile et textiles revêtus"
+"49.025.99","49.025","Other materials","Autres matériaux",,
+"49.030.01","49.030","Fasteners in general","Éléments de fixation en général",,
+"49.030.10","49.030","Screw threads","Filetages",,
+"49.030.20","49.030","Bolts, screws, studs","Boulons, vis, goujons",,
+"49.030.30","49.030","Nuts","Ecrous",,
+"49.030.40","49.030","Pins, nails","Goupilles, clous",,
+"49.030.50","49.030","Washers and other locking elements","Rondelles et autres systèmes de blocage",,
+"49.030.60","49.030","Rivets","Rivets",,
+"49.030.99","49.030","Other fasteners","Autres éléments de fixation",,
+"53.020.01","53.020","Lifting appliances in general","Appareils de levage en général",,
+"53.020.20","53.020","Cranes","Grues","Including mobile cranes, tower cranes, jib cranes, bridge cranes, etc.","Y compris grues mobiles, grues à tour, grues à flèche, ponts-roulants, etc."
+"53.020.30","53.020","Accessories for lifting equipment","Accessoires pour matériel de levage","Including lifting hooks, shackles, link chains, wire ropes, etc.","Y compris crochets de levage, manilles, chaînons, câbles en acier, etc."
+"53.020.99","53.020","Other lifting equipment","Autres appareils de levage","Including elevating work platforms","Y compris l'autres plate-formes élévatrices"
+"53.040.01","53.040","Continuous handling equipment in general","Engins de manutention continue en général",,
+"53.040.10","53.040","Conveyors","Convoyeurs et transporteurs",,
+"53.040.20","53.040","Components for conveyors","Composants pour convoyeurs et transporteurs","Including conveyor belts, chains, chain wheels, etc.","Y compris courroies de manutention, chaînes, roues pour chaînes, etc."
+"53.040.30","53.040","Pneumatic transport and its components","Transport pneumatique et ses composants",,
+"53.040.99","53.040","Other continuous handling equipment","Autres engins de manutention continue",,
+"55.180.01","55.180","Freight distribution of goods in general","Distribution des marchandises en général",,
+"55.180.10","55.180","General purpose containers","Conteneurs à usage général",,
+"55.180.20","55.180","General purpose pallets","Palettes à usage général",,
+"55.180.30","55.180","Air mode containers, pallets and nets","Conteneurs, palettes et filets pour le transport aérien",,
+"55.180.40","55.180","Complete, filled transport packages","Emballages de transport complets et pleins","Including reusable packages and unit loads","Y compris emballages réutilisables et charges unitaires"
+"55.180.99","55.180","Other standards related to freight distribution of goods","Autres normes de distribution des marchandises","Including intermediate bulk containers","Y compris grands récipients pour vrac (GRV)"
+"59.060.01","59.060","Textile fibres in general","Fibres textiles en général","Including mixtures of fibres","Y compris les mélanges de fibres"
+"59.060.10","59.060","Natural fibres","Fibres naturelles",,
+"59.060.20","59.060","Man-made fibres","Fibres chimiques",,
+"59.060.30","59.060","Mineral and metal fibres","Fibres minérales et métalliques",,
+"59.060.99","59.060","Other textile fibres","Autres fibres textiles",,
+"59.080.01","59.080","Textiles in general","Textiles en général","Including colour fastness of textiles","Y compris solidité des teintures"
+"59.080.20","59.080","Yarns","Fils textiles","Including plied yarns, textured yarns, threads","Y compris fils pliés, fils texturés, fils torsadés"
+"59.080.30","59.080","Textile fabrics","Étoffes","Including nonwovens, felts, lace, etc.","Y compris non-tissés, feutres, dentelles, etc."
+"59.080.40","59.080","Coated fabrics","Tissus enduits",,
+"59.080.50","59.080","Ropes","Cordages","Including strings, straps, bands","Y compris ficelles, sangles et élingues textiles"
+"59.080.70","59.080","Geotextiles","Géotextiles","Including geosynthetics","Y compris géosynthétiques"
+"59.080.80","59.080","Smart textiles","Textiles intelligents",,
+"59.080.99","59.080","Other products of the textile industry","Autres produits de l'industrie textile",,
+"59.100.01","59.100","Materials for the reinforcement of composites in general","Matériaux pour le renforcement des composites en général",,
+"59.100.10","59.100","Textile glass materials","Matériaux en verre textile",,
+"59.100.20","59.100","Carbon materials","Matériaux de renforcement à base de carbone",,
+"59.100.30","59.100","Aramide materials","Matériaux de renforcement à base d'aramide",,
+"59.100.99","59.100","Other materials for the reinforcement of composites","Autres matériaux pour le renforcement des composites",,
+"59.120.01","59.120","Textile machinery in general","Machines pour l'industrie textile en général",,
+"59.120.10","59.120","Spinning, twisting and texturing machines","Matériel de filature, de retordage et de texturage","Including machines and equipment for manufacturing man-made filaments and fibres and for preparing fibres for spinning","Y compris machines et matériels de fabrication des filaments et des fibres chimiques et de préparation de filature"
+"59.120.20","59.120","Winding machines and equipment","Bobinoir et matériel de bobinage","Including machines and equipment for reeling, balling, warping, sizing, beaming, etc. of yarns","Y compris machines et matériel pour le dévidage, la mise en pelote, l'ourdissage, le calibrage, la mise en faisceau des fils, etc."
+"59.120.30","59.120","Looms. Weaving machines","Métiers. Machines à tisser",,
+"59.120.40","59.120","Knitting machines","Machines à tricoter","Including household knitting machines","Y compris machines à tricoter domestiques"
+"59.120.50","59.120","Dyeing and finishing equipment","Machines de teinture et machines d'apprêt",,
+"59.120.99","59.120","Other textile machinery","Autre matériel pour l'industrie textile",,
+"59.140.01","59.140","Leather technology in general","Technologie du cuir en général",,
+"59.140.10","59.140","Processes and auxiliary materials","Procédés et matériaux auxiliaires",,
+"59.140.20","59.140","Raw skins, hides and pelts","Peaux brutes et peaux traitées",,
+"59.140.30","59.140","Leather and furs","Cuirs et fourrures",,
+"59.140.35","59.140","Leather products","Produits en cuir","Including trunks, suitcases, handbags, purses, wallets, dog-collars, etc. made of materials other than leather","Y compris valises, mallettes, sacs à main, porte-monnaie, portefeuilles, colliers de chien, etc. en matières autres que le cuir"
+"59.140.40","59.140","Machines and equipment for leather and fur production","Machines et matériels pour la production des cuirs et fourrures",,
+"59.140.99","59.140","Other standards related to leather technology","Autres normes relatives à la technologie du cuir",,
+"65.020.01","65.020","Farming and forestry in general","Agriculture et sylviculture en général",,
+"65.020.20","65.020","Plant growing","Culture des plantes","Including horticulture, floriculture, seeds, plant diseases","Y compris horticulture, floriculture, semences, maladies des végétaux"
+"65.020.30","65.020","Animal husbandry and breeding","Élevage et reproduction animale","Including sanitary inspection","Y compris contrôle sanitaire"
+"65.020.40","65.020","Landscaping and silviculture","Aménagement du paysage et sylviculture",,
+"65.020.99","65.020","Other standards related to farming and forestry","Autres normes relatives à l'agriculture et à la sylviculture",,
+"65.040.01","65.040","Farm buildings and installations in general","Bâtiments et installations agricoles en général",,
+"65.040.10","65.040","Livestock buildings, installations and equipment","Bâtiments, installations et équipements pour le bétail","Including milking machines","Y compris trayeuses"
+"65.040.20","65.040","Buildings and installations for processing and storage of agricultural produce","Bâtiments et installations pour le traitement et l'entreposage des productions agricoles","Including slaughterhouses and related equipment","Y compris abattoirs et appareils d'abattage"
+"65.040.30","65.040","Greenhouses and other installations","Serres et installations diverses",,
+"65.040.99","65.040","Other standards related to farm buildings and installations","Autres normes relatives aux bâtiments et installations agricoles",,
+"65.060.01","65.060","Agricultural machines and equipment in general","Machines et matériel à usage agricole en général",,
+"65.060.10","65.060","Agricultural tractors and trailed vehicles","Tracteurs agricoles et remorques",,
+"65.060.20","65.060","Soil-working equipment","Matériel pour le travail du sol",,
+"65.060.25","65.060","Equipment for storage, preparation and distribution of fertilizers","Matériel pour le stockage, la préparation et la distribution des engrais",,
+"65.060.30","65.060","Sowing and planting equipment","Matériel de semis et de plantation",,
+"65.060.35","65.060","Irrigation and drainage equipment","Matériel d'irrigation et de drainage",,
+"65.060.40","65.060","Plant care equipment","Matériel de traitement agropharmaceutique",,
+"65.060.50","65.060","Harvesting equipment","Matériel de récolte",,
+"65.060.60","65.060","Viticultural and wine-making equipment","Matériel viti-vinicole",,
+"65.060.70","65.060","Horticultural equipment","Matériel horticole","Including lawnmowers, equipment for olive cultivation and olive production","Y compris tondeuses à gazon, matériel pour la culture et la production de l'olive"
+"65.060.80","65.060","Forestry equipment","Matériel forestier","Including chain- and brush-saws","Y compris tronçonneuses et débroussailleuses"
+"65.060.99","65.060","Other agricultural machines and equipment","Autres machines et matériel à usage agricole",,
+"65.100.01","65.100","Pesticides and other agrochemicals in general","Pesticides et autres produits agropharmaceutiques en général",,
+"65.100.10","65.100","Insecticides","Insecticides",,
+"65.100.20","65.100","Herbicides","Herbicides",,
+"65.100.30","65.100","Fungicides","Fongicides",,
+"65.100.99","65.100","Other pesticides and agrochemicals","Autres pesticides et produits agropharmaceutiques",,
+"67.080.01","67.080","Fruits, vegetables and derived products in general","Fruits et légumes et produits dérivés en général",,
+"67.080.10","67.080","Fruits and derived products","Fruits et produits dérivés","Including nuts","Y compris noix"
+"67.080.20","67.080","Vegetables and derived products","Légumes et produits dérivés","Including tomato concentrates, ketchup, etc.","Y compris concentrés de tomate, sauce tomate, etc."
+"67.100.01","67.100","Milk and milk products in general","Lait et produits laitiers en général",,
+"67.100.10","67.100","Milk and processed milk products","Lait et produits laitiers transformés","Including dried milk, condensed milk and evaporated milk","Y compris lait sec, lait concentré et lait condensé"
+"67.100.20","67.100","Butter","Beurre",,
+"67.100.30","67.100","Cheese","Fromage","Including cottage cheese, whey cheese","Y compris caillé et petit lait"
+"67.100.40","67.100","Ice cream and ice confectionery","Crèmes glacées et glaces","Including sorbets","Y compris sorbets"
+"67.100.99","67.100","Other milk products","Autres produits laitiers",,
+"67.120.01","67.120","Animal produce in general","Produits d'origine animale en général",,
+"67.120.10","67.120","Meat and meat products","Viande et produits à base de viande",,
+"67.120.20","67.120","Poultry and eggs","Volailles et oeufs",,
+"67.120.30","67.120","Fish and fishery products","Poissons et produits de la pêche","Including aquatic molluscs and other marine products","Y compris mollusques aquatiques et autres produits de la mer"
+"67.120.99","67.120","Other animal produce","Autres produits d'origine animale",,
+"67.140.10","67.140","Tea","Thé","Including herb teas","Y compris tisanes"
+"67.140.20","67.140","Coffee and coffee substitutes","Café et substituts du café",,
+"67.140.30","67.140","Cocoa","Cacao",,
+"67.160.01","67.160","Beverages in general","Boissons en général",,
+"67.160.10","67.160","Alcoholic beverages","Boissons alcoolisées","Including beer, wine, spirits, etc.","Y compris bière, vins, spiritueux, etc."
+"67.160.20","67.160","Non-alcoholic beverages","Boissons non-alcoolisées","Including juices, nectars, mineral waters, lemonades, root beer, cola drinks, etc.","Y compris jus de fruits, nectars, eaux minérales, limonades, boissons gazeuses, boissons à base de coca, etc."
+"67.180.10","67.180","Sugar and sugar products","Sucre et produits sucrés","Including molasses, sweets, sugar confectionary, honey, etc.","Y compris mélasses, bonbons, confiserie, miel, etc."
+"67.180.20","67.180","Starch and derived products","Amidon et produits dérivés","Including glucose syrups, etc.","Y compris sirops de glucose, etc."
+"67.200.10","67.200","Animal and vegetable fats and oils","Corps gras d'origines animale et végétale",,
+"67.200.20","67.200","Oilseeds","Graines oléagineuses",,
+"67.220.10","67.220","Spices and condiments","Épices et condiments",,
+"67.220.20","67.220","Food additives","Additifs alimentaires","Including salt, vinegar, food preservation additives, etc.","Y compris sel, vinaigre, conservateurs, etc."
+"71.040.01","71.040","Analytical chemistry in general","Chimie analytique en général",,
+"71.040.10","71.040","Chemical laboratories. Laboratory equipment","Laboratoires d'analyse chimique. Matériel de laboratoire","Including hydrometers, alcoholometers, etc.","Y compris aréomètres, éthylomètres, etc."
+"71.040.20","71.040","Laboratory ware and related apparatus","Verrerie de laboratoire et appareils connexes",,
+"71.040.30","71.040","Chemical reagents","Réactifs chimiques","Including reference materials","Y compris matériaux de référence"
+"71.040.40","71.040","Chemical analysis","Méthodes d'analyse chimique","Including analysis of gases and surface chemical analysis","Y compris analyse des gaz et analyse chimique des surfaces"
+"71.040.50","71.040","Physicochemical methods of analysis","Méthodes d'analyse physico-chimique","Including spectrophotometric and chromatographic analysis","Y compris analyses spectrophotométrique et chromatographique"
+"71.040.99","71.040","Other standards related to analytical chemistry","Autres normes relatives à la chimie analytique",,
+"71.060.01","71.060","Inorganic chemicals in general","Chimie minérale en général",,
+"71.060.10","71.060","Chemical elements","Éléments chimiques",,
+"71.060.20","71.060","Oxides","Oxydes","Including dioxides, peroxides, etc.","Y compris dioxydes, peroxydes, etc."
+"71.060.30","71.060","Acids","Acides",,
+"71.060.40","71.060","Bases","Bases",,
+"71.060.50","71.060","Salts","Sels",,
+"71.060.99","71.060","Other inorganic chemicals","Autres",,
+"71.080.01","71.080","Organic chemicals in general","Chimie organique en général",,
+"71.080.10","71.080","Aliphatic hydrocarbons","Hydrocarbures aliphatiques",,
+"71.080.15","71.080","Aromatic hydrocarbons","Hydrocarbures aromatiques",,
+"71.080.20","71.080","Halogenated hydrocarbons","Hydrocarbures halogénés",,
+"71.080.30","71.080","Organic nitrogen compounds","Composés organiques de l'azote",,
+"71.080.40","71.080","Organic acids","Acides organiques",,
+"71.080.50","71.080","Anhydrides","Anhydrides",,
+"71.080.60","71.080","Alcohols. Ethers","Alcools. Éthers",,
+"71.080.70","71.080","Esters","Esters",,
+"71.080.80","71.080","Aldehydes and ketones","Aldéhydes et cétones",,
+"71.080.90","71.080","Phenols","Phénols",,
+"71.080.99","71.080","Other organic chemicals","Autres",,
+"71.100.01","71.100","Products of the chemical industry in general","Produits de l'industrie chimique en général",,
+"71.100.10","71.100","Materials for aluminium production","Matériaux pour la fabrication de l'aluminium",,
+"71.100.20","71.100","Gases for industrial application","Gaz pour les applications industrielles","Including compressed air and hydrogen","Y compris air comprimé et hydrogène"
+"71.100.30","71.100","Explosives. Pyrotechnics and fireworks","Explosifs. Pyrotechnie et feux d'artifice",,
+"71.100.35","71.100","Chemicals for industrial and domestic disinfection purposes","Désinfectants à usage industriel et domestique",,
+"71.100.40","71.100","Surface active agents","Agents de surface",,
+"71.100.45","71.100","Refrigerants and antifreezes","Fluides frigorigènes et antigels",,
+"71.100.50","71.100","Wood-protecting chemicals","Produits de protection du bois",,
+"71.100.55","71.100","Silicones","Silicones",,
+"71.100.60","71.100","Essential oils","Huiles essentielles",,
+"71.100.70","71.100","Cosmetics. Toiletries","Cosmétiques. Produits d'hygiène corporelle",,
+"71.100.80","71.100","Chemicals for purification of water","Produits chimiques pour la purification de l'eau",,
+"71.100.99","71.100","Other products of the chemical industry","Autres produits de l'industrie chimique",,
+"71.120.01","71.120","Equipment for the chemical industry in general","Matériel pour l'industrie chimique en général",,
+"71.120.10","71.120","Reaction vessels and their components","Caissons de réaction et leurs composants",,
+"71.120.20","71.120","Columns","Colonnes",,
+"71.120.30","71.120","Heat exchangers","Échangeurs de chaleur",,
+"71.120.99","71.120","Other equipment for the chemical industry","Autre matériel pour l'industrie chimique",,
+"73.060.01","73.060","Metalliferous minerals in general","Minerais métallifères en général",,
+"73.060.10","73.060","Iron ores","Minerais de fer",,
+"73.060.20","73.060","Manganese ores","Minerais de manganèse",,
+"73.060.30","73.060","Chromium ores","Minerais de chrome",,
+"73.060.40","73.060","Aluminium ores","Minerais d'aluminium",,
+"73.060.99","73.060","Other metalliferous minerals","Autres minerais métallifères",,
+"73.100.01","73.100","Mining equipment in general","Matériel pour exploitation minière en général",,
+"73.100.10","73.100","Tunnelling and tubing equipment","Matériel de cuvelage et de tunnelage",,
+"73.100.20","73.100","Ventilation, air-conditioning and illumination equipment","Ventilation, matériel de conditionnement d'air et d'éclairage",,
+"73.100.30","73.100","Equipment for drilling and mine excavation","Matériel de forage et d'excavation","Including equipment for seabed mining","Y compris matériel pour l'exploitation des gisements marins"
+"73.100.40","73.100","Haulage and hoisting equipment","Matériel de halage et de levage",,
+"73.100.99","73.100","Other mining equipment","Autre matériel pour exploitation minière",,
+"75.160.01","75.160","Fuels in general","Combustibles en général",,
+"75.160.10","75.160","Solid fuels","Combustibles solides","Including coal products, coke, peat, wood, derivatives of coal pyrolysis, etc.","Y compris produits de charbon, coke, tourbe, bois, dérivés de la pyrolyse du charbon, etc."
+"75.160.20","75.160","Liquid fuels","Combustibles liquides","Including gasoline, diesel, kerosene, etc.","Y compris essence, gazole, kérosène, etc."
+"75.160.30","75.160","Gaseous fuels","Combustibles gazeux","Including liquefied petroleum gases","Y compris gaz de pétrole liquéfiés"
+"75.160.40","75.160","Biofuels","Biocombustibles","Including solid biofuels, liquid biofuels and biogas","Y compris les biocombustibles solides, les biocombustibles liquides et le biogaz"
+"75.180.01","75.180","Equipment for petroleum and natural gas industries in general","Equipement pour les industries du pétrole et du gaz naturel en général",,
+"75.180.10","75.180","Exploratory, drilling and extraction equipment","Matériel d'exploitation, de forage et d'extraction","Including offshore structures","Y compris structures en haute-mer"
+"75.180.20","75.180","Processing equipment","Matériel de traitement",,
+"75.180.30","75.180","Volumetric equipment and measurements","Mesurage de volume et matériel correspondant",,
+"75.180.99","75.180","Other equipment for petroleum and natural gas industries","Autres équipements pour les industries du pétrole et du gaz naturel",,
+"77.040.01","77.040","Testing of metals in general","Essais des métaux en général",,
+"77.040.10","77.040","Mechanical testing of metals","Essais mécaniques des métaux",,
+"77.040.20","77.040","Non-destructive testing of metals","Essais non destructifs des métaux",,
+"77.040.30","77.040","Chemical analysis of metals","Analyse chimique des métaux",,
+"77.040.99","77.040","Other methods of testing of metals","Autres méthodes d'essai des métaux",,
+"77.080.01","77.080","Ferrous metals in general","Metaux ferreux en général",,
+"77.080.10","77.080","Irons","Fontes",,
+"77.080.20","77.080","Steels","Aciers",,
+"77.120.01","77.120","Non-ferrous metals in general","Métaux non ferreux en général",,
+"77.120.10","77.120","Aluminium and aluminium alloys","Aluminium et alliages d'aluminium",,
+"77.120.20","77.120","Magnesium and magnesium alloys","Magnésium et alliages de magnésium",,
+"77.120.30","77.120","Copper and copper alloys","Cuivre et alliages de cuivre",,
+"77.120.40","77.120","Nickel, chromium and their alloys","Nickel et alliages de nickel",,
+"77.120.50","77.120","Titanium and titanium alloys","Titane et alliages de titane",,
+"77.120.60","77.120","Lead, zinc, tin and their alloys","Plomb, zinc, étain et leurs alliages",,
+"77.120.70","77.120","Cadmium, cobalt and their alloys","Cadmium, cobalt et leurs alliages",,
+"77.120.99","77.120","Other non-ferrous metals and their alloys","Autres métaux non ferreux et leurs alliages",,
+"77.140.01","77.140","Iron and steel products in general","Produits en fonte et produits en acier en général",,
+"77.140.10","77.140","Heat-treatable steels","Aciers pour traitement thermique",,
+"77.140.15","77.140","Steels for reinforcement of concrete","Aciers pour béton armé",,
+"77.140.20","77.140","Stainless steels","Aciers inoxydables","Including alloyed steels, corrosion-resistant steels, heat-resisting steels, etc.","Y compris aciers alliés, aciers résistant à la corrosion, aciers résistant à la chaleur, etc."
+"77.140.25","77.140","Spring steels","Aciers à ressorts",,
+"77.140.30","77.140","Steels for pressure purposes","Aciers pour service sous pression",,
+"77.140.35","77.140","Tool steels","Aciers à outils",,
+"77.140.40","77.140","Steels with special magnetic properties","Aciers ayant des propriétés magnétiques spécifiques",,
+"77.140.45","77.140","Non-alloyed steels","Aciers non alliés",,
+"77.140.50","77.140","Flat steel products and semi-products","Produits et semi-produits plats en acier","Including plate, sheet and strip","Y compris tôles, feuilles, bandes et feuillards"
+"77.140.60","77.140","Steel bars and rods","Barres et ronds en acier",,
+"77.140.65","77.140","Steel wire, wire ropes and link chains","Fil machine, câbles et chaînes en acier",,
+"77.140.70","77.140","Steel profiles","Profilés en acier","Including sections","Y compris poutrelles"
+"77.140.75","77.140","Steel pipes and tubes for specific use","Canalisation et tubes en acier pour usage spécifique","Including hollow steel bars and sections for construction","Y compris barres en acier creuses et profils creux pour la construction"
+"77.140.80","77.140","Iron and steel castings","Fontes et aciers moulés",,
+"77.140.85","77.140","Iron and steel forgings","Pièces forgées",,
+"77.140.99","77.140","Other iron and steel products","Autres produits en métaux ferreux",,
+"77.150.01","77.150","Products of non-ferrous metals in general","Produits en métaux non ferreux en général",,
+"77.150.10","77.150","Aluminium products","Produits en aluminium",,
+"77.150.20","77.150","Magnesium products","Produits en magnésium",,
+"77.150.30","77.150","Copper products","Produits en cuivre",,
+"77.150.40","77.150","Nickel and chromium products","Produits en nickel et chrome",,
+"77.150.50","77.150","Titanium products","Produits en titane",,
+"77.150.60","77.150","Lead, zinc and tin products","Produits en plomb, zinc et étain",,
+"77.150.70","77.150","Cadmium and cobalt products","Produits en cadmium et cobalt",,
+"77.150.99","77.150","Other products of non-ferrous metals","Autres produits en métaux non ferreux",,
+"79.060.01","79.060","Wood-based panels in general","Panneaux à base de bois en général",,
+"79.060.10","79.060","Plywood","Contreplaqué",,
+"79.060.20","79.060","Fibre and particle boards","Panneaux de particules et de fibres",,
+"79.060.99","79.060","Other wood-based panels","Autres panneaux à base de bois",,
+"79.120.01","79.120","Woodworking equipment in general","Matériel pour le travail du bois en général",,
+"79.120.10","79.120","Woodworking machines","Machines à bois",,
+"79.120.20","79.120","Woodworking tools","Outils pour le travail du bois",,
+"79.120.99","79.120","Other woodworking equipment","Autre matériel pour le travail du bois",,
+"81.040.01","81.040","Glass in general","Verre en général",,
+"81.040.10","81.040","Raw materials and raw glass","Matières premières et verre brut",,
+"81.040.20","81.040","Glass in building","Verre dans la construction",,
+"81.040.30","81.040","Glass products","Produits en verre",,
+"81.060.01","81.060","Ceramics in general","Céramiques en général",,
+"81.060.10","81.060","Raw materials","Matières premières",,
+"81.060.20","81.060","Ceramic products","Produits en céramique",,
+"81.060.30","81.060","Advanced ceramics","Céramiques techniques avancées",,
+"81.060.99","81.060","Other standards related to ceramics","Autres normes relatives aux céramiques",,
+"83.040.01","83.040","Raw materials for rubber and plastics in general","Matières premières pour les élastomères et les plastiques en général",,
+"83.040.10","83.040","Latex and raw rubber","Latex et caoutchouc brut",,
+"83.040.20","83.040","Rubber compounding ingredients","Ingrédients de mélange du caoutchouc","Including carbon black, kaolin clay, etc.","Y compris noir de carbone, kaolins, etc."
+"83.040.30","83.040","Auxiliary materials and additives for plastics","Matériaux auxiliaires et additifs pour les plastiques","Including fillers, extenders, hardeners, pigments, plasticizers, etc.","Y compris matières de charge, durcisseurs, pigments, plastifiants, etc."
+"83.080.01","83.080","Plastics in general","Plastiques en général",,
+"83.080.10","83.080","Thermosetting materials","Matériaux thermodurcissables","Including ebonite","Y compris ébonite"
+"83.080.20","83.080","Thermoplastic materials","Matériaux thermoplastiques",,
+"83.140.01","83.140","Rubber and plastics products in general","Produits en élastomères ou en matières plastiques en général",,
+"83.140.10","83.140","Films and sheets","Films et feuilles","Including plates","Y compris plaques"
+"83.140.20","83.140","Laminated sheets","Stratifiés",,
+"83.140.30","83.140","Plastics pipes and fittings for non fluid use","Tubes et raccords en matière plastique à usage autre que fluidique",,
+"83.140.40","83.140","Hoses","Tuyaux flexibles",,
+"83.140.50","83.140","Seals","Joints d'étanchéité",,
+"83.140.99","83.140","Other rubber and plastics products","Autres produits en élastomères ou en matières plastiques",,
+"83.160.01","83.160","Tyres in general","Pneumatiques en général",,
+"83.160.10","83.160","Road vehicle tyres","Pneumatiques pour véhicules routiers","Including cycle tyres, and tyre retreading and repair processes","Y compris pneus de bicyclettes, et procédés de rechapage et de réparation des pneumatiques"
+"83.160.20","83.160","Aircraft tyres","Pneumatiques pour aéronefs",,
+"83.160.30","83.160","Tyres for agricultural machinery","Pneumatiques pour machines agricoles",,
+"83.160.99","83.160","Other tyres","Autres pneumatiques",,
+"85.080.01","85.080","Paper products in general","Produits en papier en général",,
+"85.080.10","85.080","Office paper","Papeterie",,
+"85.080.20","85.080","Tissue paper","Papier tissu",,
+"85.080.30","85.080","Cardboard","Papier cartonné","Including corrugated fibreboard","Y compris le carton ondulé"
+"85.080.99","85.080","Other paper products","Autres produits en papier",,
+"87.060.01","87.060","Paint ingredients in general","Ingrédients des peintures en général",,
+"87.060.10","87.060","Pigments and extenders","Pigments et matières de charge",,
+"87.060.20","87.060","Binders","Liants",,
+"87.060.30","87.060","Solvents","Solvants",,
+"87.060.99","87.060","Other paint ingredients","Autres ingrédients des peintures",,
+"91.010.01","91.010","Construction industry in general","Industrie de la construction en général",,
+"91.010.10","91.010","Legal aspects","Aspects légaux",,
+"91.010.20","91.010","Contractual aspects","Aspects contractuels","Including construction procurement","Y compris les marchés de construction"
+"91.010.30","91.010","Technical aspects","Aspects techniques","Including tolerances, modular coordination, etc.","Y compris tolérances, coordination modulaire, etc."
+"91.010.99","91.010","Other aspects","Autres aspects",,
+"91.040.01","91.040","Buildings in general","Bâtiments en général","Including building environment design and service life planning","Y compris conception de l'environnement des bâtiments et prévision de la durée de vie des bâtiments"
+"91.040.10","91.040","Public buildings","Bâtiments publics","Including ecclesiastical buildings and hospitals","Y compris édifices religieux et hôpitaux"
+"91.040.20","91.040","Buildings for commerce and industry","Bâtiments pour le commerce et l'industrie",,
+"91.040.30","91.040","Residential buildings","Bâtiments d'habitation",,
+"91.040.99","91.040","Other buildings","Autres bâtiments",,
+"91.060.01","91.060","Elements of buildings in general","Éléments de construction en général",,
+"91.060.10","91.060","Walls. Partitions. Façades","Murs. Cloisons. Façades",,
+"91.060.20","91.060","Roofs","Toitures","Including related elements (gutters, etc.)","Y compris éléments associés (gouttières, etc.)"
+"91.060.30","91.060","Ceilings. Floors. Stairs","Plafonds. Planchers. Escaliers","Including screeds, ramps, etc.","Y compris chapes, rampes, etc."
+"91.060.40","91.060","Chimneys, shafts, ducts","Cheminées. Cages. Conduits","Including flues and flue pipes","Y compris les conduits de fumée"
+"91.060.50","91.060","Doors and windows","Portes et fenêtres","Including doorsets, their components, blinds, shutters","Y compris blocs-portes, leurs composants, stores, volets"
+"91.060.99","91.060","Other elements of buildings","Autres éléments de construction",,
+"91.080.01","91.080","Structures of buildings in general","Structures de construction en général",,
+"91.080.10","91.080","Metal structures","Structures métalliques",,
+"91.080.13","91.080","Steel structures","Structures en acier",,
+"91.080.17","91.080","Aluminium structures","Structures en aluminium",,
+"91.080.20","91.080","Timber structures","Structures en bois",,
+"91.080.30","91.080","Masonry","Maçonneries",,
+"91.080.40","91.080","Concrete structures","Structures en béton","Including the repair and protection of concrete products and structures","Y compris produits pour la protection et la réparation des structures en béton"
+"91.080.99","91.080","Other structures","Autres structures",,
+"91.100.01","91.100","Construction materials in general","Matériaux de construction en général",,
+"91.100.10","91.100","Cement. Gypsum. Lime. Mortar","Ciment. Plâtre. Chaux. Mortier",,
+"91.100.15","91.100","Mineral materials and products","Matériaux et produits minéraux","Including earth, sands, clay, slates, stones, etc.","Y compris terre, sables, argiles, ardoises, pierres, briques, etc."
+"91.100.23","91.100","Ceramic tiles","Carreaux et dalles en céramique",,
+"91.100.25","91.100","Terracotta building products","Produits de construction en terre cuite","Including roofing tiles, bricks, etc.","Y compris tuiles, briques etc."
+"91.100.30","91.100","Concrete and concrete products","Béton et produits en béton","Including admixtures","Y compris adjuvants pour béton"
+"91.100.40","91.100","Products in fibre-reinforced cement","Produits en ciment renforcé de fibres",,
+"91.100.50","91.100","Binders. Sealing materials","Liants. Matériaux d'étanchéité","Including geomembranes, asphalts for buildings, etc.","Y compris géomembranes, asphaltes pour le bâtiment, etc."
+"91.100.60","91.100","Thermal and sound insulating materials","Matériaux d'isolation thermique et acoustique",,
+"91.100.99","91.100","Other construction materials","Autres matériaux de construction",,
+"91.120.01","91.120","Protection of and in buildings in general","Protection extérieure et intérieure des bâtiments en général",,
+"91.120.10","91.120","Thermal insulation of buildings","Isolation thermique des bâtiments","Including energy efficiency of buildings","Y compris l’efficacité énergétique des bâtiments"
+"91.120.20","91.120","Acoustics in building. Sound insulation","Acoustique dans le bâtiment. Isolation acoustique",,
+"91.120.25","91.120","Seismic and vibration protection","Protection contre les séismes et les vibrations",,
+"91.120.30","91.120","Waterproofing","Étanchéité à l'eau",,
+"91.120.40","91.120","Lightning protection","Protection contre la foudre",,
+"91.120.99","91.120","Other standards related to protection of and in buildings","Autres normes relatives à la protection extérieure et intérieure des bâtiments",,
+"91.140.01","91.140","Installations in buildings in general","Installations dans les bâtiments en général",,
+"91.140.10","91.140","Central heating systems","Systèmes de chauffage central","Including burners and boilers for central heating systems","Y compris brûleurs et chaudières de chauffage central"
+"91.140.30","91.140","Ventilation and air-conditioning systems","Systèmes de ventilation et de climatisation","Including ventilation ducts","Y compris conduits de ventilation"
+"91.140.40","91.140","Gas supply systems","Systèmes de fourniture de gaz","Including gas meters in buildings","Y compris compteurs à gaz"
+"91.140.50","91.140","Electricity supply systems","Systèmes de fourniture d'électricité","Including electric energy meters in buildings, emergency electrical supplies, etc.","Y compris compteurs électriques, fourniture d'électricité de secours, etc."
+"91.140.60","91.140","Water supply systems","Systèmes de fourniture d'eau","Including water meters in buildings","Y compris compteurs d'eau"
+"91.140.65","91.140","Water heating equipment","Appareils de chauffage de l'eau",,
+"91.140.70","91.140","Sanitary installations","Installations sanitaires","Including bidets, kitchen sinks, baths, waste chutes, etc.","Y compris bidets, éviers, baignoires, vide-ordures, etc."
+"91.140.80","91.140","Drainage systems","Systèmes d'évacuation d'eau",,
+"91.140.90","91.140","Lifts. Escalators","Ascenseurs. Escaliers mécaniques",,
+"91.140.99","91.140","Other installations in buildings","Autres installations dans les bâtiments",,
+"91.160.01","91.160","Lighting in general","Eclairage en général",,
+"91.160.10","91.160","Interior lighting","Éclairage intérieur","Including workplace lighting, emergency and safety lighting","Y compris éclairage des lieux de travail, éclairage de sécurité et éclairage de secours"
+"91.160.20","91.160","Exterior building lighting","Éclairage extérieur des bâtiments","Including flood lighting","Y compris éclairage architectural"
+"93.080.01","93.080","Road engineering in general","Génie routier en général",,
+"93.080.10","93.080","Road construction","Construction des routes","Including road maintenance equipment and road construction equipment","Y compris matériel pour la construction et l'entretien des routes"
+"93.080.20","93.080","Road construction materials","Matériaux de construction des routes","Including asphalts, road pavements, etc.","Y compris asphaltes, chaussées, etc."
+"93.080.30","93.080","Road equipment and installations","Installations et équipements routiers","Including road traffic warning and control systems, devices and installations (speed controls, traffic signal installations, vehicle loop detectors, pavement markers, manholes, etc.)","Y compris systèmes, installations et dispositifs de régulation de la circulation (contrôle de vitesse, signalisation routière, détecteurs de véhicules à boucles électromagnétiques) marquage des chaussées, plaques d'égout, etc."
+"93.080.40","93.080","Street lighting and related equipment","Eclairage public et matériels correspondants",,
+"93.080.99","93.080","Other standards related to road engineering","Autres normes de génie routier",,
+"97.040.01","97.040","Kitchen equipment in general","Equipements de cuisine en général",,
+"97.040.10","97.040","Kitchen furniture","Meubles de cuisine",,
+"97.040.20","97.040","Cooking ranges, working tables, ovens and similar appliances","Cuisinières, réchauds, fours et appareils analogues","Including microwave ovens and stove hoods","Y compris fours à micro-ondes et hottes de cuisine"
+"97.040.30","97.040","Domestic refrigerating appliances","Appareils de réfrigération ménagers",,
+"97.040.40","97.040","Dishwashers","Lave-vaisselle",,
+"97.040.50","97.040","Small kitchen appliances","Petits appareils de cuisine","Including food waste disposal units","Y compris broyeurs de déchets"
+"97.040.60","97.040","Cookware, cutlery and flatware","Articles de cuisson, couverts et coutellerie","Including table cutlery and table ware","Y compris ustensiles de table"
+"97.040.99","97.040","Other kitchen equipment","Autres équipements de cuisine",,
+"97.100.01","97.100","Heating appliances in general","Appareils de chauffage en général",,
+"97.100.10","97.100","Electric heaters","Appareils de chauffage électrique",,
+"97.100.20","97.100","Gas heaters","Appareils de chauffage à gaz",,
+"97.100.30","97.100","Solid fuel heaters","Appareils de chauffage à combustible solide",,
+"97.100.40","97.100","Liquid fuel heaters","Appareils de chauffage à combustible liquide",,
+"97.100.99","97.100","Heaters using other sources of energy","Appareils de chauffage utilisant d'autres sources d'énergie",,
+"97.130.01","97.130","Shop fittings in general","Aménagement des magasins en général",,
+"97.130.10","97.130","Shelving","Rayonnages",,
+"97.130.20","97.130","Commercial refrigerating appliances","Appareils de réfrigération commerciaux","Including refrigerated display cabinets, cold rooms, etc.","Y compris meubles frigorifiques de vente, chambres froides, etc."
+"97.130.30","97.130","Trolleys for supermarket purposes","Chariots d'achat pour supermarchés","Including baskets","Y compris sacs à provisions"
+"97.130.99","97.130","Other shop fittings","Autres aménagements pour les magasins",,
+"97.200.01","97.200","Equipment for entertainment in general","Equipements de loisirs en général",,
+"97.200.10","97.200","Theatre, stage and studio equipment","Équipements de théâtre, de scène et de studio","Including lighting equipment","Y compris matériel d'éclairage"
+"97.200.20","97.200","Musical instruments","Instruments de musique",,
+"97.200.30","97.200","Camping equipment and camp-sites","Matériel et terrains de camping",,
+"97.200.40","97.200","Playgrounds","Aires de jeux","Including amusement rides and devices","Y compris les fêtes foraines et leurs équipements"
+"97.200.50","97.200","Toys","Jouets","Including safety of toys","Y compris sécurité des jouets"
+"97.200.99","97.200","Other equipment for entertainment","Autres équipements de loisirs",,
+"97.220.01","97.220","Sports equipment and facilities in general","Equipements et installations de sports en général",,
+"97.220.10","97.220","Sports facilities","Installations de sports","Including swimming-pools, spas, solaria, sports fields, running-tracks, spectator facilities for sports, etc.","Y compris piscines, installations thermales, solariums, terrains de sport, pistes d'athlétisme, équipements pour le spectateur, etc."
+"97.220.20","97.220","Winter sports equipment","Équipements de sports d'hiver","Including ice hockey, snowboard, and ski equipment","Y compris équipements de hockey sur glace, de surf des neiges et de ski"
+"97.220.30","97.220","Indoor sports equipment","Équipements de sports d'intérieur","Including equipment for gymnastics, volleyball, basketball, handball, home sports trainers, etc.","Y compris équipements pour gymnastique, volley-ball, basket-ball, hand-ball, appareils d'entraînement à domicile, etc."
+"97.220.40","97.220","Outdoor and water sports equipment","Équipements de sports de plein air et aquatiques","Including equipment for mountaineering, football, tennis, swimming, diving, etc.","Y compris équipements pour alpinisme, football, tennis, natation, plongée, etc."
+"97.220.99","97.220","Other sports equipment and facilities","Autres équipements et installations de sports",,
