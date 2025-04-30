@@ -8,6 +8,14 @@
   <link rel="stylesheet" href="./lib/reveal.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/theme/white.css">
 </head>
+<script>
+  Reveal.initialize({
+    controls: true,
+    progress: true,
+    slideNumber: true,
+    hash: true
+  });
+</script>
 <style>
   .reveal h1 {
     font-size: 1.5em;
@@ -26,7 +34,7 @@
   }
 
   .reveal li {
-    font-size: 0.6em;
+    font-size: 0.5em;
   }
 </style>
 
@@ -37,8 +45,32 @@
         <h1>Interopérabilité augmentée</h1>
         <h3>Blockchain et IA au service de la décarbonation<br>et de la traçabilité industrielle</h3>
         <p>par le Dr Nicolas Figay, Airbus</p>
-        <p>Expert Interopérabilité Opérationnelle Continue </p>
+        <p><a target="_blank" href="https://hal.science/tel-04413469v2" >Expert Interopérabilité Opérationnelle Continue </a></Expert></p>
         <p>Collaborateur LIRIS (Pr P. Ghodous) et Quartz(Pr D.Tchoffa)</p>
+      </section>
+      <section>
+        <h3>Blockchain et IA au service de la décarbonation<br>et de la traçabilité industrielle</h3>
+        <p style="text-align: left;">Résumé</p>
+        <p style="text-align: left;font-size: 0.3em;">La décarbonation et la traçabilité exigent plus que des innovations technologiques : elles appellent à une
+          collaboration numérique sans silos entre organisations, processus et systèmes. Cette intervention explore
+          comment l'IA et la Blockchain peuvent être intégrées dans des démarches d'interopérabilité basées sur les
+          normes, pour ancrer la décarbonation et la traçabilité dès la phase d’ingénierie des systèmes. À travers une
+          approche ouverte et normalisée, nous montrerons comment orchestrer efficacement données, processus et acteurs
+          tout en capitalisant sur la confiance distribuée et l’intelligence adaptative.</p>
+        <p style="text-align: left;">L'intervenant</p>
+        <div style="display: flex; align-items: flex-start; font-size: 0.3em; text-align: left;">
+          <img src="img/nicolasfigay.png" alt="Dr Nicolas Figay" style="width: 10%; height: auto; margin-right: 1em; margin-top: 0;" />
+          <div style="display: flex; align-items: flex-start;">
+            <p style="margin: 0;font-size: 1em;">
+              Le Dr. Nicolas Figay est un expert reconnu en ingénierie des systèmes, en architecture d'entreprise et en
+              interopérabilité des systèmes complexes. Fort d'une vaste expérience dans des initiatives industrielles et
+              européennes, il a contribué à de nombreux projets stratégiques promouvant les normes ouvertes et les cadres
+              d'interopérabilité pour soutenir la transformation numérique. Son travail relie les couches techniques et
+              organisationnelles, favorisant une collaboration significative entre des systèmes divers.
+            </p>
+          </div>
+        </div>
+        
       </section>
 
       <section>
@@ -78,7 +110,7 @@
       <section>
         <h2>Normes & standards à appliquer</h2>
         <h3>Pour l’interopérabilité </h3>
-        <p>Soutien à la continuité numérique</p>
+        <p>Soutien à la continuité numérique - Pas d'industrialisation sans normes!</p>
         <p>Garants de la portabilité et gouvernance <br>Ingénierie Système, Architecture d'entreprise, PLM</p>
         <ul>
           <li>ISO 10303 (STEP Echange de données décrivant produits et processus)</li>
@@ -161,8 +193,11 @@
 
       <section>
         <h2>Un exemple de cartographie sémantique</h2>
-        <img src="img/cartographie.webp" alt="Exemple de cartographie sémantique" />
-        <p><small>Structure multi-niveaux et multi-points de vue</small></p>
+        <h3>appliqué à des technologies blockchain</h3>
+        <img src="img/cartographyblockchain.png" alt="Exemple de cartographie sémantique"
+          style="width: 80%; height: 80%;" />
+        <p><small>Issu de <a href="https://telechargement.afnor.info/normalisation-blockchain-interoperabilite"
+              target="_blank">INTEROPÉRABILITÉ DES PROCESSUS MÉTIERS SUPPORTÉS PAR LA BLOCKCHAIN</a></small></p>
       </section>
 
       <section>
@@ -173,6 +208,8 @@
           <li>Lien entre modèles et données opérationnelles</li>
           <li>Support à la gouvernance</li>
         </ul>
+        <img src="img/hypermodel.png" alt="Hypermodèle" style="width: 50%; height: 50%;" />
+        <img src="img/Examen du modèle ArchiAssurance.png" alt="Hypermodèle" style="width: 20%; height: 20%;" />
       </section>
 
       <section>
@@ -181,23 +218,44 @@
           <li>Prototype fondé sur Cytoscape.js et W2UI.js</li>
           <li>Support des hypermodèles et langages métiers</li>
           <li>Graphes composés, filtres dynamiques, palettes modulaires</li>
+          <li>Visant l'innovation collaborative et collective impliquant industriels et chercheurs</li>
         </ul>
-        <p><a href="https://github.com/nicolasfigay/archicg" target="_blank">github.com/nicolasfigay/archicg</a></p>
+        <p><a href="https://nfigay.github.io/ArchiCG/" target="_blank">https://nfigay.github.io/ArchiCG/</a></p>
+        <p><a href="https://www.linkedin.com/groups/13164530/" target="_blank">Groupe Public LinkedIn</a></p>
       </section>
 
+      <section>
+        <h2>ArchiCG : cartes sémantiques interactives</h2>
+        <img src="img/WelcomeArchiCGExpandandCollapse.gif" alt="Hypermodèle" style="width: 20%; height: 20%;" />
+        <img src="img/archicgEditor.gif" alt="Hypermodèle" style="width: 40%; height: 40%;" />
+        <br>
+        <img src="img/Welcome ArchiCG Hide Grabify Lock Remove.gif" alt="Hypermodèle"
+          style="width: 20%; height: 20%;" />
+        <img src="img/ArchiCG Grap to Compound.gif" alt="Hypermodèle" style="width: 20%; height: 20%;" />
+        <img src="img/edgesCollapse.gif" alt="Hypermodèle" style="width: 20%; height: 20%;" />
+      </section>
 
       <section>
         <h2>Merci</h2>
         <p>Dr. Nicolas Figay</p>
-        <p>Expert en Interopérabilité, Airbus Defence & Space</p>
+        <p>Expert en Interopérabilité, Airbus Defence & Space<br>
         <p><a href="https://linkedin.com/in/nicolasfigay">linkedin.com/in/nicolasfigay</a></p>
+        <img src="img/polyglothypermodelinteroperability.png" alt="Hypermodèle" style="width: 20%; height: 20%;" />
+        <img src="img/readyforai.png" alt="Hypermodèle" style="width: 20%; height: 20%;" />
+        <img src="img/architectsvisuallyfirst.png" alt="Hypermodèle" style="width: 20%; height: 20%;" />
+        <img src="img/staticdiagramsoutofroad.png" alt="Hypermodèle" style="width: 20%; height: 20%;" />
       </section>
 
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.js"></script>
   <script>
-    Reveal.initialize();
+    Reveal.initialize({
+      controls: true,
+      progress: true,
+      slideNumber: true,
+      hash: true
+    });
   </script>
 </body>
 
