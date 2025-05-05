@@ -1,0 +1,1001 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Enterprise Application Interoperability Training</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/reveal.css">
+    <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/theme/white.css" id="theme">
+</head>
+<style>
+    #infoPanel {
+        border: 0px solid black;
+        padding: 10px;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background-color: #f9f9f9;
+        overflow: auto;
+        /* Enables both horizontal and vertical scrolling */
+        white-space: nowrap;
+        /* Prevents text from wrapping to the next line */
+        word-wrap: break-word;
+        /* Allows long words to break and not overflow */
+        display: none;
+    }
+
+    #infoPanel h3 {
+        margin-top: 0;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    /* Liste principale avec numérotation en lettres majuscules */
+    ol {
+        counter-reset: main;
+        /* Reset du compteur pour la première liste */
+        list-style-type: none;
+        /* Désactive la numérotation automatique */
+    }
+
+    ol li {
+        counter-increment: main;
+        /* Incrémentation du compteur pour chaque élément */
+        list-style-type: none;
+
+    }
+
+    ol li::before {
+        content: counter(main, upper-alpha) ". ";
+        /* Affiche la numérotation en lettres majuscules (A, B, C) */
+    }
+
+    /* Liste imbriquée, numérotation en lettres minuscules */
+    ol ol {
+        counter-reset: sub;
+        /* Réinitialisation du compteur pour sous-liste */
+        list-style-type: none;
+        /* Désactive la numérotation automatique des sous-listes */
+        margin-left: 20px;
+
+    }
+
+    ol ol li {
+        counter-increment: sub;
+        /* Incrémentation du compteur pour les sous-listes */
+        list-style-type: none;
+        font-size: 0.7em;
+
+    }
+
+    ol ol li::before {
+        content: counter(main, upper-alpha) "." counter(sub, decimal) " ";
+        /* Affiche la numérotation en lettres minuscules pour les sous-listes */
+        list-style-type: none;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        height: 90%;
+        width: 90%;
+        overflow: hidden;
+    }
+
+    /* Restrict the presentation area */
+    #presentation-container {
+        width: 95%;
+        height: 95%;
+        border: 1px solid #ccc;
+        overflow: hidden;
+        margin: 20px auto;
+        display: flex;
+        justify-content: center;
+        /* Centers horizontally */
+        align-items: center;
+        /* Centers vertically */
+    }
+
+    .left-aligned {
+        text-align: left;
+        font-family: monospace;
+        font-size: 16px;
+        white-space: pre-wrap;
+        margin: 1px;
+    }
+
+    /* Uniformiser la taille des polices pour les titres et le texte */
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    ul {
+        font-size: 1.5rem;
+        /* Taille de la police uniforme, ajustable */
+        line-height: 1.6;
+        /* Espacement entre les lignes */
+        margin: 0.5em 0;
+        /* Marges autour des éléments */
+        font-family: Arial, sans-serif;
+        /* Police générique */
+    }
+
+    /* Ajuster la taille des titres pour une hiérarchie visible */
+    h1 {
+        font-size: 1.5rem;
+        /* Taille plus grande pour h1 */
+    }
+
+    h2 {
+        font-size: 1.3rem;
+        /* Taille plus petite pour h2 */
+    }
+
+    h3 {
+        font-size: 1.1rem;
+        /* Taille encore plus petite pour h3 */
+    }
+
+    h4 {
+        font-size: 1.2rem;
+        /* Taille encore plus petite pour h3 */
+    }
+
+    /* Uniformiser les éléments de liste */
+    ul {
+        list-style-type: disc;
+        /* Point pour les listes */
+        padding-left: 20px;
+        /* Décalage pour les éléments de liste */
+    }
+
+    /* Styles supplémentaires pour une présentation claire */
+    body {
+        font-family: 'Arial', sans-serif;
+        /* Police globale de la présentation */
+        line-height: 1.5;
+        /* Interligne pour améliorer la lisibilité */
+    }
+
+    /* Style pour l'ensemble de la slide */
+    .slide-content {
+        display: flex;
+        flex-direction: column;
+        /* Organiser en colonne pour le titre et le contenu */
+        padding: 20px;
+    }
+
+    /* Zone de titre */
+    .title-zone {
+        text-align: center;
+        margin-bottom: 20px;
+        /* Espacement sous le titre */
+    }
+
+    .title-zone h1 {
+        font-size: 1rem;
+        /* Taille du titre principal */
+        font-family: Arial, sans-serif;
+        /* Police pour le titre */
+        color: #333;
+        /* Couleur du texte */
+    }
+
+    /* Zone de contenu avec texte à gauche et image à droite */
+    .content-zone {
+        display: flex;
+        justify-content: space-between;
+        /* Espace entre le texte et l'image */
+        align-items: center;
+        /* Centrer verticalement les éléments */
+    }
+
+    /* Zone de texte */
+    .text-zone {
+        flex: 1;
+        /* Prend tout l'espace disponible à gauche */
+        padding-right: 20px;
+        /* Espacement à droite de la zone de texte */
+    }
+
+    /* Zone d'image */
+    .image-zone {
+        flex: 1;
+        /* Prend tout l'espace disponible à droite */
+        text-align: center;
+        /* Centrer l'image */
+    }
+
+    .image-zone img {
+        max-width: 100%;
+        /* Rendre l'image responsive */
+        height: auto;
+        /* Maintenir le ratio de l'image */
+    }
+
+    .scrollable-table {
+        max-height: 400px;
+        /* Hauteur maximale avec scroll */
+        overflow-y: auto;
+        /* Défilement vertical */
+        border: 1px solid black;
+        margin: 0 auto black;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid black;
+    }
+
+    th,
+    td {
+        border: 1px solid black;
+        padding: 0px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #add8e6;
+        /* Bleu clair pour l'en-tête */
+        position: sticky;
+        top: 0;
+        border: 1px solid black;
+        z-index: 10;
+        /* Assure que l'en-tête reste au-dessus du contenu */
+    }
+
+    tbody tr:nth-child(odd) {
+        background-color: white;
+
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: white;
+
+    }
+
+    .tooltip {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        color: #2d89ef;
+        font-weight: bold;
+    }
+
+    .tooltip .tooltip-text {
+        visibility: hidden;
+        width: 320px;
+        /* Largeur basée sur le rapport du rectangle d’or */
+        height: 198px;
+        /* Hauteur calculée (320 / 1.618 ≈ 198) */
+        background-color: #2d89ef;
+        color: rgba(255, 255, 255, 0.95);
+        text-align: left;
+        padding: 12px;
+        border-radius: 10px;
+        position: absolute;
+        z-index: 1000;
+        bottom: auto;
+        top: 120%;
+        /* Sous l’élément */
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        font-size: 0.5em;
+        font-family: Arial, sans-serif;
+        line-height: 1.5;
+        box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+        overflow-y: auto;
+        /* Défilement vertical si nécessaire */
+        white-space: normal;
+        word-wrap: break-word;
+        backdrop-filter: blur(4px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .tooltip:hover .tooltip-text {
+        visibility: visible;
+        opacity: 1;
+
+        /* Pour éviter l'interstice entre l'en-tête et le contenu défilant */
+        .scrollable-table thead th {
+            border-top: 0px solid black;
+        }
+
+        /* Responsive pour les petits écrans */
+        @media (max-width: 768px) {
+            .content-zone {
+                flex-direction: column;
+                /* Empiler le texte et l'image */
+                text-align: center;
+                /* Centrer le texte sur petits écrans */
+            }
+
+            .text-zone {
+                padding-right: 0;
+                /* Enlever l'espacement à droite sur petits écrans */
+            }
+        }
+
+        .reveal h1 {
+            font-size: 1.5em;
+        }
+
+        .reveal h2 {
+            font-size: 1em;
+        }
+
+        .reveal h3 {
+            font-size: 0.7em;
+        }
+
+        .reveal p {
+            font-size: 0.6em;
+        }
+
+        .reveal li {
+            font-size: 0.5em;
+        }
+</style>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- PART I: Morning Session (9:30 - 11:45 AM) -->
+            <section>
+                <section>
+                    <h2>Welcome & Introduction to Interoperability</h2>
+                    <p style="font-size: 0.8em;">Objectives of the presentation.</p>
+                </section>
+
+                <section>
+                    <h2>who I am</h2>
+                    <h3 style="font-size: 0.8em;">Dr. Nicolas Figay</h3>
+                    <div class="content-zone">
+                        <div class="text-zone">
+                            <ul style="font-size: 0.4em; text-align: left;">
+                                <li>
+                                    Expert in Enterprise Application Interoperability
+                                </li>
+                                <li>
+                                    Creator of <strong>ArchiCG</strong> — an open-source tool for semantic
+                                    cartography</li>
+                                <li>
+                                    International expert on <strong>PLM interoperability, MBSE, EA</strong></li>
+                                <li>
+                                    Contributor to major European projects on interoperability and digital continuity
+                                </li>
+                                <li>
+                                    Former lead at <strong>Airbus</strong></li>
+                                <li>
+                                    Specialist in <strong>ISO STEP standards, ontology-based modeling, and open
+                                        ecosystems</strong>
+                                </li>
+                            </ul>
+                            <p style=" font-size: 0.4em; text-align: left;">
+                                <em>To share my experience and carrier path in order to<br>
+                                    give you perspective for future development path<br>
+                                    while contextualizing software development in a more global enterprises digitalisation context.</em>
+                            </p>
+                        </div>
+                        <div class="image-zone">
+
+                            <div style="text-align: center;">
+                                <img src="./img/figayProfile.png" alt="Dr. Nicolas Figay"
+                                    style="width: 60%; border-radius: 8px; margin-bottom: 10px;"><br>
+
+                            </div>
+                        </div>
+                </section>
+
+                <section>
+                    <h2>Objective of the presentation</h2>
+                    <p>Introduce enterprise application interoperability in digital ecosystems which imply to:</p>
+                    <ul>
+                        <li>Identify brakes and enablers to effective collaboration</li>
+                        <li>Discover semantic modeling and tools like <strong>ArchiCG</strong></li>
+                        <li>Prepare systems for <strong>blockchain-based collaboration</strong></li>
+                        <li>Promote <strong>open standards</strong> and model-driven approaches</li>
+                        <li>Bridge strategic vision with technical implementation</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 style="font-size: 0.8em;">Part 01: Building Interoperability Foundations</h2>
+                    <ul>
+                        <li>What is Enterprise Application Interoperability?</li>
+                        <li>Challenges: Silos, Semantics, Legacy, Governance</li>
+                        <li>Brakes & Enablers</li>
+                        <li>Innovative Approaches: MDE & Semantic Cartography</li>
+                        <li><strong>ArchiCG</strong>: Polyglot Semantic Graphing Tool</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2 style="font-size: 0.8em;">Part 02: Interoperability and Blockchain</h2>
+                    <ul>
+                        <li>Why interoperability matters <em>before</em> blockchain adoption</li>
+                        <li>ArchiCG for modeling continuous interoperability</li>
+                        <li>Reference architectures for traceable collaboration</li>
+                        <li>Open standards for trustworthy ecosystems</li>
+                        <li>Challenges and perspectives in blockchain-based networks</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Key Message</h2>
+                    <blockquote>
+                        Interoperability is not a feature of blockchain.<br>
+                        It is a <strong>prerequisite</strong> for blockchain-based collaboration.
+                    </blockquote>
+                    <ul>
+                        <li>Semantic Coherence</li>
+                        <li>Shared Understanding of Processes</li>
+                        <li>Trusted and Traceable Integration</li>
+                    </ul>
+                </section>
+            </section>
+
+            <!-- Part 1 -->
+            <section>
+                <section>
+                    <h2>What Is Enterprise Application Interoperability?</h2>
+                </section>
+                <section>
+                    <h3 style="font-size: 0.8em;">🏢 Enterprise Application</h3>
+                    <blockquote>
+                        <p>
+                            An <em>Enterprise Application</em> is a software system designed to support and automate
+                            various business processes within an organization. These applications facilitate the
+                            integration of information across departments, enhancing efficiency and decision-making.
+                        </p>
+                    </blockquote>
+                    <p>📌 Key Characteristics</p>
+                    <ul style="font-size: 0.4em; text-align: left;">
+                        <li><strong>Process Integration</strong>: Connects disparate business functions such as finance,
+                            human resources, and supply chain.</li>
+                        <li><strong>Data Consistency</strong>: Ensures uniform data across the organization.</li>
+                        <li><strong>Scalability</strong>: Handles increasing amounts of data and users.</li>
+                        <li><strong>Customization</strong>: Adaptable to specific organizational needs.</li>
+                        <li><strong>Interoperability</strong>: Facilitates communication with other systems and
+                            applications.</li>
+                    </ul>
+
+                </section>
+                <section>
+                    <h3 style="font-size: 0.8em;">🧩 Technical Enterprise Application</h3>
+                    <blockquote>
+                        <p>
+                            A <em>Technical Enterprise Application</em> is a specialized software system designed to
+                            support and automate <strong>technical and engineering processes</strong> within an
+                            enterprise. These applications manage complex data and workflows across the <strong>product
+                                lifecycle</strong>, including design, simulation, manufacturing, and maintenance,
+                            ensuring integration within the enterprise's information system.
+                        </p>
+                    </blockquote>
+                    <p>🔧 Key Characteristics</p>
+                    <ul style="font-size: 0.4em; text-align: left;">
+                        <li><strong>Domain-Specific Functionality</strong>: Tailored to engineering and technical
+                            domains, such as CAD, CAE, and PLM systems.</li>
+                        <li><strong>Lifecycle Integration</strong>: Supports various phases of the product lifecycle,
+                            facilitating seamless transitions between stages.</li>
+                        <li><strong>Interoperability</strong>: Designed to interact with other enterprise applications
+                            and systems, often through standardized protocols and data formats.</li>
+                        <li><strong>Complex Data Management</strong>: Handles intricate datasets, including 3D models,
+                            simulations, and technical documentation.</li>
+                        <li><strong>Scalability and Flexibility</strong>: Capable of adapting to evolving technical
+                            requirements and integrating new technologies.</li>
+                    </ul>
+
+                </section>
+                <section>
+                    <h3 style="font-size: 0.8em;">🔗 Enterprise Application Interoperability</h3>
+                    <blockquote>
+                        <p style="font-size: 0.6em;">
+                            <em>Enterprise Application Interoperability</em> refers to the capability of diverse
+                            enterprise applications to seamlessly exchange, share, and aggregate information across
+                            organizational boundaries. This interoperability ensures continuous operational
+                            collaboration by aligning business processes, applications, and underlying technologies.
+                        </p>
+                    </blockquote>
+                    <p>📌 Key Characteristics</p>
+                    <ul style="font-size: 0.4em; text-align: left;">
+                        <li><strong>Governance and Architecture</strong>: Establishes governance structures and
+                            architectural frameworks to support interoperability.</li>
+                        <li><strong>Standardization</strong>: Utilizes open and governed standards to facilitate
+                            consistent data exchange.</li>
+                        <li><strong>Semantic Preservation</strong>: Maintains the meaning and context of information
+                            across different systems.</li>
+                        <li><strong>Resilience and Agility</strong>: Enhances the organization's ability to adapt to
+                            changes and recover from disruptions.</li>
+                        <li><strong>Collaborative Processes</strong>: Supports synchronized business processes
+                            across multiple organizations.</li>
+                    </ul>
+
+                </section>
+                <section>
+                    <h3 style="font-size: 0.7em;">🕰️ Evolution of Enterprise Application Integration</h3>
+                    <blockquote>
+                        <p><strong>From EAI to SOA to APIs</strong></p>
+                    </blockquote>
+                    <p>Enterprise application integration has evolved through several key stages:</p>
+                    <p>🔄 Enterprise Application Integration (EAI)</p>
+                    <ul style="font-size: 0.3em; text-align: left;">
+                        <li><strong>Era</strong>: 1990s</li>
+                        <li><strong>Approach</strong>: Centralized integration using middleware (e.g., message brokers)
+                            to connect disparate applications.</li>
+                        <li><strong>Challenges</strong>: Tight coupling, scalability issues, and vendor lock-in.</li>
+                    </ul>
+                    <p>🧱 Service-Oriented Architecture (SOA)</pp>
+                    <ul style="font-size: 0.3em; text-align: left;">
+                        <li><strong>Era</strong>: Early 2000s</li>
+                        <li><strong>Approach</strong>: Decentralized services with standardized interfaces (e.g., SOAP,
+                            WSDL) enabling reusable and interoperable components.</li>
+                        <li><strong>Benefits</strong>: Improved modularity, scalability, and alignment with business
+                            processes.</li>
+                    </ul>
+                    <p>🌐 Application Programming Interfaces (APIs)</p>
+                    <ul style="font-size: 0.3em; text-align: left;">
+                        <li><strong>Era</strong>: 2010s–Present</li>
+                        <li><strong>Approach</strong>: Lightweight, web-based interfaces (e.g., RESTful APIs)
+                            facilitating real-time, flexible integration.</li>
+                        <li><strong>Advantages</strong>: Enhanced agility, ease of integration, and support for
+                            cloud-native architectures.</li>
+                    </ul>
+                    <p style="font-size: 0.4em; text-align: left;">This progression reflects the ongoing efforts to
+                        improve interoperability, scalability, and adaptability in enterprise systems.</p>
+                </section>
+                <section>
+                    <h3 style="font-size: 0.7em;">🔁 Continuous Operational Interoperability</h3>
+                    <blockquote>
+                        <p>
+                            <em>Continuous Operational Interoperability</em> refers to the sustained ability of diverse
+                            and evolving enterprise systems to seamlessly collaborate, ensuring uninterrupted
+                            information exchange and process integration across organizational boundaries. This concept
+                            emphasizes the need for ongoing alignment between business processes, supporting
+                            applications, and underlying technologies to maintain effective collaboration in dynamic
+                            environments.
+                        </p>
+                    </blockquote>
+                    <p>📌 Key Aspects</p>
+                    <ul style="font-size: 0.3em; text-align: left;">
+                        <li><strong>Governance and Architecture</strong>: Establishes strategic governance structures
+                            and architectural frameworks to support interoperability.</li>
+                        <li><strong>Standardization</strong>: Utilizes open and governed standards to facilitate
+                            consistent data exchange.</li>
+                        <li><strong>Semantic Preservation</strong>: Maintains the meaning and context of information
+                            across different systems.</li>
+                        <li><strong>Resilience and Agility</strong>: Enhances the organization's ability to adapt to
+                            changes and recover from disruptions.</li>
+                        <li><strong>Collaborative Processes</strong>: Supports synchronized business processes across
+                            multiple organizations.</li>
+                    </ul>
+
+                </section>
+                <section>
+                    <h3 style="font-size: 0.7em;">🔗 Types of Interoperability</h3>
+                    <p style="font-size: 0.5em; text-align: left;">We can indentify five critical dimensions of
+                        interoperability essential for seamless enterprise collaboration:</p>
+                    <ul style="font-size: 0.4em; text-align: left;">
+                        <li><strong>Data Interoperability</strong>: Ensures that data can be exchanged and understood
+                            across different systems, maintaining consistency and accuracy.</li>
+                        <li><strong>Process Interoperability</strong>: Aligns business processes across organizations,
+                            enabling coordinated workflows and shared objectives.</li>
+                        <li><strong>Semantic Interoperability</strong>: Guarantees that the meaning of exchanged
+                            information is preserved and understood, facilitating accurate interpretation.</li>
+                        <li><strong>Technical Interoperability</strong>: Establishes the technical infrastructure and
+                            standards that allow systems to connect and communicate effectively.</li>
+                        <li><strong>Organizational Interoperability</strong>: Aligns organizational structures,
+                            policies, and cultures to support collaborative efforts and shared goals.</li>
+                        </ol>
+                        <p>These dimensions collectively contribute to achieving continuous operational
+                            interoperability, ensuring that enterprise systems can collaborate effectively and adapt to
+                            dynamic environments.</p>
+
+                </section>
+
+                <section>
+                    <h3 style="font-size: 0.7em;">✈️ Collaborative Manufacturing Development as defined in RISESTEP,
+                        IMAGINE or SIP Research Projects</h3>
+                    <p style="font-size: 0.4em; text-align: left;"> The <strong>RISESTEP</strong>,
+                        <strong>IMAGINE</strong>or <strong>SIP</strong> European projects exemplify collaborative
+                        efforts
+                        in the aerospace industry, focusing on the development of aircraft through
+                        distributed Digital Mock-Up (DMU) and system modeling. These initiatives address
+                        interoperability challenges by integrating diverse tools and processes across organizations.
+                    </p>
+                    <p style=" font-size: 0.4em; text-align: left;"> The following video provides an overview of these
+                        collaborative projects: </p>
+                    <div style="text-align: center;"> <iframe width="800" height="450"
+                            src="https://www.youtube.com/embed/-_7xytIIxBY" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </section>
+                <section>
+                    <h3>Audience Interaction</h3>
+                    <p>Discussion or poll on real experiences</p>
+                </section>
+            </section>
+
+            <!-- Part 2 -->
+            <section>
+                <section>
+                    <h2>Key Challenges in Achieving Interoperability</h2>
+                </section>
+
+                <section>
+                    <h3 style="font-size: 1em;">⚠️ Key Challenges in Achieving Interoperability</h3>
+                    <p style="font-size: 0.5em; text-align: left;"> Here are several critical challenges that
+                        organizations face when striving for continuous
+                        operational interoperability: </p>
+                    <ul style="font-size: 0.4em; text-align: left;">
+                        <li><strong>Legacy Systems</strong>: Outdated systems with proprietary architectures hinder
+                            integration with modern technologies.</li>
+                        <li><strong>Organizational Silos</strong>: Departments operating in isolation lead to
+                            fragmented processes and data, impeding collaboration.</li>
+                        <li><strong>Semantic Mismatches</strong>: Inconsistent terminologies and data
+                            interpretations across systems cause misunderstandings and errors.</li>
+                        <li><strong>Change Management</strong>: Resistance to change and lack of stakeholder
+                            engagement can derail interoperability initiatives.</li>
+                        <li><strong>Cost of Integration</strong>: High expenses associated with system upgrades,
+                            training, and process reengineering can be prohibitive.</li>
+                    </ul>
+                    <p style="font-size: 0.4em; text-align: left;"> Addressing these challenges requires a strategic
+                        approach that encompasses technological
+                        upgrades, organizational restructuring, and stakeholder engagement. </p>
+                </section>
+                <section>
+                    <h3 style="font-size: 0.7em;">⚙️ Challenge: Legacy Systems</h3>
+                    <p style="font-size: 0.6em; text-align: left;"> Legacy systems, often built on outdated
+                        technologies, pose significant barriers to integration.
+                        Their proprietary architectures and lack of standard interfaces make it difficult to achieve
+                        seamless interoperability with modern systems. </p>
+                    <p style="font-size: 0.6em; text-align: left;"> Addressing this challenge involves strategies such
+                        as system modernization, the use of
+                        middleware solutions, and adopting open standards to facilitate communication between disparate
+                        systems. </p>
+
+                </section>
+                <section>
+                    <h3 style="font-size: 0.7em;">🏢 Challenge: Organizational Silos</h3>
+                    <p style="font-size: 0.6em; text-align: left;"> Organizational silos occur when departments or units
+                        operate in isolation, leading to fragmented
+                        processes and data. This lack of cross-functional collaboration hinders the flow of information
+                        and impedes interoperability efforts. </p>
+                    <p style="font-size: 0.6em; text-align: left;"> Overcoming silos requires fostering a culture of
+                        collaboration, implementing integrated
+                        information systems, and aligning organizational goals to promote shared understanding and
+                        cooperation. </p>
+
+                </section>
+                <section>
+                    <h3 style="font-size: 0.7em;">🔤 Challenge: Semantic Mismatches</h3>
+                    <p style="font-size: 0.6em; text-align: left;"> Semantic mismatches arise when different systems or
+                        stakeholders interpret data differently due
+                        to varying terminologies, formats, or contexts. These discrepancies can lead to
+                        misunderstandings and errors in data exchange. </p>
+                    <p style="font-size: 0.6em; text-align: left;"> To mitigate semantic mismatches, it's essential to
+                        develop shared vocabularies, ontologies, and
+                        data models that ensure consistent interpretation across systems and organizations. </p>
+
+                </section>
+                <section>
+                    <h3 style="font-size: 0.7em;">🔄 Challenge: Change Management</h3>
+                    <p style="font-size: 0.6em; text-align: left;"> Implementing interoperability solutions often
+                        requires significant organizational change.
+                        Resistance from stakeholders, lack of training, and inadequate communication can impede the
+                        adoption of new processes and technologies. </p>
+                    <p style="font-size: 0.6em; text-align: left;"> Effective change management involves engaging
+                        stakeholders early, providing comprehensive
+                        training, and maintaining open communication to facilitate smooth transitions and buy-in. </p>
+
+                </section>
+                <section>
+                    <h3 style="font-size: 0.7em;">💰 Challenge: Cost of Integration</h3>
+                    <p style="font-size: 0.6em; text-align: left;"> The financial investment required for integrating
+                        systems—such as purchasing new technologies,
+                        training personnel, and restructuring processes—can be substantial. High costs may deter
+                        organizations from pursuing interoperability initiatives. </p>
+                    <p style="font-size: 0.6em; text-align: left;"> To address this, organizations should conduct
+                        cost-benefit analyses, seek scalable solutions,
+                        and consider phased implementation approaches to manage expenses effectively. </p>
+
+                </section>
+                <section>
+                    <h3 style="font-size: 0.7em;">💰 Challenge: Interoperability Barriers</h3>
+                    <div style="text-align: center;">
+                        <img src="./img/collaboration.png" alt="Interoperability Barriers"
+                            style="width: 80%; border-radius: 8px; margin-bottom: 10px;">
+                </section>
+                <section>
+                    <h3 style="font-size: 0.7em;">💰 Challenge: Difficult subcontractors' conditions</h3>
+                    <div style="text-align: center;">
+                        <img src="./img/subcontractors.png" alt="Subcontractors'condition"
+                            style="width: 80%; border-radius: 8px; margin-bottom: 10px;">
+                </section>
+                <section>
+                    <h3 style="font-size: 0.7em;">💰 Challenge: Huge supply chains</h3>
+                    <div style="text-align: center;">
+                        <img src="./img/DBE.png" alt="DBE" style="width: 80%; border-radius: 8px; margin-bottom: 10px;">
+                </section>
+                <section>
+                    <h3 style="font-size: 0.7em;">💰 Challenge: Riching Digital Continuity despite complexity</h3>
+                    <div style="text-align: center;">
+                        <img src="./img/Growing complexity.png" alt="Growing complexity"
+                            style="width: 80%; border-radius: 8px; margin-bottom: 10px;">
+                </section>
+            </section>
+
+            <!-- Part 3 -->
+            <section>
+                <section>
+                    <h2>Interoperability Brakes and Enablers</h2>
+                </section>
+                <section>
+                    <h3 style="font-size: 0.8em;">🚧 Brakes and Enablers of Interoperability</h3>
+                    <div style="display: flex; justify-content: space-between;">
+                        <div style="width: 45%;">
+                            <h3 style="font-size: 0.8em;">🔴 Brakes</h3>
+                            <ul style="font-size: 0.4em; text-align: left;">
+                                <li><strong>Cultural Barriers</strong>: Resistance to change and lack of shared vision
+                                    among stakeholders.</li>
+                                <li><strong>Organizational Silos</strong>: Fragmented structures that impede information
+                                    flow and collaboration.</li>
+                                <li><strong>Semantic Misalignments</strong>: Inconsistent terminologies and data
+                                    interpretations across systems.</li>
+                                <li><strong>Technical Incompatibilities</strong>: Diverse systems and technologies
+                                    lacking standard interfaces.</li>
+                                <li><strong>Economic Constraints</strong>: Limited resources allocated for integration
+                                    initiatives.</li>
+                            </ul>
+                        </div>
+                        <div style="width: 45%;">
+                            <h3 style="font-size: 0.8em;">🟢 Enablers</h3>
+                            <ul style="font-size: 0.4em; text-align: left;">
+
+                                <li><strong>Distributed Technical Service Oriented Platforms</strong>: with appropriate
+                                    integration technologies</li>
+                                <li><strong>Semantic Alignment</strong>: Developing shared vocabularies and ontologies
+                                    to harmonize data interpretations.</li>
+                                <li><strong>Organizational Alignment and Appropriated Governance</strong>: Structuring
+                                    organizations to promote
+                                    cross-functional collaboration.</li>
+                                <li><strong>Strategic Governance</strong>: Allocating resources to support
+                                    interoperability projects and training.</li>
+                                <li><strong>Adoption of Standards</strong>: Implementing open standards like STEP and
+                                    ISA-95 to ensure consistency.</li>
+
+
+
+                            </ul>
+                        </div>
+                    </div>
+                    <p> Unleashing these brakes and leveraging the enablers federating interoperability framework are
+                        crucial steps toward achieving
+                        continuous operational interoperability.</p>
+                </section>
+                <section>
+                    <h3 style="font-size: 0.8em;">🔗 Federated Interoperability Framework</h3>
+                    <p>Enablers are partial solution components to be aggregated and continuously reconfigured and
+                        upgraded integrated with legacy operational systems relying on legacy standards to achieve
+                        seamless secured digital collaboration across
+                        enterprises at an acceptable price. </p>
+                    <ul style="font-size: 0.4em; text-align: left;">
+                        <li><strong>Federation over Replacement</strong>: Instead of replacing legacy systems, the
+                            framework advocates for their integration through standardized interfaces and semantic
+                            alignment.</li>
+                        <li><strong>Model-Driven Engineering (MDE)</strong>: Utilizes MDE to create adaptable models
+                            that can bridge diverse systems and processes.</li>
+                        <li><strong>Extended Hypermodels</strong>: Introduces the concept of extended hypermodels to
+                            maintain semantic consistency across different domains and lifecycle stages.</li>
+                        <li><strong>Service-Oriented Architecture (SOA)</strong>: Leverages SOA principles to enable
+                            modular and reusable services, facilitating interoperability.</li>
+                        <li><strong>Open Standards:</strong>: Employs open standards in order to build your
+                            collaborative open platform: ontologies, processes, services, applicative and software
+                            system components, application protcols - focussing on the interfaces contextualized in a
+                            consistent evolutionnary framework federating the existing ones</li>
+                    </ul>
+                    <p style="font-size: 0.4em; text-align: left;"> The evolutionnary character of such a federated
+                        framework have been illustrated and demonstrated accross several projects over 20 years </p>
+
+                </section>
+
+            </section>
+
+            <!-- Part 4 -->
+            <section>
+                <section>
+                    <h2>Innovative Approaches</h2>
+                    <ul style="font-size: 0.4em; text-align: left;">
+                        <li><strong>cPlatform</strong>: Iterative building of collaboration hub based on standardized
+                            protocols and components</li>
+                        <li><strong>Living Lab</strong>: Involving users on experimenting in order to build their
+                            collaborative processes.</li>
+                        <li><strong>Model Driven approach</strong>: projection of business logic on execution platform.
+                        </li>
+                        <li><strong>Dynamic Manufacturing Network</strong>: Services for managing and qualifiying
+                            collaboration partners according to standardized cross organisational collaboration
+                            scenarios.</li>
+                        <li><strong>Testbed</strong>: Assessing PLM standards adherence to collaboration processes on
+                            top of a testbed in order to derive test plan and test data sets for unitary and integration
+                            tests, but also enabling monitoring of actual collaboration </li>
+                        <li><strong>Model Driven Engineering</strong>: Using Model Driven Architecture related
+                            technologies for project business logic on execution platform</li>
+                        <li><strong>Extended Hypermodel for Interoperability</strong>: Ensuring Semantic Preservation
+                            and preventic data loss when changing platforms</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>cPlatform</h3>
+                    <p>Iterative building of collaboration hub based on standardized protocols and components</p>
+                    <img src="./img/cPlatform.png" alt="cPlatform"
+                        style="width: 70%; border-radius: 8px; margin-bottom: 10px;">
+
+                </section>
+                <section>
+                    <h3>Living Lab</h3>
+                    <p>Involving users on experimenting in order to build their collaborative processes.</p>
+                    <img src="./img/livingLab.png" alt="cPlatform"
+                        style="width: 70%; border-radius: 8px; margin-bottom: 10px;">
+                </section>
+                <section>
+                    <h3>Dynamic Manufacturing Network</h3>
+                    <p>Services for managing and qualifiying
+                        collaboration partners according to standardized cross organisational collaboration
+                        scenarios</p>
+                    <img src="./img/DMN.png" alt="DMN" style="width: 50%; border-radius: 8px; margin-bottom: 10px;">
+
+                </section>
+                <section>
+                    <h3>Testbed</h3>
+                    <p>Assessing PLM standards adherence to collaboration processes on
+                        top of a testbed in order to derive test plan and test data sets for unitary and integration
+                        tests, but also enabling monitoring of actual collaboration</p>
+                    <img src="./img/SIP Testbed.png" alt="Testbed"
+                        style="width: 70%; border-radius: 8px; margin-bottom: 10px;">
+
+                </section>
+                <section>
+                    <h3>Model Driven Approach</h3>
+                    <p>Projection of business logic on execution platform.</p>
+                </section>
+                <section>
+                    <h3>Extended hypermodel for Interoperability</h3>
+                    <p>Preserving semantic and preventing data loss.</p>
+                </section>
+            </section>
+
+            <!-- Part 5 -->
+            <section>
+                <h2>Semantic Polyglot Cartography</h2>
+                <section>
+                    <p>Representing multi-language models semantically, mapping frameworks, enterprise perspectives.</p>
+                </section>
+            </section>
+
+            <!-- Part 6 -->
+            <section>
+                <h2>ArchiCG</h2>
+                <section>
+
+                    <p>Introducing ArchiCG for collaborative modeling, traceability, and alignment of views.</p>
+                    <img src="./img/SIP Testbed.png" alt="Testbed"
+                        style="width: 70%; border-radius: 8px; margin-bottom: 10px;">
+
+
+                </section>
+
+            </section>
+
+            <!-- PART II: Afternoon Session (2 PM - 5 PM) -->
+            <section>
+                <section>
+                    <h3>Blockchain and Interoperability</h3>
+                    <div class="content-zone">
+                        <div class="text-zone">
+                            <ul style="font-size: 0.4em; text-align: left;">
+                                <li>How to ensure continuous operational interoperability when including blockchains in
+                                    enterprises?</li>
+                                <li>How to ensure end to end processes and cross organisational interoperability?</li>
+                                <li>How to ensure deal with digital continuity with evolution of Blockchain
+                                    Technologies?</li>
+                                <li>Any architecture of reference?</li>
+                                <li>Open standards and maturity of the Digital Business Ecosystem in terms of
+                                    interoperability?</li>
+                                <li>Other particular issues?</li>
+                                <li>Perspective leading to a growing usage and importance of blockchain technologies?
+                                </li>
+                            </ul>
+                            <p>This will be presented as an open dialoque with XPRL specialists and the attendees.</p>
+                        </div>
+                        <div class="image-zone">
+                            <img src="./img/AboutBlockchainInteroperability.png" alt="About Blockchain Interoperability"
+                                style="width: 60%; border-radius: 8px; margin-bottom: 10px;">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Part 1 -->
+                <section>
+                    <h3>Process Interoperability and Blockchain</h3>
+                    <p>Challenges in integrating operational processes with blockchain systems. Role of smart contracts
+                        and traceability.</p>
+
+                </section>
+
+                <!-- Part 2 -->
+                <section>
+                    <h3>Continuous Interoperability with ArchiCG</h3>
+                    <p>Using ArchiCG to model and maintain continuity across blockchain-enabled systems.</p>
+                </section>
+
+                <!-- Part 3 -->
+                <section>
+                    <h3>Blockchain Architecture of Reference</h3>
+                    <p>Layered architecture: ledger, consensus, identity, interfaces. Key principles for enterprise
+                        adoption.</p>
+                </section>
+
+                <!-- Part 4 -->
+                <section>
+                    <h3>Open Standards and Blockchain Ecosystems</h3>
+                    <p>Importance of open standards (e.g., W3C, EBSI, ISO) for interoperability in blockchain
+                        ecosystems.</p>
+                </section>
+
+                <!-- Part 5 -->
+                <section>
+                    <h3>Blockchain-Specific Issues</h3>
+                    <p>Scalability, performance, governance, energy use, integration with legacy.</p>
+                </section>
+
+                <!-- Part 6 -->
+                <section>
+                    <h3>Perspectives and Future Outlook</h3>
+                    <p>Blockchain convergence with AI, IoT, digital identity, and trusted execution environments.</p>
+                </section>
+                <section>
+                    <h3>Conclusion: are we ready now?</h3>
+                    <div class="content-zone">
+                        <div class="text-zone">
+                            <ul style="font-size: 0.4em; text-align: left;">
+                               
+                            </ul>
+                            <p>This will be presented as an open dialoque with XPRL specialists and the attendees.</p>
+                        </div>
+                        <div class="image-zone">
+                            <img src="./img/BlockchainAndInteroperabilityForEnterprise.png" alt="About Blockchain Interoperability"
+                                style="width: 60%; border-radius: 8px; margin-bottom: 10px;">
+                        </div>
+                    </div>
+                </section>
+
+            </section>
+
+            <!-- Q&A Session -->
+            <section>
+                <h2>Questions & Answers</h2>
+                <section>
+                    <p>Open floor for participants to raise issues, give feedback, share insights.</p>
+                </section>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/reveal.js/dist/reveal.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            slideNumber: true,
+            embedded: false
+        });
+    </script>
+</body>
+
+</html>
