@@ -793,7 +793,7 @@
 
                         const node = {
                             id: row.identifier,
-                            text: row.identifier+ " - "+row.titleEn, // titleFr si en mode francais, avec néanmoins l'anglais si pas de titre francais
+                            text: row.identifier + " - " + row.titleEn, // titleFr si en mode francais, avec néanmoins l'anglais si pas de titre francais
                             nodes: []
                         };
                         nodeMap[row.identifier] = node;
@@ -815,7 +815,7 @@
                         name: 'sidebar',
                         topHTML: `
         <div style="height: 36px; padding: 3px 2px; border-bottom: 1px solid silver">
-            <input id="search" style="width: 100%" class="w2ui-input" placeholder="Search nodes..."
+            <input id="search" style="width: 100%" class="w2ui-input" placeholder="Search ICS..."
                 onchange="search(this.value)">
         </div>
     `,
@@ -898,7 +898,7 @@
                         items: workingGroupMenuItems
                     },
                     { type: 'new-line' },
-                    { type: 'new-line' },
+
                     {
                         type: 'label',
                         id: 'item3',
@@ -922,7 +922,43 @@
 
                     },
                     { type: 'new-line' },
+
+                    {
+                        type: 'label', id: 'searchStandard', text: 'Search ISO Standard',
+                        tooltip: 'Searching ISO standards according to some research criteria',
+                    },
                     { type: 'new-line' },
+                    {
+                        type: 'input', id: 'ICS', text: 'ICS: ', value: '', placeholder: 'ISO Class for Standards',
+                        input: {
+                            style: 'width: 100px'
+                        }
+                    },
+                    { type: 'new-line' },
+                    {
+                        type: 'input', id: 'ITC', text: 'ITC: ', value: '', placeholder: 'ISO Technical Committee',
+                        input: {
+                            style: 'width: 100px'
+                        }
+                    },
+
+                    { type: 'new-line' },
+                    {
+                        type: 'input', id: 'keywords', text: 'Keywords: ', value: '', placeholder: 'Keywords separated with commas for textual research',
+                        input: {
+                            style: 'width: 150px'
+                        }
+                    },
+                    { type: 'new-line' },
+                    {
+                        type: 'input', id: 'filterfor', text: 'applied to: ', value: '', placeholder: 'list of fields',
+                        input: {
+                            style: 'width: 60px'
+                        }
+                    },
+
+                    { type: 'new-line' },
+
                     {
                         type: 'label', id: 'item5', text: 'CSV SSR',
                         tooltip: 'SSR CSV with dedicated worksheet structure ',
@@ -958,6 +994,14 @@
 
                 ],
                 // Place onClick *outside* of the items array
+                onChange(event) {
+                    console.log('ICS field changed: ', event.target.value);
+                    // Add custom logic for handling change event
+                },
+                onBlur(event) {
+                    console.log('ICS field left (blurred)');
+                    // Add custom logic for handling blur (leave) event
+                },
                 onClick(event) {
                     const target = event.target.split(':')[0]; // Get the part before the colon
                     const subTarget = event.target.split(':')[1];
