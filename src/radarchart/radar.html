@@ -38,7 +38,6 @@
 
 
 
-
     <style>
         /* Style for select boxes */
         select {
@@ -116,6 +115,7 @@
     <input type="file" name="name" id="inputfile" style="display:none" />
     <input type="file" name="name" id="load-from-inp" style="display:none" />
     <input type="file" id="jsonl-hidden-input" accept=".jsonl,.ndjson" style="display:none;">
+
 
 
 
@@ -742,6 +742,7 @@
                         { id: "fr", text: i18next.t("fr") },
                         { id: "en", text: i18next.t("en") },
                     ]
+
                 },
                 { type: 'spacer' },
                 {
@@ -756,10 +757,7 @@
                         }
                     ]
                 },
-
-
             ];
-
         }
         function initializeMainMenu() {
             if (w2ui.mainMenu) return; // Prevent multiple initializations
@@ -773,6 +771,7 @@
             updateToolbarTranslations()
             return mainMenu;
         }
+
 
         function initializeISCSidebar() {
             Papa.parse("https://nfigay.github.io/ArchiCG/opendata/iso/ICS.csv", {
@@ -857,6 +856,7 @@
             }
         }
 
+
         function initializeToolbar() {
             const workingGroupMenuItems = getWorkingGroupsWithCount().map(group => ({
                 id: group.id, // Unique identifier
@@ -898,7 +898,7 @@
                         items: workingGroupMenuItems
                     },
                     { type: 'new-line' },
-
+                   
                     {
                         type: 'label',
                         id: 'item3',
@@ -922,7 +922,6 @@
 
                     },
                     { type: 'new-line' },
-
                     {
                         type: 'label', id: 'searchStandard', text: 'Search ISO Standard',
                         tooltip: 'Searching ISO standards according to some research criteria',
@@ -941,7 +940,6 @@
                             style: 'width: 100px'
                         }
                     },
-
                     { type: 'new-line' },
                     {
                         type: 'input', id: 'keywords', text: 'Keywords: ', value: '', placeholder: 'Keywords separated with commas for textual research',
@@ -956,9 +954,7 @@
                             style: 'width: 60px'
                         }
                     },
-
                     { type: 'new-line' },
-
                     {
                         type: 'label', id: 'item5', text: 'CSV SSR',
                         tooltip: 'SSR CSV with dedicated worksheet structure ',
@@ -1002,6 +998,7 @@
                     console.log('ICS field left (blurred)');
                     // Add custom logic for handling blur (leave) event
                 },
+
                 onClick(event) {
                     const target = event.target.split(':')[0]; // Get the part before the colon
                     const subTarget = event.target.split(':')[1];
@@ -1341,23 +1338,21 @@
                     html: `<div id="toolbar-title" style="padding: 5px; font-weight: bold; background: #f1f1f1; border-bottom: 1px solid #ddd;">
                              My Custom Title
                           </div>
-                          <div id="toolbar-container"></div>
-                          `
-
+                          <div id="toolbar-container"></div>`
                 },
                 {
                     type: 'main', resizable: true, style: 'background: #f8f9fa;',
                     html: `
-                     <div id="main-container" style="display: flex; flex-direction: row; height: 100%; width: 100%;">
-            <div id="radar-container" style="display: flex; flex-direction: column; justify-content: flex-start; width: 100%; margin-left: 0px;">
-                <div id="svg-container"></div>
-                <div id="cy-container"></div>
-                <div id="cy2-container"></div>
-            </div>
-            <div id="sidebar" style="display: flex; flex-direction: column; justify-content: flex-start; height: 100%; width: calc(100% - 500px); overflow: hidden;">
+                     <div id="main-container" style="display: flex; flex-direction: row;height: 100%; width: 100%;">
+                        <div id="radar-container">
+                             <div id="svg-container"></div>
+                             <div id="cy-container"></div>
+                             <div id="cy2-container"></div>
+                        </div>
+                    <div id="sidebar" style="display: flex; flex-direction: column; justify-content: flex-start; height: 100%; width: calc(100% - 800px); overflow: hidden;">
                 <!-- Contenu de la grille -->
-            </div>
-        </div>` },
+                     </div>
+                </div>` },
                 {
                     type: 'right', resizable: true, size: 300, style: 'border-left: 1px solid #ccc;',
                     html: ``
@@ -1640,6 +1635,7 @@
                     openCSV(file); // Pass file object
                 });
         });
+
 
         document.getElementById('jsonl-hidden-input').addEventListener('change', function (e) {
             const file = e.target.files[0];
