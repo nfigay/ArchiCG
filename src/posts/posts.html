@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuthoredUp Post Archiver & Viewer</title>
+    <script src="https://unpkg.com/papaparse@5.4.1/papaparse.min.js"></script>
+    <style>
+        /* General Body and Layout */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 20px; line-height: 1.6; color: #333; background-color: #f0f2f5; }
+        h1, h2 { color: #222; }
+
+        /* Drag and Drop Zone */
+        #drop_zone {
+            border: 2px dashed #007bff;
+            padding: 25px;
+            text-align: center;
+            font-size: 1.3em;
+            color: #007bff;
+            cursor: pointer;
+            margin-bottom: 25px;
+            background-color: #e6f2ff;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        #drop_zone:hover {
+            background-color: #d0e8ff;
+            border-color: #0056b3;
+            color: #0056b3;
+        }
+        #csvFile { display: none; } /* Hide the actual file input */
+
+        /* Results Log */
+        #results {
+            white-space: pre-wrap;
+            font-family: 'Cascadia Code', 'Fira Code', monospace;
+            background-color: #fff;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        #results p { margin-bottom: 5px; padding: 0; }
+        #results p.info { color: #333; }
+        #results p.warn { color: #d67a00; font-weight: bold; }
+        #results p.error { color: #cc0000; font-weight: bold; }
+
+        /* Column Names Display */
+        #columnNamesDisplay {
+            background-color: #e9f7ef;
+            border: 1px solid #c8e6c9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none; /* Hidden by default */
+        }
+        #columnNamesDisplay h3 {
+            margin-top: 0;
+            color: #2e7d32;
+        }
+        #columnNamesList {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        #columnNamesList li {
+            background-color: #d4edda;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-family: 'Cascadia Code', 'Fira Code', monospace;
+            font-size: 0.9em;
+            color: #1a5120;
+        }
+
+
+        /* Buttons */
+        button {
+            padding: 10px 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+            font-size: 0.95em;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+        button:hover:not(:disabled) {
+            background-color: #0056b3;
+            transform: translateY(-1px);
+        }
+        button:active:not(:disabled) {
+            transform: translateY(0);
+        }
+        button:disabled {
+            background-color: #a0c9ed;
+            cursor: not-allowed;
+        }
+        #createAllHtmlBtn {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            background-color: #28a745; /* Green for "create all" */
+        }
+        #createAllHtmlBtn:hover:not(:disabled) {
+            background-color: #218838;
+        }
+
+        /* Instructions Section */
+        .instructions {
+            background-color: #e0f7fa;
+            border-left: 5px solid #00bcd4;
+            padding: 18px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .instructions ol { padding-left: 25px; }
+        .instructions pre { background-color: #f4f4f4; padding: 10px; border-radius: 5px; overflow-x: auto; font-size: 0.9em; }
+
+        /* Post Table Container and Table */
+        #postTableContainer {
+            margin-top: 30px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            /* Added for scrollbar management */
+            max-height: 600px; /* Or any suitable max height for the table container */
+            overflow: auto; /* This manages scroll for the entire table if content overflows */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        #postTable {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        #postTable th, #postTable td {
+            border: 1px solid #eee;
+            padding: 10px 15px;
+            text-align: left;
+            vertical-align: top;
+            font-size: 0.9em;
+        }
+        #postTable th {
+            background-color: #f8f8f8;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            color: #555;
+        }
+        #postTable tbody tr:nth-child(even) {
+            background-color: #fefefe;
+        }
+        #postTable tbody tr:hover {
+            background-color: #eef;
+        }
+        #postTable td.actions {
+            white-space: nowrap;
+        }
+        .column-data {
+            max-width: 200px; /* Default for most data cells */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .column-data.content {
+            max-width: 450px; /* Wider for content */
+            white-space: normal; /* Allow content to wrap */
+            max-height: 120px; /* Limit height and add scroll if needed */
+            overflow-y: auto;
+        }
+        .column-data.link {
+            max-width: 150px; /* Adjust for link columns */
+        }
+        /* .img-preview is no longer strictly needed for table display as we show URLs,
+           but keeping it won't hurt if you decide to re-introduce image previews later. */
+        .img-preview {
+            max-width: 30px;
+            height: auto;
+            vertical-align: middle;
+            margin-right: 5px;
+            border-radius: 4px; /* Soften edges */
+        }
+
+        /* Responsive table */
+        @media screen and (max-width: 900px) {
+            #postTable thead {
+                display: none; /* Hide header on small screens */
+            }
+            #postTable, #postTable tbody, #postTable tr, #postTable td {
+                display: block; /* Make table elements behave like blocks */
+                width: 100%;
+            }
+            #postTable tr {
+                margin-bottom: 15px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                background-color: #fff;
+            }
+            #postTable td {
+                text-align: right;
+                padding-left: 50%;
+                position: relative;
+            }
+            #postTable td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 0;
+                width: 45%;
+                padding-left: 10px;
+                font-weight: bold;
+                text-align: left;
+                background-color: #f0f0f0;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                box-sizing: border-box; /* Include padding in width */
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>AuthoredUp Post Archiver & Viewer</h1>
+
+    <div class="instructions">
+        <p><strong>Instructions:</strong></p>
+        <ol>
+            <li>Drag and drop your AuthoredUp CSV file onto the designated area below.</li>
+            <li>The script will **automatically display all columns from your CSV** in the table below.</li>
+            <li>Click "Create HTML" next to a post to download its HTML file and associated images.</li>
+            <li>Click "Create All HTML Files" to process all posts in the table.</li>
+            <li>**Important Post-Download Step:** Your browser will download many files. You'll need to manually organize them:
+                <pre>
+                my_archive/
+                ├── post_1.html
+                ├── post_2.html
+                └── images/
+                    ├── image_post_1_original_name.jpg
+                    ├── image_post_2_original_name.png
+                    └── ...
+                </pre>
+                Place all downloaded image files into an `images/` subfolder **relative to your HTML files** for them to display correctly.
+            </li>
+            <li>
+                **Troubleshooting Data in HTML:**
+                <p>If, after generating HTML, some data (like "Impressions" or "Post Content") is missing, it means the script couldn't find a suitable column in your CSV for that specific piece of information. The script uses keywords to *guess* which of your CSV columns corresponds to a standard field needed for the HTML template. If a warning appears in the "Results Log" like:</p>
+                <pre>
+                Warning: Could not find a suitable CSV column for 'Impressions' using keywords: impressions, views, reach.
+                </pre>
+                <p>This means your CSV header for "Impressions" doesn't match any of the internal keywords. You would need to check your CSV for the exact column name (e.g., "Total Views") and add it to the corresponding keyword list in the `headerKeywords` object in the script.</p>
+                <p>Example: If your CSV has a column named "Total Views" for Impressions, you'd change:</p>
+                <pre>
+                'Impressions': ['impressions', 'views', 'reach'],
+                </pre>
+                <p>to:</p>
+                <pre>
+                'Impressions': ['impressions', 'views', 'reach', 'total views'],
+                </pre>
+                <p>This approach gives you maximum flexibility: the table adapts to your CSV, and you only adjust keywords if the HTML generation needs help finding a specific data point.</p>
+            </li>
+        </ol>
+    </div>
+
+    <p>Drag and drop your AuthoredUp CSV file here, or click to select.</p>
+    <div id="drop_zone">Drag & Drop CSV Here</div>
+    <input type="file" id="csvFile" accept=".csv" style="display: none;">
+
+    <div id="results"></div>
+
+    <div id="columnNamesDisplay">
+        <h3>Detected CSV Column Names:</h3>
+        <ul id="columnNamesList">
+            </ul>
+    </div>
+
+    <div id="postTableContainer" style="display: none;">
+        <h2>Parsed Posts</h2>
+        <button id="createAllHtmlBtn">Create All HTML Files</button>
+        <table id="postTable">
+            <thead>
+                <tr id="tableHeaderRow">
+                    </tr>
+            </thead>
+            <tbody id="tableBody">
+                </tbody>
+        </table>
+    </div>
+
+    <script>
+        const resultsDiv = document.getElementById('results');
+        const postTableContainer = document.getElementById('postTableContainer');
+        const tableHeaderRow = document.getElementById('tableHeaderRow');
+        const tableBody = document.getElementById('tableBody');
+        const createAllHtmlBtn = document.getElementById('createAllHtmlBtn');
+        const columnNamesDisplay = document.getElementById('columnNamesDisplay'); // New element
+        const columnNamesList = document.getElementById('columnNamesList');     // New element
+
+        const IMAGE_SUBFOLDER = "images"; // Folder name for images relative to HTML files
+        let allParsedData = []; // Store parsed CSV data globally
+        let mappedHeaders = {}; // Stores the actually detected CSV header for each field (used for HTML generation)
+
+        // --- Column Name Mapping Keywords for HTML Generation ---
+        // These are keywords/patterns that the script will look for in YOUR CSV headers
+        // to find the relevant data for constructing the HTML content.
+        // It's designed to be flexible and case-insensitive.
+        // You ONLY need to modify these if the *generated HTML is missing data*
+        // and a warning appears in the results log for that field.
+        const headerKeywords = {
+            'Post Content': ['content', 'text', 'message', 'description', 'post'],
+            'Image URLs': ['image', 'media', 'photo', 'picture'],
+            'LinkedIn Post Link': ['link', 'url', 'post link', 'linkedin', 'source'],
+            'Date': ['date', 'published date', 'creation date', 'posted date', 'post_created_at'], // Updated
+            'Time': ['time', 'published time', 'creation time', 'posted time'], // Can remain for specific time field if available
+            'Impressions': ['impressions', 'views', 'reach', 'impression_count'], // Updated
+            'Likes': ['likes', 'reactions', 'reaction_count_like'], // Updated
+            'Comments': ['comments', 'comment count', 'comment_count'], // Updated
+            'Shares': ['share_count'],
+            'Interest': ['reaction_count_interest', 'interest'], // New
+            'Praise': ['reaction_count_praise', 'praise'],       // New
+            'Empathy': ['reaction_count_empathy', 'empathy'],     // New
+            'Entertainment': ['reaction_count_entertainment', 'entertainment'], // New
+            'Post Type': ['type', 'post type'],
+            'Author Name': ['posted_by_profile','author', 'profile name', 'name']
+        };
+
+        function logToResults(message, type = 'info') {
+            const p = document.createElement('p');
+            p.textContent = message;
+            p.className = type;
+            resultsDiv.appendChild(p);
+            resultsDiv.scrollTop = resultsDiv.scrollHeight;
+        }
+
+        async function downloadFile(url, filename) {
+            try {
+                logToResults(`Preparing to download ${filename}...`);
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const blob = await response.blob();
+                const blobUrl = URL.createObjectURL(blob);
+
+                const a = document.createElement('a');
+                a.href = blobUrl;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(blobUrl);
+
+                logToResults(`Successfully triggered download for: ${filename}`);
+                return true;
+            } catch (error) {
+                logToResults(`Failed to download ${filename} from ${url}: ${error.message}`, 'error');
+                return false;
+            }
+        }
+
+        /**
+         * Dynamically maps CSV headers to our internal field names based on keywords.
+         * Used internally for HTML generation logic.
+         * @param {string[]} csvHeaders - Array of actual headers from the CSV.
+         * @returns {object} An object mapping internal field names to actual CSV header names.
+         */
+        function mapCsvHeadersForHtmlGeneration(csvHeaders) {
+            const foundMapping = {};
+            const lowerCaseCsvHeaders = csvHeaders.map(h => h.toLowerCase().trim());
+
+            for (const internalField in headerKeywords) {
+                const keywords = headerKeywords[internalField];
+                let bestMatch = null;
+                let foundExact = false;
+
+                // Prioritize exact keyword match or header containing keyword
+                for (const actualCsvHeader of csvHeaders) { // Iterate through original case headers
+                    const lowerActualCsvHeader = actualCsvHeader.toLowerCase().trim();
+
+                    if (keywords.includes(lowerActualCsvHeader)) { // Exact keyword match to lowercased header
+                        bestMatch = actualCsvHeader;
+                        foundExact = true;
+                        break;
+                    }
+                }
+
+                // If no exact keyword match, find a header that contains a keyword
+                if (!foundExact) {
+                     for (const actualCsvHeader of csvHeaders) {
+                        const lowerActualCsvHeader = actualCsvHeader.toLowerCase().trim();
+                        if (keywords.some(kw => lowerActualCsvHeader.includes(kw))) {
+                            bestMatch = actualCsvHeader;
+                            break; // Take the first one found
+                        }
+                    }
+                }
+
+
+                if (bestMatch) {
+                    foundMapping[internalField] = bestMatch;
+                } else {
+                    logToResults(`Warning: Could not find a suitable CSV column for '${internalField}' using keywords: ${keywords.join(', ')}. Data for this field might be missing.`, 'warn');
+                    foundMapping[internalField] = null; // Mark as not found
+                }
+            }
+            return foundMapping;
+        }
+
+        // Helper function to extract relevant data from a CSV row using the mapped headers
+        function getPostDataFromRow(rowData) {
+            const data = {};
+            // mappedHeaders is populated by mapCsvHeadersForHtmlGeneration
+            for (const field in mappedHeaders) {
+                if (mappedHeaders[field]) { // If a mapping was found for this field
+                    data[field] = rowData[mappedHeaders[field]] || '';
+                } else {
+                    data[field] = ''; // If no suitable header found, assign empty string
+                }
+            }
+            // Provide sensible defaults if mapping failed or data is truly empty
+            data['Impressions'] = data['Impressions'] || '0';
+            data['Likes'] = data['Likes'] || '0';
+            data['Comments'] = data['Comments'] || '0';
+            data['Shares'] = data['Shares'] || '0';
+            data['Interest'] = data['Interest'] || '0';      // New default
+            data['Praise'] = data['Praise'] || '0';          // New default
+            data['Empathy'] = data['Empathy'] || '0';        // New default
+            data['Entertainment'] = data['Entertainment'] || '0'; // New default
+            data['Post Type'] = data['Post Type'] || 'General Post';
+            data['Author Name'] = data['Author Name'] || 'Dr Nicolas Figay';
+            data['Author Avatar URL'] = data['Author Avatar URL'] || 'images/nfigay.jpeg';
+
+            return data;
+        }
+
+        function createPostHtmlContent(postData, downloadedImageFilenames = []) {
+            let imageCarouselHtml = '';
+            if (downloadedImageFilenames.length > 0) {
+                // Ensure the path to the image is correct relative to the HTML file
+                const carouselItems = downloadedImageFilenames.map(filename =>
+                    `<img src="${IMAGE_SUBFOLDER}/${filename}.jpg" alt="Post image" class="carousel-item">`
+                ).join('');
+                imageCarouselHtml = `
+                    <div class="image-carousel-container">
+                        <div class="image-carousel">
+                            ${carouselItems}
+                        </div>
+                    </div>
+                `;
+            }
+
+            const formattedContent = (postData['Post Content'] || '').replace(/\n/g, '<br>');
+
+            const embeddedCss = `
+                body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 40px auto; max-width: 800px; line-height: 1.6; color: #333; background-color: #f9f9f9; }
+                .post-container { background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 30px; }
+                .post-header { display: flex; align-items: center; margin-bottom: 25px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+                .author-avatar { width: 60px; height: 60px; border-radius: 50%; background-color: #ddd; margin-right: 18px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+                .author-info strong { display: block; font-size: 1.25em; color: #0a66c2; font-weight: 600; }
+                .author-info span { color: #666; font-size: 0.95em; display: block; margin-top: 2px; }
+                .post-content { margin-bottom: 25px; }
+                .post-content p { margin-bottom: 1em; text-align: justify; }
+                 
+                /* Carousel Specific Styles */
+.image-carousel-container {
+    margin-bottom: 25px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+    /* New: Set max-height for the container and enable overflow */
+    max-height: 600px;
+    overflow-y: auto; /* Enable vertical scroll if content exceeds max-height */
+}
+
+.image-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 15px;
+    padding-bottom: 10px; /* Space for scrollbar if present */
+    /* Ensure the carousel itself doesn't limit height if container does */
+    height: auto;
+    align-items: flex-start; /* Align items to the top if their heights vary */
+}
+
+.carousel-item {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    max-width: 100%;
+    /* New: Enforce max-height for individual images */
+    max-height: 570px; /* Account for padding in .image-carousel-container (600px - 2*15px padding) */
+    width: auto; /* Allow image to scale down while maintaining aspect ratio */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    object-fit: contain; /* Ensure image fits within its bounds without cropping */
+    display: block; /* Remove extra space below images */
+}
+                .post-meta { font-size: 0.9em; color: #777; border-top: 1px solid #eee; padding-top: 20px; display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center; }
+                .post-meta div { margin-right: 25px; margin-bottom: 8px; }
+                .post-meta strong { color: #333; font-weight: 600; }
+                .linkedin-link a { color: #0a66c2; text-decoration: none; font-weight: bold; font-size: 1em; }
+                .linkedin-link a:hover { text-decoration: underline; }
+            `;
+
+
+            let htmlContent = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Post - ${postData['Post Type'] || 'Archived Post'}</title>
+    <style>
+        ${embeddedCss}
+    </style>
+</head>
+<body>
+    <div class="post-container">
+        <div class="post-header">
+            <div class="author-avatar" style="background-image: url('${postData['Author Avatar URL']}'); background-size: cover; background-position: center;"></div>
+            <div class="author-info">
+                <strong>${postData['Author Name']}</strong>
+                <span>Published on: ${postData['Date'] || 'N/A'}</span> </div>
+        </div>
+
+        ${imageCarouselHtml}
+
+        <div class="post-content">
+            <p>${formattedContent || 'No content found.'}</p>
+        </div>
+
+        <div class="post-meta">
+            <div>Impressions: <strong>${postData['Impressions']}</strong></div>
+            <div>Likes: <strong>${postData['Likes']}</strong></div>
+            <div>Comments: <strong>${postData['Comments']}</strong></div>
+            <div>Shares: <strong>${postData['Shares']}</strong></div>
+            ${postData['Interest'] ? `<div>Interest: <strong>${postData['Interest']}</strong></div>` : ''}
+            ${postData['Praise'] ? `<div>Praise: <strong>${postData['Praise']}</strong></div>` : ''}
+            ${postData['Empathy'] ? `<div>Empathy: <strong>${postData['Empathy']}</strong></div>` : ''}
+            ${postData['Entertainment'] ? `<div>Entertainment: <strong>${postData['Entertainment']}</strong></div>` : ''}
+            ${postData['LinkedIn Post Link'] ? `<div class="linkedin-link"><a href="${postData['LinkedIn Post Link']}" target="_blank">View on LinkedIn</a></div>` : ''}
+        </div>
+    </div>
+</body>
+</html>
+            `;
+            return htmlContent;
+        }
+
+        async function createHtmlForPost(rowData, index) {
+            const postData = getPostDataFromRow(rowData); // Use the globally mapped headers
+
+            // Determine which CSV header corresponds to 'Image URLs'
+            const imageUrlsCsvHeader = mappedHeaders['Image URLs'];
+            let imageUrlsCsv = imageUrlsCsvHeader ? rowData[imageUrlsCsvHeader] : '';
+
+            // Handle potential Array type from PapaParse's dynamicTyping if it sees multiple lines
+            // or ensure it's treated as a string for splitting.
+            if (Array.isArray(imageUrlsCsv)) {
+                imageUrlsCsv = imageUrlsCsv.join('\n'); // Join array elements with newline if it came as array
+            } else {
+                imageUrlsCsv = String(imageUrlsCsv); // Ensure it's a string
+            }
+
+            // Determine which CSV header corresponds to 'LinkedIn Post Link'
+            const linkedInPostLinkCsvHeader = mappedHeaders['LinkedIn Post Link'];
+            const linkedInPostLink = linkedInPostLinkCsvHeader ? rowData[linkedInPostLinkCsvHeader] : '';
+
+            // Determine which CSV header corresponds to 'Post Content'
+            const postContentCsvHeader = mappedHeaders['Post Content'];
+            const postContent = postContentCsvHeader ? rowData[postContentCsvHeader] : '';
+
+
+            let downloadedImageFilenames = [];
+            if (imageUrlsCsv) {
+                // MODIFIED PART: Split by newline and potentially by space, then flatten and clean up
+                const imageUrls = imageUrlsCsv
+                    .split('\n') // Split by newline first
+                    .flatMap(line => line.split(' ')) // Then split each line by space (handles potential spaces)
+                    .map(url => url.replace(/"/g, '').trim()) // Remove any lingering quotes and trim whitespace
+                    .filter(url => url !== ''); // Filter out empty strings
+
+
+                for (const imageUrl of imageUrls) {
+                    // Only process AuthoredUp depository images
+                    if (imageUrl.startsWith("https://depository.authoredup.com/images/")) {
+                        const urlParts = imageUrl.split('/');
+                        const originalFilenameWithExtension = urlParts[urlParts.length - 1];
+
+                        const success = await downloadFile(imageUrl, originalFilenameWithExtension);
+                        if (success) {
+                            downloadedImageFilenames.push(originalFilenameWithExtension);
+                        } else {
+                            logToResults(`Could not download image: ${originalFilenameWithExtension}. It won't be embedded.`, 'warn');
+                        }
+                        await new Promise(resolve => setTimeout(resolve, 200)); // Small delay to avoid overwhelming
+                    } else {
+                        logToResults(`Skipping non-AuthoredUp depository image URL for row ${index + 1}: ${imageUrl}`, 'warn');
+                    }
+                }
+            }
+
+            let postFileName = `post_${index + 1}.html`;
+            if (linkedInPostLink) {
+                try {
+                    const urlObj = new URL(linkedInPostLink);
+                    const pathSegments = urlObj.pathname.split('/').filter(Boolean);
+                    const uniqueId = pathSegments.length > 0 ? pathSegments[pathSegments.length - 1] : `idx${index + 1}`;
+                    postFileName = `post_${uniqueId}.html`;
+                } catch (e) {
+                    logToResults(`Could not parse LinkedIn Post Link for filename (row ${index + 1}): ${linkedInPostLink}. Using default.`, 'warn');
+                }
+            } else if (postContent) {
+                const firstWords = postContent.substring(0, 50).replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '_').toLowerCase();
+                postFileName = `post_${firstWords || `idx${index + 1}`}.html`;
+            }
+
+            const htmlContent = createPostHtmlContent(postData, downloadedImageFilenames);
+
+            const htmlBlob = new Blob([htmlContent], { type: 'text/html' });
+            const htmlBlobUrl = URL.createObjectURL(htmlBlob);
+            const htmlDownloadSuccess = await downloadFile(htmlBlobUrl, postFileName);
+            if (htmlDownloadSuccess) {
+                logToResults(`Created HTML file: ${postFileName}`);
+                return true;
+            } else {
+                logToResults(`Failed to create HTML file: ${postFileName}`, 'error');
+                return false;
+            }
+        }
+
+        async function createAllHtmlFiles() {
+            createAllHtmlBtn.disabled = true;
+            logToResults("Starting to create HTML files for all posts...");
+            let successfulCreations = 0;
+            for (let i = 0; i < allParsedData.length; i++) {
+                const success = await createHtmlForPost(allParsedData[i], i);
+                if (success) {
+                    successfulCreations++;
+                }
+                await new Promise(resolve => setTimeout(resolve, 300)); // Small delay between each post
+            }
+            logToResults(`Completed. Successfully created HTML files for ${successfulCreations} posts.`, 'info');
+            logToResults("Remember to manually organize your downloaded files into 'my_archive/' and 'my_archive/images/' folders for correct display.", 'warn');
+            createAllHtmlBtn.disabled = false;
+        }
+
+        // --- Display CSV Data in Table ---
+        function displayCsvInTable(data, headers) {
+            tableHeaderRow.innerHTML = '';
+            tableBody.innerHTML = '';
+            postTableContainer.style.display = 'block';
+
+            // Use ALL headers discovered by PapaParse for the table
+            headers.forEach(header => {
+                const th = document.createElement('th');
+                th.textContent = header;
+                tableHeaderRow.appendChild(th);
+            });
+            const actionTh = document.createElement('th');
+            actionTh.textContent = 'Actions';
+            tableHeaderRow.appendChild(actionTh);
+
+            data.forEach((rowData, index) => {
+                const tr = document.createElement('tr');
+                headers.forEach(header => { // Iterate through all actual CSV headers
+                    const td = document.createElement('td');
+                    let displayValue = rowData[header];
+
+                    // Determine if this header corresponds to 'Image URLs' for table display
+                    const isImageColumnForTable = headerKeywords['Image URLs'].some(kw => header.toLowerCase().trim().includes(kw));
+                    // Determine if this header corresponds to 'Post Content' for table display
+                    const isContentColumnForTable = headerKeywords['Post Content'].some(kw => header.toLowerCase().trim().includes(kw));
+                     // Determine if this header corresponds to 'LinkedIn Post Link' for table display
+                    const isLinkColumnForTable = headerKeywords['LinkedIn Post Link'].some(kw => header.toLowerCase().trim().includes(kw));
+
+
+                    if (isImageColumnForTable && displayValue) {
+                        // MODIFIED PART: Use the same robust splitting logic for table display
+                        const urls = String(displayValue)
+                            .split('\n')
+                            .flatMap(line => line.split(' '))
+                            .map(url => url.replace(/"/g, '').trim())
+                            .filter(url => url !== '');
+
+                        if (urls.length > 0) {
+                            // Display URL as a link instead of an image
+                            td.innerHTML = urls.map(url => {
+                                return `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+                            }).join('<br>');
+                        } else {
+                            td.textContent = displayValue;
+                        }
+                    } else {
+                        td.textContent = displayValue;
+                    }
+
+                    // Apply content/link classes based on general keywords for table display
+                    if (isContentColumnForTable) {
+                        td.classList.add('column-data', 'content');
+                    } else if (isLinkColumnForTable || isImageColumnForTable) { // Keep image column as link type for max-width etc.
+                        td.classList.add('column-data', 'link');
+                    } else {
+                        td.classList.add('column-data');
+                    }
+                    td.setAttribute('data-label', header);
+                    tr.appendChild(td);
+                });
+
+                const actionTd = document.createElement('td');
+                actionTd.classList.add('actions');
+                actionTd.setAttribute('data-label', 'Actions');
+                const createBtn = document.createElement('button');
+                createBtn.textContent = 'Create HTML';
+                createBtn.onclick = async () => {
+                    createBtn.disabled = true;
+                    logToResults(`Creating HTML for post ID: ${index + 1}...`);
+                    await createHtmlForPost(rowData, index);
+                    createBtn.disabled = false;
+                };
+                actionTd.appendChild(createBtn);
+                tr.appendChild(actionTd);
+                tableBody.appendChild(tr);
+            });
+        }
+
+        // --- CSV File Handling with PapaParse ---
+        const dropZone = document.getElementById('drop_zone');
+
+        // --- Event Listeners for Drag and Drop / File Input ---
+        dropZone.addEventListener('dragover', (event) => {
+            event.preventDefault();
+            dropZone.style.borderColor = '#0056b3';
+            dropZone.style.backgroundColor = '#d0e8ff';
+        });
+
+        dropZone.addEventListener('dragleave', (event) => {
+            dropZone.style.borderColor = '#007bff';
+            dropZone.style.backgroundColor = '#e6f2ff';
+        });
+
+        dropZone.addEventListener('drop', (event) => {
+            event.preventDefault();
+            dropZone.style.borderColor = '#007bff';
+            dropZone.style.backgroundColor = '#e6f2ff';
+            const files = event.dataTransfer.files;
+            if (files.length > 0) {
+                handleFile(files[0]);
+            }
+        });
+
+        dropZone.addEventListener('click', () => {
+            document.getElementById('csvFile').click();
+        });
+
+        document.getElementById('csvFile').addEventListener('change', (event) => {
+            const files = event.target.files;
+            if (files.length > 0) {
+                handleFile(files[0]);
+            }
+        });
+
+        createAllHtmlBtn.addEventListener('click', createAllHtmlFiles);
+
+
+        function handleFile(file) {
+            if (file.type !== 'text/csv') {
+                logToResults('Please drop a CSV file.', 'error');
+                return;
+            }
+
+            logToResults(`Processing file: ${file.name}`);
+            Papa.parse(file, {
+                header: true,
+                skipEmptyLines: true,
+                dynamicTyping: true, // Attempt to convert numbers, booleans, etc.
+                complete: function(results) {
+                    if (results.errors.length) {
+                        results.errors.forEach(error => {
+                            logToResults(`Parsing error: ${error.message} at row ${error.row}`, 'error');
+                        });
+                        return;
+                    }
+
+                    allParsedData = results.data;
+                    const actualCsvHeaders = results.meta.fields;
+
+                    // Display all detected CSV column names
+                    columnNamesList.innerHTML = '';
+                    actualCsvHeaders.forEach(header => {
+                        const li = document.createElement('li');
+                        li.textContent = header;
+                        columnNamesList.appendChild(li);
+                    });
+                    columnNamesDisplay.style.display = 'block'; // Show the column names div
+
+                    logToResults(`Successfully parsed ${allParsedData.length} rows.`);
+
+                    // Map headers for HTML generation
+                    mappedHeaders = mapCsvHeadersForHtmlGeneration(actualCsvHeaders);
+
+                    // Display data in the table
+                    displayCsvInTable(allParsedData, actualCsvHeaders); // Pass all actual headers for table display
+                },
+                error: function(err) {
+                    logToResults(`Failed to parse CSV: ${err.message}`, 'error');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

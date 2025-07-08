@@ -5,6 +5,7 @@
   <title>ArchiMate Compound Graph Viewer and Analyzer</title>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" type="text/css" href="css/all.min.css" />
   <link rel="stylesheet" type="text/css" href="w2ui-2.0.min.css" />
   <link rel="stylesheet" type="text/css" href="ArchiCG Viewer and Analyzer.css">
   <link rel="stylesheet" type="text/css" href="lib/vis-timeline-graph2d.min.css"/>
@@ -40,6 +41,7 @@
             height: 100%;
         }
 </style>
+<script src="lib/i18next.min.js"></script>
  
   <script src="lib/cytoscape.min.js"></script>
   <script src="lib/cytoscape-undo-redo.js"></script>
@@ -88,6 +90,7 @@
   <script src="lib/jszip-utils.js"></script>
   <script src="lib/pivot.min.js"></script>
   <script src="lib/toolCar.js"></script>
+
  <!-- <script src="lib/edgy.js"></script>-->
 
 
@@ -110,7 +113,7 @@
 </head>
 <body>
   <div style="display: none;" id="presentation-container"></div>
-  <div id="mainmenu" style="padding: 0px; height: 4%;"></div>
+  
   <div id="archicg-layout" style="width: 100%; height: 96%;"></div>
   <div  id="popup" style="width: 800px; height: 600px; overflow: hidden; display:none; " >
   

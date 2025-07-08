@@ -34,6 +34,7 @@
     <!-- Cytoscape-Dagre Extension -->
     <script src="lib/cytoscape-dagre.js"></script>
     <script src="lib/i18next.min.js"></script>
+    <script src="js/ics.js"></script>
 
 
 
@@ -113,6 +114,8 @@
 
     <input type="file" name="name" id="inputfile" style="display:none" />
     <input type="file" name="name" id="load-from-inp" style="display:none" />
+    <input type="file" id="jsonl-hidden-input" accept=".jsonl,.ndjson" style="display:none;">
+
 
 
 
@@ -132,6 +135,10 @@
                     },
                     menu: {
                         language: "Language",
+                        iso: "ISO",
+                        tc: "Technical Committees",
+                        loadtc: "Load",
+                        savetc: "Save",
                         fr: "🇫🇷 French",
                         en: "🇬🇧 English",
                         files: "Files",
@@ -235,6 +242,10 @@
                     },
                     menu: {
                         language: "Langage",
+                        iso: "ISO",
+                        tc: "Comités Techniques",
+                        loadtc: "Charger",
+                        savetc: "Sauver",
                         fr: "🇫🇷 Français",
                         en: "🇬🇧 English",
                         files: "Fichiers",
@@ -731,9 +742,22 @@
                         { id: "fr", text: i18next.t("fr") },
                         { id: "en", text: i18next.t("en") },
                     ]
-                }
-            ];
 
+                },
+                { type: 'spacer' },
+                {
+                    type: "menu", id: "iso", text: i18next.t("menu.iso"), icon: "fa fa-eye",
+                    items: [
+                        {
+                            id: 'tc', text: i18next.t("menu.tc"), icon: 'fa fa-star', expanded: true,
+                            items: [
+                                { id: "loadtc", text: i18next.t("menu.loadtc") },
+                                { id: "savetc", text: i18next.t("menu.savetc") },
+                            ]
+                        }
+                    ]
+                },
+            ];
         }
         function initializeMainMenu() {
             if (w2ui.mainMenu) return; // Prevent multiple initializations
@@ -748,6 +772,89 @@
             return mainMenu;
         }
 
+
+        function initializeISCSidebar() {
+            Papa.parse("https://nfigay.github.io/ArchiCG/opendata/iso/ICS.csv", {
+                download: true,
+                header: true,
+                skipEmptyLines: true,
+                complete: function (results) {
+                    const data = results.data;
+
+                    const nodeMap = {};   // identifier -> node
+                    const rootNodes = []; // top-level nodes
+
+                    data.forEach((row, index) => {
+                        if (!row.identifier || !row.titleEn) {
+                            console.warn(`Ignoring row ${index} because of missing identifier or titleEn:`, row);
+                            return; // saute cette ligne
+                        }
+
+                        const node = {
+                            id: row.identifier,
+                            text: row.identifier + " - " + row.titleEn, // titleFr si en mode francais, avec néanmoins l'anglais si pas de titre francais
+                            nodes: []
+                        };
+                        nodeMap[row.identifier] = node;
+
+                        if (row.parent && nodeMap[row.parent]) {
+                            // Si le parent existe, ajoute ce nœud comme enfant
+                            nodeMap[row.parent].nodes.push(node);
+                        } else {
+                            // Sinon, c'est un nœud racine
+                            rootNodes.push(node);
+                        }
+                    });
+
+                    console.log("Arbre final :", rootNodes);
+
+                    // Injecte ensuite dans le sidebar
+                    sb = new w2sidebar({
+                        box: '#sidebar',
+                        name: 'sidebar',
+                        topHTML: `
+        <div style="height: 36px; padding: 3px 2px; border-bottom: 1px solid silver">
+            <input id="search" style="width: 100%" class="w2ui-input" placeholder="Search ICS..."
+                onchange="search(this.value)">
+        </div>
+    `,
+                        nodes: rootNodes,
+                        onClick(event) {
+                            console.log('click', event.detail)
+                        },
+                        async onRefresh(event) {
+                            await event.complete
+                            if (event.detail.fullRefresh) {
+                                if (query('#search').length > 0) {
+                                    query('#search').val(sb.last_search ?? '').get(0).focus()
+                                }
+                            }
+                        }
+                    })
+                    return sb;
+                },
+                error: function (err) {
+                    console.error('Error loading or parsing CSV:', err);
+                }
+            });
+        }
+
+
+        window.search = function (value) {
+            sb.last_search = value
+            let count = sb.search(value)
+            sb.expandAll()
+            query(sb.box).find('#empty-search').remove()
+            if (count == 0) {
+                query(sb.box)
+                    .append('<div id="empty-search" style="font-size: 13px; color: #666; z-index: 1400; top: 45%; left: 50%; transform: translateX(-50%); width: 100%!important; text-align: center">No nodes found</div>')
+                w2utils.marker(sb.box)
+            } else {
+                let words = []
+                if (value !== '') words.push(value)
+                w2utils.marker(sb.box, words)
+            }
+        }
 
 
         function initializeToolbar() {
@@ -791,7 +898,7 @@
                         items: workingGroupMenuItems
                     },
                     { type: 'new-line' },
-                    { type: 'new-line' },
+                   
                     {
                         type: 'label',
                         id: 'item3',
@@ -815,6 +922,38 @@
 
                     },
                     { type: 'new-line' },
+                    {
+                        type: 'label', id: 'searchStandard', text: 'Search ISO Standard',
+                        tooltip: 'Searching ISO standards according to some research criteria',
+                    },
+                    { type: 'new-line' },
+                    {
+                        type: 'input', id: 'ICS', text: 'ICS: ', value: '', placeholder: 'ISO Class for Standards',
+                        input: {
+                            style: 'width: 100px'
+                        }
+                    },
+                    { type: 'new-line' },
+                    {
+                        type: 'input', id: 'ITC', text: 'ITC: ', value: '', placeholder: 'ISO Technical Committee',
+                        input: {
+                            style: 'width: 100px'
+                        }
+                    },
+                    { type: 'new-line' },
+                    {
+                        type: 'input', id: 'keywords', text: 'Keywords: ', value: '', placeholder: 'Keywords separated with commas for textual research',
+                        input: {
+                            style: 'width: 150px'
+                        }
+                    },
+                    { type: 'new-line' },
+                    {
+                        type: 'input', id: 'filterfor', text: 'applied to: ', value: '', placeholder: 'list of fields',
+                        input: {
+                            style: 'width: 60px'
+                        }
+                    },
                     { type: 'new-line' },
                     {
                         type: 'label', id: 'item5', text: 'CSV SSR',
@@ -851,6 +990,15 @@
 
                 ],
                 // Place onClick *outside* of the items array
+                onChange(event) {
+                    console.log('ICS field changed: ', event.target.value);
+                    // Add custom logic for handling change event
+                },
+                onBlur(event) {
+                    console.log('ICS field left (blurred)');
+                    // Add custom logic for handling blur (leave) event
+                },
+
                 onClick(event) {
                     const target = event.target.split(':')[0]; // Get the part before the colon
                     const subTarget = event.target.split(':')[1];
@@ -1168,6 +1316,15 @@
                 case 'showhidegrabifydelete:restore':
                     removed.restore();
                     break;
+                case 'iso:loadtc':
+                    document.getElementById('jsonl-hidden-input').click();
+                    break;
+                case 'iso:savetc':
+
+                    break;
+                default:
+                    // alert(event.target)
+                    break;
             }
         }
         // Define the layout first
@@ -1186,10 +1343,15 @@
                 {
                     type: 'main', resizable: true, style: 'background: #f8f9fa;',
                     html: `
-                <div id="radar-container">
-                    <div id="svg-container"></div>
-                    <div id="cy-container"></div>
-                    <div id="cy2-container"></div>
+                     <div id="main-container" style="display: flex; flex-direction: row;height: 100%; width: 100%;">
+                        <div id="radar-container">
+                             <div id="svg-container"></div>
+                             <div id="cy-container"></div>
+                             <div id="cy2-container"></div>
+                        </div>
+                    <div id="sidebar" style="display: flex; flex-direction: column; justify-content: flex-start; height: 100%; width: calc(100% - 800px); overflow: hidden;">
+                <!-- Contenu de la grille -->
+                     </div>
                 </div>` },
                 {
                     type: 'right', resizable: true, size: 300, style: 'border-left: 1px solid #ccc;',
@@ -1202,6 +1364,7 @@
         w2ui.mainLayout.html('top', initializeMainMenu());
         //w2ui.mainLayout.html('left', initializeToolbar());//initializeToolbar2());
         initializeToolbar().render("#toolbar-container")
+        initializeISCSidebar()
         w2ui.mainLayout.html('bottom', "");
 
 
@@ -1446,12 +1609,12 @@
                     .yes(() => {
                         cy.$().remove();
                         api.loadJson(txt);
-                       
+
                     })
                     .no(() => {
-                       // api.loadJson(txt);
-                       alert("Merging content of radards not supported at this stage.")
-                    
+                        // api.loadJson(txt);
+                        alert("Merging content of radards not supported at this stage.")
+
                     });
             })
         });
@@ -1472,6 +1635,156 @@
                     openCSV(file); // Pass file object
                 });
         });
+
+
+        document.getElementById('jsonl-hidden-input').addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const maxSizeMB = 100;
+            const fileSizeMB = file.size / (1024 * 1024);
+            if (fileSizeMB > maxSizeMB) {
+                alert(`Le fichier est trop volumineux (${fileSizeMB.toFixed(2)} MB). Veuillez sélectionner un fichier de moins de ${maxSizeMB} MB.`);
+                e.target.value = '';
+                return;
+            }
+
+            readJSONLFile(file, (jsonArray) => {
+                const graphData = {
+                    nodes: [],
+                    edges: []
+                };
+
+                const nodeIndex = new Map();
+                const edgeIndex = new Set();
+
+                // Racine du graphe
+                const rootNode = {
+                    data: {
+                        id: "iso-tc",
+                        label: "ISO Technical Committees",
+                        type: "business-actor",
+                        specialization: "isotc"
+                    }
+                };
+                graphData.nodes.push(rootNode);
+                nodeIndex.set(rootNode.data.id, rootNode);
+
+                function ensureOrgNode(org) {
+                    const orgNodeId = org.id;
+                    if (!nodeIndex.has(orgNodeId)) {
+                        const node = {
+                            data: {
+                                id: orgNodeId,
+                                label: org.acronym || org.name || orgNodeId,
+                                type: 'organization',
+                                specialization: 'member-body'
+                            }
+                        };
+                        graphData.nodes.push(node);
+                        nodeIndex.set(orgNodeId, node);
+                    }
+                    return orgNodeId;
+                }
+
+                function addEdge(source, target, label, type) {
+                    return;
+                    const edgeId = `rel-${source}-${label}-${target}`;
+                    if (!edgeIndex.has(edgeId)) {
+                        graphData.edges.push({
+                            data: {
+                                id: edgeId,
+                                source,
+                                target,
+                                edgeType: type,
+                                label
+                            }
+                        });
+                        edgeIndex.add(edgeId);
+                    }
+                }
+
+                function processMembers(tc, nodeId, members, label) {
+                    if (label == 'committeeLiaison') {
+                        if (!Array.isArray(members)) return;
+                        members.forEach(member => {
+                            const memberNodeId = ensureOrgNode(member);
+                            addEdge(nodeId, memberNodeId, label, 'aggregation');
+                        });
+
+                    }
+                    else {
+                        if (!Array.isArray(members)) return;
+                        members.forEach(member => {
+                            const memberNodeId = ensureOrgNode(member);
+                            addEdge(nodeId, memberNodeId, label, 'aggregation');
+                        });
+                    }
+                }
+
+                jsonArray.forEach(tc => {
+                    const nodeId = tc.id;
+                    const nodeData = {
+                        id: nodeId,
+                        label: tc.reference,
+                        type: 'business-actor',
+                        specialization: 'isotc',
+                        description: tc.title?.en || ''
+                    };
+
+                    if (tc.parentId !== null) {
+                        nodeData.parent = tc.parentId;
+                    } else {
+                        nodeData.parent = 'iso-tc';
+                    }
+
+                    const relationKeys = ['pMembers', 'oMembers', 'committeeLiaisons', 'organizationLiaisons', 'childrenId'];
+
+                    Object.entries(tc).forEach(([key, value]) => {
+                        if (key === 'parentId' || key === 'id' || relationKeys.includes(key)) return;
+                        if (value && typeof value === 'object' && !Array.isArray(value)) {
+                            Object.entries(value).forEach(([subKey, subValue]) => {
+                                nodeData[`${key}.${subKey}`] = subValue;
+                            });
+                        } else {
+                            nodeData[key] = value;
+                        }
+                    });
+
+                    const node = { data: nodeData };
+                    graphData.nodes.push(node);
+                    nodeIndex.set(nodeId, node);
+
+                    processMembers(tc, nodeId, tc.pMembers, 'pMember');
+                    processMembers(tc, nodeId, tc.oMembers, 'oMember');
+                    processMembers(tc, nodeId, tc.committeeLiaisons, 'committeeLiaison');
+                    processMembers(tc, nodeId, tc.organizationLiaisons, 'organizationLiaison');
+
+                    if (tc.parentId !== null) {
+                        const parentId = tc.parentId;
+                        addEdge(parentId, nodeId, 'subCommitteeOf', 'composition');
+                    }
+                });
+
+                const blob = new Blob([JSON.stringify(graphData, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'tc-graph.json';
+                document.body.appendChild(a);
+                a.click();
+                setTimeout(() => {
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                }, 0);
+
+                e.target.value = '';
+            }, (err, line, i) => {
+                alert(`Erreur à la ligne ${i + 1}: ${line}`);
+            });
+        });
+
+
         // Initialize Cytoscape.js
         var elements = [
             //  { data: { id: 'a', label: "Feed the radar" }, position: { x: 400, y: 400 } },
