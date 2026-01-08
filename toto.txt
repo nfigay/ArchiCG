@@ -12,6 +12,7 @@ icon-minus.png
 icon-plus.png
 id_ed25519.pub
 id_ed25519t
+id_ed25519t.pub
 img
 js
 lib
